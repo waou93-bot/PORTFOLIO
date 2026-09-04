@@ -1,0 +1,408 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Badge from '../../components/ui/Badge.astro';
+import ProjectMedia from '../../components/media/ProjectMedia.astro';
+import VideoPreview from '../../components/media/VideoPreview.astro';
+import NextProject from '../../components/project/NextProject.astro';
+import { getVisibleProjects, projectNav, isPublished } from '../../lib/content';
+import { creativeWorkLd } from '../../lib/seo';
+import { PROJECT_KIND_LABELS, RIGHTS_LABELS } from '../../types/project';
+
+export async function getStaticPaths() {
+  const projects = await getVisibleProjects();
+  return projects.map((p) => ({ params: { slug: p.data.slug }, props: { project: p } }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const p = project.data;
+const { Content } = await render(project);
+const allProjects = await getVisibleProjects();
+const nav = projectNav(allProjects, p.slug);
+const isConcept = p.kind === 'concept' || p.kind === 'redesign' || p.kind === 'experimental';
+const disclaimer = p.independentConceptDisclaimer;
+const hasResults = p.results.length > 0;
+type ProjectData = CollectionEntry<'projects'>['data'];
+type ResultItem = ProjectData['results'][number];
+type MediaItem = ProjectData['gallery'][number];
+---
+
+<BaseLayout
+  title={p.seoTitle ?? p.title}
+  description={p.seoDescription ?? p.summary}
+  theme={p.theme.dark ? 'dark' : 'light'}
+  accent={p.theme.accent}
+  accentContrast={p.theme.accentContrast}
+  ogImage={p.cover.src}
+  jsonLd={[creativeWorkLd(project)]}
+>
+  <article>
+    <!-- Ouverture visuelle -->
+    <section class="project-hero">
+      <div class="container project-hero-inner">
+        <p class="eyebrow reveal">{p.year} · {p.sector}</p>
+        <h1 class="project-title display reveal">{p.title}</h1>
+        <p class="project-summary reveal">{p.summary}</p>
+        <div class="project-badges reveal">
+          <Badge kind={p.kind} tone={isConcept ? 'neutral' : 'solid'} />
+          {isConcept && <span class="meta">Étude indépendante — non commandée</span>}
+        </div>
+      </div>
+    </section>
+
+    {
+      disclaimer && (
+        <div class="container">
+          <aside class="disclaimer reveal" role="note">
+            <span class="eyebrow">Mention</span>
+            <p>{disclaimer}</p>
+          </aside>
+        </div>
+      )
+    }
+
+    <section class="project-cover container">
+      <div class="project-cover-media reveal">
+        {
+          (
+            <ProjectMedia
+              src={p.cover.src}
+              alt={p.cover.alt}
+              sizes="(min-width: 72rem) 67rem, 92vw"
+              loading="eager"
+              fetchpriority="high"
+            />
+          )
+        }
+      </div>
+      {
+        p.previewVideo && (
+          <VideoPreview
+            src={p.previewVideo.src}
+            poster={p.previewVideo.poster ?? p.cover.src}
+            alt={p.previewVideo.alt}
+          />
+        )
+      }
+    </section>
+
+    <!-- Métadonnées -->
+    <section class="section section--compact" aria-label="Informations du projet">
+      <div class="container">
+        <dl class="facts">
+          <div class="fact">
+            <dt>Rôle</dt>
+            <dd>{p.role.join(' · ')}</dd>
+          </div>
+          <div class="fact">
+            <dt>Services</dt>
+            <dd>{p.services.join(' · ')}</dd>
+          </div>
+          <div class="fact">
+            <dt>Année</dt>
+            <dd>{p.year}</dd>
+          </div>
+          <div class="fact">
+            <dt>Secteur</dt>
+            <dd>{p.sector}</dd>
+          </div>
+          <div class="fact">
+            <dt>Statut</dt>
+            <dd>{PROJECT_KIND_LABELS[p.kind]}</dd>
+          </div>
+          <div class="fact">
+            <dt>Droits</dt>
+            <dd>{RIGHTS_LABELS[p.rightsStatus]}</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Étude de cas -->
+    <section class="section section--compact">
+      <div class="container-narrow">
+        <div class="prose reveal">
+          <Content />
+        </div>
+      </div>
+    </section>
+
+    {
+      hasResults && (
+        <section class="section section--compact" aria-label="Résultats">
+          <div class="container-narrow">
+            <p class="eyebrow">Résultats</p>
+            <div class="results">
+              {p.results.map((r: ResultItem) => (
+                <div class="result">
+                  <p class="result-value display">
+                    {r.value} <span class="result-unit">{r.unit}</span>
+                  </p>
+                  <p class="result-meta meta">
+                    Source : {r.source} · {r.date} · {r.confidence}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      p.gallery.length > 0 && (
+        <section class="section section--compact" aria-label="Galerie">
+          <div class="container">
+            <p class="eyebrow">Galerie</p>
+            <div class="gallery">
+              {p.gallery.map((g: MediaItem) => (
+                <figure class="gallery-item reveal">
+                  <ProjectMedia
+                    src={g.src}
+                    alt={g.alt}
+                    sizes="(min-width: 48rem) 32rem, 92vw"
+                    loading="lazy"
+                  />
+                  {g.caption && <figcaption class="meta">{g.caption}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      p.mobileGallery.length > 0 && (
+        <section class="section section--compact" aria-label="Version mobile">
+          <div class="container">
+            <p class="eyebrow">Version mobile</p>
+            <div class="mobile-gallery">
+              {p.mobileGallery.map((g: MediaItem) => (
+                <figure class="mobile-item reveal">
+                  <ProjectMedia src={g.src} alt={g.alt} sizes="300px" loading="lazy" />
+                  {g.caption && <figcaption class="meta">{g.caption}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Lien live / CTA -->
+    <section class="section section--compact">
+      <div class="container">
+        <div class="live-cta">
+          {
+            p.liveUrl && (
+              <a
+                class="btn btn--primary"
+                href={p.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Voir le site en ligne ↗
+              </a>
+            )
+          }
+          {
+            p.archivedUrl && (
+              <a
+                class="btn btn--ghost"
+                href={p.archivedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Archive visuelle ↗
+              </a>
+            )
+          }
+          {!isPublished(project) && <span class="meta">Étude en cours de documentation</span>}
+        </div>
+      </div>
+    </section>
+
+    {nav && <NextProject project={nav.next} />}
+  </article>
+</BaseLayout>
+
+<style>
+  .project-hero {
+    padding-top: var(--space-9);
+    padding-bottom: var(--space-7);
+  }
+
+  .project-hero-inner {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .project-title {
+    font-size: var(--text-4xl);
+    max-width: 18ch;
+  }
+
+  .project-summary {
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 48ch;
+  }
+
+  .project-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-top: var(--space-3);
+  }
+
+  .disclaimer {
+    border-left: 3px solid var(--color-accent);
+    background: color-mix(in oklch, var(--color-accent) 8%, transparent);
+    padding: var(--space-5) var(--space-6);
+    border-radius: 0 var(--radius-m) var(--radius-m) 0;
+    margin-block: var(--space-6);
+    display: grid;
+    gap: var(--space-2);
+    max-width: var(--container-narrow);
+  }
+
+  .disclaimer p {
+    color: var(--color-ink-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .project-cover-media {
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    box-shadow: var(--shadow-l);
+  }
+
+  .project-cover-media :global(img) {
+    width: 100%;
+  }
+
+  .facts {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .fact {
+    display: grid;
+    gap: var(--space-1);
+    border-top: var(--border-1);
+    padding-top: var(--space-4);
+  }
+
+  .fact dt {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-muted);
+  }
+
+  .fact dd {
+    margin: 0;
+    font-weight: 600;
+    line-height: var(--leading-normal);
+  }
+
+  .prose :global(h2) {
+    font-size: var(--text-xl);
+    margin-block: var(--space-8) var(--space-3);
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
+  }
+
+  .prose :global(h3) {
+    font-size: var(--text-lg);
+    margin-block: var(--space-6) var(--space-2);
+  }
+
+  .prose :global(p) {
+    margin-block: var(--space-4);
+    line-height: var(--leading-relaxed);
+    color: var(--color-ink-soft);
+  }
+
+  .prose :global(strong) {
+    color: var(--color-ink);
+  }
+
+  .results {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-5);
+  }
+
+  .result {
+    border-top: var(--border-1);
+    padding-top: var(--space-4);
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .result-value {
+    font-size: var(--text-3xl);
+  }
+
+  .result-unit {
+    font-size: var(--text-lg);
+    color: var(--color-accent);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-5);
+  }
+
+  .gallery-item {
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .gallery-item :global(img) {
+    width: 100%;
+    border-radius: var(--radius-m);
+  }
+
+  .mobile-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: var(--space-6);
+    margin-top: var(--space-5);
+  }
+
+  .mobile-item {
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .mobile-item :global(img) {
+    width: 100%;
+    aspect-ratio: 9 / 19;
+    object-fit: cover;
+    border-radius: var(--radius-m);
+    border: var(--border-1);
+  }
+
+  .live-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    border-top: var(--border-1);
+    padding-top: var(--space-6);
+  }
+</style>

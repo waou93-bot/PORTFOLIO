@@ -1,0 +1,129 @@
+---
+import '../../styles/global.css';
+import { site } from '../../config/site';
+import { absUrl, pageTitle } from '../../lib/seo';
+import { ClientRouter } from 'astro:transitions';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  theme?: 'light' | 'dark';
+  accent?: string;
+  accentContrast?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  theme = 'light',
+  accent,
+  accentContrast,
+  noindex,
+  ogImage,
+  jsonLd = [],
+} = Astro.props;
+
+const canonical = absUrl(Astro.url.pathname);
+const metaDescription = description ?? site.description;
+const isProduction = import.meta.env.PROD && import.meta.env.VERCEL_ENV === 'production';
+const shouldNoindex = noindex ?? !isProduction;
+const ogImg = ogImage ?? absUrl('/media/og-cover.svg');
+const accentStyle = accent
+  ? `--color-accent:${accent};--color-accent-contrast:${accentContrast ?? 'oklch(0.98 0.01 85)'};`
+  : '';
+---
+
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle(title)}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    {shouldNoindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.title} />
+    <meta property="og:title" content={pageTitle(title)} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImg} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle(title)} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImg} />
+
+    {
+      jsonLd.map((ld) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
+      ))
+    }
+
+    <ClientRouter fallback="swap" />
+    <script>
+      import { initReveals } from '../../lib/reveals';
+      import { initVideoPreviews } from '../../lib/video';
+      initReveals();
+      initVideoPreviews();
+      document.addEventListener('astro:page-load', () => {
+        initReveals();
+        initVideoPreviews();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="page-shell" data-theme={theme} style={accentStyle}>
+      <a class="skip-link" href="#main">Aller au contenu</a>
+      <Header />
+      <main id="main" class="page-main">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+
+    <style is:global>
+      .page-shell {
+        min-height: 100dvh;
+        background: var(--color-paper);
+        color: var(--color-ink);
+        view-transition-name: page-shell;
+      }
+
+      /* Vue de transition de route : fondu + léger glissement du contenu */
+      ::view-transition-old(page-shell) {
+        animation: page-fade-out 250ms var(--ease-in-out) both;
+      }
+      ::view-transition-new(page-shell) {
+        animation: page-fade-in 350ms var(--ease-out) both;
+      }
+      @keyframes page-fade-out {
+        to {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+      }
+      @keyframes page-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(page-shell),
+        ::view-transition-new(page-shell) {
+          animation: none;
+        }
+      }
+    </style>
+  </body>
+</html>

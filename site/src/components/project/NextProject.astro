@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectMedia from '../media/ProjectMedia.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const p = project.data;
+---
+
+<nav class="next-project reveal" aria-label="Projet suivant">
+  <a class="next-project-link focus-ring" href={`/work/${p.slug}`}>
+    <span class="eyebrow">Projet suivant</span>
+    <span class="next-project-title display">
+      {p.title}
+      <span class="next-project-arrow" aria-hidden="true">→</span>
+    </span>
+    <span class="next-project-media">
+      <ProjectMedia src={p.cover.src} alt={p.cover.alt} sizes="24rem" loading="lazy" />
+    </span>
+  </a>
+</nav>
+
+<style>
+  .next-project {
+    margin-top: var(--space-9);
+    border-top: var(--border-1);
+    padding-top: var(--space-7);
+  }
+
+  .next-project-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .next-project-title {
+    font-size: var(--text-3xl);
+    color: var(--color-ink);
+    transition: color var(--dur-med);
+  }
+
+  .next-project-link:hover .next-project-title {
+    color: var(--color-accent);
+  }
+
+  .next-project-arrow {
+    display: inline-block;
+    margin-left: var(--space-2);
+    transition: transform var(--dur-med) var(--ease-out);
+  }
+
+  .next-project-link:hover .next-project-arrow {
+    transform: translateX(8px);
+  }
+
+  .next-project-media {
+    width: min(100%, 28rem);
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+  }
+
+  .next-project-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+
+  .next-project-link:hover .next-project-media :global(img) {
+    transform: scale(1.03);
+  }
+</style>

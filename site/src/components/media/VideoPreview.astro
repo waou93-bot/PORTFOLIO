@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string; // .mp4 (ou .webm)
+  poster: string;
+  alt: string;
+}
+
+const { src, poster, alt } = Astro.props;
+const webm = src.replace(/\.mp4$/, '.webm');
+---
+
+<video
+  class="video-preview"
+  data-video-preview
+  poster={poster}
+  muted
+  playsinline
+  preload="none"
+  loop
+  tabindex="0"
+  aria-label={alt}
+>
+  <source src={src} type="video/mp4" />
+  <source src={webm} type="video/webm" />
+</video>
+
+<style>
+  /* eslint-disable astro/no-unused-css-selector */
+  .video-preview {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: var(--color-paper-raised);
+    transition:
+      transform var(--dur-slow) var(--ease-out),
+      opacity var(--dur-med);
+    cursor: pointer;
+  }
+
+  /* eslint-disable-next-line astro/no-unused-css-selector -- classe togglée via JS */
+  .video-preview--active {
+    opacity: 1;
+  }
+</style>

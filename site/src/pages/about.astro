@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { profile, site, perfSnapshot } from '../config/site';
+
+const hasPerf = perfSnapshot.measuredAt !== '';
+
+const values = [
+  {
+    title: 'La preuve avant la décoration',
+    text: 'Chiffres et crédits vérifiés, jamais d\u2019adjectifs creux. Chaque projet documente son rôle réel et son périmètre.',
+  },
+  {
+    title: 'Le mobile n\u2019est pas une réduction',
+    text: 'Conçu pour les écrans de poche d\u2019abord : vitesse, lisibilité, cibles tactiles. Le desktop en profite.',
+  },
+  {
+    title: 'L\u2019accessibilité comme finition',
+    text: 'Navigation clavier, contrastes, focus visibles, animations désactivables. Un site utilisable par tous est mieux fini pour tous.',
+  },
+];
+---
+
+<BaseLayout
+  title="À propos"
+  description="Nicolas Jez — concepteur d'expériences web : direction artistique, UX/UI, landing pages immersives et développement front-end."
+>
+  <section class="section">
+    <div class="container">
+      <SectionHeading index="À propos" title={profile.role} />
+
+      <div class="about-grid">
+        <div class="about-main">
+          <p class="lead">{site.availability}</p>
+          <p class="about-text">{profile.shortBio}</p>
+        </div>
+
+        <aside class="about-side">
+          <p class="eyebrow">Services</p>
+          <ul class="about-services">
+            {profile.services.map((s) => <li>{s}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="values">
+    <div class="container">
+      <SectionHeading index="Principes" title="Comment je conçois" />
+      <div class="values-grid">
+        {
+          values.map((v) => (
+            <article class="value reveal">
+              <h3 class="value-title">{v.title}</h3>
+              <p class="value-text">{v.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    hasPerf && (
+      <section class="section section--compact" aria-labelledby="perf">
+        <div class="container-narrow">
+          <p class="eyebrow">Performance de ce site</p>
+          <p class="about-text">
+            Mesuré le {perfSnapshot.measuredAt} — Lighthouse mobile (simulation réseau 4G) : score{' '}
+            {perfSnapshot.lighthouseMobile}/100 · LCP {perfSnapshot.lcp} · CLS {perfSnapshot.cls} ·
+            JavaScript initial compressé {perfSnapshot.jsGzipKb} Ko.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section section--compact">
+    <div class="container-narrow">
+      <a class="btn btn--primary" href="/contact">Parler d'un projet</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .about-main {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .lead {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    max-width: 40ch;
+  }
+
+  .about-text {
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 52ch;
+    white-space: pre-wrap;
+  }
+
+  .about-side {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+
+  .about-services {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .about-services li {
+    padding: var(--space-3) 0;
+    border-bottom: var(--border-1);
+    font-weight: 500;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-7);
+  }
+
+  .value {
+    border-top: var(--border-1);
+    padding-top: var(--space-5);
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .value-title {
+    font-size: var(--text-lg);
+  }
+
+  .value-text {
+    color: var(--color-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 48rem) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-7);
+    }
+  }
+</style>

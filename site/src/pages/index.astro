@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import InsideMindHero from '../components/immersive/InsideMindHero.astro';
+import { getVisibleProjects } from '../lib/content';
+import { websiteLd, personLd, itemListLd } from '../lib/seo';
+import type { CollectionEntry } from 'astro:content';
+
+const all = await getVisibleProjects();
+const projectOrder = ['down-trigger', 'heritage-2', 'maison-sillon', 'vantel'];
+const projects = all
+  .filter(
+    (project: CollectionEntry<'projects'>) =>
+      project.data.featured && projectOrder.includes(project.data.slug),
+  )
+  .sort(
+    (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
+      projectOrder.indexOf(a.data.slug) - projectOrder.indexOf(b.data.slug),
+  );
+---
+
+<BaseLayout
+  title="Inside My Mind — portfolio"
+  description="Entrez dans l’univers créatif de Nicolas Jez et découvrez quatre projets de direction artistique, design et développement web."
+  theme="dark"
+  accent="oklch(0.7 0.17 45)"
+  jsonLd={[personLd(), websiteLd(), ...(projects.length ? [itemListLd(projects)] : [])]}
+>
+  <InsideMindHero />
+</BaseLayout>

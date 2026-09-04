@@ -1,0 +1,53 @@
+{
+  "collection": "Nicolas Jez — Fashion Editorial Portraits",
+  "usage": "Portfolio",
+  "source": "a_wide_high_end_editorial_portrait_composite_ove.png",
+  "count": 5,
+  "images": [
+    {
+      "id": "nicolas-jez-fashion-editorial-01",
+      "png": "originals/nicolas-jez-fashion-editorial-01.png",
+      "webp": "web/nicolas-jez-fashion-editorial-01.webp",
+      "width": 323,
+      "height": 972,
+      "alt": "Portrait éditorial de Nicolas Jez en pull noir, lunettes optiques et pose réfléchie.",
+      "tattoosVisible": false
+    },
+    {
+      "id": "nicolas-jez-fashion-editorial-02",
+      "png": "originals/nicolas-jez-fashion-editorial-02.png",
+      "webp": "web/nicolas-jez-fashion-editorial-02.webp",
+      "width": 321,
+      "height": 972,
+      "alt": "Portrait trois-quarts de Nicolas Jez en veste noire et lunettes de soleil sur fond terracotta.",
+      "tattoosVisible": false
+    },
+    {
+      "id": "nicolas-jez-fashion-editorial-03",
+      "png": "originals/nicolas-jez-fashion-editorial-03.png",
+      "webp": "web/nicolas-jez-fashion-editorial-03.webp",
+      "width": 312,
+      "height": 972,
+      "alt": "Portrait frontal de Nicolas Jez en surchemise beige et lunettes optiques.",
+      "tattoosVisible": false
+    },
+    {
+      "id": "nicolas-jez-fashion-editorial-04",
+      "png": "originals/nicolas-jez-fashion-editorial-04.png",
+      "webp": "web/nicolas-jez-fashion-editorial-04.webp",
+      "width": 322,
+      "height": 972,
+      "alt": "Portrait en pied trois-quarts de Nicolas Jez en tenue noire et lunettes de soleil contre un mur ensoleillé.",
+      "tattoosVisible": false
+    },
+    {
+      "id": "nicolas-jez-fashion-editorial-05",
+      "png": "originals/nicolas-jez-fashion-editorial-05.png",
+      "webp": "web/nicolas-jez-fashion-editorial-05.webp",
+      "width": 324,
+      "height": 972,
+      "alt": "Portrait trois-quarts de Nicolas Jez en veste claire et lunettes de soleil sous un ciel bleu.",
+      "tattoosVisible": false
+    }
+  ]
+}

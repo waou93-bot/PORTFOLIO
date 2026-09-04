@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="t">
+  <title id="t">Méridien 1970 Paris — placeholder</title>
+  <rect width="1600" height="1000" fill="#f4efe4"/>
+  <rect x="0" y="0" width="1600" height="16" fill="#c08a2d"/>
+  <text x="120" y="110" font-family="monospace" font-size="22" fill="#4a4438" letter-spacing="6">N° 02 — ÉTUDE DE DIRECTION ARTISTIQUE</text>
+  <text x="120" y="520" font-family="Georgia, serif" font-size="150" fill="#1d1a14">Méridien</text>
+  <text x="120" y="670" font-family="Georgia, serif" font-size="150" fill="#c08a2d" font-style="italic">1970 Paris</text>
+  <text x="120" y="760" font-family="monospace" font-size="22" fill="#4a4438" letter-spacing="6">PARIS · MID-CENTURY · CULTURE MAGAZINE</text>
+  <line x1="120" y1="820" x2="600" y2="820" stroke="#c08a2d" stroke-width="2"/>
+</svg>

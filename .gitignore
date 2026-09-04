@@ -1,0 +1,21 @@
+# Reinstallable dependencies and local tooling, not project sources.
+**/node_modules/
+.pnpm-store/
+.tools/
+.skill-staging/
+**/.astro/
+**/dist/
+**/coverage/
+**/playwright-report/
+**/test-results/
+**/.vercel/
+**/*.tsbuildinfo
+**/*.log
+**/__pycache__/
+**/.venv/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+.restore-points/

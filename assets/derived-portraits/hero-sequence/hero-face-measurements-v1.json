@@ -1,0 +1,392 @@
+[
+  {
+    "file": "nicolas-jez-hero-sequence-01-ivory.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      625,
+      146,
+      479,
+      479
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-02-terracotta.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      544,
+      103,
+      628,
+      628
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-03-cobalt.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      555,
+      107,
+      594,
+      594
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-04-monochrome.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      604,
+      132,
+      513,
+      513
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-05-olive.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      607,
+      136,
+      494,
+      494
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-06-crimson.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      562,
+      113,
+      590,
+      590
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-07-silver.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      600,
+      109,
+      517,
+      517
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-08-golden-archive.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      572,
+      125,
+      576,
+      576
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-09-electric-night.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      556,
+      116,
+      598,
+      598
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-10-cap-pavilion.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      634,
+      181,
+      454,
+      454
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-11-desert-linen.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      598,
+      135,
+      535,
+      535
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-12-rain-noir.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      561,
+      114,
+      600,
+      600
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-13-botanical.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      585,
+      132,
+      553,
+      553
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-14-violet-neon.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      604,
+      149,
+      506,
+      506
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-15-ceramic-pink.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      595,
+      126,
+      535,
+      535
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-16-alpine-orange.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      602,
+      166,
+      508,
+      508
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-17-brutalist-v2.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      557,
+      107,
+      615,
+      615
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-18-copper-foundry.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      560,
+      119,
+      598,
+      598
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-19-cloud-stairs.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      584,
+      126,
+      579,
+      579
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-20-emerald-prisms.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      567,
+      118,
+      581,
+      581
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-21-underwater-cathedral.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      607,
+      136,
+      503,
+      503
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-22-paper-world.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      596,
+      138,
+      533,
+      533
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-23-liquid-chrome.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      563,
+      123,
+      605,
+      605
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-24-flower-orbit.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      606,
+      145,
+      511,
+      511
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-25-cosmic-observatory.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      555,
+      106,
+      620,
+      620
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-26-pixel-museum.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      574,
+      124,
+      569,
+      569
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-27-inverted-baroque.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      591,
+      135,
+      542,
+      542
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-28-impossible-city.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      601,
+      144,
+      524,
+      524
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-29-kaleidoscope.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      587,
+      139,
+      531,
+      531
+    ]
+  },
+  {
+    "file": "nicolas-jez-hero-sequence-30-inner-universe.png",
+    "image": [
+      1672,
+      941
+    ],
+    "face": [
+      706,
+      451,
+      196,
+      196
+    ]
+  }
+]

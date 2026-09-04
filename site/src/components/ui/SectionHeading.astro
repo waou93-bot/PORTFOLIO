@@ -1,0 +1,35 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { index, title, subtitle } = Astro.props;
+---
+
+<div class="section-head reveal">
+  <p class="eyebrow">{index}</p>
+  <h2 class="section-head-title">{title}</h2>
+  {subtitle && <p class="section-head-sub">{subtitle}</p>}
+</div>
+
+<style>
+  .section-head {
+    display: grid;
+    gap: var(--space-3);
+    max-width: var(--container-narrow);
+    margin-bottom: var(--space-7);
+  }
+
+  .section-head-title {
+    font-size: var(--text-2xl);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .section-head-sub {
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    line-height: var(--leading-relaxed);
+  }
+</style>

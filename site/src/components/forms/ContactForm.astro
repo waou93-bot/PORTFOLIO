@@ -1,0 +1,295 @@
+---
+import { makeContactToken } from '../../lib/contact';
+
+const token = makeContactToken();
+const honeypot = 'website';
+const minSubmitMs = 3000;
+---
+
+<form
+  id="contact-form"
+  class="contact-form"
+  data-token={token ?? ''}
+  data-honeypot={honeypot}
+  data-min-submit={minSubmitMs}
+  novalidate
+>
+  <div class="field" hidden>
+    <label for="website">Ne pas remplir ce champ</label>
+    <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="field">
+    <label for="name">Nom</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      placeholder="Votre nom"
+      minlength="2"
+    />
+    <p class="field-error" id="name-error" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      inputmode="email"
+      placeholder="vous@exemple.fr"
+    />
+    <p class="field-error" id="email-error" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="projectType">Type de projet</label>
+    <select id="projectType" name="projectType" required>
+      <option value="">Choisir…</option>
+      <option value="site-vitrine">Site vitrine</option>
+      <option value="landing">Landing page immersive</option>
+      <option value="direction-artistique">Direction artistique / identité</option>
+      <option value="ux-ui">UX / UI design</option>
+      <option value="front-end">Intégration / développement front-end</option>
+      <option value="refonte">Refonte de site</option>
+      <option value="collaboration">Collaboration / partenariat</option>
+      <option value="autre">Autre</option>
+    </select>
+    <p class="field-error" id="projectType-error" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="message">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      required
+      minlength="10"
+      placeholder="Parlez de votre projet : objectif, délais, budget indicatif…"></textarea>
+    <p class="field-error" id="message-error" hidden></p>
+  </div>
+
+  <p class="field-note meta">
+    Vos données servent uniquement à répondre à votre demande. Elles ne sont ni stockées, ni
+    transmises à des tiers.
+  </p>
+
+  <button class="btn btn--primary" type="submit">Envoyer le message</button>
+
+  <div class="form-status" role="status" aria-live="polite" hidden></div>
+</form>
+
+<style>
+  /* eslint-disable astro/no-unused-css-selector */
+  .contact-form {
+    display: grid;
+    gap: var(--space-5);
+    max-width: 36rem;
+  }
+
+  .field {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .field[hidden] { display: none; }
+
+  .field label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: var(--space-3) var(--space-4);
+    font: inherit;
+    color: var(--color-ink);
+    background: var(--color-paper-raised);
+    border: var(--border-1);
+    border-radius: var(--radius-m);
+    transition:
+      border-color var(--dur-med),
+      box-shadow var(--dur-med);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-accent) 20%, transparent);
+  }
+
+  .field-error {
+    font-size: var(--text-sm);
+    color: var(--color-danger);
+    font-weight: 600;
+  }
+
+  .field-note {
+    max-width: 46ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-status {
+    font-weight: 600;
+    border-radius: var(--radius-m);
+    padding: var(--space-4);
+    border: 1px solid var(--color-line-strong);
+    white-space: pre-wrap;
+  }
+
+  /* eslint-disable-next-line astro/no-unused-css-selector -- appliqué dynamiquement via data-state */
+  .form-status[data-state='ok'] {
+    border-color: var(--color-ok);
+    color: var(--color-ok);
+  }
+
+  /* eslint-disable-next-line astro/no-unused-css-selector -- appliqué dynamiquement via data-state */
+  .form-status[data-state='error'] {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+  }
+
+  /* eslint-disable-next-line astro/no-unused-css-selector -- lien injecté via JS */
+  .form-status a {
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('.form-status');
+    const honeypotName = form.dataset.honeypot ?? 'website';
+    const minSubmitMs = Number(form.dataset.minSubmit ?? 3000);
+    const token = form.dataset.token ?? '';
+
+    const setStatus = (state: 'ok' | 'error', text: string) => {
+      if (!status) return;
+      status.dataset.state = state;
+      status.textContent = text;
+      status.hidden = false;
+    };
+
+    const setError = (id: string, msg: string) => {
+      const err = document.getElementById(`${id}-error`) as HTMLElement | null;
+      const input = document.getElementById(id) as HTMLElement | null;
+      if (err) {
+        err.textContent = msg;
+        err.hidden = !msg;
+      }
+      if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const started = Date.now();
+
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+      // Honeypot : si rempli → simuler un succès silencieux (bot)
+      if (data[honeypotName]) {
+        setStatus('ok', 'Merci, votre message a bien été envoyé.');
+        form.reset();
+        return;
+      }
+
+      // Validation client
+      let valid = true;
+      const set = (id: string, msg: string) => {
+        if (msg) valid = false;
+        setError(id, msg);
+      };
+      set('name', String(data.name ?? '').trim().length >= 2 ? '' : 'Veuillez indiquer votre nom.');
+      set(
+        'email',
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(data.email ?? '').trim())
+          ? ''
+          : 'Adresse email invalide.',
+      );
+      set('projectType', data.projectType ? '' : 'Veuillez choisir un type de projet.');
+      set(
+        'message',
+        String(data.message ?? '').trim().length >= 10
+          ? ''
+          : 'Votre message doit contenir au moins 10 caractères.',
+      );
+
+      if (!valid) {
+        setStatus('error', 'Certains champs sont à corriger.');
+        return;
+      }
+
+      submitBtn?.setAttribute('disabled', 'true');
+      submitBtn?.setAttribute('aria-busy', 'true');
+      submitBtn && (submitBtn.textContent = 'Envoi en cours…');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, token, submittedAt: Date.now() }),
+        });
+        const json = await res.json().catch(() => ({}));
+
+        const elapsed = Date.now() - started;
+        if (elapsed < minSubmitMs) {
+          await new Promise((r) => setTimeout(r, minSubmitMs - elapsed));
+        }
+
+        if (!res.ok) {
+          if (json.errors) {
+            for (const [key, msg] of Object.entries<string>(json.errors)) setError(key, msg);
+          }
+          setStatus(
+            'error',
+            json.error === 'rate-limited'
+              ? 'Trop de demandes récentes. Réessayez dans quelques minutes.'
+              : "L'envoi a échoué. Vous pouvez réessayer ou utiliser l'adresse email affichée en pied de page.",
+          );
+          return;
+        }
+
+        if (json.mailto) {
+          setStatus(
+            'ok',
+            "Votre message est prêt. Il ne reste qu'à finaliser l'envoi depuis votre messagerie :",
+          );
+          const link = document.createElement('a');
+          link.href = json.mailto;
+          link.textContent = 'Ouvrir ma messagerie';
+          status?.appendChild(link);
+        } else {
+          setStatus('ok', 'Merci, votre message a bien été envoyé. Je vous réponds rapidement.');
+        }
+        form.reset();
+      } catch {
+        setStatus(
+          'error',
+          "Une erreur réseau est survenue. Vous pouvez réessayer ou écrire directement via l'adresse email en pied de page.",
+        );
+      } finally {
+        submitBtn?.removeAttribute('disabled');
+        submitBtn?.removeAttribute('aria-busy');
+        submitBtn && (submitBtn.textContent = 'Envoyer le message');
+      }
+    });
+  }
+</script>

@@ -1,0 +1,392 @@
+@font-face {
+  font-family: 'Manrope Variable';
+  src: url('/fonts/manrope-latin-variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Newsreader Variable';
+  src: url('/fonts/newsreader-latin-variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Newsreader Variable';
+  src: url('/fonts/newsreader-latin-variable-italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 300 500;
+  font-display: swap;
+}
+
+/* ============================================================
+   NJ Studio — Design tokens & base (design-system.md)
+   ============================================================ */
+
+:root {
+  /* Couleurs polaire claire */
+  --color-ink: oklch(0.18 0.008 85);
+  --color-ink-soft: oklch(0.32 0.008 85);
+  --color-muted: oklch(0.5 0.012 85);
+  --color-faint: oklch(0.6 0.01 85);
+  --color-paper: oklch(0.972 0.004 85);
+  --color-paper-raised: oklch(1 0 0);
+  --color-line: oklch(0.87 0.006 85);
+  --color-line-strong: oklch(0.78 0.01 85);
+  --color-accent: oklch(0.52 0.19 30);
+  --color-accent-contrast: oklch(0.98 0.01 85);
+  --color-on-accent: oklch(0.98 0.01 85);
+  --color-focus: oklch(0.55 0.22 270);
+  --color-ok: oklch(0.4 0.12 150);
+  --color-warn: oklch(0.5 0.17 60);
+  --color-danger: oklch(0.5 0.2 25);
+
+  /* Typographie */
+  --font-display: 'Newsreader Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-sans: 'Manrope Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-xs: clamp(0.7rem, 0.68rem + 0.1vw, 0.78rem);
+  --text-sm: clamp(0.84rem, 0.82rem + 0.1vw, 0.92rem);
+  --text-md: clamp(1rem, 0.98rem + 0.1vw, 1.08rem);
+  --text-lg: clamp(1.14rem, 1.05rem + 0.45vw, 1.5rem);
+  --text-xl: clamp(1.45rem, 1.25rem + 1vw, 2rem);
+  --text-2xl: clamp(1.9rem, 1.5rem + 2vw, 2.75rem);
+  --text-3xl: clamp(2.4rem, 1.7rem + 3.5vw, 4.25rem);
+  --text-4xl: clamp(3rem, 2rem + 5vw, 6.5rem);
+
+  --leading-tight: 1.05;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.09em;
+
+  /* Espacement */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --container: 72rem;
+  --container-narrow: 46rem;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* Rayons / bordures / ombres */
+  --radius-s: 4px;
+  --radius-m: 10px;
+  --radius-l: 18px;
+  --border-1: 1px solid var(--color-line);
+  --shadow-s: 0 1px 2px oklch(0.1 0 0 / 0.05);
+  --shadow-m: 0 8px 24px oklch(0.1 0 0 / 0.08);
+  --shadow-l: 0 18px 48px oklch(0.1 0 0 / 0.12);
+
+  /* Motion tokens */
+  --dur-fast: 150ms;
+  --dur-med: 300ms;
+  --dur-slow: 600ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Z-index */
+  --z-header: 100;
+  --z-overlay: 200;
+  --z-skip: 1000;
+
+  --header-h: 4.25rem;
+}
+
+/* Polarité sombre — appliquée par projet via data-theme="dark" */
+[data-theme='dark'] {
+  --color-ink: oklch(0.93 0.008 85);
+  --color-ink-soft: oklch(0.82 0.008 85);
+  --color-muted: oklch(0.68 0.012 85);
+  --color-faint: oklch(0.55 0.01 85);
+  --color-paper: oklch(0.13 0.006 85);
+  --color-paper-raised: oklch(0.17 0.006 85);
+  --color-line: oklch(0.28 0.008 85);
+  --color-line-strong: oklch(0.4 0.01 85);
+  --color-accent-contrast: oklch(0.98 0.01 85);
+  --color-on-accent: oklch(0.1 0 0);
+  --shadow-s: 0 1px 2px oklch(0 0 0 / 0.4);
+  --shadow-m: 0 8px 24px oklch(0 0 0 / 0.45);
+  --shadow-l: 0 18px 48px oklch(0 0 0 / 0.5);
+}
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color var(--dur-slow) var(--ease-in-out),
+    color var(--dur-slow) var(--ease-in-out);
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-s);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:root:has(#skip:focus) .skip-target {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: var(--z-skip);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: var(--radius-s);
+  transform: translateY(-300%);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin-inline: auto;
+}
+
+.container-narrow {
+  width: min(100% - var(--gutter) * 2, var(--container-narrow));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-9);
+}
+
+.section--compact {
+  padding-block: var(--space-7);
+}
+
+/* ---------- Typography utilities ---------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-muted);
+}
+
+.meta {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-med),
+    color var(--dur-med),
+    border-color var(--dur-med);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.btn--ghost {
+  border-color: var(--color-line-strong);
+  color: var(--color-ink);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-ink);
+}
+
+/* Shared affordance for text links and small controls. Cards and the hero CTA
+   keep their dedicated interactions; disabled controls never advertise action. */
+.page-shell a[href]:not(.btn):not(.mind-project):not(.skip-link):not(:has(img, video)) {
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+  transition: color 180ms ease, text-decoration-color 180ms ease,
+    text-underline-offset 180ms ease, background-color 180ms ease;
+}
+.page-shell button:not(.mind-enter):not(:disabled):not([aria-disabled='true']) {
+  transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, scale 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .page-shell a[href]:not(.btn):not(.mind-project):not(.skip-link):not(:has(img, video)):hover {
+    color: var(--color-ink);
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.32em;
+    background-color: color-mix(in srgb, currentColor 6%, transparent);
+  }
+  .page-shell button:not(.mind-enter):not(:disabled):not([aria-disabled='true']):hover {
+    scale: 1.025;
+    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 28%, transparent);
+  }
+}
+.page-shell a[href]:not(.btn):not(.mind-project):not(.skip-link):not(:has(img, video)):focus-visible {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  background-color: color-mix(in srgb, currentColor 6%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-shell button:not(.mind-enter):hover { scale: 1; }
+}
+
+/* ---------- Reveal (motion) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Focus ring util ---------- */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: var(--radius-s);
+}
+
+/* ---------- Reduced contrast on accent-only info ---------- */
+@media (prefers-contrast: more) {
+  :root {
+    --color-line: oklch(0.7 0.02 85);
+    --color-line-strong: oklch(0.5 0.02 85);
+  }
+}

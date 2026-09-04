@@ -1,0 +1,119 @@
+---
+import { site } from '../../config/site';
+
+const isHome = Astro.url.pathname === '/';
+const navItems = isHome
+  ? site.nav.filter((item) => item.href !== '/' && item.href !== '/work')
+  : site.nav;
+---
+
+<header class:list={['site-header', { 'is-home': isHome }]}>
+  <div class="container header-inner">
+    <a class="brand focus-ring" href="/" aria-label={`${site.name} — accueil`}>
+      <span class="brand-name">{site.name}</span>
+      <span class="brand-tag" aria-hidden="true">{site.tagline}</span>
+    </a>
+    <nav class="site-nav" aria-label="Navigation principale">
+      {
+        navItems.map((item) => (
+          <a
+            class:list={['nav-link focus-ring', { 'is-current': Astro.url.pathname === item.href }]}
+            href={item.href}
+            aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<style is:global>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: color-mix(in oklch, var(--color-paper) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: var(--border-1);
+  }
+
+  .site-header.is-home {
+    position: absolute;
+    width: 100%;
+    color: #fff8f2;
+    background: linear-gradient(180deg, rgba(8, 6, 7, 0.7), transparent);
+    border-bottom: 0;
+    backdrop-filter: none;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: var(--header-h);
+    flex-wrap: wrap;
+    padding-block: var(--space-2);
+  }
+
+  .brand {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .brand-name {
+    font-weight: 650;
+    letter-spacing: -0.035em;
+  }
+
+  .brand-tag {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-muted);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    position: relative;
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    border-radius: 0;
+    color: var(--color-ink-soft);
+    transition:
+      color var(--dur-med),
+      background-color var(--dur-med);
+  }
+
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-link.is-current {
+    color: inherit;
+  }
+
+  .nav-link.is-current::after {
+    content: '';
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: 0.35rem;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
+  }
+</style>

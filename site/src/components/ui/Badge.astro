@@ -1,0 +1,45 @@
+---
+import { PROJECT_KIND_LABELS } from '../../types/project';
+import type { ProjectKind } from '../../types/project';
+
+interface Props {
+  kind: ProjectKind;
+  tone?: 'neutral' | 'accent' | 'solid';
+}
+
+const { kind, tone = 'neutral' } = Astro.props;
+---
+
+<span class:list={['badge', `badge--${tone}`]}>{PROJECT_KIND_LABELS[kind]}</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    border-radius: 999px;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+    white-space: nowrap;
+  }
+
+  .badge--neutral {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-ink-soft);
+  }
+
+  .badge--accent {
+    background: color-mix(in oklch, var(--color-accent) 14%, transparent);
+    border: 1px solid color-mix(in oklch, var(--color-accent) 45%, transparent);
+    color: var(--color-accent);
+  }
+
+  .badge--solid {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border: 1px solid transparent;
+  }
+</style>

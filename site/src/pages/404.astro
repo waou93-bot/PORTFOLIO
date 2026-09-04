@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout title="Page introuvable" noindex description="Cette page n'existe pas.">
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">Erreur 404</p>
+      <h1 class="page-title display">Cette page n'existe pas.</h1>
+      <p class="page-text">Le lien est peut-être obsolète, ou l'adresse contient une coquille.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/">Retour à l'accueil</a>
+        <a class="btn btn--ghost" href="/work">Voir les projets</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-text {
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+</style>

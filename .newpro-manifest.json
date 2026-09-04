@@ -1,0 +1,28 @@
+{
+  "newpro_version": "1.1.0",
+  "created_at": "2026-08-03T21:38:08.734074+00:00",
+  "project_name": "Portfolio immersif Nicolas Jez",
+  "profile": "hybrid",
+  "source_root": "C:\\Users\\Nicolas JEZ\\Documents\\NJ\\PORTFOLIO 1",
+  "master_root": "C:\\Users\\Nicolas JEZ\\Documents\\NJ\\Portfolio immersif Nicolas Jez - MASTER",
+  "generated_files": [
+    "README.md",
+    "AGENTS.md",
+    "docs/00_MASTER_BRIEF.md",
+    "docs/01_REGISTRE_DES_DECISIONS.md",
+    "docs/02_REGISTRE_DES_REJETS.md",
+    "docs/03_INVENTAIRE_DES_ASSETS.md",
+    "docs/04_BACKLOG_PRIORISE.md",
+    "docs/05_CRITERES_D_ACCEPTATION.md",
+    "docs/06_RISQUES_ET_INCERTITUDES.md",
+    "docs/reprise/IMPORT-MANIFEST.md",
+    "docs/reprise/FICHE-DE-TRANSFERT.md",
+    "docs/07_ARCHITECTURE_TECHNIQUE.md",
+    "docs/08_DIRECTION_ARTISTIQUE.md",
+    "docs/09_BIBLE_DES_ASSETS.md",
+    "docs/10_CONVENTIONS_DE_CODE.md",
+    "BOOTSTRAP_REPORT.md"
+  ],
+  "asset_registry_ids": [],
+  "production_started": false
+}

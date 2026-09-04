@@ -1,0 +1,42 @@
+[
+  {
+    "portrait": 1,
+    "format": "vertical-4x5",
+    "width": 1600,
+    "height": 2000,
+    "png": "png/nicolas-jez-portrait-01-vertical-4x5.png",
+    "webp": "webp/nicolas-jez-portrait-01-vertical-4x5.webp"
+  },
+  {
+    "portrait": 2,
+    "format": "full-page-16x9",
+    "width": 2560,
+    "height": 1440,
+    "png": "png/nicolas-jez-portrait-02-full-page-16x9.png",
+    "webp": "webp/nicolas-jez-portrait-02-full-page-16x9.webp"
+  },
+  {
+    "portrait": 3,
+    "format": "vertical-4x5",
+    "width": 1600,
+    "height": 2000,
+    "png": "png/nicolas-jez-portrait-03-vertical-4x5.png",
+    "webp": "webp/nicolas-jez-portrait-03-vertical-4x5.webp"
+  },
+  {
+    "portrait": 4,
+    "format": "full-page-16x9",
+    "width": 2560,
+    "height": 1440,
+    "png": "png/nicolas-jez-portrait-04-full-page-16x9.png",
+    "webp": "webp/nicolas-jez-portrait-04-full-page-16x9.webp"
+  },
+  {
+    "portrait": 5,
+    "format": "vertical-4x5",
+    "width": 1600,
+    "height": 2000,
+    "png": "png/nicolas-jez-portrait-05-vertical-4x5.png",
+    "webp": "webp/nicolas-jez-portrait-05-vertical-4x5.webp"
+  }
+]

@@ -1,0 +1,91 @@
+<div
+  class="vantel-cover"
+  role="img"
+  aria-label="Vantel, identité DayShift et NightShift en noir et blanc."
+>
+  <span class="vantel-mark">VΛNTEL</span>
+  <span class="vantel-day">DAYSHIFT</span>
+  <span class="vantel-night">NIGHTSHIFT</span>
+  <span class="vantel-line" aria-hidden="true"></span>
+  <span class="vantel-note">Contrast is the uniform</span>
+</div>
+
+<style>
+  .vantel-cover {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+    overflow: hidden;
+    color: #f3f3f0;
+    background:
+      linear-gradient(112deg, rgba(255, 255, 255, 0.055), transparent 36%),
+      linear-gradient(90deg, #050505 0 50%, #e8e8e3 50% 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+  }
+
+  .vantel-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0 8.25%,
+      rgba(127, 127, 127, 0.08) 8.3% 8.42%
+    );
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+
+  .vantel-mark {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    translate: -50% 0;
+    color: #92928e;
+    font-size: clamp(0.72rem, 1.4vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.52em;
+    white-space: nowrap;
+  }
+
+  .vantel-day,
+  .vantel-night {
+    position: absolute;
+    top: 46%;
+    translate: 0 -50%;
+    font-size: clamp(2.2rem, 7vw, 7.5rem);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.8;
+  }
+
+  .vantel-day {
+    left: 4%;
+  }
+
+  .vantel-night {
+    right: 3%;
+    color: #0a0a0a;
+  }
+
+  .vantel-line {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 18%;
+    height: 1px;
+    background: #8c8c88;
+  }
+
+  .vantel-note {
+    position: absolute;
+    left: 5%;
+    bottom: 9%;
+    color: #8c8c88;
+    font-size: clamp(0.56rem, 1vw, 0.72rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+</style>

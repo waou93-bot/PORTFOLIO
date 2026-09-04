@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout
+  title="Confidentialité"
+  noindex
+  description="Politique de confidentialité du site de Nicolas Jez."
+>
+  <section class="section">
+    <div class="container-narrow">
+      <h1 class="page-title display">Politique de confidentialité</h1>
+
+      <div class="legal-body">
+        <h2>Données collectées</h2>
+        <p>
+          Le formulaire de contact recueille uniquement les informations que vous saisissez : nom,
+          adresse email, type de projet et message. Aucune donnée n'est stockée sur un serveur : les
+          messages sont transmis directement à {site.email} et ne sont pas conservés par le site.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          Ce site n'utilise pas de cookies publicitaires ni de traceurs tiers. Aucune bannière de
+          consentement n'est nécessaire en l'état.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          Aucun outil d'analyse tiers n'est actuellement utilisé. En cas d'ajout, un outil
+          respectueux de la vie privée (sans cookies, données anonymisées) sera privilégié et cette
+          page sera mise à jour.
+        </p>
+
+        <h2>Partage</h2>
+        <p>Aucune donnée n'est vendue, louée ni transmise à des tiers, sauf obligation légale.</p>
+
+        <h2>Vos droits</h2>
+        <p>
+          Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression
+          de vos données. Pour l'exercer : <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+
+        <h2>Responsable de traitement</h2>
+        <p>Nicolas Jez — {site.location}.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-7);
+  }
+
+  .legal-body {
+    display: grid;
+    gap: var(--space-4);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal-body h2 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-5);
+  }
+
+  .legal-body p {
+    color: var(--color-ink-soft);
+  }
+
+  .legal-body a {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import { site } from '../../config/site';
+import FooterNicolas from '../immersive/FooterNicolas.astro';
+
+const socials = [
+  { label: 'GitHub', url: site.social.github, icon: 'GH' },
+  { label: 'LinkedIn', url: site.social.linkedin, icon: 'IN' },
+  { label: 'Instagram', url: site.social.instagram, icon: 'IG' },
+  { label: 'Dribbble', url: site.social.dribbble, icon: 'DR' },
+].filter((s) => s.url);
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <h2 class="footer-title display">
+        Un projet à discuter<span class="display-italic"> ?</span>
+      </h2>
+      <a class="btn btn--primary" href="/contact">Parler d'un projet</a>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="eyebrow">Contact</p>
+        <a class="footer-link" href={`mailto:${site.email}`}>{site.email}</a>
+        <p class="meta">{site.location}</p>
+        <p class="meta">{site.availability}</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="eyebrow">Navigation</p>
+        {
+          site.nav.map((item) => (
+            <a class="footer-link" href={item.href}>
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      {
+        socials.length > 0 && (
+          <div class="footer-col">
+            <p class="eyebrow">Réseaux</p>
+            {socials.map((s) => (
+              <a class="footer-link" href={s.url} target="_blank" rel="noopener noreferrer">
+                {s.label}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    {Astro.url.pathname === '/' && <FooterNicolas />}
+    <div class="footer-bottom">
+      <p class="meta">© {new Date().getFullYear()} {site.name}. Tous droits réservés.</p>
+      <nav class="footer-legal" aria-label="Liens légaux">
+        <a class="footer-link footer-link--sm" href="/mentions-legales">Mentions légales</a>
+        <a class="footer-link footer-link--sm" href="/confidentialite">Confidentialité</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .site-footer {
+    border-top: var(--border-1);
+    padding-block: var(--space-9) var(--space-7);
+    margin-top: var(--space-9);
+  }
+
+  .footer-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    padding-bottom: var(--space-8);
+    border-bottom: var(--border-1);
+  }
+
+  .footer-title {
+    font-size: var(--text-3xl);
+    color: var(--color-ink);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--space-7);
+    padding-block: var(--space-8);
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .footer-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    border-bottom: 1px solid transparent;
+    transition:
+      color var(--dur-med),
+      border-color var(--dur-med);
+  }
+
+  .footer-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-link--sm {
+    min-height: 32px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+    border-top: var(--border-1);
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: var(--space-5);
+  }
+</style>

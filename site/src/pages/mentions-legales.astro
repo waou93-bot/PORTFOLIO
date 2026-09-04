@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout title="Mentions légales" noindex description="Mentions légales du site de Nicolas Jez.">
+  <section class="section">
+    <div class="container-narrow">
+      <h1 class="page-title display">Mentions légales</h1>
+
+      <div class="legal-body">
+        <p class="legal-note">
+          Les informations administratives exactes (identité, adresse, forme juridique, numéros)
+          seront renseignées par le propriétaire avant la mise en production. Aucune information
+          inventée ne sera publiée.
+        </p>
+
+        <h2>Éditeur du site</h2>
+        <p>
+          Nicolas Jez — {site.location}.<br />
+          Contact : <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p class="legal-todo">
+          TODO_CONTENT — identité administrative exacte (nom, adresse, SIREN/SIRET le cas échéant) à
+          fournir par le propriétaire avant publication en production.
+        </p>
+
+        <h2>Directeur de la publication</h2>
+        <p>Nicolas Jez.</p>
+
+        <h2>Hébergement</h2>
+        <p class="legal-todo">
+          TODO_CONTENT — nom et adresse de l'hébergeur à renseigner (Vercel Inc., …).
+        </p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          L'ensemble des contenus de ce site (textes, visuels, code, identité) est la propriété de
+          Nicolas Jez, sauf mention contraire. Toute reproduction sans autorisation est interdite.
+          Les marques et projets clients restent la propriété de leurs titulaires respectifs.
+        </p>
+
+        <h2>Projets et concepts</h2>
+        <p>
+          Les projets sont présentés avec leur statut réel (client, collaboration, concept
+          indépendant). Les études indépendantes ne sont ni affiliées, ni sponsorisées, ni
+          approuvées par les marques qu'elles peuvent évoquer.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-7);
+  }
+
+  .legal-body {
+    display: grid;
+    gap: var(--space-4);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal-body h2 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-5);
+  }
+
+  .legal-body p {
+    color: var(--color-ink-soft);
+  }
+
+  .legal-note {
+    background: color-mix(in oklch, var(--color-warn) 12%, transparent);
+    border-left: 3px solid var(--color-warn);
+    padding: var(--space-4) var(--space-5);
+    border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  }
+
+  .legal-todo {
+    font-size: var(--text-sm);
+    color: var(--color-warn);
+    font-weight: 600;
+  }
+
+  .legal-body a {
+    text-decoration: underline;
+  }
+</style>

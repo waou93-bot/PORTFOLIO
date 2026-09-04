@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Vantel — DayShift NightShift</title>
+  <desc id="desc">Composition typographique noire et blanche utilisée tant que les médias sources sont en transfert.</desc>
+  <rect width="800" height="1000" fill="#050505"/>
+  <rect x="800" width="800" height="1000" fill="#e8e8e3"/>
+  <text x="800" y="100" text-anchor="middle" fill="#8f8f8b" font-family="Arial, sans-serif" font-size="28" letter-spacing="18">VΛNTEL</text>
+  <text x="70" y="520" fill="#f3f3f0" font-family="Arial, sans-serif" font-size="142" letter-spacing="-10">DAYSHIFT</text>
+  <text x="1530" y="520" text-anchor="end" fill="#090909" font-family="Arial, sans-serif" font-size="142" letter-spacing="-10">NIGHTSHIFT</text>
+  <line x1="70" y1="820" x2="1530" y2="820" stroke="#888884"/>
+  <text x="70" y="900" fill="#888884" font-family="Arial, sans-serif" font-size="20" letter-spacing="7">CONTRAST IS THE UNIFORM</text>
+</svg>

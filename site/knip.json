@@ -1,0 +1,24 @@
+{
+  "entry": [
+    "src/**",
+    "api/**",
+    "astro.config.mjs",
+    "scripts/validate-content/index.ts",
+    "scripts/create-project/index.ts",
+    "scripts/validate-links/index.ts",
+    "scripts/e2e-server.ts",
+    "lighthouserc.cjs",
+    "vercel.json"
+  ],
+  "project": ["src/**", "tests/**", "scripts/**", "api/**", "*.ts", "!node_modules"],
+  "ignoreDependencies": [
+    "@astrojs/check",
+    "eslint-plugin-jsx-a11y",
+    "sharp",
+    "cookie",
+    "@fontsource-variable/archivo",
+    "@fontsource/instrument-serif",
+    "zod"
+  ],
+  "ignore": ["src/env.d.ts", "src/styles/global.css"]
+}

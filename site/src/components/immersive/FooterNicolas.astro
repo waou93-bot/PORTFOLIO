@@ -1,0 +1,117 @@
+---
+import { site } from '../../config/site';
+---
+
+<div id="footer-nicolas" class="footer-nicolas" data-footer-nicolas data-state="waiting">
+  <div class="footer-nicolas-stage" aria-hidden="true">
+    <div class="footer-nicolas-actor" data-footer-actor></div>
+  </div>
+  <div class="footer-nicolas-contact">
+    <span class="footer-nicolas-caption">La suite, ensemble.</span>
+    <a href={`mailto:${site.email}`} class="footer-nicolas-email">{site.email}</a>
+  </div>
+  <span class="footer-nicolas-ledge" aria-hidden="true"></span>
+</div>
+
+<script>
+  import { initFooterNicolas } from '../../lib/footer-nicolas';
+  initFooterNicolas();
+  document.addEventListener('astro:page-load', initFooterNicolas);
+</script>
+
+<style is:global>
+  .footer-nicolas {
+    position: relative;
+    isolation: isolate;
+    background: var(--color-paper);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 290px;
+    gap: 10px;
+    padding-bottom: 38px;
+    margin-top: 16px;
+  }
+  .footer-nicolas-stage {
+    position: relative;
+    flex: 0 0 230px;
+    width: 230px;
+    height: 250px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: lighten;
+  }
+  .footer-nicolas-actor { position: absolute; inset: 0; }
+  .footer-nicolas-pose {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform-origin: 50% 100%;
+    pointer-events: none;
+  }
+  .footer-nicolas-pose img {
+    position: absolute;
+    max-width: none;
+    max-height: none;
+    pointer-events: none;
+  }
+  .footer-nicolas-contact {
+    position: relative;
+    z-index: 2;
+    align-self: flex-end;
+    padding-bottom: 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+  .footer-nicolas-caption {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+  .footer-nicolas-email {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.8vw, 2.5rem);
+    color: var(--color-ink);
+    text-decoration: none;
+    text-underline-offset: 7px;
+    overflow-wrap: anywhere;
+  }
+  .footer-nicolas-email:hover { text-decoration: underline; }
+  .footer-nicolas-email:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+  .footer-nicolas-ledge {
+    position: absolute;
+    bottom: 38px;
+    inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 243, 234, 0.38) 12%, rgba(255, 243, 234, 0.38) 88%, transparent);
+    pointer-events: none;
+  }
+  .footer-nicolas[data-state='settled'] .footer-nicolas-actor {
+    transform-origin: 50% 100%;
+    animation: nicolas-breath 5.8s ease-in-out infinite;
+  }
+  @keyframes nicolas-breath {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.004); }
+  }
+  .site-footer:has(.footer-nicolas) .footer-bottom { border-top: 0; padding-top: 0; }
+  @media (max-width: 600px) {
+    .footer-nicolas { min-height: 235px; gap: 0; padding-bottom: 30px; }
+    .footer-nicolas-stage { flex-basis: 140px; width: 140px; height: 200px; }
+    .footer-nicolas-actor { width: 230px; height: 250px; inset: auto auto 0 -22px; zoom: 0.8; }
+    .footer-nicolas-contact { padding-bottom: 63px; }
+    .footer-nicolas-caption { font-size: 0.56rem; letter-spacing: 0.08em; }
+    .footer-nicolas-email { font-family: inherit; font-size: clamp(0.8rem, 3.4vw, 1.1rem); }
+    .footer-nicolas-ledge { bottom: 30px; }
+  }
+  @media (prefers-reduced-motion: reduce), (hover: none) {
+    .footer-nicolas[data-state='settled'] .footer-nicolas-actor { animation: none; }
+  }
+</style>

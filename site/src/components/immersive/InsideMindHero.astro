@@ -1,0 +1,1233 @@
+---
+const projects = [
+  {
+    title: 'Down Trigger',
+    meta: 'Musique · signal',
+    href: '/work/down-trigger',
+    src: '/media/projects/down-trigger/cover-v2.webp',
+    alt: 'Down Trigger en contre-plongée dans un décor brutaliste.',
+  },
+  {
+    title: 'Héritage 2',
+    meta: 'Patrimoine · matière',
+    href: '/work/heritage-2',
+    src: '/media/projects/heritage-2/cover-v2.webp',
+    alt: 'Escalier en pierre claire baigné de lumière naturelle.',
+  },
+  {
+    title: 'Maison Sillon',
+    meta: 'Architecture · espace',
+    href: '/work/maison-sillon',
+    src: '/media/projects/maison-sillon/cover-v3.webp',
+    alt: 'Maison Sillon, volume bas en pierre claire longeant un bassin dans la lumière du soir.',
+  },
+  {
+    title: 'Vantel',
+    meta: 'Mode · contraste',
+    href: '/work/vantel',
+    src: '/media/projects/vantel/cover.webp',
+    alt: 'Campagne Vantel DayShift devant une façade minérale.',
+  },
+];
+---
+
+<section class="mind" data-inside-mind data-state="loading" aria-labelledby="mind-title">
+  <div class="mind-loader" data-mind-loader role="status" aria-live="polite">
+    <div class="mind-loader-orbit" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p class="mind-loader-mark">NJ / 26</p>
+    <p class="mind-loader-title">Calibrage de la vision</p>
+    <div class="mind-loader-progress" aria-hidden="true">
+      <span data-mind-loader-bar></span>
+    </div>
+    <p class="mind-loader-value"><span data-mind-loader-value>0</span>%</p>
+    <button class="mind-loader-skip" type="button" data-mind-loader-skip>Passer</button>
+  </div>
+  <noscript
+    ><style>
+      .mind-loader {
+        display: none;
+      }
+    </style></noscript
+  >
+
+  <div class="mind-stage">
+    <img
+      class="mind-portrait"
+      src="/media/identity/sequence-expression-v1/frame-01.webp"
+      alt="Portrait de Nicolas Jez dans une lumière chaude, portant des lunettes sombres."
+      width="1672"
+      height="941"
+      fetchpriority="high"
+      data-mind-portrait
+    />
+    <img
+      class="mind-portrait-echo"
+      src="/media/identity/sequence-expression-v1/frame-01.webp"
+      alt=""
+      width="1672"
+      height="941"
+      aria-hidden="true"
+    />
+
+    <canvas class="mind-canvas" data-mind-canvas aria-hidden="true"></canvas>
+    <video
+      class="mind-flight"
+      data-mind-flight
+      src="/media/transition/drone-journey-source-v1.mp4"
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"></video>
+    <video
+      class="mind-clouds"
+      data-mind-clouds
+      src="/media/transition/drone-journey-source-v1.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"></video>
+    <video
+      class="mind-clouds"
+      data-mind-clouds-alt
+      src="/media/transition/drone-journey-source-v1.mp4"
+      muted
+      playsinline
+      preload="metadata"
+      aria-hidden="true"></video>
+    <div class="mind-vignette" aria-hidden="true"></div>
+
+    <div class="mind-copy" data-mind-copy>
+      <div class="mind-identity">
+        <p class="mind-name">Nicolas Jez</p>
+        <p class="mind-role">Direction artistique · Design d’expériences numériques</p>
+      </div>
+      <h1 id="mind-title" class="mind-title">Tout commence<br />par une <em>vision.</em></h1>
+      <p class="mind-intro">
+        Direction artistique, interfaces et expériences numériques. Quatre projets habitent ce
+        paysage intérieur.
+      </p>
+    </div>
+
+    <div class="mind-actions" data-mind-actions>
+      <button class="mind-enter" type="button" data-mind-enter>
+        <span class="mind-enter-inner">
+          <span class="mind-enter-label">Voir mon univers</span>
+        </span>
+      </button>
+    </div>
+
+    <button class="mind-skip-playing" type="button" data-mind-skip-playing hidden>
+      Passer l’introduction
+    </button>
+
+    <div class="mind-world" data-mind-world aria-hidden="true">
+      <div class="mind-world-head">
+        <p class="mind-world-kicker">Inside my mind · choisir un territoire</p>
+        <h2 class="mind-world-title" data-mind-world-title tabindex="-1">
+          Une idée.<br /><em>Quatre formes.</em>
+        </h2>
+        <p class="mind-world-intro">Chaque fragment ouvre une étude de cas complète.</p>
+      </div>
+
+      <nav class="mind-projects" aria-label="Accès direct aux projets" data-flip-projects data-projects={JSON.stringify(projects)}>
+        {
+          projects.map((project, index) => (
+            <a class:list={['mind-project', `mind-project--${index + 1}`]} href={project.href} aria-label={`Découvrir ${project.title}`} data-project-index={index}>
+              <span class="mind-project-face">
+              <img src={project.src} alt="" loading="eager" decoding="async" style={index === 0 ? 'object-position: center 72%' : undefined} />
+              <span class="mind-project-shade" aria-hidden="true" />
+              <span class="mind-project-copy">
+                <span class="mind-project-index">0{index + 1}</span>
+                <span class="mind-project-name">{project.title}</span>
+                <span class="mind-project-meta">{project.meta}</span>
+              </span>
+              </span>
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="mind-project-controls">
+        <button type="button" data-flip-pause aria-pressed="false">Mettre les palettes en pause</button>
+        <nav aria-label="Tous les projets">
+          {projects.map(project => <a href={project.href}>{project.title}</a>)}
+        </nav>
+      </div>
+
+      <button class="mind-reset" type="button" data-mind-reset>Revenir au portrait</button>
+    </div>
+
+    <p class="sr-only" aria-live="polite" data-mind-status></p>
+  </div>
+
+  <div class="mind-rail" aria-hidden="true">
+    <span>Portrait</span>
+    <span class="mind-rail-line"></span>
+    <span>Portail</span>
+    <span class="mind-rail-line"></span>
+    <span>Œuvres</span>
+  </div>
+</section>
+
+<script>
+  import { initInsideMindHero } from '../../lib/inside-mind';
+
+  const boot = () => initInsideMindHero();
+  boot();
+  document.addEventListener('astro:page-load', boot);
+</script>
+
+<style>
+  .mind {
+    --lens-x: 50%;
+    --lens-y: 32.5%;
+    position: relative;
+    min-height: 100svh;
+    overflow: clip;
+    color: #f6efe8;
+    background: #090b12;
+    isolation: isolate;
+  }
+
+  .mind-stage {
+    position: relative;
+    min-height: 100svh;
+    overflow: clip;
+  }
+
+  .mind-loader {
+    position: fixed;
+    z-index: calc(var(--z-skip) - 1);
+    inset: 0;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 1rem;
+    color: #f5eee8;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(164, 59, 28, 0.14), transparent 24%), #070707;
+  }
+
+  .mind-loader[hidden] {
+    display: none;
+  }
+
+  .mind-loader-orbit {
+    position: relative;
+    width: clamp(6rem, 10vw, 9rem);
+    aspect-ratio: 1;
+    margin-bottom: 0.9rem;
+  }
+
+  .mind-loader-orbit span {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(225, 115, 65, 0.48);
+    border-radius: 50%;
+    animation: loader-orbit 2.4s linear infinite;
+  }
+
+  .mind-loader-orbit span:nth-child(2) {
+    inset: 17%;
+    border-color: rgba(107, 164, 231, 0.42);
+    animation-direction: reverse;
+    animation-duration: 1.9s;
+  }
+
+  .mind-loader-orbit span:nth-child(3) {
+    inset: 40%;
+    border: 0;
+    background: #e87742;
+    box-shadow: 0 0 1.8rem rgba(232, 119, 66, 0.62);
+    animation: loader-pulse 1.5s ease-in-out infinite;
+  }
+
+  .mind-loader-mark,
+  .mind-loader-value,
+  .mind-loader-skip {
+    font-size: 0.64rem;
+    font-weight: 650;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 238, 232, 0.6);
+  }
+
+  .mind-loader-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4vw, 3.8rem);
+    letter-spacing: -0.035em;
+  }
+
+  .mind-loader-progress {
+    width: min(16rem, 62vw);
+    height: 1px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    background: rgba(245, 238, 232, 0.16);
+  }
+
+  .mind-loader-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #d15e2c, #7faee8);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .mind-loader-skip {
+    position: absolute;
+    right: clamp(1.25rem, 4vw, 3rem);
+    bottom: clamp(1.25rem, 4vw, 3rem);
+    min-height: 2.75rem;
+    color: rgba(245, 238, 232, 0.72);
+  }
+
+  @keyframes loader-orbit {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @keyframes loader-pulse {
+    0%,
+    100% {
+      transform: scale(0.72);
+      opacity: 0.62;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .mind-portrait,
+  .mind-portrait-echo,
+  .mind-canvas,
+  .mind-flight,
+  .mind-clouds,
+  .mind-vignette {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mind-portrait {
+    object-fit: cover;
+    object-position: center;
+    transform-origin: var(--lens-x) var(--lens-y);
+    will-change: transform, opacity, filter;
+  }
+
+  .mind[data-sequence='playing'] .mind-portrait {
+    filter: saturate(1.04) contrast(1.02);
+  }
+
+  .mind-portrait-echo {
+    z-index: 1;
+    right: auto;
+    width: 56%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.4;
+    transform: scaleX(-1) scale(1.04);
+    transform-origin: 50% 38%;
+    filter: blur(8px) saturate(0.52) brightness(0.88);
+    mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.92) 48%, transparent 100%);
+    pointer-events: none;
+    will-change: transform, opacity, filter;
+    transition:
+      opacity 180ms ease-in-out,
+      filter 180ms ease-in-out,
+      transform 180ms ease-in-out,
+      clip-path 180ms ease-in-out;
+  }
+
+  .mind[data-split] .mind-portrait-echo {
+    --glitch-direction: 1;
+    z-index: 2;
+    width: 100%;
+    opacity: 0.86;
+    transform: translateX(0);
+    filter: saturate(1.22) contrast(1.06) drop-shadow(5px 0 rgba(65, 205, 255, 0.28))
+      drop-shadow(-4px 0 rgba(255, 86, 54, 0.22));
+    mask-image: repeating-linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 6%,
+      transparent 6.5%,
+      transparent 9.5%
+    );
+    animation: portrait-controlled-glitch var(--glitch-duration, 240ms) steps(4, end) both;
+  }
+
+  .mind[data-split='right'] .mind-portrait-echo {
+    --glitch-direction: 1;
+    clip-path: inset(0 0 0 50%);
+  }
+
+  .mind[data-split='left'] .mind-portrait-echo {
+    --glitch-direction: -1;
+    clip-path: inset(0 50% 0 0);
+  }
+
+  @keyframes portrait-controlled-glitch {
+    0% {
+      transform: translateX(0);
+      opacity: 0.35;
+    }
+    28% {
+      transform: translateX(calc(var(--glitch-shift, 6px) * var(--glitch-direction)));
+      opacity: 0.9;
+    }
+    55% {
+      transform: translateX(calc(-5px * var(--glitch-direction)));
+    }
+    78% {
+      transform: translateX(calc(3px * var(--glitch-direction)));
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 0;
+    }
+  }
+
+  .mind[data-glitch='tear'] .mind-portrait-echo {
+    clip-path: inset(var(--glitch-band-top, 35%) 0 30% 0);
+    mask-image: none;
+    filter: none;
+    animation-name: portrait-tear;
+  }
+
+  .mind[data-glitch='slice'] .mind-portrait-echo {
+    clip-path: inset(0 34% 0 48%);
+    mask-image: linear-gradient(transparent, #000 25%, #000 75%, transparent);
+    filter: saturate(0.75);
+    animation-name: portrait-slice;
+  }
+
+  .mind[data-glitch='chroma'] .mind-portrait-echo {
+    clip-path: inset(25% 8% 28% 8%);
+    mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
+    filter: saturate(1.4);
+    animation-name: portrait-chroma;
+  }
+
+  @keyframes portrait-tear {
+    0%, 100% { transform: translateX(0); opacity: 0; }
+    30% { transform: translateX(calc(var(--glitch-shift) * var(--glitch-direction))); opacity: 0.8; }
+    65% { transform: translateX(calc(-3px * var(--glitch-direction))); opacity: 0.6; }
+  }
+
+  @keyframes portrait-slice {
+    0%, 100% { transform: translateY(0); opacity: 0; }
+    35% { transform: translateY(-5px); opacity: 0.75; }
+    70% { transform: translateY(2px); opacity: 0.45; }
+  }
+
+  @keyframes portrait-chroma {
+    0%, 100% { transform: translateX(0); opacity: 0; }
+    40% { transform: translateX(calc(4px * var(--glitch-direction))); opacity: 0.4; }
+    70% { transform: translateX(calc(-2px * var(--glitch-direction))); opacity: 0.25; }
+  }
+
+  .mind-stage::after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    opacity: 0;
+    background: linear-gradient(
+      transparent 8%,
+      rgba(90, 212, 255, 0.62) 34%,
+      rgba(255, 111, 74, 0.5) 68%,
+      transparent 92%
+    );
+    pointer-events: none;
+    transition: opacity 180ms ease-in-out;
+  }
+
+  .mind[data-glitch='bands'] .mind-stage::after {
+    opacity: 0.72;
+    animation: glitch-seam var(--glitch-duration, 240ms) steps(3, end) both;
+  }
+
+  @keyframes glitch-seam {
+    0%,
+    100% {
+      translate: 0;
+    }
+    33% {
+      translate: 5px 0;
+    }
+    66% {
+      translate: -3px 0;
+    }
+  }
+
+  .mind-canvas {
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* A staged signal failure; the real interface remains responsive. */
+  .mind[data-rupture] .mind-stage {
+    transform-origin: center;
+    animation: entry-signal-fault 1050ms linear both;
+  }
+
+  .mind[data-rupture] .mind-portrait-echo {
+    width: 100%;
+    z-index: 4;
+    opacity: 0;
+    transform: none;
+    filter: saturate(1.1) drop-shadow(14px 0 #61dfff66) drop-shadow(-12px 0 #f07c6066);
+    mask-image: repeating-linear-gradient(to bottom, #000 0 8%, transparent 8% 13%, #000 13% 17%, transparent 17% 29%);
+    clip-path: inset(0);
+    transition: none;
+    animation: entry-signal-tear 1050ms steps(1, end) both;
+  }
+
+  .mind[data-rupture] .mind-copy {
+    animation: entry-type-fault 1050ms steps(1, end) both;
+  }
+
+  @keyframes entry-signal-fault {
+    0%, 7% { transform: none; filter: none; }
+    8%, 19% { transform: translate(-10px, 2px) skewX(1.4deg); filter: saturate(0.8); }
+    20%, 33% { transform: translate(13px, -3px) skewX(-2deg); filter: saturate(0.65); }
+    34%, 48% { transform: translate(-6px, 5px) skewX(0.7deg); filter: saturate(0.5); }
+    49%, 61% { transform: translate(7px, -2px) scaleY(0.97); filter: saturate(0.3); }
+    70% { transform: scale(1.035, 0.72); filter: saturate(0.1) brightness(0.7); }
+    82% { transform: scale(1.06, 0.035); filter: saturate(0) brightness(0.35); }
+    87% { transform: scale(1.06, 0.035); filter: brightness(0.2); }
+    100% { transform: none; filter: none; }
+  }
+
+  @keyframes entry-signal-tear {
+    0%, 7%, 87%, 100% { opacity: 0; transform: none; }
+    8% { opacity: 0.95; transform: translate(52px, -8px); mask-position: 0 0; }
+    20% { opacity: 0.85; transform: translate(-64px, 13px) skewX(3deg); mask-position: 0 37px; }
+    34% { opacity: 0.9; transform: translate(35px, -16px); mask-position: 0 -61px; }
+    49% { opacity: 0.8; transform: translate(-42px, 7px) scaleX(1.06); mask-position: 0 18px; }
+    65% { opacity: 0.65; transform: translate(19px, -4px); }
+    78% { opacity: 0.2; transform: translateX(-12px); }
+  }
+
+  @keyframes entry-type-fault {
+    0%, 14%, 76%, 100% { text-shadow: none; }
+    16%, 48% { text-shadow: 12px 0 #61dfff99, -10px 0 #f07c6099; }
+    32%, 64% { text-shadow: -7px 0 #61dfff77, 8px 0 #f07c6077; }
+  }
+
+  .mind-flight {
+    z-index: 2;
+    object-fit: cover;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: center;
+    pointer-events: none;
+    will-change: transform, opacity, filter;
+  }
+
+  .mind-clouds {
+    z-index: 3;
+    object-fit: cover;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, #000 0%, #000 38%, transparent 76%);
+    will-change: opacity, transform;
+  }
+
+  .mind-vignette {
+    z-index: 3;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(7, 6, 8, 0.68) 0%,
+        rgba(7, 6, 8, 0.44) 32%,
+        rgba(7, 6, 8, 0.06) 61%,
+        rgba(7, 6, 8, 0.18) 100%
+      ),
+      linear-gradient(0deg, rgba(5, 6, 10, 0.62) 0%, transparent 42%);
+  }
+
+  .mind[data-state='revealed'] .mind-vignette {
+    opacity: 0;
+  }
+
+  .mind-copy {
+    position: absolute;
+    z-index: 5;
+    left: clamp(1.25rem, 5vw, 5.5rem);
+    top: 50%;
+    width: min(31rem, 36vw);
+    transform: translateY(-48%);
+    display: grid;
+    gap: clamp(0.95rem, 1.7vw, 1.5rem);
+  }
+
+  .mind-world-kicker {
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: rgba(255, 239, 225, 0.68);
+  }
+
+  .mind-identity {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .mind-name {
+    font-family: var(--font-display);
+    font-size: clamp(3.4rem, 5.7vw, 6.8rem);
+    font-weight: 430;
+    line-height: 0.82;
+    letter-spacing: -0.055em;
+    font-variation-settings:
+      'opsz' 72,
+      'wght' 430;
+  }
+
+  .mind-role {
+    max-width: 34ch;
+    color: rgba(255, 239, 225, 0.78);
+    font-size: clamp(0.65rem, 0.72vw, 0.82rem);
+    font-weight: 650;
+    line-height: 1.45;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .mind-title,
+  .mind-world-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+  }
+
+  .mind-title {
+    max-width: 13ch;
+    font-size: clamp(2rem, 3.45vw, 4.2rem);
+    line-height: 0.9;
+    font-variation-settings:
+      'opsz' 72,
+      'wght' 360;
+  }
+
+  .mind-title em,
+  .mind-world-title em {
+    font-weight: inherit;
+    color: #efb18d;
+  }
+
+  .mind-intro {
+    max-width: 42ch;
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+    line-height: 1.55;
+    color: rgba(255, 244, 236, 0.78);
+  }
+
+  .mind-actions {
+    position: absolute;
+    z-index: 6;
+    left: var(--lens-x);
+    top: 82%;
+    translate: -50% -50%;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Radial-glow treatment adapted from Uiverse.io by Spacious74. */
+  .mind-enter {
+    --glow-x: 50%;
+    --glow-y: 50%;
+    position: relative;
+    isolation: isolate;
+    min-height: 4.15rem;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    border-radius: 16px;
+    color: #fff;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.12), rgba(15, 17, 17, 0.28));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.24),
+      0 4px 0 rgba(8, 10, 10, 0.35), 0 10px 22px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 250ms ease,
+      box-shadow 250ms ease;
+  }
+
+  .mind-enter::before,
+  .mind-enter::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+  }
+
+  .mind-enter::before {
+    z-index: 2;
+    inset: -1px;
+    padding: 1px;
+    border-radius: 16px;
+    opacity: 0;
+    background: radial-gradient(
+      circle 82px at var(--glow-x) var(--glow-y),
+      #d9fbff 0%,
+      #3fe9ff 32%,
+      rgba(0, 81, 255, 0.55) 58%,
+      transparent 78%
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  .mind-enter::after {
+    z-index: -1;
+    inset: -12px;
+    border-radius: 24px;
+    opacity: 0;
+    background: radial-gradient(
+      circle 68px at calc(var(--glow-x) + 12px) calc(var(--glow-y) + 12px),
+      rgba(63, 233, 255, 0.42),
+      rgba(0, 81, 255, 0.16) 48%,
+      transparent 76%
+    );
+    filter: blur(8px);
+  }
+
+  .mind-enter:hover {
+    transform: translateY(-2px);
+    color: #d9fbff;
+  }
+
+  .mind-enter:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.22),
+      0 1px 0 rgba(8, 10, 10, 0.35), 0 4px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  .mind-enter:hover::before,
+  .mind-enter:hover::after,
+  .mind-enter:focus-visible::before,
+  .mind-enter:focus-visible::after {
+    opacity: 1;
+  }
+
+  .mind-enter:focus-visible {
+    outline: 2px solid #3fe9ff;
+    outline-offset: 4px;
+  }
+
+  .mind-enter-inner {
+    position: relative;
+    z-index: 1;
+    min-height: calc(4.15rem - 2px);
+    padding: 0.9rem 1.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 15px;
+    background: transparent;
+  }
+
+  .mind-enter-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle 72px at var(--glow-x) var(--glow-y),
+      rgba(0, 225, 255, 0.16),
+      rgba(0, 0, 255, 0.07) 48%,
+      transparent 76%
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+  }
+
+  .mind-enter:hover .mind-enter-inner::before,
+  .mind-enter:focus-visible .mind-enter-inner::before {
+    opacity: 1;
+  }
+
+  .mind-enter-label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mind-reset,
+  .mind-skip-playing {
+    color: rgba(255, 243, 234, 0.78);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 243, 234, 0.3);
+    text-underline-offset: 0.35rem;
+  }
+
+  .mind-skip-playing {
+    position: absolute;
+    z-index: 8;
+    top: 1.25rem;
+    right: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .mind-world {
+    position: absolute;
+    z-index: 6;
+    inset: 0;
+    padding: clamp(4.5rem, 9vh, 7.5rem) clamp(1.25rem, 5vw, 5.5rem) clamp(2rem, 6vh, 4rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    align-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+  }
+
+  .mind-world-head {
+    align-self: center;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .mind-world-kicker {
+    color: rgba(255, 248, 239, 0.88);
+    text-shadow: 0 1px 18px rgba(44, 24, 16, 0.48);
+  }
+
+  .mind-world-title {
+    max-width: none;
+    font-size: clamp(2.9rem, 5vw, 5.5rem);
+    line-height: 0.9;
+    font-variation-settings:
+      'opsz' 72,
+      'wght' 360;
+  }
+
+  .mind-world-title:focus {
+    outline: none;
+  }
+
+  .mind-world-title br {
+    display: none;
+  }
+
+  .mind-world-title em {
+    margin-left: 0.2em;
+  }
+
+  .mind-world-intro {
+    max-width: 28ch;
+    color: rgba(255, 248, 239, 0.82);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .mind-projects {
+    height: clamp(15rem, 34vh, 25rem);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    gap: clamp(0.5rem, 1.4vw, 1.5rem);
+  }
+
+  .mind-project {
+    position: relative;
+    min-height: 0;
+    min-width: 0;
+    perspective: 1000px;
+    border: 1px solid rgba(255, 244, 231, 0.35);
+    border-radius: 8px;
+    background: #161715;
+    box-shadow: 0 14px 24px rgba(25, 17, 10, 0.28);
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .mind-project:hover,
+    .mind-project:focus-visible {
+      z-index: 10;
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 20px 34px rgba(25, 17, 10, 0.36);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mind-project { transition: none; }
+    .mind-project:hover,
+    .mind-project:focus-visible { transform: none; }
+  }
+
+  .mind-project::after {
+    content: '';
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: #10120fe6;
+    box-shadow: 0 1px 0 #ffffff38;
+    pointer-events: none;
+  }
+
+  .mind-project:focus-visible {
+    outline: 2px solid #fff4df;
+    outline-offset: 5px;
+  }
+
+  .mind-project-face {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    border-radius: 7px;
+    background: #161715;
+  }
+
+  .mind-project :global(.flip-leaf) {
+    position: absolute;
+    inset-inline: 0;
+    height: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    pointer-events: none;
+    z-index: 3;
+    will-change: transform;
+  }
+
+  .mind-project :global(.flip-top) {
+    top: 0;
+    transform-origin: center bottom;
+    z-index: 4;
+  }
+
+  .mind-project :global(.flip-bottom) {
+    bottom: 0;
+    transform-origin: center top;
+  }
+
+  .mind-project :global(.flip-incoming) {
+    z-index: 5;
+  }
+
+  .mind-project :global(.flip-leaf > .mind-project-face) {
+    height: 200%;
+    bottom: auto;
+  }
+
+  .mind-project :global(.flip-bottom > .mind-project-face) {
+    top: -100%;
+  }
+
+  .mind-project-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
+
+  .mind-project-controls nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+  }
+
+  .mind-project-controls a,
+  .mind-project-controls button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: #fff5e7;
+    text-shadow: 0 1px 4px #17100d;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .mind-project-controls button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .mind-project img,
+  .mind-project-shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mind-project img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .mind-project-shade {
+    background: linear-gradient(180deg, transparent 40%, rgba(20, 16, 12, 0.88));
+  }
+
+  .mind-project-copy {
+    position: absolute;
+    z-index: 1;
+    inset: auto 1rem 1rem;
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    gap: 0.2rem 0.55rem;
+    align-items: baseline;
+  }
+
+  .mind-project-index,
+  .mind-project-meta {
+    color: rgba(255, 247, 237, 0.84);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .mind-project-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.8vw, 2rem);
+    font-variation-settings:
+      'opsz' 48,
+      'wght' 390;
+    text-shadow: 0 2px 18px rgba(25, 13, 10, 0.58);
+  }
+
+  .mind-project-meta {
+    grid-column: 2;
+  }
+
+  .mind-reset {
+    position: absolute;
+    left: clamp(1.25rem, 5vw, 5.5rem);
+    bottom: clamp(1.25rem, 4vh, 2.5rem);
+  }
+
+  .mind-rail {
+    position: absolute;
+    z-index: 7;
+    right: 0.85rem;
+    top: 50%;
+    translate: 0 -50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    color: rgba(255, 255, 255, 0.46);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+
+  .mind-rail-line {
+    width: 1px;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .mind[data-state='revealed'] .mind-world {
+    pointer-events: auto;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 56rem) {
+    .mind {
+      --lens-x: 50%;
+      --lens-y: 33%;
+    }
+
+    .mind-portrait {
+      object-position: center;
+    }
+
+    .mind-copy {
+      top: auto;
+      bottom: 4.5rem;
+      width: min(38rem, calc(100% - 4rem));
+      transform: none;
+    }
+
+    .mind-title {
+      font-size: clamp(2.15rem, 7vw, 4.2rem);
+    }
+
+    .mind-world {
+      grid-template-columns: 1fr;
+      align-content: start;
+      overflow-y: auto;
+    }
+
+    .mind-world-title {
+      font-size: clamp(2.8rem, 9vw, 5rem);
+    }
+
+    .mind-projects {
+      height: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(12rem, 24vh));
+      grid-auto-rows: minmax(12rem, 24vh);
+    }
+
+    .mind-project {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .mind-reset {
+      position: static;
+      justify-self: start;
+      min-height: 44px;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .mind {
+      --lens-x: 50%;
+      --lens-y: 31%;
+    }
+
+    .mind-portrait {
+      object-position: center;
+    }
+
+    .mind-vignette {
+      background: linear-gradient(0deg, rgba(5, 6, 10, 0.82) 0%, rgba(5, 6, 10, 0.08) 70%);
+    }
+
+    .mind-copy {
+      left: 1.25rem;
+      top: 5.5rem;
+      bottom: auto;
+      width: calc(100% - 2.5rem);
+      gap: 0.65rem;
+    }
+
+    .mind-title {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .mind-name {
+      font-size: clamp(2.6rem, 11vw, 3.6rem);
+    }
+
+    .mind-intro {
+      display: none;
+    }
+
+    .mind-actions {
+      top: auto;
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+      translate: -50% 0;
+    }
+
+    .mind-enter {
+      width: auto;
+    }
+
+    .mind-enter-inner {
+      width: auto;
+    }
+
+    .mind-world {
+      padding: 4.25rem 1.25rem 5rem;
+      gap: 2rem;
+    }
+
+    .mind-world-title {
+      font-size: clamp(2.5rem, 13vw, 4rem);
+    }
+
+    .mind-projects {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      grid-auto-rows: 14rem;
+    }
+
+    .mind-rail {
+      display: none;
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .mind-project img,
+    .mind-project:nth-child(even) img {
+      clip-path: inset(0);
+      transform: none;
+    }
+
+    .mind-project-shade {
+      opacity: 1;
+    }
+
+    .mind-project {
+      backdrop-filter: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mind-canvas,
+    .mind-flight,
+    .mind-clouds {
+      display: none;
+    }
+
+    .mind-loader-orbit span {
+      animation: none;
+    }
+
+    .mind[data-split] .mind-portrait-echo,
+    .mind[data-split] .mind-stage::after,
+    .mind[data-rupture] .mind-stage,
+    .mind[data-rupture] .mind-portrait-echo,
+    .mind[data-rupture] .mind-copy {
+      animation: none;
+    }
+  }
+</style>

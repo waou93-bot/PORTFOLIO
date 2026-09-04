@@ -1,0 +1,39 @@
+---
+import { mediaExists } from '../../lib/media';
+
+interface Props {
+  src: string;
+  alt: string;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+
+const { src, alt, sizes, loading = 'lazy', fetchpriority = 'auto', class: className } = Astro.props;
+const exists = mediaExists(src);
+---
+
+{
+  exists && (
+    <img
+      src={src}
+      alt={alt}
+      sizes={sizes}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding="async"
+      class={className}
+    />
+  )
+}
+
+<style>
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: var(--color-paper-raised);
+  }
+</style>

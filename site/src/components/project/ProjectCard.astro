@@ -1,0 +1,159 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Badge from '../ui/Badge.astro';
+import ProjectMedia from '../media/ProjectMedia.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const p = project.data;
+const isConcept = p.kind === 'concept' || p.kind === 'redesign' || p.kind === 'experimental';
+---
+
+<article class="project-card reveal" style={{ transitionDelay: `${Math.min(index, 4) * 70}ms` }}>
+  <a
+    class="project-card-link focus-ring"
+    href={`/work/${p.slug}`}
+    aria-label={`${p.title} — voir l'étude de cas`}
+  >
+    <div class="project-media">
+      {
+        (
+          <ProjectMedia
+            src={p.cover.src}
+            alt={p.cover.alt}
+            sizes="(min-width: 64rem) 44rem, 92vw"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+          />
+        )
+      }
+    </div>
+
+    <div class="project-info">
+      <div class="project-meta meta">
+        <span>{p.year}</span>
+        <span aria-hidden="true">·</span>
+        <span>{p.sector}</span>
+      </div>
+      <h3 class="project-title display">
+        {p.title}
+        <span class="project-arrow" aria-hidden="true">→</span>
+      </h3>
+      <p class="project-summary">{p.summary}</p>
+      <div class="project-foot">
+        <Badge kind={p.kind} tone={isConcept ? 'neutral' : 'accent'} />
+        <span class="meta project-role">{p.role.join(' · ')}</span>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .project-card {
+    border-top: var(--border-1);
+    padding-block: var(--space-7);
+  }
+
+  .project-card:last-of-type {
+    border-bottom: var(--border-1);
+  }
+
+  .project-card-link {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-7);
+    align-items: start;
+    border-radius: var(--radius-l);
+    transition: transform var(--dur-med) var(--ease-out);
+  }
+
+  .project-card-link:hover {
+    transform: translateY(-3px);
+  }
+
+  .project-media {
+    position: relative;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: var(--color-paper-raised);
+    box-shadow: var(--shadow-s);
+    transition: box-shadow var(--dur-med);
+  }
+
+  .project-card-link:hover .project-media {
+    box-shadow: var(--shadow-m);
+  }
+
+  .project-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+
+  .project-card-link:hover .project-media :global(img) {
+    transform: scale(1.03);
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .project-meta {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .project-title {
+    font-size: var(--text-2xl);
+    line-height: 1.1;
+  }
+
+  .project-arrow {
+    display: inline-block;
+    margin-left: var(--space-2);
+    color: var(--color-accent);
+    transform: translateX(0);
+    transition: transform var(--dur-med) var(--ease-out);
+  }
+
+  .project-card-link:hover .project-arrow {
+    transform: translateX(6px);
+  }
+
+  .project-summary {
+    color: var(--color-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 52ch;
+  }
+
+  .project-foot {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .project-role {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+  }
+
+  @media (max-width: 48rem) {
+    .project-card-link {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .project-card {
+      padding-block: var(--space-5);
+    }
+  }
+</style>
