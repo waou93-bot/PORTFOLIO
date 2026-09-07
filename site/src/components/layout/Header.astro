@@ -10,8 +10,11 @@ const navItems = isHome
 <header class:list={['site-header', { 'is-home': isHome }]}>
   <div class="container header-inner">
     <a class="brand focus-ring" href="/" aria-label={`${site.name} — accueil`}>
-      <span class="brand-name">{site.name}</span>
-      <span class="brand-tag" aria-hidden="true">{site.tagline}</span>
+      <img class="brand-logo" src="/media/identity/logo-clair.png" alt="" width="32" height="35" />
+      <span class="brand-copy">
+        <span class="brand-name">{site.name}</span>
+        <span class="brand-tag" aria-hidden="true">{site.tagline}</span>
+      </span>
     </a>
     <nav class="site-nav" aria-label="Navigation principale">
       {
@@ -60,8 +63,24 @@ const navItems = isHome
 
   .brand {
     display: inline-flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
     line-height: 1.1;
+  }
+
+  .brand-logo {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2.2rem;
+    object-fit: contain;
+    filter: invert(1);
+  }
+
+  .site-header.is-home .brand-logo { filter: none; }
+
+  .brand-copy {
+    display: inline-flex;
+    flex-direction: column;
   }
 
   .brand-name {

@@ -20,7 +20,6 @@ type MindElements = {
   enter: HTMLButtonElement;
   footerLauncher: HTMLButtonElement;
   footerLauncherCharacter: HTMLElement;
-  footerLauncherPlatform: HTMLElement;
   skipPlaying: HTMLButtonElement;
   reset: HTMLButtonElement;
   status: HTMLElement;
@@ -62,7 +61,6 @@ const selectElements = (root: HTMLElement): MindElements | null => {
   const enter = root.querySelector<HTMLButtonElement>('[data-mind-enter]');
   const footerLauncher = root.querySelector<HTMLButtonElement>('[data-mind-footer-launcher]');
   const footerLauncherCharacter = root.querySelector<HTMLElement>('.mind-footer-launcher-character');
-  const footerLauncherPlatform = root.querySelector<HTMLElement>('.mind-footer-launcher-platform');
   const skipPlaying = root.querySelector<HTMLButtonElement>('[data-mind-skip-playing]');
   const reset = root.querySelector<HTMLButtonElement>('[data-mind-reset]');
   const status = root.querySelector<HTMLElement>('[data-mind-status]');
@@ -85,7 +83,6 @@ const selectElements = (root: HTMLElement): MindElements | null => {
     !enter ||
     !footerLauncher ||
     !footerLauncherCharacter ||
-    !footerLauncherPlatform ||
     !skipPlaying ||
     !reset ||
     !status ||
@@ -112,7 +109,6 @@ const selectElements = (root: HTMLElement): MindElements | null => {
     enter,
     footerLauncher,
     footerLauncherCharacter,
-    footerLauncherPlatform,
     skipPlaying,
     reset,
     status,
@@ -271,29 +267,27 @@ export const initInsideMindHero = () => {
       delete root.dataset.division;delete root.dataset.nextFrame;
     };
     let sequencePlaying = false;
-    let platformIdleTimer = 0;
-    let platformIdleIndex = 0;
-    const platformIdleBeats = [
-      // Keep the invitation legible: the idle character remains standing.
-      { pose: 8, beat: 0, duration: 900 },
-      { pose: 8, beat: 1, duration: 720 },
-      { pose: 8, beat: 0, duration: 900 },
-      { pose: 0, beat: 0, duration: 980 },
-      { pose: 8, beat: 2, duration: 720 },
-      { pose: 8, beat: 0, duration: 900 },
+    let launcherIdleTimer = 0;
+    let launcherIdleIndex = 0;
+    const launcherIdleBeats = [
+      // Keep the invitation legible: the character remains suspended overhead.
+      { pose: 7, beat: 0, duration: 1200 },
+      { pose: 7, beat: 1, duration: 760 },
+      { pose: 7, beat: 0, duration: 1200 },
+      { pose: 7, beat: 2, duration: 760 },
     ];
-    const stopPlatformIdle = () => {
-      window.clearTimeout(platformIdleTimer);
-      platformIdleTimer = 0;
+    const stopLauncherIdle = () => {
+      window.clearTimeout(launcherIdleTimer);
+      launcherIdleTimer = 0;
     };
-    const playPlatformIdle = () => {
-      stopPlatformIdle();
+    const playLauncherIdle = () => {
+      stopLauncherIdle();
       if (reduceMotion || root.dataset.state !== 'portrait' || root.dataset.footerLaunch) return;
-      const beat = platformIdleBeats[platformIdleIndex % platformIdleBeats.length]!;
-      elements.footerLauncher.dataset.platformPose = String(beat.pose);
-      elements.footerLauncher.dataset.platformBeat = String(beat.beat);
-      platformIdleIndex += 1;
-      platformIdleTimer = window.setTimeout(playPlatformIdle, beat.duration);
+      const beat = launcherIdleBeats[launcherIdleIndex % launcherIdleBeats.length]!;
+      elements.footerLauncher.dataset.launcherPose = String(beat.pose);
+      elements.footerLauncher.dataset.launcherBeat = String(beat.beat);
+      launcherIdleIndex += 1;
+      launcherIdleTimer = window.setTimeout(playLauncherIdle, beat.duration);
     };
     let footerLaunchTimeline: gsap.core.Timeline | null = null;
     const mouseMotion = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -489,7 +483,7 @@ export const initInsideMindHero = () => {
         onComplete: () => {
           elements.loader.hidden = true;
           root.dataset.state = 'portrait';
-          playPlatformIdle();
+          playLauncherIdle();
           elements.status.textContent = 'Portrait chargé. L’introduction immersive est disponible.';
           void playSequence();
         },
@@ -659,7 +653,7 @@ export const initInsideMindHero = () => {
     };
     const play = () => {
       if (root.dataset.state === 'playing' || root.dataset.state === 'revealed') return;
-      stopPlatformIdle();
+      stopLauncherIdle();
       root.dataset.state = 'playing';
       const interruptedFrame = Math.max(0, Number(root.dataset.nextFrame ?? root.dataset.frame ?? 1) - 1);
       sequenceRun+=1;halfTimeline?.kill();
@@ -690,7 +684,7 @@ export const initInsideMindHero = () => {
     };
 
     const skip = () => {
-      stopPlatformIdle();
+      stopLauncherIdle();
       window.clearTimeout(universeHandoff);
       window.clearInterval(burstTimer);clearHalves();
       root.dataset.state='revealed';
@@ -699,8 +693,8 @@ export const initInsideMindHero = () => {
     };
 
     const reset = () => {
-      stopPlatformIdle();
-      platformIdleIndex = 0;
+      stopLauncherIdle();
+      launcherIdleIndex = 0;
       footerLaunchTimeline?.kill();
       footerLaunchTimeline = null;
       delete root.dataset.footerLaunch;
@@ -723,7 +717,6 @@ export const initInsideMindHero = () => {
       gsap.set(elements.actions, { clearProps: 'all' });
       gsap.set(elements.footerLauncher, { clearProps: 'all' });
       gsap.set(elements.footerLauncherCharacter, { clearProps: 'all' });
-      gsap.set(elements.footerLauncherPlatform, { clearProps: 'all' });
       gsap.set(elements.portrait, { clearProps: 'all' });
       gsap.set(elements.echo, { clearProps: 'all' });
       gsap.set(elements.flight, {
@@ -747,7 +740,7 @@ export const initInsideMindHero = () => {
       elements.world.setAttribute('aria-hidden', 'true');
       elements.skipPlaying.hidden = true;
       root.dataset.state = 'portrait';
-      playPlatformIdle();
+      playLauncherIdle();
       elements.status.textContent = 'Retour au portrait.';
       elements.enter.focus({ preventScroll: true });
       scheduleReplay(80);
@@ -756,15 +749,17 @@ export const initInsideMindHero = () => {
     const launchFooter = () => {
       if (root.dataset.state !== 'portrait' || root.dataset.footerLaunch === 'falling') return;
 
-      stopPlatformIdle();
+      stopLauncherIdle();
       elements.footerLauncher.disabled = true;
       root.dataset.footerLaunch = 'falling';
       elements.status.textContent = 'Nicolas tombe vers les coordonnées.';
-      elements.footerLauncher.dataset.platformPose = '5';
-      elements.footerLauncher.dataset.platformBeat = '0';
+      elements.footerLauncher.dataset.launcherPose = '7';
+      elements.footerLauncher.dataset.launcherBeat = '0';
+      gsap.set(elements.footerLauncherCharacter, { x: 0, y: 0, rotation: 0, autoAlpha: 1 });
 
       const goToFooter = () => {
         root.dataset.footerLaunch = 'done';
+        window.dispatchEvent(new CustomEvent('nicolas:fall-to-footer'));
       };
 
       if (reduceMotion) {
@@ -774,11 +769,15 @@ export const initInsideMindHero = () => {
 
       footerLaunchTimeline = gsap.timeline({ onComplete: goToFooter });
       footerLaunchTimeline
-        // The platform breaks away in CSS; only the character leaves the hero.
-        .to(elements.footerLauncherCharacter, { x: 3, y: 8, rotation: -7, duration: 0.13, ease: 'steps(1)' }, 0.12)
-        .to(elements.footerLauncherCharacter, { x: -4, y: 34, rotation: 9, duration: 0.16, ease: 'steps(1)' })
-        .to(elements.footerLauncherCharacter, { x: 5, y: 76, rotation: -16, duration: 0.16, ease: 'steps(1)' })
-        .to(elements.footerLauncherCharacter, { x: -8, y: 146, rotation: 22, autoAlpha: 0, duration: 0.22, ease: 'steps(2)' });
+        // Release, reach, then drop almost vertically with small comic beats.
+        .to(elements.footerLauncherCharacter, { x: 1, y: 12, rotation: -4, duration: 0.12, ease: 'steps(1)' }, 0)
+        .call(() => {
+          elements.footerLauncher.dataset.launcherPose = '5';
+        }, [], 0.1)
+        .to(elements.footerLauncherCharacter, { x: 4, y: 38, rotation: -22, duration: 0.14, ease: 'steps(1)' }, 0.1)
+        .to(elements.footerLauncherCharacter, { x: 7, y: 70, rotation: -12, duration: 0.14, ease: 'steps(1)' })
+        .to(elements.footerLauncherCharacter, { x: 3, y: 112, rotation: 5, duration: 0.16, ease: 'steps(1)' })
+        .to(elements.footerLauncherCharacter, { x: -3, y: 170, rotation: 18, autoAlpha: 0, duration: 0.24, ease: 'steps(2)' });
     };
 
     elements.enter.addEventListener('click', reduceMotion ? skip : play);
@@ -815,7 +814,7 @@ export const initInsideMindHero = () => {
       () => {
         window.clearTimeout(universeHandoff);
         window.clearInterval(burstTimer);
-        stopPlatformIdle();
+        stopLauncherIdle();
         footerLaunchTimeline?.kill();
         visibility.disconnect();
         root.removeEventListener('pointermove', trackGaze);

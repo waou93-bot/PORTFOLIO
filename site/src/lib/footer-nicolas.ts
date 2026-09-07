@@ -26,6 +26,8 @@ const poses: Pose[] = [
   { src: atlas, width: 1774, height: 887, crop: [1390, 355, 335, 500], anchor: [1516, 840], scale: 0.42 },
 ];
 
+const landingEvent = 'nicolas:fall-to-footer';
+
 export function initFooterNicolas() {
   document.querySelectorAll<HTMLElement>('[data-footer-nicolas]').forEach(root => {
     if (root.dataset.initialized) return;
@@ -39,6 +41,7 @@ export function initFooterNicolas() {
     let ready = false;
     let loading = false;
     let visible = false;
+    let unlocked = false;
     let timeline: gsap.core.Timeline | undefined;
 
     const layers = poses.map((pose, index) => {
@@ -124,7 +127,7 @@ export function initFooterNicolas() {
     };
 
     const start = () => {
-      if (!ready || !visible || disposed || document.hidden || root.dataset.state !== 'waiting') return;
+      if (!unlocked || !ready || !visible || disposed || document.hidden || root.dataset.state !== 'waiting') return;
       if (performanceFinished || staticMode.matches) {
         settle();
         return;
@@ -177,9 +180,18 @@ export function initFooterNicolas() {
       }
     };
     const onMotion = () => {
-      if (ready && staticMode.matches) settle();
+      if (unlocked && ready && staticMode.matches) settle();
     };
 
+    const onLanding = () => {
+      if (disposed) return;
+      // The footer character is a consequence of the hero click, never an
+      // independent animation discovered by scrolling.
+      unlocked = true;
+      start();
+    };
+
+    window.addEventListener(landingEvent, onLanding);
     document.addEventListener('visibilitychange', onVisibility);
     staticMode.addEventListener('change', onMotion);
     document.addEventListener('astro:before-swap', () => {
@@ -187,6 +199,7 @@ export function initFooterNicolas() {
       timeline?.kill();
       preload.disconnect();
       visibility.disconnect();
+      window.removeEventListener(landingEvent, onLanding);
       document.removeEventListener('visibilitychange', onVisibility);
       staticMode.removeEventListener('change', onMotion);
     }, { once: true });

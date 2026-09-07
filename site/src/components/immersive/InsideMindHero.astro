@@ -62,7 +62,6 @@ const projects = [
       aria-label="Faire tomber Nicolas et voir les coordonnées"
     >
       <span class="mind-footer-launcher-character" aria-hidden="true"></span>
-      <span class="mind-footer-launcher-platform" aria-hidden="true"></span>
       <span class="mind-footer-launcher-sign" aria-hidden="true">DON'T CLICK</span>
     </button>
     <img
@@ -216,8 +215,8 @@ const projects = [
   .mind-footer-launcher {
     position: absolute;
     z-index: 8;
-    top: clamp(4.5rem, 11vh, 7rem);
-    left: clamp(1rem, 4vw, 3.2rem);
+    top: calc(var(--header-h) - 2.2rem);
+    left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
     width: 150px;
     height: 166px;
     padding: 0;
@@ -252,16 +251,20 @@ const projects = [
     transition: transform 120ms steps(2, end);
   }
 
-  .mind-footer-launcher[data-platform-pose='1'] .mind-footer-launcher-character { background-position: 12.5% 0; }
-  .mind-footer-launcher[data-platform-pose='2'] .mind-footer-launcher-character { background-position: 25% 0; }
-  .mind-footer-launcher[data-platform-pose='3'] .mind-footer-launcher-character { background-position: 37.5% 0; }
-  .mind-footer-launcher[data-platform-pose='4'] .mind-footer-launcher-character { background-position: 50% 0; }
-  .mind-footer-launcher[data-platform-pose='5'] .mind-footer-launcher-character { background-position: 62.5% 0; }
-  .mind-footer-launcher[data-platform-pose='6'] .mind-footer-launcher-character { background-position: 75% 0; }
-  .mind-footer-launcher[data-platform-pose='7'] .mind-footer-launcher-character { background-position: 87.5% 0; }
-  .mind-footer-launcher[data-platform-pose='8'] .mind-footer-launcher-character { background-position: 100% 0; }
-  .mind-footer-launcher[data-platform-beat='1'] .mind-footer-launcher-character { transform: translateY(-2px) rotate(-2deg); }
-  .mind-footer-launcher[data-platform-beat='2'] .mind-footer-launcher-character { transform: translateY(1px) rotate(2deg); }
+  .mind-footer-launcher[data-launcher-pose='1'] .mind-footer-launcher-character { background-position: 12.5% 0; }
+  .mind-footer-launcher[data-launcher-pose='2'] .mind-footer-launcher-character { background-position: 25% 0; }
+  .mind-footer-launcher[data-launcher-pose='3'] .mind-footer-launcher-character { background-position: 37.5% 0; }
+  .mind-footer-launcher[data-launcher-pose='4'] .mind-footer-launcher-character { background-position: 50% 0; }
+  .mind-footer-launcher[data-launcher-pose='5'] .mind-footer-launcher-character { background-position: 62.5% 0; }
+  .mind-footer-launcher[data-launcher-pose='6'] .mind-footer-launcher-character { background-position: 75% 0; }
+  .mind-footer-launcher[data-launcher-pose='7'] .mind-footer-launcher-character { background-position: 87.5% 0; }
+  .mind-footer-launcher[data-launcher-pose='8'] .mind-footer-launcher-character { background-position: 100% 0; }
+  .mind-footer-launcher[data-launcher-beat='1'] .mind-footer-launcher-character { transform: translateY(-2px) rotate(-2deg); }
+  .mind-footer-launcher[data-launcher-beat='2'] .mind-footer-launcher-character { transform: translateY(1px) rotate(2deg); }
+
+  .mind[data-state='portrait'] .mind-footer-launcher-character {
+    animation: mind-launcher-hang 1.8s steps(3, end) infinite;
+  }
 
   .mind-footer-launcher-sign {
     position: absolute;
@@ -286,56 +289,6 @@ const projects = [
     transform-origin: top;
   }
 
-  .mind-footer-launcher-platform {
-    position: absolute;
-    right: 9px;
-    bottom: 20px;
-    left: 17px;
-    height: 9px;
-    border: 1px solid rgba(255, 226, 193, 0.48);
-    border-radius: 3px 5px 2px 4px;
-    background:
-      radial-gradient(ellipse at 22% 40%, rgba(48, 25, 18, 0.58) 0 5%, transparent 6%),
-      radial-gradient(ellipse at 76% 62%, rgba(52, 27, 18, 0.42) 0 4%, transparent 5%),
-      repeating-linear-gradient(166deg, transparent 0 3px, rgba(255, 224, 184, 0.16) 3px 4px, transparent 4px 7px),
-      linear-gradient(180deg, #bd8861 0%, #986344 48%, #68402f 100%);
-    box-shadow: 0 0 1.25rem rgba(217, 130, 88, 0.24), inset 0 1px rgba(255, 239, 211, 0.38), inset 0 -2px rgba(48, 24, 17, 0.24);
-    transform: rotate(-2.4deg) skewX(-5deg);
-    transform-origin: 18% 50%;
-    will-change: transform, opacity;
-  }
-
-  .mind-footer-launcher-platform::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 48%;
-    width: 1px;
-    height: 13px;
-    background: rgba(47, 23, 17, 0.65);
-    transform: rotate(18deg);
-    transform-origin: top;
-    opacity: 0.7;
-  }
-
-  .mind-footer-launcher-platform::after {
-    content: '';
-    position: absolute;
-    right: 17%;
-    top: -1px;
-    width: 1px;
-    height: 11px;
-    background: rgba(47, 23, 17, 0.52);
-    transform: rotate(-23deg);
-    transform-origin: top;
-    opacity: 0.62;
-  }
-
-  .mind-footer-launcher:hover .mind-footer-launcher-platform,
-  .mind-footer-launcher:focus-visible .mind-footer-launcher-platform {
-    transform: rotate(-2.4deg) skewX(-5deg) translateY(2px);
-  }
-
   .mind-footer-launcher:focus-visible {
     outline: 1px solid rgba(245, 238, 232, 0.74);
     outline-offset: 8px;
@@ -343,10 +296,6 @@ const projects = [
 
   .mind[data-footer-launch='falling'] .mind-footer-launcher {
     pointer-events: none;
-  }
-
-  .mind[data-footer-launch='falling'] .mind-footer-launcher-platform {
-    animation: mind-platform-break 200ms steps(2, end) both;
   }
 
   .mind[data-footer-launch='done'] .mind-footer-launcher {
@@ -357,12 +306,12 @@ const projects = [
 
   .mind[data-footer-launch='falling'] .mind-footer-launcher-character {
     animation: none;
+    transform-origin: 50% 56%;
   }
 
-  @keyframes mind-platform-break {
-    0%, 35% { opacity: 1; transform: rotate(-3deg) scaleX(1); }
-    62% { opacity: 0.72; transform: rotate(-5deg) scaleX(0.86); }
-    100% { opacity: 0; transform: rotate(-7deg) scaleX(0.62); }
+  @keyframes mind-launcher-hang {
+    0%, 100% { transform: translateY(0) rotate(-1.4deg); }
+    50% { transform: translateY(2px) rotate(1.4deg); }
   }
 
 
@@ -1357,7 +1306,7 @@ const projects = [
     }
 
     .mind-footer-launcher {
-      top: 3.75rem;
+      top: calc(var(--header-h) - 1.65rem);
       left: 0.9rem;
       width: 116px;
       height: 160px;
