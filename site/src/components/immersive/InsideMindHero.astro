@@ -215,10 +215,10 @@ const projects = [
   .mind-footer-launcher {
     position: absolute;
     z-index: 8;
-    top: calc(var(--header-h) - 2.2rem);
+    top: calc(var(--header-h) - 3.25rem);
     left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
-    width: 150px;
-    height: 166px;
+    width: 204px;
+    height: 264px;
     padding: 0;
     border: 0;
     color: #f5eee8;
@@ -239,11 +239,11 @@ const projects = [
 
   .mind-footer-launcher-character {
     position: absolute;
-    bottom: -14px;
-    left: 24px;
-    width: 64px;
-    height: 192px;
-    background-image: url('/media/footer/nicolas-platform-idle-v6-alpha-clean.png');
+    top: -12px;
+    left: 12px;
+    width: 84px;
+    height: 260px;
+    background-image: url('/media/footer/nicolas-hanging-fall-v1-alpha.png');
     background-repeat: no-repeat;
     background-size: 900% 100%;
     background-position: 0 0;
@@ -268,11 +268,19 @@ const projects = [
 
   .mind-footer-launcher-sign {
     position: absolute;
-    top: 2px;
-    right: 0;
+    top: 92px;
+    left: 104px;
     z-index: 2;
+    padding: 0.36rem 0.54rem 0.4rem;
+    border: 1px solid rgba(16, 18, 18, 0.36);
+    border-radius: 3px;
     white-space: nowrap;
-    background: color-mix(in srgb, var(--color-paper) 82%, transparent);
+    color: #151718;
+    background: rgba(249, 241, 231, 0.96);
+    box-shadow: 3px 4px 0 rgba(4, 6, 7, 0.28), 0 8px 18px rgba(0, 0, 0, 0.18);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
     transform: rotate(4deg);
   }
 
@@ -798,11 +806,39 @@ const projects = [
   .mind-actions {
     position: absolute;
     z-index: 6;
+    isolation: isolate;
     left: var(--lens-x);
     top: 82%;
     translate: -50% -50%;
     display: flex;
     align-items: center;
+  }
+
+  .mind-actions::before,
+  .mind-actions::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+
+  .mind-actions::before {
+    z-index: -2;
+    inset: -4.6rem;
+    background:
+      conic-gradient(from 12deg, transparent 0 9%, rgba(63, 233, 255, 0.3) 12%, transparent 19% 33%, rgba(217, 251, 255, 0.18) 37%, transparent 44% 67%, rgba(63, 233, 255, 0.26) 72%, transparent 80%);
+    filter: blur(10px);
+    opacity: 0.42;
+    animation: mind-energy-gather 4.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .mind-actions::after {
+    z-index: -1;
+    inset: -1.7rem;
+    border: 1px solid rgba(63, 233, 255, 0.18);
+    box-shadow: 0 0 24px rgba(63, 233, 255, 0.12), inset 0 0 18px rgba(63, 233, 255, 0.08);
+    opacity: 0.58;
+    animation: mind-energy-ring 4.8s ease-in-out infinite;
   }
 
   /* Radial-glow treatment adapted from Uiverse.io by Spacious74. */
@@ -927,6 +963,17 @@ const projects = [
   .mind-enter:hover .mind-enter-inner::before,
   .mind-enter:focus-visible .mind-enter-inner::before {
     opacity: 1;
+  }
+
+  @keyframes mind-energy-gather {
+    0%, 100% { transform: scale(1.08) rotate(-8deg); opacity: 0.28; }
+    48% { transform: scale(0.92) rotate(10deg); opacity: 0.54; }
+    72% { transform: scale(0.98) rotate(3deg); opacity: 0.38; }
+  }
+
+  @keyframes mind-energy-ring {
+    0%, 100% { transform: scale(1.05); opacity: 0.34; }
+    50% { transform: scale(0.96); opacity: 0.7; }
   }
 
   .mind-enter-label {
@@ -1306,11 +1353,11 @@ const projects = [
     }
 
     .mind-footer-launcher {
-      top: calc(var(--header-h) - 1.65rem);
-      left: 0.9rem;
-      width: 116px;
-      height: 160px;
-      transform: scale(0.82);
+      top: calc(var(--header-h) - 2.35rem);
+      left: var(--gutter);
+      width: 166px;
+      height: 236px;
+      transform: scale(0.78);
       transform-origin: top left;
     }
 
@@ -1386,6 +1433,8 @@ const projects = [
     .mind-loader-logo span { display: none; }
     .mind-loader-bridge { display: none; }
     .mind-footer-launcher-character { animation: none; }
+    .mind-actions::before,
+    .mind-actions::after { animation: none; }
 
     .mind[data-split] .mind-portrait-echo,
     .mind[data-split] .mind-stage::after,

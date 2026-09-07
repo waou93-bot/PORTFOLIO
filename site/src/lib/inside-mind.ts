@@ -271,10 +271,10 @@ export const initInsideMindHero = () => {
     let launcherIdleIndex = 0;
     const launcherIdleBeats = [
       // Keep the invitation legible: the character remains suspended overhead.
-      { pose: 7, beat: 0, duration: 1200 },
-      { pose: 7, beat: 1, duration: 760 },
-      { pose: 7, beat: 0, duration: 1200 },
-      { pose: 7, beat: 2, duration: 760 },
+      { pose: 0, beat: 0, duration: 1200 },
+      { pose: 1, beat: 1, duration: 760 },
+      { pose: 0, beat: 0, duration: 1200 },
+      { pose: 2, beat: 2, duration: 760 },
     ];
     const stopLauncherIdle = () => {
       window.clearTimeout(launcherIdleTimer);
@@ -753,7 +753,7 @@ export const initInsideMindHero = () => {
       elements.footerLauncher.disabled = true;
       root.dataset.footerLaunch = 'falling';
       elements.status.textContent = 'Nicolas tombe vers les coordonnées.';
-      elements.footerLauncher.dataset.launcherPose = '7';
+      elements.footerLauncher.dataset.launcherPose = '3';
       elements.footerLauncher.dataset.launcherBeat = '0';
       gsap.set(elements.footerLauncherCharacter, { x: 0, y: 0, rotation: 0, autoAlpha: 1 });
 
@@ -770,14 +770,27 @@ export const initInsideMindHero = () => {
       footerLaunchTimeline = gsap.timeline({ onComplete: goToFooter });
       footerLaunchTimeline
         // Release, reach, then drop almost vertically with small comic beats.
-        .to(elements.footerLauncherCharacter, { x: 1, y: 12, rotation: -4, duration: 0.12, ease: 'steps(1)' }, 0)
+        .to(elements.footerLauncherCharacter, { x: 1, y: 14, rotation: -4, duration: 0.12, ease: 'steps(1)' }, 0)
+        .call(() => {
+          elements.footerLauncher.dataset.launcherPose = '4';
+        }, [], 0.1)
+        .to(elements.footerLauncherCharacter, { x: 3, y: 42, rotation: -12, duration: 0.14, ease: 'steps(1)' }, 0.1)
         .call(() => {
           elements.footerLauncher.dataset.launcherPose = '5';
-        }, [], 0.1)
-        .to(elements.footerLauncherCharacter, { x: 4, y: 38, rotation: -22, duration: 0.14, ease: 'steps(1)' }, 0.1)
-        .to(elements.footerLauncherCharacter, { x: 7, y: 70, rotation: -12, duration: 0.14, ease: 'steps(1)' })
-        .to(elements.footerLauncherCharacter, { x: 3, y: 112, rotation: 5, duration: 0.16, ease: 'steps(1)' })
-        .to(elements.footerLauncherCharacter, { x: -3, y: 170, rotation: 18, autoAlpha: 0, duration: 0.24, ease: 'steps(2)' });
+        }, [], 0.24)
+        .to(elements.footerLauncherCharacter, { x: 6, y: 76, rotation: -8, duration: 0.14, ease: 'steps(1)' }, 0.24)
+        .call(() => {
+          elements.footerLauncher.dataset.launcherPose = '6';
+        }, [], 0.38)
+        .to(elements.footerLauncherCharacter, { x: 3, y: 116, rotation: 6, duration: 0.16, ease: 'steps(1)' }, 0.38)
+        .call(() => {
+          elements.footerLauncher.dataset.launcherPose = '7';
+        }, [], 0.54)
+        .to(elements.footerLauncherCharacter, { x: -2, y: 162, rotation: 14, duration: 0.18, ease: 'steps(1)' }, 0.54)
+        .call(() => {
+          elements.footerLauncher.dataset.launcherPose = '8';
+        }, [], 0.72)
+        .to(elements.footerLauncherCharacter, { x: -5, y: 212, rotation: 24, autoAlpha: 0, duration: 0.28, ease: 'steps(2)' }, 0.72);
     };
 
     elements.enter.addEventListener('click', reduceMotion ? skip : play);

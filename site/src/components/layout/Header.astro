@@ -70,8 +70,8 @@ const navItems = isHome
 
   .brand-logo {
     flex: 0 0 auto;
-    width: 2rem;
-    height: 2.2rem;
+    width: 2.7rem;
+    height: 2.9rem;
     object-fit: contain;
     filter: invert(1);
   }
@@ -84,12 +84,14 @@ const navItems = isHome
   }
 
   .brand-name {
-    font-weight: 650;
-    letter-spacing: -0.035em;
+    font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+    font-weight: 760;
+    letter-spacing: -0.04em;
   }
 
   .brand-tag {
-    font-size: var(--text-xs);
+    font-size: clamp(0.7rem, 1.1vw, 0.82rem);
+    font-weight: 650;
     text-transform: uppercase;
     letter-spacing: var(--tracking-label);
     color: var(--color-muted);
