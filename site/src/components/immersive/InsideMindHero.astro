@@ -33,13 +33,13 @@ const projects = [
 
 <section class="mind" data-inside-mind data-state="loading" aria-labelledby="mind-title">
   <div class="mind-loader" data-mind-loader role="status" aria-live="polite">
-    <div class="mind-loader-orbit" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="mind-loader-logo" aria-label="Nicolas Jez">
+      <img src="/media/identity/logo-clair.png" alt="Nicolas Jez" width="1199" height="1312" />
+      <span aria-hidden="true"></span>
     </div>
-    <p class="mind-loader-mark">NJ / 26</p>
-    <p class="mind-loader-title">Calibrage de la vision</p>
+    <span class="mind-loader-bridge" aria-hidden="true"></span>
+    <p class="mind-loader-mark">PORTFOLIO · 2026</p>
+    <p class="mind-loader-title">Tout commence par une vision.</p>
     <div class="mind-loader-progress" aria-hidden="true">
       <span data-mind-loader-bar></span>
     </div>
@@ -55,6 +55,16 @@ const projects = [
   >
 
   <div class="mind-stage">
+    <button
+      class="mind-footer-launcher"
+      type="button"
+      data-mind-footer-launcher
+      aria-label="Faire tomber Nicolas et voir les coordonnées"
+    >
+      <span class="mind-footer-launcher-character" aria-hidden="true"></span>
+      <span class="mind-footer-launcher-platform" aria-hidden="true"></span>
+      <span class="mind-footer-launcher-sign" aria-hidden="true">DON'T CLICK</span>
+    </button>
     <img
       class="mind-portrait"
       src="/media/identity/sequence-expression-v1/frame-01.webp"
@@ -73,6 +83,8 @@ const projects = [
       aria-hidden="true"
     />
 
+    <img class="mind-portrait-half" data-portrait-half alt="" aria-hidden="true" width="1672" height="941" />
+    <img class="mind-portrait-half" data-portrait-half alt="" aria-hidden="true" width="1672" height="941" />
     <canvas class="mind-canvas" data-mind-canvas aria-hidden="true"></canvas>
     <video
       class="mind-flight"
@@ -81,7 +93,7 @@ const projects = [
       muted
       loop
       playsinline
-      preload="auto"
+      preload="none"
       aria-hidden="true"></video>
     <video
       class="mind-clouds"
@@ -90,7 +102,7 @@ const projects = [
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="none"
       aria-hidden="true"></video>
     <video
       class="mind-clouds"
@@ -98,7 +110,7 @@ const projects = [
       src="/media/transition/drone-journey-source-v1.mp4"
       muted
       playsinline
-      preload="metadata"
+      preload="none"
       aria-hidden="true"></video>
     <div class="mind-vignette" aria-hidden="true"></div>
 
@@ -201,6 +213,159 @@ const projects = [
     overflow: clip;
   }
 
+  .mind-footer-launcher {
+    position: absolute;
+    z-index: 8;
+    top: clamp(4.5rem, 11vh, 7rem);
+    left: clamp(1rem, 4vw, 3.2rem);
+    width: 150px;
+    height: 166px;
+    padding: 0;
+    border: 0;
+    color: #f5eee8;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform-origin: 50% 88%;
+    transition: opacity 240ms ease, visibility 240ms ease;
+  }
+
+  .mind[data-state='portrait'] .mind-footer-launcher {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mind-footer-launcher-character {
+    position: absolute;
+    bottom: -14px;
+    left: 24px;
+    width: 64px;
+    height: 192px;
+    background-image: url('/media/footer/nicolas-platform-idle-v6-alpha-clean.png');
+    background-repeat: no-repeat;
+    background-size: 900% 100%;
+    background-position: 0 0;
+    transform-origin: 50% 100%;
+    transition: transform 120ms steps(2, end);
+  }
+
+  .mind-footer-launcher[data-platform-pose='1'] .mind-footer-launcher-character { background-position: 12.5% 0; }
+  .mind-footer-launcher[data-platform-pose='2'] .mind-footer-launcher-character { background-position: 25% 0; }
+  .mind-footer-launcher[data-platform-pose='3'] .mind-footer-launcher-character { background-position: 37.5% 0; }
+  .mind-footer-launcher[data-platform-pose='4'] .mind-footer-launcher-character { background-position: 50% 0; }
+  .mind-footer-launcher[data-platform-pose='5'] .mind-footer-launcher-character { background-position: 62.5% 0; }
+  .mind-footer-launcher[data-platform-pose='6'] .mind-footer-launcher-character { background-position: 75% 0; }
+  .mind-footer-launcher[data-platform-pose='7'] .mind-footer-launcher-character { background-position: 87.5% 0; }
+  .mind-footer-launcher[data-platform-pose='8'] .mind-footer-launcher-character { background-position: 100% 0; }
+  .mind-footer-launcher[data-platform-beat='1'] .mind-footer-launcher-character { transform: translateY(-2px) rotate(-2deg); }
+  .mind-footer-launcher[data-platform-beat='2'] .mind-footer-launcher-character { transform: translateY(1px) rotate(2deg); }
+
+  .mind-footer-launcher-sign {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    z-index: 2;
+    white-space: nowrap;
+    background: color-mix(in srgb, var(--color-paper) 82%, transparent);
+    transform: rotate(4deg);
+  }
+
+  .mind-footer-launcher-sign::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 18%;
+    width: 1px;
+    height: 17px;
+    background: currentColor;
+    opacity: 0.72;
+    transform: rotate(-7deg);
+    transform-origin: top;
+  }
+
+  .mind-footer-launcher-platform {
+    position: absolute;
+    right: 9px;
+    bottom: 20px;
+    left: 17px;
+    height: 9px;
+    border: 1px solid rgba(255, 226, 193, 0.48);
+    border-radius: 3px 5px 2px 4px;
+    background:
+      radial-gradient(ellipse at 22% 40%, rgba(48, 25, 18, 0.58) 0 5%, transparent 6%),
+      radial-gradient(ellipse at 76% 62%, rgba(52, 27, 18, 0.42) 0 4%, transparent 5%),
+      repeating-linear-gradient(166deg, transparent 0 3px, rgba(255, 224, 184, 0.16) 3px 4px, transparent 4px 7px),
+      linear-gradient(180deg, #bd8861 0%, #986344 48%, #68402f 100%);
+    box-shadow: 0 0 1.25rem rgba(217, 130, 88, 0.24), inset 0 1px rgba(255, 239, 211, 0.38), inset 0 -2px rgba(48, 24, 17, 0.24);
+    transform: rotate(-2.4deg) skewX(-5deg);
+    transform-origin: 18% 50%;
+    will-change: transform, opacity;
+  }
+
+  .mind-footer-launcher-platform::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 48%;
+    width: 1px;
+    height: 13px;
+    background: rgba(47, 23, 17, 0.65);
+    transform: rotate(18deg);
+    transform-origin: top;
+    opacity: 0.7;
+  }
+
+  .mind-footer-launcher-platform::after {
+    content: '';
+    position: absolute;
+    right: 17%;
+    top: -1px;
+    width: 1px;
+    height: 11px;
+    background: rgba(47, 23, 17, 0.52);
+    transform: rotate(-23deg);
+    transform-origin: top;
+    opacity: 0.62;
+  }
+
+  .mind-footer-launcher:hover .mind-footer-launcher-platform,
+  .mind-footer-launcher:focus-visible .mind-footer-launcher-platform {
+    transform: rotate(-2.4deg) skewX(-5deg) translateY(2px);
+  }
+
+  .mind-footer-launcher:focus-visible {
+    outline: 1px solid rgba(245, 238, 232, 0.74);
+    outline-offset: 8px;
+  }
+
+  .mind[data-footer-launch='falling'] .mind-footer-launcher {
+    pointer-events: none;
+  }
+
+  .mind[data-footer-launch='falling'] .mind-footer-launcher-platform {
+    animation: mind-platform-break 200ms steps(2, end) both;
+  }
+
+  .mind[data-footer-launch='done'] .mind-footer-launcher {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .mind[data-footer-launch='falling'] .mind-footer-launcher-character {
+    animation: none;
+  }
+
+  @keyframes mind-platform-break {
+    0%, 35% { opacity: 1; transform: rotate(-3deg) scaleX(1); }
+    62% { opacity: 0.72; transform: rotate(-5deg) scaleX(0.86); }
+    100% { opacity: 0; transform: rotate(-7deg) scaleX(0.62); }
+  }
+
+
   .mind-loader {
     position: fixed;
     z-index: calc(var(--z-skip) - 1);
@@ -218,34 +383,57 @@ const projects = [
     display: none;
   }
 
-  .mind-loader-orbit {
+  .mind-loader-logo {
     position: relative;
-    width: clamp(6rem, 10vw, 9rem);
-    aspect-ratio: 1;
-    margin-bottom: 0.9rem;
+    width: min(13rem, 42vw);
+    aspect-ratio: 1199 / 1312;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    animation: loader-logo-breathe 3.2s 1.8s ease-in-out infinite;
   }
 
-  .mind-loader-orbit span {
+  .mind-loader-logo img,
+  .mind-loader-logo span {
     position: absolute;
     inset: 0;
-    border: 1px solid rgba(225, 115, 65, 0.48);
-    border-radius: 50%;
-    animation: loader-orbit 2.4s linear infinite;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
-  .mind-loader-orbit span:nth-child(2) {
-    inset: 17%;
-    border-color: rgba(107, 164, 231, 0.42);
-    animation-direction: reverse;
-    animation-duration: 1.9s;
+  .mind-loader-logo img {
+    opacity: 0;
+    transform: scale(1.04);
+    animation: loader-logo-reveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  .mind-loader-orbit span:nth-child(3) {
-    inset: 40%;
-    border: 0;
-    background: #e87742;
-    box-shadow: 0 0 1.8rem rgba(232, 119, 66, 0.62);
-    animation: loader-pulse 1.5s ease-in-out infinite;
+  .mind-loader-logo span {
+    width: 18%;
+    left: 0;
+    right: auto;
+    background: linear-gradient(90deg, transparent, #d98258 42%, transparent);
+    filter: blur(0.25rem);
+    opacity: 0;
+    transform: translateX(-120%);
+    animation: loader-logo-pen 1.75s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .mind-loader-bridge {
+    position: absolute;
+    left: 50%;
+    top: 57.5%;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d98258 18%, #f5eee8 50%, #d98258 82%, transparent);
+    box-shadow: 0 0 1.5rem rgba(217, 130, 88, 0.28);
+    opacity: 0;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .mind-loader[data-exit='ink'] .mind-loader-bridge {
+    animation: loader-ink-bridge 0.72s 0.04s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .mind-loader-mark,
@@ -289,22 +477,29 @@ const projects = [
     color: rgba(245, 238, 232, 0.72);
   }
 
-  @keyframes loader-orbit {
-    to {
-      transform: rotate(1turn);
-    }
+  @keyframes loader-logo-reveal {
+    0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: scale(1.04); }
+    12% { opacity: 1; }
+    100% { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
   }
 
-  @keyframes loader-pulse {
-    0%,
-    100% {
-      transform: scale(0.72);
-      opacity: 0.62;
-    }
-    50% {
-      transform: scale(1);
-      opacity: 1;
-    }
+  @keyframes loader-logo-pen {
+    0% { opacity: 0; transform: translateX(-120%); }
+    12% { opacity: 0.92; }
+    88% { opacity: 0.62; }
+    100% { opacity: 0; transform: translateX(680%); }
+  }
+
+  @keyframes loader-logo-breathe {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-0.16rem); }
+  }
+
+  @keyframes loader-ink-bridge {
+    0% { width: 0; opacity: 0; }
+    18% { opacity: 0.82; }
+    78% { opacity: 0.62; }
+    100% { width: 74vw; opacity: 0; }
   }
 
   .mind-portrait,
@@ -322,9 +517,17 @@ const projects = [
   .mind-portrait {
     object-fit: cover;
     object-position: center;
+    transform: translate3d(var(--gaze-x, 0px), var(--gaze-y, 0px), 0);
     transform-origin: var(--lens-x) var(--lens-y);
+    transition: filter 70ms ease-out;
     will-change: transform, opacity, filter;
   }
+
+  .mind-portrait-half {
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+    opacity:0;z-index:2;pointer-events:none;filter:saturate(1.04) contrast(1.02);
+  }
+  .mind[data-rupture] .mind-portrait-half { visibility:hidden; }
 
   .mind[data-sequence='playing'] .mind-portrait {
     filter: saturate(1.04) contrast(1.02);
@@ -337,7 +540,7 @@ const projects = [
     object-fit: cover;
     object-position: center;
     opacity: 0.4;
-    transform: scaleX(-1) scale(1.04);
+    transform: translate3d(var(--gaze-x, 0px), var(--gaze-y, 0px), 0) scaleX(-1) scale(1.04);
     transform-origin: 50% 38%;
     filter: blur(8px) saturate(0.52) brightness(0.88);
     mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.92) 48%, transparent 100%);
@@ -1153,6 +1356,15 @@ const projects = [
       font-size: clamp(1.5rem, 6vw, 2rem);
     }
 
+    .mind-footer-launcher {
+      top: 3.75rem;
+      left: 0.9rem;
+      width: 116px;
+      height: 160px;
+      transform: scale(0.82);
+      transform-origin: top left;
+    }
+
     .mind-name {
       font-size: clamp(2.6rem, 11vw, 3.6rem);
     }
@@ -1218,9 +1430,13 @@ const projects = [
       display: none;
     }
 
-    .mind-loader-orbit span {
-      animation: none;
-    }
+    .mind-loader-logo,
+    .mind-loader-logo img,
+    .mind-loader-logo span { animation: none; }
+    .mind-loader-logo img { opacity: 1; clip-path: inset(0); transform: none; }
+    .mind-loader-logo span { display: none; }
+    .mind-loader-bridge { display: none; }
+    .mind-footer-launcher-character { animation: none; }
 
     .mind[data-split] .mind-portrait-echo,
     .mind[data-split] .mind-stage::after,

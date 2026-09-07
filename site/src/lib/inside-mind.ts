@@ -1,7 +1,9 @@
 import { gsap } from 'gsap';
+import { navigate } from 'astro:transitions/client';
 import * as THREE from 'three';
 import { initFlipProjects } from './flip-projects';
 import { initTextLoupe } from './text-loupe';
+import { prepareRoom } from './room-preload';
 
 type MindElements = {
   root: HTMLElement;
@@ -16,6 +18,9 @@ type MindElements = {
   world: HTMLElement;
   worldTitle: HTMLElement;
   enter: HTMLButtonElement;
+  footerLauncher: HTMLButtonElement;
+  footerLauncherCharacter: HTMLElement;
+  footerLauncherPlatform: HTMLElement;
   skipPlaying: HTMLButtonElement;
   reset: HTMLButtonElement;
   status: HTMLElement;
@@ -55,6 +60,9 @@ const selectElements = (root: HTMLElement): MindElements | null => {
   const world = root.querySelector<HTMLElement>('[data-mind-world]');
   const worldTitle = root.querySelector<HTMLElement>('[data-mind-world-title]');
   const enter = root.querySelector<HTMLButtonElement>('[data-mind-enter]');
+  const footerLauncher = root.querySelector<HTMLButtonElement>('[data-mind-footer-launcher]');
+  const footerLauncherCharacter = root.querySelector<HTMLElement>('.mind-footer-launcher-character');
+  const footerLauncherPlatform = root.querySelector<HTMLElement>('.mind-footer-launcher-platform');
   const skipPlaying = root.querySelector<HTMLButtonElement>('[data-mind-skip-playing]');
   const reset = root.querySelector<HTMLButtonElement>('[data-mind-reset]');
   const status = root.querySelector<HTMLElement>('[data-mind-status]');
@@ -75,6 +83,9 @@ const selectElements = (root: HTMLElement): MindElements | null => {
     !world ||
     !worldTitle ||
     !enter ||
+    !footerLauncher ||
+    !footerLauncherCharacter ||
+    !footerLauncherPlatform ||
     !skipPlaying ||
     !reset ||
     !status ||
@@ -99,6 +110,9 @@ const selectElements = (root: HTMLElement): MindElements | null => {
     world,
     worldTitle,
     enter,
+    footerLauncher,
+    footerLauncherCharacter,
+    footerLauncherPlatform,
     skipPlaying,
     reset,
     status,
@@ -248,17 +262,77 @@ export const initInsideMindHero = () => {
     portal?.renderOnce();
 
     let sequenceRun = 0;
+    const portraitHalves = [...root.querySelectorAll<HTMLImageElement>('[data-portrait-half]')];
+    let halfTimeline: gsap.core.Timeline | null = null;
+    let burstTimer = 0;
+    const clearHalves = () => {
+      halfTimeline?.kill();halfTimeline=null;
+      gsap.set(portraitHalves,{opacity:0,x:0,y:0});
+      delete root.dataset.division;delete root.dataset.nextFrame;
+    };
     let sequencePlaying = false;
+    let platformIdleTimer = 0;
+    let platformIdleIndex = 0;
+    const platformIdleBeats = [
+      // Keep the invitation legible: the idle character remains standing.
+      { pose: 8, beat: 0, duration: 900 },
+      { pose: 8, beat: 1, duration: 720 },
+      { pose: 8, beat: 0, duration: 900 },
+      { pose: 0, beat: 0, duration: 980 },
+      { pose: 8, beat: 2, duration: 720 },
+      { pose: 8, beat: 0, duration: 900 },
+    ];
+    const stopPlatformIdle = () => {
+      window.clearTimeout(platformIdleTimer);
+      platformIdleTimer = 0;
+    };
+    const playPlatformIdle = () => {
+      stopPlatformIdle();
+      if (reduceMotion || root.dataset.state !== 'portrait' || root.dataset.footerLaunch) return;
+      const beat = platformIdleBeats[platformIdleIndex % platformIdleBeats.length]!;
+      elements.footerLauncher.dataset.platformPose = String(beat.pose);
+      elements.footerLauncher.dataset.platformBeat = String(beat.beat);
+      platformIdleIndex += 1;
+      platformIdleTimer = window.setTimeout(playPlatformIdle, beat.duration);
+    };
+    let footerLaunchTimeline: gsap.core.Timeline | null = null;
     const mouseMotion = window.matchMedia('(hover: hover) and (pointer: fine)');
     let lastMouseMovement = -Infinity;
     let sequenceSpeed = 1;
     let speedUpdatedAt = performance.now();
+    const gazeTo = {
+      x: gsap.quickTo(root, '--gaze-x', { duration: 0.38, ease: 'power3.out' }),
+      y: gsap.quickTo(root, '--gaze-y', { duration: 0.38, ease: 'power3.out' }),
+    };
+    root.style.setProperty('--gaze-x', '0px');
+    root.style.setProperty('--gaze-y', '0px');
+    const resetGaze = () => {
+      gazeTo.x(0);
+      gazeTo.y(0);
+    };
+    const trackGaze = (event: PointerEvent) => {
+      if (
+        reduceMotion ||
+        !mouseMotion.matches ||
+        event.pointerType !== 'mouse' ||
+        (root.dataset.state !== 'portrait' && root.dataset.state !== 'playing')
+      ) return;
+      const bounds = elements.portrait.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2));
+      const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - 0.5) * 2));
+      gazeTo.x(x * 3.5);
+      gazeTo.y(y * 2.5);
+    };
     const trackPortraitMovement = (event: PointerEvent) => {
       if (reduceMotion || !mouseMotion.matches || event.pointerType !== 'mouse' ||
         root.dataset.state !== 'portrait' || (!event.movementX && !event.movementY)) return;
       lastMouseMovement = performance.now();
     };
-    const leavePortrait = () => { lastMouseMovement = -Infinity; };
+    const leavePortrait = () => {
+      lastMouseMovement = -Infinity;
+      resetGaze();
+    };
     const getResponsivePace = (index: number) => {
       const now = performance.now();
       const target = mouseMotion.matches && now - lastMouseMovement < 1000 ? 0.6 : 1;
@@ -269,14 +343,16 @@ export const initInsideMindHero = () => {
       speedUpdatedAt = now;
       return getSequencePace(index) / sequenceSpeed;
     };
+    root.addEventListener('pointermove', trackGaze, { passive: true });
     root.addEventListener('pointermove', trackPortraitMovement, { passive: true });
     root.addEventListener('pointerleave', leavePortrait);
     let idleReplay = 0;
     let nextGlitchAt = 0;
     let glitchEndsAt = 0;
     let lastGlitch = '';
-    const glitchTypes = ['bands', 'tear', 'slice', 'chroma'];
+    const glitchTypes = ['bands', 'tear', 'slice', 'chroma', 'diagonal', 'horizontal'];
     const clearGlitch = () => {
+      clearHalves();
       delete root.dataset.split;
       delete root.dataset.glitch;
     };
@@ -292,36 +368,53 @@ export const initInsideMindHero = () => {
       if (now < nextGlitchAt) return;
       const choices = glitchTypes.filter(type => type !== lastGlitch);
       lastGlitch = choices[Math.floor(Math.random() * choices.length)] ?? 'tear';
-      const duration = 180 + Math.round(Math.random() * 100);
+      const duration = 220 + Math.round(Math.random() * 160);
       root.style.setProperty('--glitch-duration', `${duration}ms`);
       root.style.setProperty('--glitch-shift', `${4 + Math.round(Math.random() * 4)}px`);
       root.style.setProperty('--glitch-band-top', `${18 + Math.round(Math.random() * 40)}%`);
       root.dataset.split = Math.random() < 0.5 ? 'left' : 'right';
       root.dataset.glitch = lastGlitch;
+      if(lastGlitch==='diagonal'||lastGlitch==='horizontal'){
+        delete root.dataset.split;
+        root.dataset.division=lastGlitch;
+        const diagonal=lastGlitch==='diagonal';
+        const clips=diagonal?['polygon(0 0,72% 0,28% 100%,0 100%)','polygon(72% 0,100% 0,100% 100%,28% 100%)']:['inset(0 0 50% 0)','inset(50% 0 0 0)'];
+        portraitHalves.forEach((half,i)=>half.style.clipPath=clips[i]!);
+        halfTimeline=gsap.timeline().to(portraitHalves,{opacity:.85,x:(i:number)=>diagonal?(i===0?-9:9):0,duration:duration/2000,ease:'sine.inOut'})
+          .to(portraitHalves,{opacity:0,x:0,duration:duration/2000,ease:'sine.inOut'});
+      }
       glitchEndsAt = now + duration;
       // Independent from the portrait ping-pong: leave irregular quiet intervals.
-      nextGlitchAt = glitchEndsAt + 2000 + Math.random() * 3400 +
-        (Math.random() < 0.2 ? 2200 : 0);
+      nextGlitchAt = glitchEndsAt + 6500 + Math.random() * 8500;
     };
 
     const setSequenceFrame = (index: number) => {
       const source = HERO_SEQUENCE[index] ?? '/media/identity/sequence-expression-v1/frame-01.webp';
       updateGlitch();
       const splitSide = root.dataset.split;
+      // Keep the swap tactile but almost invisible: soften only the sharp edge
+      // of the source change, then let the portrait resolve immediately.
+      elements.portrait.style.filter = 'blur(0.45px) saturate(1.04) contrast(1.02)';
       elements.portrait.src = source;
       elements.echo.src = splitSide
         ? (HERO_SEQUENCE[Math.min(index + 1, HERO_SEQUENCE.length - 1)] ?? source)
         : source;
       root.dataset.frame = String(index + 1);
+      if(root.dataset.division)portraitHalves.forEach((half,i)=>{half.src=HERO_SEQUENCE[(index+i+2)%HERO_SEQUENCE.length]!;});
+      window.setTimeout(() => {
+        elements.portrait.style.removeProperty('filter');
+      }, 70);
     };
 
     const cancelSequence = (frame = 0) => {
+      clearHalves();
       sequenceRun += 1;
       sequencePlaying = false;
       lastMouseMovement = -Infinity;
       sequenceSpeed = 1;
       window.clearTimeout(idleReplay);
       delete root.dataset.sequence;
+      resetGaze();
       setSequenceFrame(frame);
     };
 
@@ -334,20 +427,21 @@ export const initInsideMindHero = () => {
     const playSequence = async () => {
       if (reduceMotion || sequencePlaying || root.dataset.state !== 'portrait') return;
       sequencePlaying = true;
+      resetGaze();
       speedUpdatedAt = performance.now();
-      nextGlitchAt = performance.now() + 1500 + Math.random() * 2000;
+      nextGlitchAt = performance.now() + 5000 + Math.random() * 5000;
       const run = ++sequenceRun;
       root.dataset.sequence = 'playing';
 
-      let index = 0;
+      let index = Math.max(0,Number(root.dataset.frame||1)-1);
       let direction = 1;
       while (run === sequenceRun && root.dataset.state === 'portrait') {
-        if (run !== sequenceRun || root.dataset.state !== 'portrait') return;
+        if(document.hidden){await wait(300);continue;}
         setSequenceFrame(index);
         await wait(getResponsivePace(index));
-        if (index === HERO_SEQUENCE.length - 1) direction = -1;
-        if (index === 0) direction = 1;
-        index += direction;
+        if(index===HERO_SEQUENCE.length-1)direction=-1;
+        if(index===0)direction=1;
+        index+=direction;
       }
     };
 
@@ -386,47 +480,41 @@ export const initInsideMindHero = () => {
       if (loaderComplete) return;
       loaderComplete = true;
       setLoaderProgress(100);
-      sessionStorage.setItem('nj-loader-seen', 'true');
+      elements.loader.dataset.exit = 'ink';
       gsap.to(elements.loader, {
         autoAlpha: 0,
-        duration: reduceMotion ? 0.01 : 0.55,
+        duration: reduceMotion ? 0.01 : 0.72,
         delay: reduceMotion ? 0 : 0.2,
         ease: 'power2.inOut',
         onComplete: () => {
           elements.loader.hidden = true;
           root.dataset.state = 'portrait';
+          playPlatformIdle();
           elements.status.textContent = 'Portrait chargé. L’introduction immersive est disponible.';
-          window.setTimeout(() => void playSequence(), reduceMotion ? 0 : 320);
+          void playSequence();
         },
       });
     };
 
     elements.loaderSkip.addEventListener('click', finishLoader);
-    const forceLoader = new URLSearchParams(window.location.search).has('loader');
-    if (sessionStorage.getItem('nj-loader-seen') === 'true' && !forceLoader) {
-      elements.loader.hidden = true;
-      root.dataset.state = 'portrait';
-      void preloadSequence().then(() => playSequence());
-    } else {
-      setLoaderProgress(18);
-      const startedAt = performance.now();
-      const portraitReady = elements.portrait.complete
-        ? elements.portrait.decode().catch(() => undefined)
-        : new Promise<void>((resolve) => {
-            elements.portrait.addEventListener('load', () => resolve(), { once: true });
-            elements.portrait.addEventListener('error', () => resolve(), { once: true });
-          });
+    setLoaderProgress(18);
+    const startedAt = performance.now();
+    const portraitReady = elements.portrait.complete
+      ? elements.portrait.decode().catch(() => undefined)
+      : new Promise<void>((resolve) => {
+          elements.portrait.addEventListener('load', () => resolve(), { once: true });
+          elements.portrait.addEventListener('error', () => resolve(), { once: true });
+        });
 
-      Promise.all([
-        portraitReady,
-        preloadSequence((loaded) => setLoaderProgress(18 + (loaded / HERO_SEQUENCE.length) * 72)),
-      ]).then(() => {
-        setLoaderProgress(92);
-        const remaining = Math.max(0, 850 - (performance.now() - startedAt));
-        window.setTimeout(finishLoader, remaining);
-      });
-      window.setTimeout(finishLoader, 6500);
-    }
+    Promise.all([
+      portraitReady,
+      preloadSequence((loaded) => setLoaderProgress(18 + (loaded / HERO_SEQUENCE.length) * 72)),
+    ]).then(() => {
+      setLoaderProgress(92);
+      const remaining = Math.max(0, 850 - (performance.now() - startedAt));
+      window.setTimeout(finishLoader, remaining);
+    });
+    window.setTimeout(finishLoader, 6500);
 
     gsap.set(elements.world, { autoAlpha: 0, scale: 1.04 });
     gsap.set(elements.flight, {
@@ -565,32 +653,58 @@ export const initInsideMindHero = () => {
       )
       .add(() => revealWorld(), 6.45);
 
+    let universeHandoff = 0;
+    const openUniverseV2 = () => {
+      void navigate('/univers-v2').then(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));
+    };
     const play = () => {
       if (root.dataset.state === 'playing' || root.dataset.state === 'revealed') return;
+      stopPlatformIdle();
       root.dataset.state = 'playing';
-      const interruptedFrame = Math.max(0, Number(root.dataset.frame ?? 1) - 1);
-      cancelSequence(interruptedFrame);
-      // Corrupt the frame the visitor actually clicked, rather than cutting to neutral.
-      elements.echo.src = HERO_SEQUENCE[(interruptedFrame + 2) % HERO_SEQUENCE.length]!;
-      root.dataset.rupture = 'true';
+      const interruptedFrame = Math.max(0, Number(root.dataset.nextFrame ?? root.dataset.frame ?? 1) - 1);
+      sequenceRun+=1;halfTimeline?.kill();
+      // Resolve both halves into their destination before the short rapid sequence.
+      if(root.dataset.nextFrame)gsap.to(portraitHalves,{opacity:1,x:0,y:0,duration:.18,ease:'sine.out'});
+      const universeReady=prepareRoom();
       elements.status.textContent =
         'Introduction en cours. Le passage vers les projets peut être ignoré.';
       elements.skipPlaying.hidden = false;
       gsap.set(elements.skipPlaying, { display: 'block', autoAlpha: 1 });
-      elements.flight.currentTime = 0;
-      elements.flight.playbackRate = 1.35;
-      void elements.flight.play().catch(() => undefined);
-      timeline.play(0);
+      universeHandoff=window.setTimeout(()=>{
+        cancelSequence(interruptedFrame);
+        let burstFrame=0;
+        burstTimer=window.setInterval(()=>{
+          const index=(interruptedFrame+burstFrame)%HERO_SEQUENCE.length;
+          elements.portrait.src=HERO_SEQUENCE[index]!;elements.echo.src=HERO_SEQUENCE[index]!;
+          root.dataset.frame=String(index+1);burstFrame++;
+        },85);
+        universeHandoff=window.setTimeout(async()=>{
+          await Promise.race([universeReady,wait(1800)]);
+          if(root.dataset.state!=='playing'||!root.isConnected)return;
+          window.clearInterval(burstTimer);
+          elements.echo.src=HERO_SEQUENCE[(interruptedFrame+9)%HERO_SEQUENCE.length]!;
+          root.dataset.rupture='true';
+          universeHandoff=window.setTimeout(openUniverseV2,1000);
+        },680);
+      },180);
     };
 
     const skip = () => {
-      delete root.dataset.rupture;
-      cancelSequence(0);
-      timeline.progress(1).pause();
-      revealWorld();
+      stopPlatformIdle();
+      window.clearTimeout(universeHandoff);
+      window.clearInterval(burstTimer);clearHalves();
+      root.dataset.state='revealed';
+      openUniverseV2();
+      return;
     };
 
     const reset = () => {
+      stopPlatformIdle();
+      platformIdleIndex = 0;
+      footerLaunchTimeline?.kill();
+      footerLaunchTimeline = null;
+      delete root.dataset.footerLaunch;
+      elements.footerLauncher.disabled = false;
       delete root.dataset.rupture;
       cancelSequence(0);
       timeline.pause(0);
@@ -607,6 +721,9 @@ export const initInsideMindHero = () => {
       }
       gsap.set(elements.copy, { clearProps: 'all' });
       gsap.set(elements.actions, { clearProps: 'all' });
+      gsap.set(elements.footerLauncher, { clearProps: 'all' });
+      gsap.set(elements.footerLauncherCharacter, { clearProps: 'all' });
+      gsap.set(elements.footerLauncherPlatform, { clearProps: 'all' });
       gsap.set(elements.portrait, { clearProps: 'all' });
       gsap.set(elements.echo, { clearProps: 'all' });
       gsap.set(elements.flight, {
@@ -630,9 +747,38 @@ export const initInsideMindHero = () => {
       elements.world.setAttribute('aria-hidden', 'true');
       elements.skipPlaying.hidden = true;
       root.dataset.state = 'portrait';
+      playPlatformIdle();
       elements.status.textContent = 'Retour au portrait.';
       elements.enter.focus({ preventScroll: true });
       scheduleReplay(80);
+    };
+
+    const launchFooter = () => {
+      if (root.dataset.state !== 'portrait' || root.dataset.footerLaunch === 'falling') return;
+
+      stopPlatformIdle();
+      elements.footerLauncher.disabled = true;
+      root.dataset.footerLaunch = 'falling';
+      elements.status.textContent = 'Nicolas tombe vers les coordonnées.';
+      elements.footerLauncher.dataset.platformPose = '5';
+      elements.footerLauncher.dataset.platformBeat = '0';
+
+      const goToFooter = () => {
+        root.dataset.footerLaunch = 'done';
+      };
+
+      if (reduceMotion) {
+        goToFooter();
+        return;
+      }
+
+      footerLaunchTimeline = gsap.timeline({ onComplete: goToFooter });
+      footerLaunchTimeline
+        // The platform breaks away in CSS; only the character leaves the hero.
+        .to(elements.footerLauncherCharacter, { x: 3, y: 8, rotation: -7, duration: 0.13, ease: 'steps(1)' }, 0.12)
+        .to(elements.footerLauncherCharacter, { x: -4, y: 34, rotation: 9, duration: 0.16, ease: 'steps(1)' })
+        .to(elements.footerLauncherCharacter, { x: 5, y: 76, rotation: -16, duration: 0.16, ease: 'steps(1)' })
+        .to(elements.footerLauncherCharacter, { x: -8, y: 146, rotation: 22, autoAlpha: 0, duration: 0.22, ease: 'steps(2)' });
     };
 
     elements.enter.addEventListener('click', reduceMotion ? skip : play);
@@ -643,6 +789,7 @@ export const initInsideMindHero = () => {
     });
     elements.enter.addEventListener('pointerenter', () => scheduleReplay(0));
     elements.enter.addEventListener('focus', () => scheduleReplay(0));
+    elements.footerLauncher.addEventListener('click', launchFooter);
     elements.skipPlaying.addEventListener('click', skip);
     elements.reset.addEventListener('click', reset);
 
@@ -666,9 +813,15 @@ export const initInsideMindHero = () => {
     document.addEventListener(
       'astro:before-swap',
       () => {
+        window.clearTimeout(universeHandoff);
+        window.clearInterval(burstTimer);
+        stopPlatformIdle();
+        footerLaunchTimeline?.kill();
         visibility.disconnect();
+        root.removeEventListener('pointermove', trackGaze);
         root.removeEventListener('pointermove', trackPortraitMovement);
         root.removeEventListener('pointerleave', leavePortrait);
+        elements.footerLauncher.removeEventListener('click', launchFooter);
         delete root.dataset.rupture;
         disposeFlipProjects();
         disposeTextLoupe();

@@ -37,3 +37,14 @@ Cette shortlist est une proposition. Elle ne signifie ni telechargement, ni impo
 | `NJ-FONT-UI-MANROPE-V1` | Typographie variable d’interface | Google Fonts / `google/fonts` | importe, candidat | Manrope, licence OFL conservée avec le WOFF2 officiel ; direction à valider dans le héros réel. |
 
 Statuts recommandes : `a examiner`, `conserve`, `importe`, `exclu`, `a recreer`, `a archiver`.
+
+
+## Logos manuscrits NJ — exports transparents du 2026-09-05
+
+- Autorisation de Nicolas : détourage local et versions sombre/claire enregistrées dans le MASTER.
+- `logo sombre.png` : encre sombre, PNG RGBA, 1199 × 1312 px.
+- `logo clair.png` : encre ivoire, PNG RGBA, même masque alpha et mêmes dimensions.
+- Extraction depuis la version sur papier : tracés conservés, fond éliminé par luminance, variations de densité converties en opacité.
+- Anciens exports avec damier incrusté conservés par copie avant remplacement dans `archives/logos-avant-transparence-20260905-031232`. Source sur papier conservée dans cette archive.
+- `apercu logos transparents.png` : contrôle des superpositions sur fonds clair et sombre ; aperçu opaque, distinct des deux calques.
+- Transparence RGBA vérifiée ; aucune intégration au site effectuée.

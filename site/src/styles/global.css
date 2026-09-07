@@ -315,31 +315,23 @@ button {
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
   transition: color 180ms ease, text-decoration-color 180ms ease,
-    text-underline-offset 180ms ease, background-color 180ms ease;
+    text-shadow 180ms ease;
 }
 .page-shell button:not(.mind-enter):not(:disabled):not([aria-disabled='true']) {
-  transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, scale 180ms ease;
+  transition: color 180ms ease, text-shadow 180ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
   .page-shell a[href]:not(.btn):not(.mind-project):not(.skip-link):not(:has(img, video)):hover {
-    color: var(--color-ink);
-    text-decoration-line: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.32em;
-    background-color: color-mix(in srgb, currentColor 6%, transparent);
+    text-shadow: 0 0 7px color-mix(in srgb, currentColor 28%, transparent);
   }
   .page-shell button:not(.mind-enter):not(:disabled):not([aria-disabled='true']):hover {
-    scale: 1.025;
-    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 28%, transparent);
+    text-shadow: 0 0 7px color-mix(in srgb, currentColor 28%, transparent);
   }
 }
 .page-shell a[href]:not(.btn):not(.mind-project):not(.skip-link):not(:has(img, video)):focus-visible {
   text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  background-color: color-mix(in srgb, currentColor 6%, transparent);
-}
-@media (prefers-reduced-motion: reduce) {
-  .page-shell button:not(.mind-enter):hover { scale: 1; }
+  text-decoration-thickness: 1px;
+  text-shadow: 0 0 7px color-mix(in srgb, currentColor 28%, transparent);
 }
 
 /* ---------- Reveal (motion) ---------- */

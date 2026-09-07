@@ -78,3 +78,17 @@ STATUT : PASS
 | BLOCKER | `expressive-aligned-v1` | Cisaillement et étirement de plusieurs visages | méthode d'alignement affine à trois repères | version rejetée ; remplacement par une transformation rigide sans cisaillement | `docs/02_REGISTRE_DES_REJETS.md` R-008 | CORRIGÉ |
 | — | `expressive-aligned-v4` | Aucun saut géométrique bloquant observé | — | coins externes des yeux alignés ; bouche et menton laissés libres pour l'expression | `alignment-report-v4.json` et planche-contact | PASS |
 | — | héros web | Arc neutre → sourire → émerveillement, puis retour au calme | — | trente WebP préchargés et changement en coupe franche | contrôle réel sur l'accueil et traversée jusqu'aux projets | PASS |
+
+## Down Trigger — préproduction clip stop-motion — 2026-09-08
+
+PÉRIMÈTRE : `prototypes/down-trigger-clip-preprod-v01/storyboard-revised-v01.png`, `down-trigger-preprod-animatic-v01.gif`, `docs/down-trigger-clip-preproduction-v01.md`  
+CANON UTILISÉ : identité locale Down Trigger, logo clair local, silhouette encapuchonnée issue du visuel héros ; personnage masqué isolé non disponible  
+MÉTHODE : inspection de la planche révisée, contrôle du découpage en six états, vérification du cadrage et de l’export GIF, comparaison avec les invariants de matière et de palette du projet  
+STATUT : À CORRIGER AVANT PRODUCTION INTENSIVE
+
+| Sévérité | Asset | Écart | Source à corriger | Correction / suite | Preuve | Statut |
+|---|---|---|---|---|---|---|
+| MAJEUR | `storyboard-revised-v01.png` | Masque et silhouette dérivés d’une référence de groupe, pas d’une planche canonique isolée | référence personnage manquante | fournir ou valider une planche isolée avant fabrication intensive | planche de préproduction inspectée | OUVERT |
+| — | `storyboard-revised-v01.png` | Progression résistance → faux espoir → lâcher volontaire lisible ; logo intégré à la matière | — | conserver cette dramaturgie pour le test risqué | inspection visuelle de la planche | PASS PROVISOIRE |
+| — | `down-trigger-preprod-animatic-v01.gif` | Boucle de poses exportée ; audio et timing musical définitifs absents | morceau final non fourni | utiliser comme animatic de rythme, puis recaler sur l’audio | contrôle local du GIF et de ses dix images distinctes | PASS PROVISOIRE |
+| MINEUR | `storyboard-revised-v01.png` | Rendu encore génératif et non un tournage/animation final image par image | — | remplacer progressivement par assets de production après validation du masque et des matières | statut du dossier de préproduction | OUVERT |

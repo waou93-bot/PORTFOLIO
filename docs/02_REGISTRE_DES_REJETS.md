@@ -14,6 +14,7 @@ Tracer les options ecartees pour eviter de les re-proposer sans raison nouvelle.
 | R-007 | 2026-09-04 | Première variante brutaliste au cadrage éloigné. | La taille du visage rompait la continuité perceptive de la séquence. | Variante `17-brutalist-v2` régénérée en gros plan. |
 | R-008 | 2026-09-04 | Recalage affine `expressive-aligned-v1` fondé sur trois repères faciaux. | Les reflets des lunettes et des repères presque collinéaires ont provoqué des cisaillements visibles sur plusieurs images. | `expressive-aligned-v4`, transformation de similarité rigide fondée sur les coins externes des yeux. |
 | R-009 | 2026-09-04 | Liquid reveal des portraits statiques au survol du héros. | L'effet surcharge le héros alors que la boucle stop-motion et le passage par les lunettes portent déjà le récit. | Conserver uniquement la boucle stop-motion en ping-pong continu, puis le portail des lunettes. |
+| R-010 | 2026-09-08 | Mise en scène de salon avec fauteuil, table et arrivée assise du personnage. | Nicolas la juge moins satisfaisante que la première montée stop-motion et trop éloignée du geste simple vers les coordonnées. | Personnage seul, chute depuis le plongeoir, passage derrière le trait, remontée par planches et pose finale orientée vers l’adresse. |
 
 ## Regle de mise a jour
 

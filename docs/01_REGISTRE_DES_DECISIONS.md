@@ -99,4 +99,31 @@ Nicolas autorise un essai de loupe locale sur les textes de la landing : grossis
 
 Nicolas demande un ralentissement plus perceptible après essai de D-046. Le nouveau réglage vise une réduction de vitesse de 40 %, avec une réponse progressive plus rapide (constante de 300 ms contre 450 ms auparavant). Le retour conserve 450 ms, après une seconde sans mouvement. Mobile, images et continuité de boucle inchangés ; intensité à réévaluer visuellement.
 
+## D-058 — V2 montagnes au scroll — 2026-09-05
+
+Nicolas valide une exploration V2 séparée, avec conservation intégrale de V1 en local et sur GitHub. La landing reste visuellement inchangée ; la seconde expérience utilise la vidéo existante en sens inverse, pilotée par le scroll. Apparition successive des projets sur les sommets, diminution avec la profondeur, ligne oblique puis horizontale au survol pour les informations complémentaires. Périmètre et limites du premier jet : `V2_MOUNTAIN_SCROLL.md`.
+
+## D-059 — V2 carte du ciel — 2026-09-05
+
+Après essai, Nicolas écarte les sommets au scroll et fournit une vidéo de galaxie pour les remplacer dans V2. Il valide quatre repères stables avec révélation des fiches et une boucle infinie en arrière-plan. V1 et essai montagne conservés ; détails et preuves dans `V2_GALAXY.md`.
+
+## D-060 — Survols discrets — 2026-09-05
+
+Nicolas valide un léger éclairage derrière les lettres, sans grossissement ni fond supplémentaire. Les styles partagés des liens textuels et petits contrôles perdent leur fond teinté, leur contour ajouté et leur zoom de survol ; halo de texte à 28 % et 7 px, transition 180 ms, focus clavier conservé. Les interactions dédiées des cartes et du CTA héros restent distinctes. Ajustement réalisé sur V2 uniquement.
+
+## D-061 à D-064 — Rythme, chargement et nouvelle vidéo — 2026-09-05
+
+- D-061 : après essai lent avec divisions fréquentes, Nicolas préfère la boucle rapide en ping-pong, qui restitue les expressions stop-motion. La cadence antérieure est rétablie ; divisions horizontales et obliques décalées limitées à des ruptures sporadiques, avec les autres petits glitchs, espacées aléatoirement de 6,5 à 15 s environ. Pas de découpage systématique à chaque image.
+- D-062 : courte accélération puis glitch pendant la préparation réelle du média de destination. Nicolas valide explicitement le glitch, l'accélération et l'arrivée immédiate constatée. Le préchargement partage le média décodé entre les routes ; image d'attente, second lecteur différé, attente supplémentaire plafonnée et passage toujours contournable.
+- D-063 : Nicolas remplace la galaxie bleue jugée saccadée par `371443_medium.mp4`. Copie source conservée, dérivé H.264 encodé directement par FFmpeg, 720 × 1280, 30 images/s, faststart. Proportions conservées ; fond `cover` recadré sur desktop, pas étiré. Sources et premières variantes gardées mais non utilisées.
+- D-064 : Nicolas demande de grossir les points projets. Centre 12 px, cercle 40 px et cible interactive 60 px ; halo non renforcé.
+
+## D-065 — Salon interactif et anomalies discrètes — 2026-09-05
+
+Nicolas valide le salon chaleureux avec cheminée, mur prolongé, portant près de la fenêtre et deux appliques, puis autorise son intégration dans V2. La pièce remplace la vidéo active ; les essais galaxie et montagne restent archivés. Les quatre objets révèlent les projets par un repère et une ligne. Anomalies rares limitées au décor, sans négatif plein écran, arrêt pendant l'exploration et en mouvement réduit. Détails : `V2_ROOM.md`. La V1 reste protégée ; aucun push supplémentaire demandé.
+
 Toute nouvelle ligne doit expliquer la decision, son motif, son impact et son autorite de validation. En cas de changement, conserver l'ancienne decision et ajouter une nouvelle ligne.
+
+| D-066 | 2026-09-08 | Le petit personnage du footer devient une interaction de contact : il attend sur un petit plongeoir en haut à gauche de la landing ; un clic déclenche une chute cartoon par poses, fait descendre vers le footer et relance sa remontée derrière le trait jusqu’aux coordonnées. | Donner au personnage une raison narrative claire et transformer son mouvement en passerelle ludique vers le contact. | La landing ajoute une cible clavier/tactile accessible ; le footer conserve aussi ses coordonnées et ses liens classiques. Mouvement réduit : passage direct au footer et pose finale visible. | Nicolas Jez |
+| D-067 | 2026-09-08 | La séquence du personnage est recentrée sur le stop-motion photographique validé par la première montée : planches visibles, changements de poses lisibles, chute et remontée découpées en beats. | La mise en scène avec siège et salon détourne l’attention et donne une sensation moins maîtrisée que l’escalade initiale. | Le personnage reste seul avec le trait comme repère ; aucune retouche n’est apportée à la boucle, aux glitchs ou aux timings du héros portrait. | Nicolas Jez |
+| D-068 | 2026-09-08 | Nicolas valide l’ajout d’un petit panneau « DON'T CLICK » près du plongeoir, puis sa reprise visuelle près de l’adresse email dans le footer. | Créer un gag récurrent qui pousse à l’action sans ajouter un second parcours concurrent. | Les deux panneaux sont décoratifs et non cliquables ; le personnage reste la cible de la chute et l’adresse reste le seul lien de contact. | Nicolas Jez |

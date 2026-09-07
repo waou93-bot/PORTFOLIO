@@ -8,6 +8,7 @@ import { site } from '../../config/site';
   </div>
   <div class="footer-nicolas-contact">
     <span class="footer-nicolas-caption">La suite, ensemble.</span>
+    <span class="footer-nicolas-dont-click" aria-hidden="true">DON'T CLICK</span>
     <a href={`mailto:${site.email}`} class="footer-nicolas-email">{site.email}</a>
   </div>
   <span class="footer-nicolas-ledge" aria-hidden="true"></span>
@@ -23,15 +24,17 @@ import { site } from '../../config/site';
   .footer-nicolas {
     position: relative;
     isolation: isolate;
-    background: var(--color-paper);
+    overflow: hidden;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     min-height: 290px;
     gap: 10px;
-    padding-bottom: 38px;
     margin-top: 16px;
+    padding-bottom: 38px;
+    background: var(--color-paper);
   }
+
   .footer-nicolas-stage {
     position: relative;
     flex: 0 0 230px;
@@ -40,9 +43,10 @@ import { site } from '../../config/site';
     overflow: hidden;
     pointer-events: none;
     z-index: 1;
-    mix-blend-mode: lighten;
   }
+
   .footer-nicolas-actor { position: absolute; inset: 0; }
+
   .footer-nicolas-pose {
     position: absolute;
     inset: 0;
@@ -50,58 +54,87 @@ import { site } from '../../config/site';
     transform-origin: 50% 100%;
     pointer-events: none;
   }
+
   .footer-nicolas-pose img {
     position: absolute;
     max-width: none;
     max-height: none;
     pointer-events: none;
   }
+
   .footer-nicolas-contact {
     position: relative;
     z-index: 2;
     align-self: flex-end;
-    padding-bottom: 92px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     min-width: 0;
+    padding-bottom: 92px;
   }
+
   .footer-nicolas-caption {
+    color: var(--color-ink-soft);
     font-size: 0.68rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-ink-soft);
   }
+
   .footer-nicolas-email {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
+    color: var(--color-ink);
     font-family: var(--font-display);
     font-size: clamp(1.35rem, 2.8vw, 2.5rem);
-    color: var(--color-ink);
     text-decoration: none;
     text-underline-offset: 7px;
     overflow-wrap: anywhere;
   }
+
   .footer-nicolas-email:hover { text-decoration: underline; }
   .footer-nicolas-email:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+
+  .footer-nicolas-dont-click,
+  .mind-footer-launcher-sign {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    padding: 0.28rem 0.48rem 0.22rem;
+    border: 1px solid currentColor;
+    color: var(--color-accent, #d98258);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.56rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+  }
+
+  .footer-nicolas-dont-click {
+    align-self: flex-start;
+    margin-bottom: -2px;
+    opacity: 0.88;
+  }
+
   .footer-nicolas-ledge {
     position: absolute;
+    right: 0;
     bottom: 38px;
-    inset-inline: 0;
+    left: 0;
+    z-index: 3;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 243, 234, 0.38) 12%, rgba(255, 243, 234, 0.38) 88%, transparent);
     pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-ink) 38%, transparent) 12%,
+      color-mix(in srgb, var(--color-ink) 38%, transparent) 88%,
+      transparent
+    );
   }
-  .footer-nicolas[data-state='settled'] .footer-nicolas-actor {
-    transform-origin: 50% 100%;
-    animation: nicolas-breath 5.8s ease-in-out infinite;
-  }
-  @keyframes nicolas-breath {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(1.004); }
-  }
-  .site-footer:has(.footer-nicolas) .footer-bottom { border-top: 0; padding-top: 0; }
+
   @media (max-width: 600px) {
     .footer-nicolas { min-height: 235px; gap: 0; padding-bottom: 30px; }
     .footer-nicolas-stage { flex-basis: 140px; width: 140px; height: 200px; }
@@ -110,8 +143,5 @@ import { site } from '../../config/site';
     .footer-nicolas-caption { font-size: 0.56rem; letter-spacing: 0.08em; }
     .footer-nicolas-email { font-family: inherit; font-size: clamp(0.8rem, 3.4vw, 1.1rem); }
     .footer-nicolas-ledge { bottom: 30px; }
-  }
-  @media (prefers-reduced-motion: reduce), (hover: none) {
-    .footer-nicolas[data-state='settled'] .footer-nicolas-actor { animation: none; }
   }
 </style>
