@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
+import AboutLookVideo from '../components/about/AboutLookVideo.astro';
 import { profile, site, perfSnapshot } from '../config/site';
 
 const hasPerf = perfSnapshot.measuredAt !== '';
@@ -44,6 +45,8 @@ const values = [
       </div>
     </div>
   </section>
+
+  <AboutLookVideo />
 
   <section class="section" aria-labelledby="values">
     <div class="container">
