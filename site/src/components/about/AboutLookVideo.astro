@@ -1,42 +1,28 @@
-<section class="section about-look" aria-labelledby="about-look-title">
-  <div class="container about-look-grid">
-    <div class="about-look-copy">
-      <p class="eyebrow">Présence</p>
-      <h2 id="about-look-title" class="about-look-title">Le regard suit l’attention.</h2>
-      <p class="about-text">
-        La séquence reste immobile jusqu’à votre geste. Déplacez le curseur pour parcourir le
-        mouvement du regard, sans lecture automatique ni boucle vidéo.
-      </p>
-      <p class="about-look-instruction">Déplacez la souris <span aria-hidden="true">↔</span> le regard suit</p>
-    </div>
-
-    <figure class="about-look-figure" data-about-look>
-      <div
-        class="about-look-stage"
-        data-about-look-stage
-        role="group"
-        tabindex="0"
-        aria-label="Séquence interactive : déplacez le curseur pour faire varier le regard"
-      >
-        <video
-          class="about-look-video"
-          data-about-look-video
-          muted
-          playsinline
-          preload="metadata"
-          poster="/media/identity/nicolas-jez-about.webp"
-          disablepictureinpicture
-          aria-hidden="true"
-        >
-          <source src="/media/identity/nicolas-look-reference-v1.mp4" type="video/mp4" />
-        </video>
-        <span class="about-look-index" aria-hidden="true">REGARD / 01</span>
-        <span class="about-look-status" aria-hidden="true">Déplacez le curseur</span>
-      </div>
-      <figcaption>Une séquence extraite de la vidéo de référence, transformée en matière interactive.</figcaption>
-    </figure>
+<figure class="about-look" data-about-look>
+  <div
+    class="about-look-stage"
+    data-about-look-stage
+    role="group"
+    tabindex="0"
+    aria-label="Séquence interactive : déplacez le curseur pour faire varier le regard"
+  >
+    <video
+      class="about-look-video"
+      data-about-look-video
+      muted
+      playsinline
+      preload="metadata"
+      poster="/media/identity/nicolas-jez-about.webp"
+      disablepictureinpicture
+      aria-hidden="true"
+    >
+      <source src="/media/identity/nicolas-look-reference-v1.mp4" type="video/mp4" />
+    </video>
+    <span class="about-look-index" aria-hidden="true">REGARD / 01</span>
+    <span class="about-look-status" aria-hidden="true">Déplacez le curseur</span>
   </div>
-</section>
+  <figcaption>Déplacez la souris : le regard vous suit.</figcaption>
+</figure>
 
 <script>
   import { initAboutLookVideo } from '../../lib/about-look';
@@ -45,53 +31,7 @@
 </script>
 
 <style>
-  .about-look { overflow: hidden; }
-
-  .about-look-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    align-items: center;
-    gap: var(--space-10);
-  }
-
-  .about-look-copy {
-    display: grid;
-    align-content: center;
-    gap: var(--space-5);
-    max-width: 34rem;
-  }
-
-  .about-look-title {
-    max-width: 10ch;
-    font-size: clamp(2.1rem, 5vw, 4.8rem);
-    letter-spacing: -0.065em;
-  }
-
-  .about-look-instruction {
-    display: inline-flex;
-    width: fit-content;
-    align-items: center;
-    gap: 0.55rem;
-    margin: 0;
-    padding-top: var(--space-4);
-    border-top: var(--border-1);
-    color: var(--color-ink-soft);
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .about-look-instruction span {
-    color: var(--color-accent);
-    font-size: 1rem;
-  }
-
-  .about-look-figure {
-    min-width: 0;
-    margin: 0;
-    justify-self: end;
-  }
+  .about-look { width: fit-content; max-width: 100%; margin: var(--space-7) 0 0; }
 
   .about-look-stage {
     position: relative;
@@ -132,7 +72,7 @@
     transition: opacity 360ms var(--ease-out);
   }
 
-  .about-look-figure[data-ready='true'] .about-look-video { opacity: 1; }
+  .about-look[data-ready='true'] .about-look-video { opacity: 1; }
 
   .about-look-index,
   .about-look-status {
@@ -148,7 +88,7 @@
   .about-look-index { top: 1.1rem; left: 1.15rem; }
   .about-look-status { right: 1.15rem; bottom: 1.05rem; }
 
-  .about-look-figure figcaption {
+  .about-look figcaption {
     margin-top: var(--space-3);
     color: var(--color-muted);
     font-size: 0.72rem;
@@ -156,15 +96,11 @@
   }
 
   @media (max-width: 60rem) {
-    .about-look-grid { gap: var(--space-8); }
-    .about-look-title { font-size: clamp(2rem, 6vw, 3.8rem); }
+    .about-look-stage { height: min(64svh, 36rem); }
   }
 
   @media (max-width: 48rem) {
-    .about-look-grid { grid-template-columns: 1fr; }
-    .about-look-copy { max-width: 38rem; }
-    .about-look-title { max-width: 13ch; }
-    .about-look-figure { justify-self: center; }
+    .about-look { margin-top: var(--space-6); }
     .about-look-stage { height: min(70svh, 34rem); }
   }
 

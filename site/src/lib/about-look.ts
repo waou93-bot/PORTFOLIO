@@ -1,5 +1,13 @@
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 
+// The left side feels compressed in use. Give it a little more travel without
+// changing the right half that already reads well.
+const mapPointerToTimeline = (value: number) => {
+  const ratio = clamp01(value);
+  if (ratio >= 0.5) return ratio;
+  return 0.5 * Math.pow(ratio * 2, 1.18);
+};
+
 export function initAboutLookVideo(): void {
   document.querySelectorAll<HTMLElement>('[data-about-look]').forEach(figure => {
     if (figure.dataset.initialized === 'true') return;
@@ -11,8 +19,10 @@ export function initAboutLookVideo(): void {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let ready = false;
-    let pendingRatio = 0.5;
+    let targetRatio = 0.5;
+    let displayRatio = 0.5;
     let raf = 0;
+    let previousTick = 0;
 
     const setReady = () => {
       ready = true;
@@ -20,18 +30,28 @@ export function initAboutLookVideo(): void {
       video.pause();
     };
 
-    const seek = () => {
+    const seek = (now: number) => {
       raf = 0;
-      if (!ready || reducedMotion.matches || !Number.isFinite(video.duration) || video.duration <= 0) return;
+      const elapsed = previousTick ? Math.min(64, now - previousTick) : 16;
+      previousTick = now;
+      const follow = 1 - Math.exp(-elapsed / 120);
+      displayRatio += (targetRatio - displayRatio) * follow;
 
-      const edge = Math.min(0.04, video.duration / 10);
-      const target = edge + pendingRatio * Math.max(0, video.duration - edge * 2);
-      if (Math.abs(video.currentTime - target) < 0.025) return;
-      video.currentTime = target;
+      if (ready && !reducedMotion.matches && Number.isFinite(video.duration) && video.duration > 0 && !video.seeking) {
+        const edge = Math.min(0.04, video.duration / 10);
+        const time = edge + displayRatio * Math.max(0, video.duration - edge * 2);
+        if (Math.abs(video.currentTime - time) >= 0.025) video.currentTime = time;
+      }
+
+      if (Math.abs(targetRatio - displayRatio) > 0.002 || video.seeking) {
+        raf = window.requestAnimationFrame(seek);
+      } else {
+        previousTick = 0;
+      }
     };
 
     const scheduleSeek = (ratio: number) => {
-      pendingRatio = clamp01(ratio);
+      targetRatio = clamp01(ratio);
       if (!raf) raf = window.requestAnimationFrame(seek);
     };
 
@@ -42,17 +62,16 @@ export function initAboutLookVideo(): void {
       video.load();
     };
 
-    const onPointerMove = (event: PointerEvent) => {
-      const rect = stage.getBoundingClientRect();
-      if (!rect.width) return;
-      scheduleSeek((event.clientX - rect.left) / rect.width);
+    const onWindowPointerMove = (event: PointerEvent) => {
+      if (!figure.dataset.ready) load();
+      scheduleSeek(mapPointerToTimeline(event.clientX / Math.max(1, window.innerWidth)));
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
       const step = event.shiftKey ? 0.2 : 0.08;
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
-        scheduleSeek(pendingRatio + (event.key === 'ArrowRight' ? step : -step));
+        scheduleSeek(displayRatio + (event.key === 'ArrowRight' ? step : -step));
       } else if (event.key === 'Home' || event.key === 'End') {
         event.preventDefault();
         scheduleSeek(event.key === 'End' ? 1 : 0);
@@ -63,11 +82,15 @@ export function initAboutLookVideo(): void {
     video.addEventListener('loadedmetadata', () => {
       video.currentTime = Math.min(0.04, Math.max(0, video.duration / 10));
     }, { once: true });
+    video.addEventListener('seeked', () => {
+      if (Math.abs(targetRatio - displayRatio) > 0.002 && !raf) {
+        raf = window.requestAnimationFrame(seek);
+      }
+    });
     video.addEventListener('play', () => video.pause());
-    stage.addEventListener('pointerenter', load);
-    stage.addEventListener('pointermove', onPointerMove);
     stage.addEventListener('focus', load);
     stage.addEventListener('keydown', onKeyDown);
+    window.addEventListener('pointermove', onWindowPointerMove, { passive: true });
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry?.isIntersecting) load();
@@ -76,10 +99,9 @@ export function initAboutLookVideo(): void {
 
     document.addEventListener('astro:before-swap', () => {
       observer.disconnect();
-      stage.removeEventListener('pointerenter', load);
-      stage.removeEventListener('pointermove', onPointerMove);
       stage.removeEventListener('focus', load);
       stage.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('pointermove', onWindowPointerMove);
       if (raf) window.cancelAnimationFrame(raf);
       video.pause();
       video.removeAttribute('src');
