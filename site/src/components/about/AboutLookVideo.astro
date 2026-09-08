@@ -2,9 +2,13 @@
   <div
     class="about-look-stage"
     data-about-look-stage
-    role="group"
+    role="slider"
     tabindex="0"
     aria-label="Séquence interactive : déplacez le curseur pour faire varier le regard"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="50"
+    aria-valuetext="Position médiane"
   >
     <video
       class="about-look-video"
@@ -31,7 +35,11 @@
 </script>
 
 <style>
-  .about-look { width: fit-content; max-width: 100%; margin: var(--space-7) 0 0; }
+  .about-look {
+    width: fit-content;
+    max-width: 100%;
+    margin: var(--space-7) 0 0;
+  }
 
   .about-look-stage {
     position: relative;
@@ -72,7 +80,9 @@
     transition: opacity 360ms var(--ease-out);
   }
 
-  .about-look[data-ready='true'] .about-look-video { opacity: 1; }
+  .about-look[data-ready='true'] .about-look-video {
+    opacity: 1;
+  }
 
   .about-look-index,
   .about-look-status {
@@ -85,8 +95,14 @@
     text-transform: uppercase;
   }
 
-  .about-look-index { top: 1.1rem; left: 1.15rem; }
-  .about-look-status { right: 1.15rem; bottom: 1.05rem; }
+  .about-look-index {
+    top: 1.1rem;
+    left: 1.15rem;
+  }
+  .about-look-status {
+    right: 1.15rem;
+    bottom: 1.05rem;
+  }
 
   .about-look figcaption {
     margin-top: var(--space-3);
@@ -96,15 +112,23 @@
   }
 
   @media (max-width: 60rem) {
-    .about-look-stage { height: min(64svh, 36rem); }
+    .about-look-stage {
+      height: min(64svh, 36rem);
+    }
   }
 
   @media (max-width: 48rem) {
-    .about-look { margin-top: var(--space-6); }
-    .about-look-stage { height: min(70svh, 34rem); }
+    .about-look {
+      margin-top: var(--space-6);
+    }
+    .about-look-stage {
+      height: min(70svh, 34rem);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .about-look-video { transition: none; }
+    .about-look-video {
+      transition: none;
+    }
   }
 </style>

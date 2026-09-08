@@ -1,43 +1,28 @@
 # 00 — Content Gaps (lacunes de contenu)
 
-Toute lacune est matérialisée par la propriété `TODO_CONTENT` dans la source de données.
-**Aucun faux contenu ne sera publié pour combler une lacune.**
+Ce document suit uniquement les lacunes qui peuvent encore affecter la publication de la
+sélection actuelle. Les projets non sélectionnés restent dans les archives de recherche et ne sont
+pas rendus publics.
 
-## Projet : Down Trigger
+## Sélection actuelle
 
-| Champ                                      | Lacune                                  | Bloquant          |
-| ------------------------------------------ | --------------------------------------- | ----------------- |
-| Rôle exact de Nicolas                      | TODO_CONTENT                            | oui (publication) |
-| Année de réalisation                       | TODO_CONTENT                            | non               |
-| Technologies (si partagées publiquement)   | TODO_CONTENT                            | non               |
-| Autorisation de publication                | TODO_CONTENT                            | oui (publication) |
-| Crédits / tierces parties (photos, vidéos) | TODO_CONTENT                            | oui (assets)      |
-| Métriques vérifiées                        | TODO_CONTENT — aucune métrique inventée | non               |
-
-## Projet : Méridien 1970 Paris
-
-| Champ                                  | Lacune                        | Bloquant                        |
-| -------------------------------------- | ----------------------------- | ------------------------------- |
-| URL publique                           | TODO_CONTENT (aucune trouvée) | non (archive visuelle possible) |
-| Nature du projet (concept ?)           | TODO_CONTENT                  | oui (classification)            |
-| Description de la direction artistique | TODO_CONTENT                  | non                             |
-| Assets (visuels, captures)             | TODO_CONTENT                  | oui (assets)                    |
-| Année                                  | TODO_CONTENT                  | non                             |
-
-## Projet : Beauchamp 95250
-
-| Champ                                                    | Lacune                        | Bloquant             |
-| -------------------------------------------------------- | ----------------------------- | -------------------- |
-| URL publique                                             | TODO_CONTENT (aucune trouvée) | non                  |
-| Nature du projet (concept ? commande institutionnelle ?) | TODO_CONTENT                  | oui (classification) |
-| Description (vidéo, carte, quartiers…)                   | TODO_CONTENT                  | non                  |
-| Assets                                                   | TODO_CONTENT                  | oui (assets)         |
-| Année                                                    | TODO_CONTENT                  | non                  |
+| Projet        | Lacune restante                                                                   | Bloquant                               |
+| ------------- | --------------------------------------------------------------------------------- | -------------------------------------- |
+| Down Trigger  | Crédits détaillés des médias et année exacte à compléter si disponibles           | Non, sauf si un asset tiers est ajouté |
+| Héritage 2    | Aucune lacune bloquante connue ; concept et disclaimer affichés                   | Non                                    |
+| Maison Sillon | Aucune lacune bloquante connue ; provenance conceptuelle affichée                 | Non                                    |
+| Vantel        | Aucune lacune bloquante connue ; résultats de démonstration explicitement simulés | Non                                    |
 
 ## Global
 
-- Biographie de Nicolas (à écrire avec lui).
-- Email de contact, réseaux sociaux, ville de base.
-- Photo portrait (optionnelle).
-- Mention légale : identité exacte (nom, forme, adresse, numéro le cas échéant) → **ne pas inventer**.
-- Domaine de production.
+- Bio rédigée à partir du positionnement et des services validés.
+- Email confirmé ; réseaux sociaux laissés absents tant qu’aucun lien n’est validé.
+- Ville précise et identité administrative complète restent à confirmer avant production ; Vercel est l’hébergeur applicatif prévu.
+- `https://www.wadek.fr` est le domaine canonique souhaité et a été commandé chez OVH ; activation, DNS et rattachement Vercel restent à vérifier après livraison.
+- Mesures Lighthouse restent à confirmer.
+
+## Règle
+
+Aucune donnée administrative, métrique, attribution ou relation client n’est inventée pour combler
+une lacune. Une information manquante est reformulée honnêtement ou maintient la publication en
+attente.

@@ -1,5 +1,6 @@
 ---
 import { makeContactToken } from '../../lib/contact';
+import { site } from '../../config/site';
 
 const token = makeContactToken();
 const honeypot = 'website';
@@ -12,6 +13,7 @@ const minSubmitMs = 3000;
   data-token={token ?? ''}
   data-honeypot={honeypot}
   data-min-submit={minSubmitMs}
+  data-cta-label={site.ctaLabel}
   novalidate
 >
   <div class="field" hidden>
@@ -29,6 +31,7 @@ const minSubmitMs = 3000;
       autocomplete="name"
       placeholder="Votre nom"
       minlength="2"
+      aria-describedby="name-error"
     />
     <p class="field-error" id="name-error" hidden></p>
   </div>
@@ -43,13 +46,14 @@ const minSubmitMs = 3000;
       autocomplete="email"
       inputmode="email"
       placeholder="vous@exemple.fr"
+      aria-describedby="email-error"
     />
     <p class="field-error" id="email-error" hidden></p>
   </div>
 
   <div class="field">
     <label for="projectType">Type de projet</label>
-    <select id="projectType" name="projectType" required>
+    <select id="projectType" name="projectType" required aria-describedby="projectType-error">
       <option value="">Choisir…</option>
       <option value="site-vitrine">Site vitrine</option>
       <option value="landing">Landing page immersive</option>
@@ -71,16 +75,17 @@ const minSubmitMs = 3000;
       rows="5"
       required
       minlength="10"
-      placeholder="Parlez de votre projet : objectif, délais, budget indicatif…"></textarea>
+      placeholder="Parlez de votre projet : objectif, délais, budget indicatif…"
+      aria-describedby="message-error"></textarea>
     <p class="field-error" id="message-error" hidden></p>
   </div>
 
   <p class="field-note meta">
-    Vos données servent uniquement à répondre à votre demande. Elles ne sont ni stockées, ni
-    transmises à des tiers.
+    Vos données servent uniquement à traiter votre proposition. Elles ne sont pas stockées par le
+    site ; un prestataire d'envoi peut intervenir selon la configuration active.
   </p>
 
-  <button class="btn btn--primary" type="submit">Envoyer le message</button>
+  <button class="btn btn--primary" type="submit">{site.ctaLabel}</button>
 
   <div class="form-status" role="status" aria-live="polite" hidden></div>
 </form>
@@ -98,7 +103,9 @@ const minSubmitMs = 3000;
     gap: var(--space-2);
   }
 
-  .field[hidden] { display: none; }
+  .field[hidden] {
+    display: none;
+  }
 
   .field label {
     font-size: var(--text-sm);
@@ -178,6 +185,7 @@ const minSubmitMs = 3000;
     const honeypotName = form.dataset.honeypot ?? 'website';
     const minSubmitMs = Number(form.dataset.minSubmit ?? 3000);
     const token = form.dataset.token ?? '';
+    const ctaLabel = form.dataset.ctaLabel ?? 'Proposer une collaboration';
 
     const setStatus = (state: 'ok' | 'error', text: string) => {
       if (!status) return;
@@ -206,7 +214,7 @@ const minSubmitMs = 3000;
 
       // Honeypot : si rempli → simuler un succès silencieux (bot)
       if (data[honeypotName]) {
-        setStatus('ok', 'Merci, votre message a bien été envoyé.');
+        setStatus('ok', 'Merci, votre proposition a bien été préparée.');
         form.reset();
         return;
       }
@@ -233,7 +241,9 @@ const minSubmitMs = 3000;
       );
 
       if (!valid) {
-        setStatus('error', 'Certains champs sont à corriger.');
+        setStatus('error', 'Corrigez les champs signalés avant de proposer la collaboration.');
+        const firstInvalid = form.querySelector<HTMLElement>('[aria-invalid="true"]');
+        firstInvalid?.focus();
         return;
       }
 
@@ -262,7 +272,7 @@ const minSubmitMs = 3000;
             'error',
             json.error === 'rate-limited'
               ? 'Trop de demandes récentes. Réessayez dans quelques minutes.'
-              : "L'envoi a échoué. Vous pouvez réessayer ou utiliser l'adresse email affichée en pied de page.",
+              : "La proposition n'a pas pu partir. Réessayez ou utilisez l'adresse email affichée en pied de page.",
           );
           return;
         }
@@ -270,25 +280,25 @@ const minSubmitMs = 3000;
         if (json.mailto) {
           setStatus(
             'ok',
-            "Votre message est prêt. Il ne reste qu'à finaliser l'envoi depuis votre messagerie :",
+            "Votre proposition est prête. Finalisez l'envoi depuis votre messagerie :",
           );
           const link = document.createElement('a');
           link.href = json.mailto;
           link.textContent = 'Ouvrir ma messagerie';
           status?.appendChild(link);
         } else {
-          setStatus('ok', 'Merci, votre message a bien été envoyé. Je vous réponds rapidement.');
+          setStatus('ok', 'Votre proposition a bien été envoyée.');
         }
         form.reset();
       } catch {
         setStatus(
           'error',
-          "Une erreur réseau est survenue. Vous pouvez réessayer ou écrire directement via l'adresse email en pied de page.",
+          "Une erreur réseau est survenue. Réessayez ou écrivez directement via l'adresse email en pied de page.",
         );
       } finally {
         submitBtn?.removeAttribute('disabled');
         submitBtn?.removeAttribute('aria-busy');
-        submitBtn && (submitBtn.textContent = 'Envoyer le message');
+        submitBtn && (submitBtn.textContent = ctaLabel);
       }
     });
   }

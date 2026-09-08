@@ -5,10 +5,10 @@
 
 ## 1. Contenu — projets
 
-- [ ] **Down Trigger** : rôle exact, année, autorisation écrite de publication, crédits tiers
-      complétés ; `publicationStatus: published` uniquement après accord.
-- [ ] **Méridien 1970 Paris** : nature (concept confirmé), année, contexte, description DA validée.
-- [ ] **Beauchamp 95250** : nature (concept confirmé), année, description validée.
+- [ ] **Down Trigger** : crédits tiers et métadonnées disponibles complétés ; l’autorisation du groupe est confirmée par Nicolas.
+- [ ] **Héritage 2** : concept fictif, disclaimer, médias et variante mobile vérifiés.
+- [ ] **Maison Sillon** : concept fictif, disclaimer, provenance des rendus et contenu validés.
+- [ ] **Vantel** : concept fictif, disclaimer, médias et démonstration correctement décrits.
 - [ ] Résultats/métriques : toutes sourcées ou supprimées.
 - [ ] Disclaimers concept affichés sur les projets concernés.
 - [ ] Couvertures et galeries : visuels définitifs, alts descriptifs, droits ok.
@@ -25,7 +25,7 @@
 - [ ] Mentions légales complétées (identité, adresse, SIREN/SIRET si besoin, hébergeur) —
       voir `docs/legal/legal-checklist.md`.
 - [ ] Confidentialité relue et conforme au déploiement réel (formulaire, analytics, cookies).
-- [ ] `TODO_CONTENT` restant : aucun visible sur les pages publiques.
+- [ ] Aucun placeholder ou contenu provisoire visible sur les pages publiques.
 
 ## 4. Design & ressenti
 
@@ -39,7 +39,7 @@
 - [ ] Lighthouse vert sur preview (perf ≥ 0.95, LCP ≤ 2,5 s, CLS ≤ 0,1).
 - [ ] E2E vert sur preview.
 - [ ] Mobile : tout fonctionne (menu, formulaire, vidéos avec poster).
-- [ ] Domaine final choisi ; `vercel.json` (CSP/HSTS) actif sur la preview.
+- [ ] Domaine canonique `https://www.wadek.fr` activé chez OVH puis rattaché à Vercel ; `vercel.json` (CSP/HSTS) actif sur la preview.
 
 ## 6. GO / NO-GO
 

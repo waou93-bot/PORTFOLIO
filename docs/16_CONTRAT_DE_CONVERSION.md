@@ -15,7 +15,7 @@ Validé pour la tranche verticale le 4 septembre 2026 par la demande explicite d
 - **CTA exact :** `Proposer une collaboration`.
 - **Après le clic :** ouverture d’un courriel adressé à Nicolas ; aucune donnée n’est collectée par le site dans la tranche initiale.
 - **Signal de réussite :** activation du lien de contact. La qualification et la mesure restent différées tant qu’aucun outil respectueux de la vie privée n’est choisi.
-- **Exclusions :** faux clients, faux résultats, métriques inventées, disponibilité ou délai de réponse non confirmés, Baphomet Like, publication de Vantel tant que ses médias sources et leur droit d'usage ne sont pas documentés.
+- **Exclusions :** faux clients, faux résultats, métriques inventées, disponibilité ou délai de réponse non confirmés, Baphomet Like.
 
 ## Parcours
 

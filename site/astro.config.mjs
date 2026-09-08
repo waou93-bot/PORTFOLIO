@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // SITE_URL is injected by the deployment environment (local, preview, production).
-  site: process.env.SITE_URL ?? 'http://localhost:4321',
+  // SITE_URL may override this for previews; production canonical is the confirmed domain.
+  site: process.env.SITE_URL ?? 'https://www.wadek.fr',
   output: 'static',
   build: {
     format: 'directory',

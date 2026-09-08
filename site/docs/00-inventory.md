@@ -1,5 +1,12 @@
 # 00 — Inventaire
 
+## État courant (2026-09-08)
+
+Le site livré dans ce dossier est la source technique active. La sélection actuelle comprend
+Down Trigger, Héritage 2, Maison Sillon et Vantel. Les trois derniers sont des concepts fictifs
+créés pour le portfolio ; l’autorisation d’utilisation de Down Trigger est confirmée par Nicolas.
+Les observations historiques ci-dessous restent conservées comme trace d’audit initiale.
+
 ## 1. Environnement de développement
 
 | Élément      | Valeur                                                                | Preuve                     |
@@ -35,8 +42,8 @@
 
 - **URL** : https://downtrigger.fr/ (live, consulté).
 - **Observations** : metal industriel français ; univers post-apocalyptique « signal / anomalie / MONDE_02 » ; hex codes (`0x44...`), narration « FORM_UNSTABLE », sections immersion, album "Then The Chaos" (2019), clip "Astrayed", date de concert 28 oct. 2026 (Paris, Les Étoiles), presse (French Metal, Among The Living).
-- **Attribution** : NON CONFIRMÉE. Le site est riche et probablement réalisé par Nicolas Jez, mais aucune mention de crédit auteur n'est visible dans le contenu texte extrait. → Nécessite confirmation du propriétaire.
-- **Statut projet provisoire** : à confirmer (client ou collaboration). Ne pas publier sans autorisation.
+- **Attribution** : autorisation d’utilisation confirmée par Nicolas le 2026-09-08 ; les crédits détaillés restent à compléter si disponibles.
+- **Statut projet** : collaboration publiée, sous réserve de la QA des médias.
 
 ### 4.2 Méridien 1970 Paris
 
@@ -56,15 +63,15 @@
 - Aucun fichier média local fourni pour le moment.
 - Les captures/previews seront produites en Phase 6 à partir des sources autorisées uniquement.
 
-## 6. Droits — état zéro
+## 6. Droits — état courant
 
-- Aucune autorisation de publication collectée.
-- `assets/rights-manifest.json` sera construit en Phase 6 ; chaque projet démarre en `draft` / droits `pending`.
+- L’autorisation d’utilisation de Down Trigger est confirmée par Nicolas.
+- Les autres projets de la sélection sont des concepts fictifs créés pour le portfolio et utilisent un disclaimer.
 
 ## 7. Inconnues critiques
 
-1. Auteur réel du site Down Trigger et autorisation de le publier.
+1. Crédits détaillés des médias Down Trigger, si disponibles.
 2. Nature (concept vs client) et URLs de Méridien 1970 Paris et Beauchamp 95250.
 3. Identité du propriétaire à diffuser (email, réseau, photo, biographie).
-4. Domaine de production envisagé.
+4. Activation du domaine canonique `https://www.wadek.fr` chez OVH puis rattachement à Vercel.
 5. Présence d'autres projets non communiqués.

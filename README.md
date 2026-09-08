@@ -4,13 +4,13 @@ Socle de pilotage du projet, initialise le 2026-08-03T21:38:08.734074+00:00 avec
 
 ## Etat
 
-- Objectif : Concevoir et valider en préproduction un portfolio web premium où un portrait de Nicolas ouvre sur un monde intérieur donnant accès à ses projets réels. Aucun code ni prototype fonctionnel avant validation complète de la direction artistique et technique.
+- Objectif : Concevoir, vérifier et livrer un portfolio web premium où un portrait de Nicolas ouvre sur un monde intérieur donnant accès à ses projets sélectionnés.
 - Contrainte non négociable : le site est la carte de visite professionnelle de Nicolas, son équivalent CV pour intégrer un nouveau monde professionnel. Un niveau inférieur à premium est un risque direct pour sa carrière.
 - Niveau attendu : état gold ou quasiment gold, avec toutes les œuvres retenues présentes, accessibles et fonctionnelles.
 - Source inspectee : `C:\Users\Nicolas JEZ\Documents\NJ\PORTFOLIO 1`
 - Git detecte dans la source : oui
 - Fichiers inspectes : 112
-- Production : non commencee
+- Production : tranche verticale en cours de correction et de recette
 
 ## Sources de verite
 
@@ -23,8 +23,12 @@ Socle de pilotage du projet, initialise le 2026-08-03T21:38:08.734074+00:00 avec
 - `docs/06_RISQUES_ET_INCERTITUDES.md` : points a lever.
 - `docs/11_RECHERCHE_BENCHMARKS.md` : benchmark Lando Norris, dépôts GitHub et comparaison des options de plateforme.
 
+## État actuel
+
+- Stack active : Astro + TypeScript + CSS natif, avec immersion isolée et contenu versionné dans `site/`.
+- Sélection publique : Down Trigger, Héritage 2, Maison Sillon et Vantel ; les concepts sont explicitement étiquetés.
+- La validation propriétaire, la recette navigateur, les mesures de performance et la validation finale Astra restent requises avant publication.
+
 ## Prochaine action
 
-Valider le Master Brief 0.2, la barre de qualité gold et le plan de préproduction avant toute décision de stack.
-
-Aucune production n'a ete lancee pendant ce bootstrap.
+Terminer la recette de la tranche verticale et faire valider le lot final ; aucune validation Astra n'est présumée.

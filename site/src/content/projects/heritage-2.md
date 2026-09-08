@@ -3,8 +3,8 @@ slug: heritage-2
 title: Héritage 2
 kind: concept
 brandUsage: fictional
-publicationStatus: draft
-rightsStatus: pending
+publicationStatus: published
+rightsStatus: not-required
 year: '2026'
 sector: Patrimoine · Artisanat
 summary: Une expérience éditoriale et minérale pour rendre visible le geste, la matière et la précision d'un atelier de pierre.
@@ -19,7 +19,7 @@ theme:
   accent: oklch(0.67 0.08 62)
   accentContrast: oklch(0.18 0.01 62)
   dark: false
-independentConceptDisclaimer: Prototype privé et conceptuel. Les médias définitifs et leurs droits doivent être confirmés avant diffusion publique.
+independentConceptDisclaimer: Concept fictif créé pour le portfolio. Héritage 2 ne représente ni un atelier réel ni une commande construite.
 results: []
 gallery:
   - src: /media/projects/heritage-2/interface.webp

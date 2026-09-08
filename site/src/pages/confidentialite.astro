@@ -16,8 +16,9 @@ import { site } from '../config/site';
         <h2>Données collectées</h2>
         <p>
           Le formulaire de contact recueille uniquement les informations que vous saisissez : nom,
-          adresse email, type de projet et message. Aucune donnée n'est stockée sur un serveur : les
-          messages sont transmis directement à {site.email} et ne sont pas conservés par le site.
+          adresse email, type de projet et message. Le site ne conserve pas ces données dans une
+          base. Selon la configuration d'envoi, elles sont transmises directement à {site.email} ou transitent
+          par le prestataire d'envoi configuré uniquement pour traiter la demande.
         </p>
 
         <h2>Cookies</h2>
@@ -34,7 +35,10 @@ import { site } from '../config/site';
         </p>
 
         <h2>Partage</h2>
-        <p>Aucune donnée n'est vendue, louée ni transmise à des tiers, sauf obligation légale.</p>
+        <p>
+          Aucune donnée n'est vendue ni louée. Un prestataire d'envoi peut traiter le message
+          lorsque cette option est activée.
+        </p>
 
         <h2>Vos droits</h2>
         <p>

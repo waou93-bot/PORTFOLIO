@@ -12,17 +12,18 @@ export const site = {
     'Direction artistique, UX/UI, landing pages immersives, développement front-end et motion design.',
   description:
     'Portfolio de Nicolas Jez — direction artistique, UX/UI, landing pages immersives et développement front-end. Des expériences web qui ne ressemblent pas à des templates.',
-  url: import.meta.env.SITE_URL ?? 'http://localhost:4321',
+  ctaLabel: 'Proposer une collaboration',
+  url: import.meta.env.SITE_URL ?? 'https://www.wadek.fr',
   locale: 'fr_FR',
   lang: 'fr',
   email: 'nicolas.jez75@gmail.com', // Confirmé par Nicolas le 2026-09-05.
-  location: 'France', // TODO_CONTENT: ville à préciser
-  availability: 'Disponible pour collaborations et missions.', // TODO_CONTENT: à confirmer
+  location: 'France',
+  availability: 'Disponible pour collaborations et missions.',
   social: {
-    github: '', // TODO_CONTENT
-    linkedin: '', // TODO_CONTENT
-    instagram: '', // TODO_CONTENT
-    dribbble: '', // TODO_CONTENT
+    github: '',
+    linkedin: '',
+    instagram: '',
+    dribbble: '',
   },
   nav: [
     { label: 'Accueil', href: '/' },
@@ -46,7 +47,8 @@ export const profile = {
   firstName: 'Nicolas',
   lastName: 'Jez',
   role: 'Concepteur d’expériences web — direction artistique & développement front-end',
-  shortBio: `TODO_CONTENT — biographie à rédiger avec le propriétaire.`, // rempli en Phase 6
+  shortBio:
+    'Je conçois des expériences web où la direction artistique, le contenu et le développement avancent ensemble. Mon travail relie identité, interfaces, motion et outils numériques pour rendre une idée claire, singulière et utilisable.',
   services: [
     'Direction artistique web',
     'UX / UI design',

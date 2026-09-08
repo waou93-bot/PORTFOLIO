@@ -1,69 +1,530 @@
 ---
 import { ROOM_IMAGE } from '../../lib/room-preload';
 const projects = [
-  {slug:'down-trigger',name:'Down Trigger',image:'down-trigger/cover-v2.webp',detail:'Collaboration · site en ligne',x:17,y:55},
-  {slug:'heritage-2',name:'Héritage 2',image:'heritage-2/cover-v2.webp',detail:'Concept privé · étude de cas',x:45,y:39},
-  {slug:'maison-sillon',name:'Maison Sillon',image:'maison-sillon/cover-v3.webp',detail:'Concept architectural',x:59,y:67},
-  {slug:'vantel',name:'Vantel',image:'vantel/cover.webp',detail:'Concept e-commerce',x:80,y:40},
+  {
+    slug: 'down-trigger',
+    name: 'Down Trigger',
+    image: 'down-trigger/cover-v2.webp',
+    detail: 'Collaboration · site en ligne',
+    x: 17,
+    y: 55,
+  },
+  {
+    slug: 'heritage-2',
+    name: 'Héritage 2',
+    image: 'heritage-2/cover-v2.webp',
+    detail: 'Concept fictif · étude de cas',
+    x: 45,
+    y: 39,
+  },
+  {
+    slug: 'maison-sillon',
+    name: 'Maison Sillon',
+    image: 'maison-sillon/cover-v3.webp',
+    detail: 'Concept architectural',
+    x: 59,
+    y: 67,
+  },
+  {
+    slug: 'vantel',
+    name: 'Vantel',
+    image: 'vantel/cover.webp',
+    detail: 'Concept e-commerce',
+    x: 80,
+    y: 40,
+  },
 ];
 ---
+
 <section class="room" data-room aria-label="L’atelier des projets">
-  <header class="room-heading"><a href="/">Retour au portrait</a><h1>Suivez votre <em>curiosité.</em></h1><p>Quatre objets, quatre projets.</p></header>
+  <header class="room-heading">
+    <a href="/">Retour au portrait</a><h1>Suivez votre <em>curiosité.</em></h1><p>
+      Quatre objets, quatre projets.
+    </p>
+  </header>
   <div class="room-scene">
     <div class="room-art" aria-hidden="true">
-      <img class="room-base" src={ROOM_IMAGE} width="1672" height="941" alt="" loading="eager" fetchpriority="high" />
+      <img
+        class="room-base"
+        src={ROOM_IMAGE}
+        width="1672"
+        height="941"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      />
       <img class="room-echo" src={ROOM_IMAGE} width="1672" height="941" alt="" />
       <div class="room-light"></div>
     </div>
-    {projects.map((p,i)=><div class:list={['room-point',{'toward-left':p.x>50}]} style={`--x:${p.x}%;--y:${p.y}%`} data-room-point>
-      <button class="room-trigger" aria-label={`Découvrir ${p.name}`} aria-expanded="false" aria-controls={`room-card-${i}`}><span aria-hidden="true">0{i+1}</span></button>
-      <div class="room-reveal" id={`room-card-${i}`} hidden>
-        <svg viewBox="0 0 250 60" aria-hidden="true"><path d="M 0 59 L 50 1 H 250" pathLength="1" /></svg>
-        <a href={`/work/${p.slug}`} class="room-card"><img src={`/media/projects/${p.image}`} width="400" height="250" alt="" loading="eager" decoding="async" /><div><small>{p.detail}</small><strong>{p.name}</strong><span>Voir le projet</span></div></a>
-      </div>
-    </div>)}
+    {
+      projects.map((p, i) => (
+        <div
+          class:list={['room-point', { 'toward-left': p.x > 50 }]}
+          style={`--x:${p.x}%;--y:${p.y}%`}
+          data-room-point
+        >
+          <button
+            class="room-trigger"
+            aria-label={`Découvrir ${p.name}`}
+            aria-expanded="false"
+            aria-controls={`room-card-${i}`}
+          >
+            <span aria-hidden="true">0{i + 1}</span>
+          </button>
+          <div class="room-reveal" id={`room-card-${i}`} hidden>
+            <svg viewBox="0 0 250 60" aria-hidden="true">
+              <path d="M 0 59 L 50 1 H 250" pathLength="1" />
+            </svg>
+            <a href={`/work/${p.slug}`} class="room-card">
+              <>
+                <img
+                  src={`/media/projects/${p.image}`}
+                  width="400"
+                  height="250"
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                />
+                <div>
+                  <>
+                    <small>{p.detail}</small>
+                    <strong>{p.name}</strong>
+                    <span>Voir le projet</span>
+                  </>
+                </div>
+              </>
+            </a>
+          </div>
+        </div>
+      ))
+    }
   </div>
-  <div class="room-controls"><p>Explorez les repères sur les objets.</p><button data-room-pause type="button" aria-pressed="false">Mettre les effets en pause</button></div>
-  <nav class="room-index" aria-label="Accès direct aux projets">{projects.map((p,i)=><a href={`/work/${p.slug}`}><small>0{i+1}</small> {p.name}</a>)}</nav>
+  <div class="room-controls">
+    <p>Explorez les repères sur les objets.</p><button
+      data-room-pause
+      type="button"
+      aria-pressed="false">Mettre les effets en pause</button
+    >
+  </div>
+  <nav class="room-index" aria-label="Accès direct aux projets">
+    {
+      projects.map((p, i) => (
+        <a href={`/work/${p.slug}`}>
+          <small>0{i + 1}</small> {p.name}
+        </a>
+      ))
+    }
+  </nav>
 </section>
 <script>
   import { initRoom } from '../../lib/room-universe';
   initRoom();
-  document.addEventListener('astro:page-load',initRoom);
+  document.addEventListener('astro:page-load', initRoom);
 </script>
 <style>
-  .room{background:#eee4d4;color:#33271f;min-height:85svh}
-  .room-heading{padding:24px 5vw 20px;display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .room-heading a,.room-heading p{font-size:.75rem;color:inherit;margin:0}.room-heading h1{font-size:clamp(1.7rem,3vw,3rem);font-weight:400;margin:0;line-height:1.1}
-  .room-scene{position:relative;isolation:isolate;aspect-ratio:1672/941;max-width:1600px;margin:auto}
-  .room-art{position:absolute;inset:0;overflow:hidden;pointer-events:none}.room-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-  .room-echo,.room-light{opacity:0}.room-light{position:absolute;inset:0;background:linear-gradient(110deg,transparent 15%,#658eaa55 45%,#d1a07f33 65%,transparent 90%);mix-blend-mode:soft-light}
-  .room[data-arrived] .room-base{animation:room-arrival 850ms ease-out both}
-  .room[data-anomaly=band] .room-echo{clip-path:polygon(0 28%,100% 28%,100% 42%,0 42%,0 58%,100% 58%,100% 67%,0 67%);animation:room-band 600ms ease-out both}
-  .room[data-anomaly=reflection] .room-echo{clip-path:inset(0 0 0 65%);animation:room-reflection 800ms ease-in-out both}
-  .room[data-anomaly=light] .room-light{animation:room-light 1800ms ease-in-out both}
-  .room-point{position:absolute;left:var(--x);top:var(--y);z-index:2}.room-point[data-open=true]{z-index:5}
-  .room-trigger{position:absolute;left:-24px;top:-24px;width:48px;height:48px;display:grid;place-items:center;border:0;background:transparent;cursor:pointer;color:#fff}
-  .room-trigger span{display:grid;place-items:center;width:30px;height:30px;border:1px solid #fff9;border-radius:50%;background:#30251dcc;font-size:10px;box-shadow:0 2px 8px #0003;transition:background 180ms}
-  .room-trigger:hover span{background:#59432d}.room-trigger:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:50%}
-  .room-reveal{position:absolute;bottom:0;left:0;width:250px;padding-bottom:58px;pointer-events:none}.room-reveal[hidden]{display:none}
-  .room-reveal svg{position:absolute;bottom:0;left:0;width:250px;height:60px;overflow:visible}.room-reveal path{fill:none;stroke:#fff8e6;stroke-width:1.5;stroke-dasharray:1;animation:room-line 250ms ease-out both}
-  .room-card{display:block;width:200px;margin-left:50px;background:#f8f2e9;color:#30251d;pointer-events:auto;text-decoration:none;box-shadow:0 8px 28px #21170e33;animation:room-card 250ms 80ms both}
-  .room-card img{width:100%;height:100px;object-fit:cover;display:block}.room-card>div{display:grid;gap:6px;padding:12px}.room-card small,.room-card span{font-size:10px}.room-card strong{font-size:18px;font-weight:500}.room-card:focus-visible{outline:3px solid #604122}
-  .toward-left .room-reveal{left:auto;right:0}.toward-left svg{transform:scaleX(-1)}.toward-left .room-card{margin-left:0}
-  .room-controls{padding:18px 5vw;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12px}.room-controls p{margin:0}.room-controls button{font:inherit;color:inherit;border:0;border-bottom:1px solid currentColor;background:none;padding:8px 0;cursor:pointer}
-  .room-index{display:flex;gap:30px;flex-wrap:wrap;padding:16px 5vw 35px}.room-index a{color:inherit;font-size:14px}.room-index small{opacity:.6;margin-right:6px}
-  .room-index a{position:relative;padding-bottom:5px;text-decoration:none!important;box-shadow:none!important;text-shadow:none!important;background:transparent!important;transform:none!important}
-  .room-index a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 250ms ease-out}
-  .room-index a:hover::after,.room-index a:focus-visible::after{transform:scaleX(1)}
-  @media(prefers-reduced-motion:reduce){.room-index a::after{transition:none}}
-  @keyframes room-arrival{from{opacity:.35;filter:saturate(.65)}to{opacity:1;filter:saturate(1)}}
-  @keyframes room-band{0%,100%{opacity:0;transform:none}18%,40%{opacity:.85;transform:translateX(16px)}48%,65%{opacity:.65;transform:translateX(-9px)}85%{opacity:.25;transform:translateX(3px)}}
-  @keyframes room-reflection{0%,100%{opacity:0;transform:none}40%,55%{opacity:.5;transform:translateX(-12px)}}
-  @keyframes room-light{0%,100%{opacity:0}45%{opacity:.65}}
-  @keyframes room-line{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-  @keyframes room-card{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  @media(max-width:700px){.room-heading{display:block;padding:24px 6vw}.room-heading h1{margin:18px 0 10px}.room-scene{margin-bottom:240px}.room-point[data-open=true]{position:static}.room-reveal,.toward-left .room-reveal{left:6%;right:auto;top:calc(100% + 18px);bottom:auto;padding:0;width:88%}.room-reveal svg{display:none}.room-card,.toward-left .room-card{margin:0;width:100%;display:grid;grid-template-columns:42% 1fr;min-height:160px}.room-card img{height:100%;min-height:160px}.room-card>div{align-content:center}.room-trigger span{width:25px;height:25px}.room-controls{align-items:flex-start}.room-index{display:grid;grid-template-columns:1fr 1fr;gap:20px}}
-  @media(max-width:700px){.room-scene{margin-bottom:24px}.room-point[data-open=true]{position:absolute}.room-reveal,.toward-left .room-reveal{position:fixed;top:auto;bottom:18px;left:6vw;right:auto;width:88vw;z-index:20}}
-  @media(prefers-reduced-motion:reduce){.room .room-base,.room .room-echo,.room .room-light,.room .room-card,.room .room-reveal path{animation:none!important}.room-echo,.room-light{display:none}}
+  .room {
+    background: #eee4d4;
+    color: #33271f;
+    min-height: 85svh;
+  }
+  .room-heading {
+    padding: 24px 5vw 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .room-heading a,
+  .room-heading p {
+    font-size: 0.75rem;
+    color: inherit;
+    margin: 0;
+  }
+  .room-heading h1 {
+    font-size: clamp(1.7rem, 3vw, 3rem);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .room-scene {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 1672/941;
+    max-width: 1600px;
+    margin: auto;
+  }
+  .room-art {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .room-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .room-echo,
+  .room-light {
+    opacity: 0;
+  }
+  .room-light {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 15%,
+      #658eaa55 45%,
+      #d1a07f33 65%,
+      transparent 90%
+    );
+    mix-blend-mode: soft-light;
+  }
+  .room[data-arrived] .room-base {
+    animation: room-arrival 850ms ease-out both;
+  }
+  .room[data-anomaly='band'] .room-echo {
+    clip-path: polygon(0 28%, 100% 28%, 100% 42%, 0 42%, 0 58%, 100% 58%, 100% 67%, 0 67%);
+    animation: room-band 600ms ease-out both;
+  }
+  .room[data-anomaly='reflection'] .room-echo {
+    clip-path: inset(0 0 0 65%);
+    animation: room-reflection 800ms ease-in-out both;
+  }
+  .room[data-anomaly='light'] .room-light {
+    animation: room-light 1800ms ease-in-out both;
+  }
+  .room-point {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    z-index: 2;
+  }
+  .room-point[data-open='true'] {
+    z-index: 5;
+  }
+  .room-trigger {
+    position: absolute;
+    left: -24px;
+    top: -24px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+  }
+  .room-trigger span {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff9;
+    border-radius: 50%;
+    background: #30251dcc;
+    font-size: 10px;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 180ms;
+  }
+  .room-trigger:hover span {
+    background: #59432d;
+  }
+  .room-trigger:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+  .room-reveal {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    padding-bottom: 58px;
+    pointer-events: none;
+  }
+  .room-reveal[hidden] {
+    display: none;
+  }
+  .room-reveal svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    height: 60px;
+    overflow: visible;
+  }
+  .room-reveal path {
+    fill: none;
+    stroke: #fff8e6;
+    stroke-width: 1.5;
+    stroke-dasharray: 1;
+    animation: room-line 250ms ease-out both;
+  }
+  .room-card {
+    display: block;
+    width: 200px;
+    margin-left: 50px;
+    background: #f8f2e9;
+    color: #30251d;
+    pointer-events: auto;
+    text-decoration: none;
+    box-shadow: 0 8px 28px #21170e33;
+    animation: room-card 250ms 80ms both;
+  }
+  .room-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+  }
+  .room-card > div {
+    display: grid;
+    gap: 6px;
+    padding: 12px;
+  }
+  .room-card small,
+  .room-card span {
+    font-size: 10px;
+  }
+  .room-card strong {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .room-card:focus-visible {
+    outline: 3px solid #604122;
+  }
+  .toward-left .room-reveal {
+    left: auto;
+    right: 0;
+  }
+  .toward-left svg {
+    transform: scaleX(-1);
+  }
+  .toward-left .room-card {
+    margin-left: 0;
+  }
+  .room-controls {
+    padding: 18px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+  }
+  .room-controls p {
+    margin: 0;
+  }
+  .room-controls button {
+    font: inherit;
+    color: inherit;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    background: none;
+    padding: 8px 0;
+    cursor: pointer;
+  }
+  .room-index {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 16px 5vw 35px;
+  }
+  .room-index a {
+    color: inherit;
+    font-size: 14px;
+  }
+  .room-index small {
+    opacity: 0.6;
+    margin-right: 6px;
+  }
+  .room-index a {
+    position: relative;
+    padding-bottom: 5px;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+  .room-index a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 250ms ease-out;
+  }
+  .room-index a:hover::after,
+  .room-index a:focus-visible::after {
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .room-index a::after {
+      transition: none;
+    }
+  }
+  @keyframes room-arrival {
+    from {
+      opacity: 0.35;
+      filter: saturate(0.65);
+    }
+    to {
+      opacity: 1;
+      filter: saturate(1);
+    }
+  }
+  @keyframes room-band {
+    0%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+    18%,
+    40% {
+      opacity: 0.85;
+      transform: translateX(16px);
+    }
+    48%,
+    65% {
+      opacity: 0.65;
+      transform: translateX(-9px);
+    }
+    85% {
+      opacity: 0.25;
+      transform: translateX(3px);
+    }
+  }
+  @keyframes room-reflection {
+    0%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+    40%,
+    55% {
+      opacity: 0.5;
+      transform: translateX(-12px);
+    }
+  }
+  @keyframes room-light {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    45% {
+      opacity: 0.65;
+    }
+  }
+  @keyframes room-line {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes room-card {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (max-width: 700px) {
+    .room-heading {
+      display: block;
+      padding: 24px 6vw;
+    }
+    .room-heading h1 {
+      margin: 18px 0 10px;
+    }
+    .room-scene {
+      margin-bottom: 240px;
+    }
+    .room-point[data-open='true'] {
+      position: static;
+    }
+    .room-reveal,
+    .toward-left .room-reveal {
+      left: 6%;
+      right: auto;
+      top: calc(100% + 18px);
+      bottom: auto;
+      padding: 0;
+      width: 88%;
+    }
+    .room-reveal svg {
+      display: none;
+    }
+    .room-card,
+    .toward-left .room-card {
+      margin: 0;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      min-height: 160px;
+    }
+    .room-card img {
+      height: 100%;
+      min-height: 160px;
+    }
+    .room-card > div {
+      align-content: center;
+    }
+    .room-trigger span {
+      width: 25px;
+      height: 25px;
+    }
+    .room-controls {
+      align-items: flex-start;
+    }
+    .room-index {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+  }
+  @media (max-width: 700px) {
+    .room-scene {
+      margin-bottom: 24px;
+    }
+    .room-point[data-open='true'] {
+      position: absolute;
+    }
+    .room-reveal,
+    .toward-left .room-reveal {
+      position: fixed;
+      top: auto;
+      bottom: 18px;
+      left: 6vw;
+      right: auto;
+      width: 88vw;
+      z-index: 20;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .room .room-base,
+    .room .room-echo,
+    .room .room-light,
+    .room .room-card,
+    .room .room-reveal path {
+      animation: none !important;
+    }
+    .room-echo,
+    .room-light {
+      display: none;
+    }
+  }
 </style>

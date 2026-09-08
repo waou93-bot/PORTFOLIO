@@ -2,21 +2,21 @@
 
 ## Statut
 
-Sélection validée par Nicolas le 4 septembre 2026. Les quatre entrées sont fixées ; leur niveau de publication dépend encore des preuves, droits et médias indiqués ci-dessous.
+Sélection validée par Nicolas le 4 septembre 2026 et confirmée dans la demande corrective du 8 septembre. Les quatre entrées sont publiables comme projets réels ou concepts fictifs, sous réserve de la QA et des crédits restants.
 
 ## Héritage 2
 
 - **Positionnement :** proposition de marque et site premium pour un atelier de restauration patrimoniale spécialisé en pierre et maçonnerie.
 - **Ce que le projet démontre :** direction artistique, narration éditoriale, architecture de contenu, parcours de conversion, conception responsive et contrôle qualité.
-- **Statut de présentation :** prototype privé.
-- **Condition de diffusion :** confirmer les médias définitifs, leur provenance et le droit de les présenter publiquement.
+- **Statut de présentation :** concept fictif publié.
+- **Condition de diffusion :** conserver le disclaimer conceptuel et les alts vérifiés.
 
 ## Down Trigger
 
 - **Positionnement :** site et univers numérique d'un groupe de metal industriel français.
 - **Ce que le projet démontre :** direction artistique musicale, narration de marque, motion, production vidéo et réalisation front-end.
-- **Statut de présentation :** projet avancé retrouvé localement ; rôle exact et autorisation publique à confirmer.
-- **Condition de diffusion :** vérifier les crédits, les droits musicaux et les médias retenus.
+- **Statut de présentation :** collaboration publiée avec autorisation confirmée par Nicolas pour tous les membres du groupe.
+- **Condition de diffusion :** compléter les crédits et métadonnées disponibles sans inventer de métriques.
 
 ## Maison Sillon
 

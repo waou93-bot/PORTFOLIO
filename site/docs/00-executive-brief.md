@@ -16,20 +16,21 @@
 3. Consultation d'études de cas détaillées.
 4. Transformation en prise de contact qualifiée.
 
-## Projets initiaux à documenter
+## Sélection actuelle
 
-1. **Down Trigger** — univers metal industriel ; site live : https://downtrigger.fr/ — **auteur à confirmer**.
-2. **Méridien 1970 Paris** — slug `meridien-1970-paris` ; **aucune URL publique trouvée** ; probablement concept.
-3. **Beauchamp 95250** — projet territorial supposé ; **aucune URL publique trouvée** ; probablement concept ; ne pas attribuer à une institution.
+1. **Down Trigger** — univers metal industriel ; autorisation d’utilisation confirmée par Nicolas.
+2. **Héritage 2** — concept fictif publié avec disclaimer.
+3. **Maison Sillon** — concept fictif publié avec disclaimer.
+4. **Vantel** — concept fictif publié avec disclaimer.
 
 ## Principes non négociables
 
 - Ne jamais inventer de rôles, résultats, chiffres, témoignages, relations client.
 - Distinguer visuellement et légalement : client réel / collaboration / concept indépendant.
-- Toute information manquante → propriété `TODO_CONTENT` + rapport de lacunes, jamais de faux contenu.
+- Toute information manquante → lacune documentée et formulation honnête, jamais de faux contenu.
 - Mobile-first, WCAG 2.2 AA, Core Web Vitals respectés, aucune dépendance fragile.
 - Le portfolio sert les projets, ne les écrase pas (cadre premium neutre).
 
 ## Statut
 
-PHASE 0 terminée (inventaire). Détails : docs/00-inventory.md, docs/00-assumptions.md, docs/00-content-gaps.md.
+Phase B en correction et recette. Détails : docs/00-inventory.md, docs/00-assumptions.md, docs/00-content-gaps.md.

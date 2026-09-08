@@ -60,7 +60,9 @@ const selectElements = (root: HTMLElement): MindElements | null => {
   const worldTitle = root.querySelector<HTMLElement>('[data-mind-world-title]');
   const enter = root.querySelector<HTMLButtonElement>('[data-mind-enter]');
   const footerLauncher = root.querySelector<HTMLButtonElement>('[data-mind-footer-launcher]');
-  const footerLauncherCharacter = root.querySelector<HTMLElement>('.mind-footer-launcher-character');
+  const footerLauncherCharacter = root.querySelector<HTMLElement>(
+    '.mind-footer-launcher-character',
+  );
   const skipPlaying = root.querySelector<HTMLButtonElement>('[data-mind-skip-playing]');
   const reset = root.querySelector<HTMLButtonElement>('[data-mind-reset]');
   const status = root.querySelector<HTMLElement>('[data-mind-status]');
@@ -262,9 +264,11 @@ export const initInsideMindHero = () => {
     let halfTimeline: gsap.core.Timeline | null = null;
     let burstTimer = 0;
     const clearHalves = () => {
-      halfTimeline?.kill();halfTimeline=null;
-      gsap.set(portraitHalves,{opacity:0,x:0,y:0});
-      delete root.dataset.division;delete root.dataset.nextFrame;
+      halfTimeline?.kill();
+      halfTimeline = null;
+      gsap.set(portraitHalves, { opacity: 0, x: 0, y: 0 });
+      delete root.dataset.division;
+      delete root.dataset.nextFrame;
     };
     let sequencePlaying = false;
     let launcherIdleTimer = 0;
@@ -310,7 +314,8 @@ export const initInsideMindHero = () => {
         !mouseMotion.matches ||
         event.pointerType !== 'mouse' ||
         (root.dataset.state !== 'portrait' && root.dataset.state !== 'playing')
-      ) return;
+      )
+        return;
       const bounds = elements.portrait.getBoundingClientRect();
       if (!bounds.width || !bounds.height) return;
       const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2));
@@ -319,8 +324,14 @@ export const initInsideMindHero = () => {
       gazeTo.y(y * 2.5);
     };
     const trackPortraitMovement = (event: PointerEvent) => {
-      if (reduceMotion || !mouseMotion.matches || event.pointerType !== 'mouse' ||
-        root.dataset.state !== 'portrait' || (!event.movementX && !event.movementY)) return;
+      if (
+        reduceMotion ||
+        !mouseMotion.matches ||
+        event.pointerType !== 'mouse' ||
+        root.dataset.state !== 'portrait' ||
+        (!event.movementX && !event.movementY)
+      )
+        return;
       lastMouseMovement = performance.now();
     };
     const leavePortrait = () => {
@@ -360,7 +371,7 @@ export const initInsideMindHero = () => {
       const now = performance.now();
       if (root.dataset.glitch && now >= glitchEndsAt) clearGlitch();
       if (now < nextGlitchAt) return;
-      const choices = glitchTypes.filter(type => type !== lastGlitch);
+      const choices = glitchTypes.filter((type) => type !== lastGlitch);
       lastGlitch = choices[Math.floor(Math.random() * choices.length)] ?? 'tear';
       const duration = 220 + Math.round(Math.random() * 160);
       root.style.setProperty('--glitch-duration', `${duration}ms`);
@@ -368,14 +379,23 @@ export const initInsideMindHero = () => {
       root.style.setProperty('--glitch-band-top', `${18 + Math.round(Math.random() * 40)}%`);
       root.dataset.split = Math.random() < 0.5 ? 'left' : 'right';
       root.dataset.glitch = lastGlitch;
-      if(lastGlitch==='diagonal'||lastGlitch==='horizontal'){
+      if (lastGlitch === 'diagonal' || lastGlitch === 'horizontal') {
         delete root.dataset.split;
-        root.dataset.division=lastGlitch;
-        const diagonal=lastGlitch==='diagonal';
-        const clips=diagonal?['polygon(0 0,72% 0,28% 100%,0 100%)','polygon(72% 0,100% 0,100% 100%,28% 100%)']:['inset(0 0 50% 0)','inset(50% 0 0 0)'];
-        portraitHalves.forEach((half,i)=>half.style.clipPath=clips[i]!);
-        halfTimeline=gsap.timeline().to(portraitHalves,{opacity:.85,x:(i:number)=>diagonal?(i===0?-9:9):0,duration:duration/2000,ease:'sine.inOut'})
-          .to(portraitHalves,{opacity:0,x:0,duration:duration/2000,ease:'sine.inOut'});
+        root.dataset.division = lastGlitch;
+        const diagonal = lastGlitch === 'diagonal';
+        const clips = diagonal
+          ? ['polygon(0 0,72% 0,28% 100%,0 100%)', 'polygon(72% 0,100% 0,100% 100%,28% 100%)']
+          : ['inset(0 0 50% 0)', 'inset(50% 0 0 0)'];
+        portraitHalves.forEach((half, i) => (half.style.clipPath = clips[i]!));
+        halfTimeline = gsap
+          .timeline()
+          .to(portraitHalves, {
+            opacity: 0.85,
+            x: (i: number) => (diagonal ? (i === 0 ? -9 : 9) : 0),
+            duration: duration / 2000,
+            ease: 'sine.inOut',
+          })
+          .to(portraitHalves, { opacity: 0, x: 0, duration: duration / 2000, ease: 'sine.inOut' });
       }
       glitchEndsAt = now + duration;
       // Independent from the portrait ping-pong: leave irregular quiet intervals.
@@ -394,7 +414,10 @@ export const initInsideMindHero = () => {
         ? (HERO_SEQUENCE[Math.min(index + 1, HERO_SEQUENCE.length - 1)] ?? source)
         : source;
       root.dataset.frame = String(index + 1);
-      if(root.dataset.division)portraitHalves.forEach((half,i)=>{half.src=HERO_SEQUENCE[(index+i+2)%HERO_SEQUENCE.length]!;});
+      if (root.dataset.division)
+        portraitHalves.forEach((half, i) => {
+          half.src = HERO_SEQUENCE[(index + i + 2) % HERO_SEQUENCE.length]!;
+        });
       window.setTimeout(() => {
         elements.portrait.style.removeProperty('filter');
       }, 70);
@@ -427,21 +450,25 @@ export const initInsideMindHero = () => {
       const run = ++sequenceRun;
       root.dataset.sequence = 'playing';
 
-      let index = Math.max(0,Number(root.dataset.frame||1)-1);
+      let index = Math.max(0, Number(root.dataset.frame || 1) - 1);
       let direction = 1;
       while (run === sequenceRun && root.dataset.state === 'portrait') {
-        if(document.hidden){await wait(300);continue;}
+        if (document.hidden) {
+          await wait(300);
+          continue;
+        }
         setSequenceFrame(index);
         await wait(getResponsivePace(index));
-        if(index===HERO_SEQUENCE.length-1)direction=-1;
-        if(index===0)direction=1;
-        index+=direction;
+        if (index === HERO_SEQUENCE.length - 1) direction = -1;
+        if (index === 0) direction = 1;
+        index += direction;
       }
     };
 
+    const initialSequence = HERO_SEQUENCE.slice(0, 6);
     const preloadSequence = (onProgress?: (loaded: number) => void) => {
       let loaded = 0;
-      const images = HERO_SEQUENCE.map(
+      const images = initialSequence.map(
         (source) =>
           new Promise<void>((resolve) => {
             const image = new Image();
@@ -502,7 +529,7 @@ export const initInsideMindHero = () => {
 
     Promise.all([
       portraitReady,
-      preloadSequence((loaded) => setLoaderProgress(18 + (loaded / HERO_SEQUENCE.length) * 72)),
+      preloadSequence((loaded) => setLoaderProgress(18 + (loaded / initialSequence.length) * 72)),
     ]).then(() => {
       setLoaderProgress(92);
       const remaining = Math.max(0, 850 - (performance.now() - startedAt));
@@ -599,7 +626,13 @@ export const initInsideMindHero = () => {
 
     const timeline = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
     timeline
-      .call(() => { delete root.dataset.rupture; }, [], 1.05)
+      .call(
+        () => {
+          delete root.dataset.rupture;
+        },
+        [],
+        1.05,
+      )
       .to([elements.copy, elements.actions], { autoAlpha: 0, y: -18, duration: 0.55 }, 0.65)
       .set(elements.skipPlaying, { display: 'block' }, 0.12)
       .to(
@@ -649,45 +682,55 @@ export const initInsideMindHero = () => {
 
     let universeHandoff = 0;
     const openUniverseV2 = () => {
-      void navigate('/univers-v2').then(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));
+      void navigate('/univers-v2').then(() =>
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' }),
+      );
     };
     const play = () => {
       if (root.dataset.state === 'playing' || root.dataset.state === 'revealed') return;
       stopLauncherIdle();
       root.dataset.state = 'playing';
-      const interruptedFrame = Math.max(0, Number(root.dataset.nextFrame ?? root.dataset.frame ?? 1) - 1);
-      sequenceRun+=1;halfTimeline?.kill();
+      const interruptedFrame = Math.max(
+        0,
+        Number(root.dataset.nextFrame ?? root.dataset.frame ?? 1) - 1,
+      );
+      sequenceRun += 1;
+      halfTimeline?.kill();
       // Resolve both halves into their destination before the short rapid sequence.
-      if(root.dataset.nextFrame)gsap.to(portraitHalves,{opacity:1,x:0,y:0,duration:.18,ease:'sine.out'});
-      const universeReady=prepareRoom();
+      if (root.dataset.nextFrame)
+        gsap.to(portraitHalves, { opacity: 1, x: 0, y: 0, duration: 0.18, ease: 'sine.out' });
+      const universeReady = prepareRoom();
       elements.status.textContent =
         'Introduction en cours. Le passage vers les projets peut être ignoré.';
       elements.skipPlaying.hidden = false;
       gsap.set(elements.skipPlaying, { display: 'block', autoAlpha: 1 });
-      universeHandoff=window.setTimeout(()=>{
+      universeHandoff = window.setTimeout(() => {
         cancelSequence(interruptedFrame);
-        let burstFrame=0;
-        burstTimer=window.setInterval(()=>{
-          const index=(interruptedFrame+burstFrame)%HERO_SEQUENCE.length;
-          elements.portrait.src=HERO_SEQUENCE[index]!;elements.echo.src=HERO_SEQUENCE[index]!;
-          root.dataset.frame=String(index+1);burstFrame++;
-        },85);
-        universeHandoff=window.setTimeout(async()=>{
-          await Promise.race([universeReady,wait(1800)]);
-          if(root.dataset.state!=='playing'||!root.isConnected)return;
+        let burstFrame = 0;
+        burstTimer = window.setInterval(() => {
+          const index = (interruptedFrame + burstFrame) % HERO_SEQUENCE.length;
+          elements.portrait.src = HERO_SEQUENCE[index]!;
+          elements.echo.src = HERO_SEQUENCE[index]!;
+          root.dataset.frame = String(index + 1);
+          burstFrame++;
+        }, 85);
+        universeHandoff = window.setTimeout(async () => {
+          await Promise.race([universeReady, wait(1800)]);
+          if (root.dataset.state !== 'playing' || !root.isConnected) return;
           window.clearInterval(burstTimer);
-          elements.echo.src=HERO_SEQUENCE[(interruptedFrame+9)%HERO_SEQUENCE.length]!;
-          root.dataset.rupture='true';
-          universeHandoff=window.setTimeout(openUniverseV2,1000);
-        },680);
-      },180);
+          elements.echo.src = HERO_SEQUENCE[(interruptedFrame + 9) % HERO_SEQUENCE.length]!;
+          root.dataset.rupture = 'true';
+          universeHandoff = window.setTimeout(openUniverseV2, 1000);
+        }, 680);
+      }, 180);
     };
 
     const skip = () => {
       stopLauncherIdle();
       window.clearTimeout(universeHandoff);
-      window.clearInterval(burstTimer);clearHalves();
-      root.dataset.state='revealed';
+      window.clearInterval(burstTimer);
+      clearHalves();
+      root.dataset.state = 'revealed';
       openUniverseV2();
       return;
     };
@@ -774,27 +817,71 @@ export const initInsideMindHero = () => {
       const fallDrop = Math.max(460, fallExit - 220);
       footerLaunchTimeline
         // Release, reach, then drop almost vertically with small comic beats.
-        .to(elements.footerLauncherCharacter, { x: 1, y: 14, rotation: -4, duration: 0.12, ease: 'steps(1)' }, 0)
-        .call(() => {
-          elements.footerLauncher.dataset.launcherPose = '4';
-        }, [], 0.1)
-        .to(elements.footerLauncherCharacter, { x: 3, y: 42, rotation: -12, duration: 0.14, ease: 'steps(1)' }, 0.1)
-        .call(() => {
-          elements.footerLauncher.dataset.launcherPose = '5';
-        }, [], 0.24)
-        .to(elements.footerLauncherCharacter, { x: 6, y: 76, rotation: -8, duration: 0.14, ease: 'steps(1)' }, 0.24)
-        .call(() => {
-          elements.footerLauncher.dataset.launcherPose = '6';
-        }, [], 0.38)
-        .to(elements.footerLauncherCharacter, { x: 3, y: fallReach, rotation: 6, duration: 0.42, ease: 'steps(2)' }, 0.38)
-        .call(() => {
-          elements.footerLauncher.dataset.launcherPose = '7';
-        }, [], 0.54)
-        .to(elements.footerLauncherCharacter, { x: -2, y: fallDrop, rotation: 14, duration: 0.24, ease: 'steps(2)' }, 0.8)
-        .call(() => {
-          elements.footerLauncher.dataset.launcherPose = '8';
-        }, [], 0.72)
-        .to(elements.footerLauncherCharacter, { x: -5, y: fallExit, rotation: 24, autoAlpha: 0, duration: 0.34, ease: 'steps(2)' }, 1.04);
+        .to(
+          elements.footerLauncherCharacter,
+          { x: 1, y: 14, rotation: -4, duration: 0.12, ease: 'steps(1)' },
+          0,
+        )
+        .call(
+          () => {
+            elements.footerLauncher.dataset.launcherPose = '4';
+          },
+          [],
+          0.1,
+        )
+        .to(
+          elements.footerLauncherCharacter,
+          { x: 3, y: 42, rotation: -12, duration: 0.14, ease: 'steps(1)' },
+          0.1,
+        )
+        .call(
+          () => {
+            elements.footerLauncher.dataset.launcherPose = '5';
+          },
+          [],
+          0.24,
+        )
+        .to(
+          elements.footerLauncherCharacter,
+          { x: 6, y: 76, rotation: -8, duration: 0.14, ease: 'steps(1)' },
+          0.24,
+        )
+        .call(
+          () => {
+            elements.footerLauncher.dataset.launcherPose = '6';
+          },
+          [],
+          0.38,
+        )
+        .to(
+          elements.footerLauncherCharacter,
+          { x: 3, y: fallReach, rotation: 6, duration: 0.42, ease: 'steps(2)' },
+          0.38,
+        )
+        .call(
+          () => {
+            elements.footerLauncher.dataset.launcherPose = '7';
+          },
+          [],
+          0.54,
+        )
+        .to(
+          elements.footerLauncherCharacter,
+          { x: -2, y: fallDrop, rotation: 14, duration: 0.24, ease: 'steps(2)' },
+          0.8,
+        )
+        .call(
+          () => {
+            elements.footerLauncher.dataset.launcherPose = '8';
+          },
+          [],
+          0.72,
+        )
+        .to(
+          elements.footerLauncherCharacter,
+          { x: -5, y: fallExit, rotation: 24, autoAlpha: 0, duration: 0.34, ease: 'steps(2)' },
+          1.04,
+        );
     };
 
     elements.enter.addEventListener('click', reduceMotion ? skip : play);

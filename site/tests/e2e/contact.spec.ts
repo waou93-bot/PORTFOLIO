@@ -6,7 +6,7 @@ test.describe('Contact', () => {
     const form = page.locator('#contact-form');
     await expect(form).toBeVisible();
 
-    await page.getByRole('button', { name: 'Envoyer le message' }).click();
+    await page.getByRole('button', { name: 'Proposer une collaboration' }).click();
 
     await expect(page.getByText('Veuillez indiquer votre nom.')).toBeVisible();
     await expect(page.getByText('Adresse email invalide.')).toBeVisible();
@@ -14,20 +14,26 @@ test.describe('Contact', () => {
     await expect(
       page.getByText('Votre message doit contenir au moins 10 caractères.'),
     ).toBeVisible();
-    await expect(page.getByText('Certains champs sont à corriger.')).toBeVisible();
+    await expect(
+      page.getByText('Corrigez les champs signalés avant de proposer la collaboration.'),
+    ).toBeVisible();
   });
 
   test('le honeypot capte les bots avec un succès silencieux', async ({ page }) => {
     await page.goto('/contact');
-    await page.locator('#website').fill('spam');
+    await page.locator('#website').evaluate((input) => {
+      (input as HTMLInputElement).value = 'spam';
+    });
     await page.locator('#name').fill('Robot');
     await page.locator('#email').fill('robot@example.com');
     await page.locator('#projectType').selectOption('landing');
     await page.locator('#message').fill('Message automatique');
 
-    await page.getByRole('button', { name: 'Envoyer le message' }).click();
+    await page.getByRole('button', { name: 'Proposer une collaboration' }).click();
 
-    await expect(page.getByText('Merci, votre message a bien été envoyé.')).toBeVisible();
+    await expect(page.locator('.form-status')).toContainText(
+      'Merci, votre proposition a bien été préparée.',
+    );
   });
 
   test('un envoi valide aboutit au fallback mailto (aucune donnée stockée)', async ({ page }) => {
@@ -41,7 +47,7 @@ test.describe('Contact', () => {
     await page.locator('#projectType').selectOption('landing');
     await page.locator('#message').fill('Bonjour, j’aimerais parler d’une landing page immersive.');
 
-    await page.getByRole('button', { name: 'Envoyer le message' }).click();
+    await page.getByRole('button', { name: 'Proposer une collaboration' }).click();
 
     const status = page.locator('.form-status');
     await expect(status).toBeVisible();
@@ -60,7 +66,7 @@ test.describe('Contact', () => {
     await page.locator('#email').fill('ada@example.com');
     await page.locator('#projectType').selectOption('landing');
     await page.locator('#message').fill('Message valide avec dix caractères au minimum.');
-    await page.getByRole('button', { name: 'Envoyer le message' }).click();
+    await page.getByRole('button', { name: 'Proposer une collaboration' }).click();
     await expect(page.locator('.form-status')).toBeVisible();
   });
 });

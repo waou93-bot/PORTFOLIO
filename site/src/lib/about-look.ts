@@ -9,7 +9,7 @@ const mapPointerToTimeline = (value: number) => {
 };
 
 export function initAboutLookVideo(): void {
-  document.querySelectorAll<HTMLElement>('[data-about-look]').forEach(figure => {
+  document.querySelectorAll<HTMLElement>('[data-about-look]').forEach((figure) => {
     if (figure.dataset.initialized === 'true') return;
     figure.dataset.initialized = 'true';
 
@@ -24,6 +24,12 @@ export function initAboutLookVideo(): void {
     let raf = 0;
     let previousTick = 0;
 
+    const updateAccessiblePosition = (ratio: number) => {
+      const value = Math.round(clamp01(ratio) * 100);
+      stage.setAttribute('aria-valuenow', String(value));
+      stage.setAttribute('aria-valuetext', `Position du regard : ${value} %`);
+    };
+
     const setReady = () => {
       ready = true;
       figure.dataset.ready = 'true';
@@ -37,7 +43,13 @@ export function initAboutLookVideo(): void {
       const follow = 1 - Math.exp(-elapsed / 150);
       displayRatio += (targetRatio - displayRatio) * follow;
 
-      if (ready && !reducedMotion.matches && Number.isFinite(video.duration) && video.duration > 0 && !video.seeking) {
+      if (
+        ready &&
+        !reducedMotion.matches &&
+        Number.isFinite(video.duration) &&
+        video.duration > 0 &&
+        !video.seeking
+      ) {
         const edge = Math.min(0.04, video.duration / 10);
         const time = edge + displayRatio * Math.max(0, video.duration - edge * 2);
         if (Math.abs(video.currentTime - time) >= 0.025) video.currentTime = time;
@@ -52,6 +64,7 @@ export function initAboutLookVideo(): void {
 
     const scheduleSeek = (ratio: number) => {
       targetRatio = clamp01(ratio);
+      updateAccessiblePosition(targetRatio);
       if (!raf) raf = window.requestAnimationFrame(seek);
     };
 
@@ -80,9 +93,13 @@ export function initAboutLookVideo(): void {
     };
 
     video.addEventListener('loadeddata', setReady, { once: true });
-    video.addEventListener('loadedmetadata', () => {
-      video.currentTime = Math.min(0.04, Math.max(0, video.duration / 10));
-    }, { once: true });
+    video.addEventListener(
+      'loadedmetadata',
+      () => {
+        video.currentTime = Math.min(0.04, Math.max(0, video.duration / 10));
+      },
+      { once: true },
+    );
     video.addEventListener('seeked', () => {
       if (Math.abs(targetRatio - displayRatio) > 0.002 && !raf) {
         raf = window.requestAnimationFrame(seek);
@@ -93,21 +110,28 @@ export function initAboutLookVideo(): void {
     stage.addEventListener('keydown', onKeyDown);
     window.addEventListener('pointermove', onWindowPointerMove, { passive: true });
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry?.isIntersecting) load();
-    }, { rootMargin: '240px 0px', threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) load();
+      },
+      { rootMargin: '240px 0px', threshold: 0.1 },
+    );
     observer.observe(figure);
 
-    document.addEventListener('astro:before-swap', () => {
-      observer.disconnect();
-      stage.removeEventListener('focus', load);
-      stage.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('pointermove', onWindowPointerMove);
-      if (raf) window.cancelAnimationFrame(raf);
-      video.pause();
-      video.removeAttribute('src');
-      video.querySelectorAll('source').forEach(source => source.remove());
-      video.load();
-    }, { once: true });
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        observer.disconnect();
+        stage.removeEventListener('focus', load);
+        stage.removeEventListener('keydown', onKeyDown);
+        window.removeEventListener('pointermove', onWindowPointerMove);
+        if (raf) window.cancelAnimationFrame(raf);
+        video.pause();
+        video.removeAttribute('src');
+        video.querySelectorAll('source').forEach((source) => source.remove());
+        video.load();
+      },
+      { once: true },
+    );
   });
 }

@@ -18,11 +18,11 @@
 
 | Rôle | Skills mobilisés | Livrable | Statut | Décision ou incertitude |
 |---|---|---|---|---|
-| Pilotage | brain, newpro, newsite | MASTER repris et décisions consolidées | réalisé séquentiellement | Vantel audité sur le site protégé ; médias sources encore absents localement |
+| Pilotage | brain, newpro, newsite | MASTER repris et décisions consolidées | réalisé séquentiellement | les quatre projets sont classés ; crédits Down Trigger et QA restent à finaliser |
 | Stratégie | product-marketing, no-slop | contrat de conversion | réalisé séquentiellement | pas de promesse de délai |
 | UX | cro, newsite | parcours portrait → preuve → contact | réalisé séquentiellement | accès direct obligatoire |
 | Direction UI | design-taste-frontend, asset-continuity | Design Read et canon média | réalisé séquentiellement | portrait 02 retenu comme candidat hero |
-| Réalisation/recette | Astro, webapp-testing, web-design-guidelines | tranche verticale | à produire | versions figées à l’installation |
+| Réalisation/recette | Astro, webapp-testing, web-design-guidelines | tranche verticale | en correction et recette | versions figées dans `site/package.json` |
 
 ## Architecture
 
@@ -48,7 +48,7 @@
 - Portraits : sources locales extraites, droits personnels présumés mais origine de génération à conserver.
 - Storyboard : canon narratif, non utilisé comme fausse capture du site final.
 - Projets : uniquement médias issus des dossiers audités, avec mention `concept` lorsque nécessaire.
-- Vantel : étude de cas factuelle en brouillon à partir du site audité ; publication différée jusqu’à réception des médias sources et validation des droits.
+- Vantel : étude de cas factuelle publiée comme concept fictif ; médias et droits déclarés utilisables par Nicolas.
 
 ## Gate anti-template
 

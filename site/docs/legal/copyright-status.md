@@ -19,8 +19,8 @@ preuves (commits git, horodatage).
 
 | Projet        | Statut de droits          | Preuve requise                              | Publication |
 | ------------- | ------------------------- | ------------------------------------------- | ----------- |
-| Down Trigger  | À confirmer (auteur/rôle) | Autorisation du groupe + crédits des médias | Bloquée     |
-| Héritage 2    | À confirmer               | Validation des médias et de la diffusion    | Bloquée     |
+| Down Trigger  | Autorisation du groupe confirmée par Nicolas | Crédits des médias à compléter si disponibles | Autorisée |
+| Héritage 2    | Concept fictif créé pour le portfolio | Mention conceptuelle affichée | Autorisée |
 | Maison Sillon | Concept indépendant       | Mention conceptuelle affichée               | Autorisée   |
 | Vantel        | Concept fictif intégral   | Déclaration de Nicolas du 4 septembre 2026  | Autorisée   |
 

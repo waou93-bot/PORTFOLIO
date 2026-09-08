@@ -5,7 +5,7 @@
 - Version : 0.1
 - Date : 2026-08-04
 - Statut : analyse et recommandation a arbitrer ; aucune stack choisie
-- Production : non commencee
+- Production : tranche verticale codée dans `site/`, en correction et recette ; publication non autorisée
 
 ## Question de contenu : faut-il tout publier tout de suite ?
 
@@ -15,12 +15,12 @@ La regle correcte n'est pas « toutes les oeuvres existantes doivent etre en lig
 
 ### Strategie recommandee par phases
 
-| Statut interne | Visible publiquement | Condition |
-|---|---|---|
-| `SHOW_NOW` | Oui | Etude de cas complete, medias propres, droits confirmes, lien teste et niveau gold atteint. |
-| `HOLD` | Non | Projet interessant mais contenu, assets, droits ou presentation encore incomplets. |
-| `LATER` | Non | Projet prevu pour une phase suivante, ajoute ensuite dans le meme modele de contenu. |
-| `REJECTED` | Non | Projet qui ne sert pas le positionnement, ou dont les droits/qualite ne sont pas suffisants. |
+| Statut interne | Visible publiquement | Condition                                                                                    |
+| -------------- | -------------------- | -------------------------------------------------------------------------------------------- |
+| `SHOW_NOW`     | Oui                  | Etude de cas complete, medias propres, droits confirmes, lien teste et niveau gold atteint.  |
+| `HOLD`         | Non                  | Projet interessant mais contenu, assets, droits ou presentation encore incomplets.           |
+| `LATER`        | Non                  | Projet prevu pour une phase suivante, ajoute ensuite dans le meme modele de contenu.         |
+| `REJECTED`     | Non                  | Projet qui ne sert pas le positionnement, ou dont les droits/qualite ne sont pas suffisants. |
 
 La home ne doit jamais afficher de cartes vides, de « coming soon », de compteurs qui revelent un manque ou de rubrique visiblement incomplete. Une premiere version peut etre une selection curate de trois a cinq projets forts, distincts et totalement documentes, avec une presentation claire de Nicolas, un contact et un acces CV. En dessous de trois projets, le site risque de ressembler davantage a une etude de concept qu'a un portfolio professionnel complet ; ce seuil reste une recommandation de lancement, pas une regle artistique absolue.
 
@@ -126,12 +126,12 @@ Bonne architecture de phase 2 si le portfolio doit etre edite souvent par plusie
 
 ## Comparatif synthetique
 
-| Option | Premium sur mesure | Mobile / performance | Ajout futur des oeuvres | Controle / reversibilite | Risque projet | Verdict |
-|---|---|---|---|---|---|---|
-| Webflow + custom | Fort, mais depend du code autour du Designer | Bon si discipline, moins predictible sur custom | Tres bon via CMS | Moyen | Moyen | Possible |
-| Astro + ilot immersif | Tres fort | Meilleur potentiel | Tres bon via schema de contenu | Fort | Moyen, controlable | Recommande |
-| Next/React + Three | Tres fort | Plus difficile a garantir | Bon, mais plus lourd | Fort | Eleve | Reserve |
-| Webflow CMS + frontend | Tres fort | Variable selon integration | Excellent | Moyen | Eleve par complexite | Phase 2 |
+| Option                 | Premium sur mesure                           | Mobile / performance                            | Ajout futur des oeuvres        | Controle / reversibilite | Risque projet        | Verdict    |
+| ---------------------- | -------------------------------------------- | ----------------------------------------------- | ------------------------------ | ------------------------ | -------------------- | ---------- |
+| Webflow + custom       | Fort, mais depend du code autour du Designer | Bon si discipline, moins predictible sur custom | Tres bon via CMS               | Moyen                    | Moyen                | Possible   |
+| Astro + ilot immersif  | Tres fort                                    | Meilleur potentiel                              | Tres bon via schema de contenu | Fort                     | Moyen, controlable   | Recommande |
+| Next/React + Three     | Tres fort                                    | Plus difficile a garantir                       | Bon, mais plus lourd           | Fort                     | Eleve                | Reserve    |
+| Webflow CMS + frontend | Tres fort                                    | Variable selon integration                      | Excellent                      | Moyen                    | Eleve par complexite | Phase 2    |
 
 ## Recommandation pour le niveau gold vise
 
@@ -145,7 +145,7 @@ Three.js/WebGL ne doit pas etre introduit dans la V1 par reflexe. Il ne deviendr
 
 GSAP est compatible avec un usage commercial selon sa licence standard actuelle, et son coeur fournit timelines, easing, keyframes et outils de controle responsive ; il reste donc une option raisonnable pour la precision du mouvement, sans imposer toute une application 3D. [Licence standard GSAP](https://gsap.com/community/standard-license/) et [documentation GSAP](https://gsap.com/docs/v3/)
 
-Le choix d'hebergement peut rester simple : deploiement statique Git sur Vercel, Netlify ou Cloudflare. Vercel est une proposition par defaut pratique pour les previews et les retours, mais ce n'est pas encore une decision irrevocable. [Deploiement Astro sur Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
+L'hébergement applicatif prévu est un déploiement statique Git sur Vercel ; le domaine canonique souhaité est `https://www.wadek.fr`, commandé chez OVH et encore en cours d'activation. Aucun rattachement DNS ou Vercel n'est exécuté ici. [Déploiement Astro sur Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
 
 ## Recommandation de lancement par phases
 

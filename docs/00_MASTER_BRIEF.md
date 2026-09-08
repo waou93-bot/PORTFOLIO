@@ -5,8 +5,8 @@
 - Version : 0.4
 - Profil : `hybrid` (hybride)
 - Date d'initialisation : 2026-08-03T21:38:08.734074+00:00
-- Statut : direction artistique validée ; préproduction technique et contenu à finaliser
-- Production : non commencee
+- Statut : tranche verticale en correction et recette ; direction artistique validée
+- Production : en cours sur `site/`, publication non autorisée
 
 ## Objectif
 
@@ -14,7 +14,7 @@ Concevoir et valider en préproduction un portfolio web premium où un portrait 
 
 Le résultat attendu est un site en état gold ou quasiment gold : toutes les œuvres retenues sont présentes, correctement présentées, accessibles, fonctionnelles et soutenues par une direction artistique et technique cohérente.
 
-Règle bloquante : aucun code, prototype fonctionnel ou modification du site de production ne commence avant validation complète de la direction artistique et technique.
+Règle bloquante : aucune publication ne commence avant validation propriétaire, validation des droits, recette complète et validation finale Astra.
 
 ## Faits connus
 
@@ -53,16 +53,16 @@ Toute contrainte non confirmee reste une hypothese et doit etre deplacee dans le
 
 ### Exclus
 
-- Production generale ou finition exhaustive.
+- Production générale au-delà de la tranche verticale.
 - Import automatique de tous les essais historiques.
 - Decisions irreversibles non validees.
 - Lancement commercial ou diffusion publique.
 
-## Tranche verticale proposee
+## Tranche verticale en cours
 
-Tranche de préproduction non codée, présentable comme une séquence complète : intention, storyboard, planches visuelles, rythme, comportement mobile, architecture cible, fallback et critères de qualité. Elle doit montrer comment le portrait devient une porte vers le monde intérieur puis donne accès à un projet réel.
+Tranche verticale web codée dans `site/`, actuellement en correction et recette : intention, storyboard, rythme, comportement mobile, architecture, fallback et critères de qualité sont confrontés à l’implémentation. Elle montre comment le portrait devient une porte vers le monde intérieur puis donne accès aux quatre projets sélectionnés.
 
-La tranche doit être suffisamment aboutie pour permettre une décision GO/NO-GO de la direction artistique et technique, sans engager la production du site.
+La tranche doit être suffisamment aboutie pour permettre une décision GO/NO-GO de la direction artistique et technique, sans autoriser à elle seule la publication du site.
 
 Risques testés : valeur professionnelle, singularité sans effet gadget, cohérence du passage portrait → monde intérieur, hiérarchie entre expérience et œuvres, faisabilité technique, performance mobile, accessibilité, droits et charge réelle.
 
@@ -76,11 +76,11 @@ Les arbitrages encore ouverts portent uniquement sur les raffinements et la trad
 
 ## Arbitrages ouverts
 
-- Plateforme et stack : à choisir après la comparaison documentée des options. Le benchmark Lando Norris fixe l’ambition visuelle, pas la technologie à copier.
-- Périmètre exact des œuvres à montrer : la liste exhaustive doit être confirmée et chaque œuvre doit avoir un statut de droits et d’assets.
+- Plateforme et stack : Astro + TypeScript + CSS natif sont retenus pour `site/`, avec un îlot immersif isolé.
+- Périmètre des œuvres : Down Trigger, Héritage 2, Maison Sillon et Vantel ; chaque entrée conserve un statut explicite.
 - Direction artistique de base : validée avec le storyboard « Inside My Mind » et le mix 2,5D « Glass / Parallax » ; seuls les raffinements restent à arbitrer.
 - Architecture technique finale : à verrouiller après validation de la direction artistique, avec stratégie mobile, fallback et budget de performance.
 
 ## Prochaine action
 
-Arbitrer le comparatif `docs/14_COMPARATIF_PLATEFORME_STACK.md`, puis finaliser l'inventaire des œuvres de la phase 1 avant le GO/NO-GO technique ; aucun code avant cet arbitrage.
+Finaliser la recette navigateur, les mesures de performance et les informations légales manquantes avant la décision GO/NO-GO ; aucune publication avant ces contrôles.

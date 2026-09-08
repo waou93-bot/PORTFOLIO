@@ -8,7 +8,7 @@ Français, direct, précis, sans jargon, sans superlatif. Peu de mots, du concre
 
 - **Titre** : « Je conçois des expériences web qui ne ressemblent pas à des templates. »
 - **Sous-titre** : « Direction artistique, UX/UI, landing pages immersives et développement front-end. »
-- **CTA** : « Découvrir les projets » · « Parler d'un projet »
+- **CTA** : « Découvrir les projets » · « Proposer une collaboration »
 
 ## Bloc positionnement (après le hero)
 
@@ -44,7 +44,7 @@ Ouverture visuelle → titre → statut/année/secteur/rôle/services → contex
 
 ## Formulaire
 
-- Titre : « Parler d'un projet »
+- Titre : « Proposer une collaboration »
 - Sous-ligne : « Décrivez le projet en quelques lignes — je réponds sous 48 h. » (ne pas promettre de délai non tenable → à confirmer)
 - Champs : Nom · Email · Type de projet (sélecteur) · Message
 - Mention : « Vos données servent uniquement à répondre à votre demande. Elles ne sont pas transmises à des tiers. »

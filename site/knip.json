@@ -20,5 +20,11 @@
     "@fontsource/instrument-serif",
     "zod"
   ],
-  "ignore": ["src/env.d.ts", "src/styles/global.css"]
+  "ignore": [
+    "src/env.d.ts",
+    "src/styles/global.css",
+    "scripts/extract-vantel-assets.mjs",
+    "scripts/optimize-galaxy.mjs",
+    "scripts/qa-footer-nicolas.mjs"
+  ]
 }

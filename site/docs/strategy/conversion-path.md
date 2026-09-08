@@ -14,7 +14,7 @@
 ## CTA
 
 - Principal : **« Découvrir les projets »** → /work.
-- Secondaire : **« Parler d'un projet »** → /contact.
+- Secondaire : **« Proposer une collaboration »** → /contact.
 - Persistant : lien contact dans header + footer + fin de chaque étude de cas (« Un projet à discuter ? »).
 
 ## Anti-dark-patterns
