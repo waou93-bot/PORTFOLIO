@@ -70,13 +70,13 @@ const navItems = isHome
 
   .brand-logo {
     flex: 0 0 auto;
-    width: 2.7rem;
-    height: 2.9rem;
+    width: 3rem;
+    height: 3.2rem;
     object-fit: contain;
-    filter: invert(1);
+    filter: invert(1) drop-shadow(0 0 0.7px currentColor);
   }
 
-  .site-header.is-home .brand-logo { filter: none; }
+  .site-header.is-home .brand-logo { filter: drop-shadow(0 0 0.7px currentColor); }
 
   .brand-copy {
     display: inline-flex;
@@ -84,14 +84,14 @@ const navItems = isHome
   }
 
   .brand-name {
-    font-size: clamp(1.05rem, 1.8vw, 1.28rem);
-    font-weight: 760;
+    font-size: clamp(1.16rem, 2vw, 1.42rem);
+    font-weight: 850;
     letter-spacing: -0.04em;
   }
 
   .brand-tag {
-    font-size: clamp(0.7rem, 1.1vw, 0.82rem);
-    font-weight: 650;
+    font-size: clamp(0.74rem, 1.2vw, 0.9rem);
+    font-weight: 750;
     text-transform: uppercase;
     letter-spacing: var(--tracking-label);
     color: var(--color-muted);

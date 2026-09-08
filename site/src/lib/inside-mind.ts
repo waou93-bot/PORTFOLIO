@@ -272,9 +272,9 @@ export const initInsideMindHero = () => {
     const launcherIdleBeats = [
       // Keep the invitation legible: the character remains suspended overhead.
       { pose: 0, beat: 0, duration: 1200 },
-      { pose: 1, beat: 1, duration: 760 },
+      { pose: 0, beat: 0, duration: 760 },
       { pose: 0, beat: 0, duration: 1200 },
-      { pose: 2, beat: 2, duration: 760 },
+      { pose: 0, beat: 0, duration: 760 },
     ];
     const stopLauncherIdle = () => {
       window.clearTimeout(launcherIdleTimer);
@@ -768,6 +768,10 @@ export const initInsideMindHero = () => {
       }
 
       footerLaunchTimeline = gsap.timeline({ onComplete: goToFooter });
+      const viewportBottom = Math.max(window.innerHeight, document.documentElement.clientHeight);
+      const fallExit = viewportBottom + 120;
+      const fallReach = Math.max(320, fallExit - 420);
+      const fallDrop = Math.max(460, fallExit - 220);
       footerLaunchTimeline
         // Release, reach, then drop almost vertically with small comic beats.
         .to(elements.footerLauncherCharacter, { x: 1, y: 14, rotation: -4, duration: 0.12, ease: 'steps(1)' }, 0)
@@ -782,15 +786,15 @@ export const initInsideMindHero = () => {
         .call(() => {
           elements.footerLauncher.dataset.launcherPose = '6';
         }, [], 0.38)
-        .to(elements.footerLauncherCharacter, { x: 3, y: 116, rotation: 6, duration: 0.16, ease: 'steps(1)' }, 0.38)
+        .to(elements.footerLauncherCharacter, { x: 3, y: fallReach, rotation: 6, duration: 0.42, ease: 'steps(2)' }, 0.38)
         .call(() => {
           elements.footerLauncher.dataset.launcherPose = '7';
         }, [], 0.54)
-        .to(elements.footerLauncherCharacter, { x: -2, y: 162, rotation: 14, duration: 0.18, ease: 'steps(1)' }, 0.54)
+        .to(elements.footerLauncherCharacter, { x: -2, y: fallDrop, rotation: 14, duration: 0.24, ease: 'steps(2)' }, 0.8)
         .call(() => {
           elements.footerLauncher.dataset.launcherPose = '8';
         }, [], 0.72)
-        .to(elements.footerLauncherCharacter, { x: -5, y: 212, rotation: 24, autoAlpha: 0, duration: 0.28, ease: 'steps(2)' }, 0.72);
+        .to(elements.footerLauncherCharacter, { x: -5, y: fallExit, rotation: 24, autoAlpha: 0, duration: 0.34, ease: 'steps(2)' }, 1.04);
     };
 
     elements.enter.addEventListener('click', reduceMotion ? skip : play);

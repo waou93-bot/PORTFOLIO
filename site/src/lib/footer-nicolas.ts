@@ -13,18 +13,19 @@ type Pose = {
   scale: number;
 };
 
-const atlas = '/media/footer/nicolas-poses-v2-alpha.png';
-const poses: Pose[] = [
-  { src: atlas, width: 1774, height: 887, crop: [80, 285, 290, 50], anchor: [229, 311], scale: 0.42 },
-  { src: atlas, width: 1774, height: 887, crop: [530, 215, 280, 120], anchor: [663, 311], scale: 0.42 },
-  { src: atlas, width: 1774, height: 887, crop: [950, 140, 320, 195], anchor: [1105, 311], scale: 0.42 },
-  { src: atlas, width: 1774, height: 887, crop: [1380, 60, 310, 275], anchor: [1525, 311], scale: 0.42 },
-  { src: atlas, width: 1774, height: 887, crop: [55, 430, 300, 310], anchor: [228, 715], scale: 0.42 },
-  { src: atlas, width: 1774, height: 887, crop: [540, 420, 255, 320], anchor: [663, 715], scale: 0.42 },
-  { src: '/media/footer/nicolas-rising-v2-alpha.png', width: 1254, height: 1254,
-    crop: [380, 65, 475, 1090], anchor: [622, 1125], scale: 0.2 },
-  { src: atlas, width: 1774, height: 887, crop: [1390, 355, 335, 500], anchor: [1516, 840], scale: 0.42 },
-];
+const atlas = '/media/footer/nicolas-footer-rise-v4-alpha.png';
+const atlasWidth = 2400;
+const atlasHeight = 736;
+const cellWidth = atlasWidth / 8;
+const ledgeAnchors = [505, 505, 510, 518, 610, 610, 610, 610];
+const poses: Pose[] = ledgeAnchors.map((ledgeY, index) => ({
+  src: atlas,
+  width: atlasWidth,
+  height: atlasHeight,
+  crop: [index * cellWidth, 0, cellWidth, atlasHeight] as [number, number, number, number],
+  anchor: [(index + 0.5) * cellWidth, ledgeY] as [number, number],
+  scale: 0.34,
+}));
 
 const landingEvent = 'nicolas:fall-to-footer';
 
