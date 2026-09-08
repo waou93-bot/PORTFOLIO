@@ -34,7 +34,7 @@ export function initAboutLookVideo(): void {
       raf = 0;
       const elapsed = previousTick ? Math.min(64, now - previousTick) : 16;
       previousTick = now;
-      const follow = 1 - Math.exp(-elapsed / 120);
+      const follow = 1 - Math.exp(-elapsed / 150);
       displayRatio += (targetRatio - displayRatio) * follow;
 
       if (ready && !reducedMotion.matches && Number.isFinite(video.duration) && video.duration > 0 && !video.seeking) {
@@ -64,14 +64,15 @@ export function initAboutLookVideo(): void {
 
     const onWindowPointerMove = (event: PointerEvent) => {
       if (!figure.dataset.ready) load();
-      scheduleSeek(mapPointerToTimeline(event.clientX / Math.max(1, window.innerWidth)));
+      const pointerRatio = event.clientX / Math.max(1, window.innerWidth);
+      scheduleSeek(1 - mapPointerToTimeline(pointerRatio));
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
       const step = event.shiftKey ? 0.2 : 0.08;
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
-        scheduleSeek(displayRatio + (event.key === 'ArrowRight' ? step : -step));
+        scheduleSeek(displayRatio + (event.key === 'ArrowLeft' ? step : -step));
       } else if (event.key === 'Home' || event.key === 'End') {
         event.preventDefault();
         scheduleSeek(event.key === 'End' ? 1 : 0);
