@@ -13,7 +13,7 @@ type Pose = {
   scale: number;
 };
 
-const atlas = '/media/footer/nicolas-footer-rise-v4-alpha.png';
+const atlas = '/media/footer/nicolas-footer-rise-v5-alpha.png';
 const atlasWidth = 2400;
 const atlasHeight = 736;
 const cellWidth = atlasWidth / 8;
@@ -42,6 +42,7 @@ export function initFooterNicolas() {
     let ready = false;
     let loading = false;
     let visible = false;
+    let inViewport = false;
     let unlocked = false;
     let timeline: gsap.core.Timeline | undefined;
 
@@ -136,6 +137,18 @@ export function initFooterNicolas() {
       runSequence();
     };
 
+    const isAtDocumentBottom = () =>
+      window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 16;
+
+    const syncVisibility = () => {
+      visible = inViewport && isAtDocumentBottom();
+      if (timeline && ['climbing', 'arriving'].includes(root.dataset.state ?? '')) {
+        if (visible && !document.hidden) timeline.resume();
+        else timeline.pause();
+      }
+      start();
+    };
+
     const load = async () => {
       if (loading) return;
       loading = true;
@@ -164,21 +177,17 @@ export function initFooterNicolas() {
     preload.observe(root);
 
     const visibility = new IntersectionObserver(([entry]) => {
-      visible = Boolean(entry?.isIntersecting);
-      if (timeline && ['climbing', 'arriving'].includes(root.dataset.state ?? '')) {
-        if (visible && !document.hidden) timeline.resume();
-        else timeline.pause();
-      }
-      start();
-    }, { threshold: 0.6 });
+      inViewport = Boolean(entry?.isIntersecting);
+      syncVisibility();
+    }, { threshold: [0.6, 0.85, 1] });
     visibility.observe(root);
+
+    const onScroll = () => syncVisibility();
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     const onVisibility = () => {
       if (document.hidden) timeline?.pause();
-      else if (visible) {
-        timeline?.resume();
-        start();
-      }
+      else syncVisibility();
     };
     const onMotion = () => {
       if (unlocked && ready && staticMode.matches) settle();
@@ -201,6 +210,7 @@ export function initFooterNicolas() {
       preload.disconnect();
       visibility.disconnect();
       window.removeEventListener(landingEvent, onLanding);
+      window.removeEventListener('scroll', onScroll);
       document.removeEventListener('visibilitychange', onVisibility);
       staticMode.removeEventListener('change', onMotion);
     }, { once: true });
