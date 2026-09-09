@@ -3,11 +3,17 @@ import { site } from '../../config/site';
 
 const isHome = Astro.url.pathname === '/';
 const navItems = isHome
-  ? site.nav.filter((item) => item.href !== '/' && item.href !== '/work')
+  ? site.nav.filter((item) => item.href !== '/')
   : site.nav;
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
 
-<header class:list={['site-header', { 'is-home': isHome }]}>
+<header class:list={['site-header', { 'is-home': isHome, 'is-compact': compact }]}>
   <div class="container header-inner">
     <a class="brand focus-ring" href="/" aria-label={`${site.name} — accueil`}>
       <img class="brand-logo" src="/media/identity/logo-clair.png" alt="" width="32" height="35" />
@@ -43,12 +49,88 @@ const navItems = isHome
   }
 
   .site-header.is-home {
-    position: absolute;
+    position: fixed;
     width: 100%;
     color: #fff8f2;
     background: linear-gradient(180deg, rgba(8, 6, 7, 0.7), transparent);
     border-bottom: 0;
     backdrop-filter: none;
+  }
+
+  .site-header.is-compact {
+    position: fixed;
+    inset: 0 0 auto;
+    width: 100%;
+    color: #fff8f2;
+    background: transparent;
+    border-bottom: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+  }
+
+  .site-header.is-compact .header-inner {
+    justify-content: flex-start;
+    padding-block: 0.65rem;
+  }
+
+  .site-header.is-compact .brand {
+    pointer-events: auto;
+    padding: 0.2rem;
+    border-radius: 50%;
+    transition: background-color var(--dur-fast), transform var(--dur-fast);
+  }
+
+  .site-header.is-compact .brand:hover {
+    background: rgb(255 255 255 / 0.12);
+    transform: scale(1.04);
+  }
+
+  .site-header.is-compact .brand-copy,
+  .site-header.is-compact .site-nav {
+    display: none;
+  }
+
+  .site-header.is-compact .brand-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: -0.18rem;
+    transform: scale(1.08);
+  }
+
+  .page-shell:not([data-theme='dark']) .site-header.is-compact .brand-logo {
+    filter: invert(1) drop-shadow(0 0 0.7px currentColor);
+  }
+
+  .page-shell[data-theme='dark'] .site-header.is-compact .brand-logo {
+    filter: drop-shadow(0 0 0.7px currentColor);
+  }
+
+  .page-shell[data-theme='dark'] .site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    width: 100%;
+    color: #fff8f2;
+    background: rgb(8 6 7 / 18%);
+    border-bottom: 1px solid rgb(255 248 242 / 14%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .page-shell[data-theme='dark'] .site-header.is-compact {
+    background: transparent;
+    border-bottom: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .page-shell[data-theme='dark'] .brand-tag,
+  .page-shell[data-theme='dark'] .nav-link {
+    color: rgb(255 248 242 / 82%);
+  }
+
+  .page-shell[data-theme='dark'] .nav-link:hover {
+    color: #fff8f2;
   }
 
   .header-inner {
@@ -73,6 +155,9 @@ const navItems = isHome
     width: 3rem;
     height: 3.2rem;
     object-fit: contain;
+    /* The source mark has transparent breathing room on its left edge. */
+    margin-left: -0.28rem;
+    transform: scale(1.18);
     filter: invert(1) drop-shadow(0 0 0.7px currentColor);
   }
 

@@ -2,19 +2,22 @@ import { gsap } from 'gsap';
 import { navigate } from 'astro:transitions/client';
 import * as THREE from 'three';
 import { initFlipProjects } from './flip-projects';
-import { initTextLoupe } from './text-loupe';
 import { prepareRoom } from './room-preload';
+import { initTextLoupe } from './text-loupe';
+import { initHeroVideoReel } from './hero-video-reel';
 
 type MindElements = {
   root: HTMLElement;
   canvas: HTMLCanvasElement;
   flight: HTMLVideoElement;
+  heroVideo: HTMLVideoElement;
   clouds: HTMLVideoElement;
   cloudsAlt: HTMLVideoElement;
   portrait: HTMLImageElement;
   echo: HTMLImageElement;
   copy: HTMLElement;
   actions: HTMLElement;
+  lowerSlot: HTMLElement | null;
   world: HTMLElement;
   worldTitle: HTMLElement;
   enter: HTMLButtonElement;
@@ -49,6 +52,7 @@ const getSequencePace = (index: number) => {
 
 const selectElements = (root: HTMLElement): MindElements | null => {
   const canvas = root.querySelector<HTMLCanvasElement>('[data-mind-canvas]');
+  const heroVideo = root.querySelector<HTMLVideoElement>('[data-mind-hero-video]');
   const flight = root.querySelector<HTMLVideoElement>('[data-mind-flight]');
   const clouds = root.querySelector<HTMLVideoElement>('[data-mind-clouds]');
   const cloudsAlt = root.querySelector<HTMLVideoElement>('[data-mind-clouds-alt]');
@@ -56,6 +60,7 @@ const selectElements = (root: HTMLElement): MindElements | null => {
   const echo = root.querySelector<HTMLImageElement>('.mind-portrait-echo');
   const copy = root.querySelector<HTMLElement>('[data-mind-copy]');
   const actions = root.querySelector<HTMLElement>('[data-mind-actions]');
+  const lowerSlot = document.querySelector<HTMLElement>('[data-mind-lower-slot]');
   const world = root.querySelector<HTMLElement>('[data-mind-world]');
   const worldTitle = root.querySelector<HTMLElement>('[data-mind-world-title]');
   const enter = root.querySelector<HTMLButtonElement>('[data-mind-enter]');
@@ -73,6 +78,7 @@ const selectElements = (root: HTMLElement): MindElements | null => {
 
   if (
     !canvas ||
+    !heroVideo ||
     !flight ||
     !clouds ||
     !cloudsAlt ||
@@ -99,6 +105,7 @@ const selectElements = (root: HTMLElement): MindElements | null => {
   return {
     root,
     canvas,
+    heroVideo,
     flight,
     clouds,
     cloudsAlt,
@@ -106,6 +113,7 @@ const selectElements = (root: HTMLElement): MindElements | null => {
     echo,
     copy,
     actions,
+    lowerSlot,
     world,
     worldTitle,
     enter,
@@ -247,6 +255,7 @@ export const initInsideMindHero = () => {
     const disposeTextLoupe = initTextLoupe(root);
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const compositePortrait = elements.portrait.hasAttribute('data-composite-portrait');
     const webglAvailable = (() => {
       try {
         const probe = document.createElement('canvas');
@@ -258,6 +267,27 @@ export const initInsideMindHero = () => {
 
     const portal = webglAvailable && !reduceMotion ? createPortal(elements.canvas) : null;
     portal?.renderOnce();
+
+    const heroReel = initHeroVideoReel(root);
+    const playHeroVideo = heroReel.play;
+    const pauseHeroVideo = heroReel.pause;
+
+    const moveActionsToFooter = () => {
+      if (!elements.lowerSlot || root.dataset.ctaLowered === 'true') return;
+      const from = elements.actions.getBoundingClientRect();
+      root.dataset.ctaLowered = 'true';
+      gsap.killTweensOf(elements.actions);
+      gsap.set(elements.actions, { clearProps: 'all' });
+      elements.actions.classList.add('is-lowered');
+      elements.lowerSlot.append(elements.actions);
+      const to = elements.actions.getBoundingClientRect();
+      gsap.fromTo(
+        elements.actions,
+        { x: from.left - to.left, y: from.top - to.top },
+        { x: 0, y: 0, duration: 0.78, ease: 'power3.inOut', overwrite: true },
+      );
+      elements.status.textContent = 'Le bouton s’est déplacé. Descendez pour le retrouver.';
+    };
 
     let sequenceRun = 0;
     const portraitHalves = [...root.querySelectorAll<HTMLImageElement>('[data-portrait-half]')];
@@ -403,6 +433,7 @@ export const initInsideMindHero = () => {
     };
 
     const setSequenceFrame = (index: number) => {
+      if (compositePortrait) return;
       const source = HERO_SEQUENCE[index] ?? '/media/identity/sequence-expression-v1/frame-01.webp';
       updateGlitch();
       const splitSide = root.dataset.split;
@@ -442,6 +473,7 @@ export const initInsideMindHero = () => {
     };
 
     const playSequence = async () => {
+      if (compositePortrait) return;
       if (reduceMotion || sequencePlaying || root.dataset.state !== 'portrait') return;
       sequencePlaying = true;
       resetGaze();
@@ -465,7 +497,7 @@ export const initInsideMindHero = () => {
       }
     };
 
-    const initialSequence = HERO_SEQUENCE.slice(0, 6);
+    const initialSequence = compositePortrait ? [] : HERO_SEQUENCE.slice(0, 6);
     const preloadSequence = (onProgress?: (loaded: number) => void) => {
       let loaded = 0;
       const images = initialSequence.map(
@@ -510,9 +542,34 @@ export const initInsideMindHero = () => {
         onComplete: () => {
           elements.loader.hidden = true;
           root.dataset.state = 'portrait';
-          playLauncherIdle();
+          playHeroVideo();
+          root.dataset.launcherEntry = 'waiting';
+          const startLauncherEntry = () => {
+            moveActionsToFooter();
+            elements.footerLauncher.disabled = true;
+            elements.footerLauncher.dataset.launcherPose = '3';
+            window.setTimeout(() => (elements.footerLauncher.dataset.launcherPose = '5'), 65);
+            window.setTimeout(() => (elements.footerLauncher.dataset.launcherPose = '0'), 430);
+            root.dataset.launcherEntry = 'falling';
+            if (reduceMotion) {
+              delete root.dataset.launcherEntry;
+              elements.footerLauncher.disabled = false;
+              playLauncherIdle();
+            } else {
+              elements.footerLauncher.addEventListener(
+                'animationend',
+                () => {
+                  delete root.dataset.launcherEntry;
+                  elements.footerLauncher.dataset.launcherPose = '0';
+                  elements.footerLauncher.disabled = false;
+                  playLauncherIdle();
+                },
+                { once: true },
+              );
+            }
+          };
+          window.addEventListener('scroll', startLauncherEntry, { once: true, passive: true });
           elements.status.textContent = 'Portrait chargé. L’introduction immersive est disponible.';
-          void playSequence();
         },
       });
     };
@@ -689,6 +746,7 @@ export const initInsideMindHero = () => {
     const play = () => {
       if (root.dataset.state === 'playing' || root.dataset.state === 'revealed') return;
       stopLauncherIdle();
+      pauseHeroVideo();
       root.dataset.state = 'playing';
       const interruptedFrame = Math.max(
         0,
@@ -700,6 +758,16 @@ export const initInsideMindHero = () => {
       if (root.dataset.nextFrame)
         gsap.to(portraitHalves, { opacity: 1, x: 0, y: 0, duration: 0.18, ease: 'sine.out' });
       const universeReady = prepareRoom();
+      if (compositePortrait) {
+        elements.status.textContent = 'Ouverture des projets.';
+        elements.skipPlaying.hidden = false;
+        gsap.set(elements.skipPlaying, { display: 'block', autoAlpha: 1 });
+        void Promise.race([universeReady, wait(900)]).then(() => {
+          if (root.dataset.state !== 'playing' || !root.isConnected) return;
+          openUniverseV2();
+        });
+        return;
+      }
       elements.status.textContent =
         'Introduction en cours. Le passage vers les projets peut être ignoré.';
       elements.skipPlaying.hidden = false;
@@ -713,17 +781,19 @@ export const initInsideMindHero = () => {
           elements.echo.src = HERO_SEQUENCE[index]!;
           root.dataset.frame = String(index + 1);
           burstFrame++;
-        }, 85);
+        }, 70);
         universeHandoff = window.setTimeout(async () => {
-          await Promise.race([universeReady, wait(1800)]);
+          await Promise.race([universeReady, wait(900)]);
           if (root.dataset.state !== 'playing' || !root.isConnected) return;
           window.clearInterval(burstTimer);
-          elements.echo.src = HERO_SEQUENCE[(interruptedFrame + 9) % HERO_SEQUENCE.length]!;
+          elements.echo.src = HERO_SEQUENCE[(interruptedFrame + 1) % HERO_SEQUENCE.length]!;
           root.dataset.rupture = 'true';
-          universeHandoff = window.setTimeout(openUniverseV2, 1000);
-        }, 680);
+          universeHandoff = window.setTimeout(openUniverseV2, 720);
+        }, 420);
       }, 180);
     };
+
+    void play;
 
     const skip = () => {
       stopLauncherIdle();
@@ -746,6 +816,7 @@ export const initInsideMindHero = () => {
       cancelSequence(0);
       timeline.pause(0);
       elements.flight.pause();
+      pauseHeroVideo();
       elements.flight.currentTime = 0;
       stopCloudLoop();
       cloudLayers.forEach((layer) => {
@@ -783,6 +854,7 @@ export const initInsideMindHero = () => {
       elements.world.setAttribute('aria-hidden', 'true');
       elements.skipPlaying.hidden = true;
       root.dataset.state = 'portrait';
+      playHeroVideo();
       playLauncherIdle();
       elements.status.textContent = 'Retour au portrait.';
       elements.enter.focus({ preventScroll: true });
@@ -884,14 +956,32 @@ export const initInsideMindHero = () => {
         );
     };
 
-    elements.enter.addEventListener('click', reduceMotion ? skip : play);
+    const touchLayout = window.matchMedia('(hover: none), (pointer: coarse)');
+    elements.enter.addEventListener('click', () => {
+      if (touchLayout.matches && root.dataset.ctaEscaped !== 'true') {
+        root.dataset.ctaEscaped = 'true';
+        moveActionsToFooter();
+        return;
+      }
+      openUniverseV2();
+    });
     elements.enter.addEventListener('pointermove', (event) => {
       const bounds = elements.enter.getBoundingClientRect();
       elements.enter.style.setProperty('--glow-x', `${event.clientX - bounds.left}px`);
       elements.enter.style.setProperty('--glow-y', `${event.clientY - bounds.top}px`);
     });
-    elements.enter.addEventListener('pointerenter', () => scheduleReplay(0));
-    elements.enter.addEventListener('focus', () => scheduleReplay(0));
+    root.addEventListener('pointermove', (event) => {
+      if (reduceMotion || event.pointerType !== 'mouse' || window.scrollY > 8) return;
+      if (root.dataset.state !== 'portrait' || root.dataset.ctaEscaped === 'true') return;
+      const bounds = elements.enter.getBoundingClientRect();
+      const distance = Math.hypot(
+        Math.max(bounds.left - event.clientX, 0, event.clientX - bounds.right),
+        Math.max(bounds.top - event.clientY, 0, event.clientY - bounds.bottom),
+      );
+      if (distance > 28) return;
+      root.dataset.ctaEscaped = 'true';
+      moveActionsToFooter();
+    }, { passive: true });
     elements.footerLauncher.addEventListener('click', launchFooter);
     elements.skipPlaying.addEventListener('click', skip);
     elements.reset.addEventListener('click', reset);
@@ -930,6 +1020,8 @@ export const initInsideMindHero = () => {
         disposeTextLoupe();
         cancelSequence(0);
         stopCloudLoop();
+        pauseHeroVideo();
+        heroReel.dispose();
         portal?.dispose();
       },
       { once: true },

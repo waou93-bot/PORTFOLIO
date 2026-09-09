@@ -1,0 +1,75 @@
+{
+  "project": "Down Trigger — stop-motion clip",
+  "version": "production-manifest-v01",
+  "status": "preproduction-ready / awaiting canonical assets and final audio",
+  "format": {
+    "width": 960,
+    "height": 540,
+    "aspect_ratio": "16:9",
+    "working_exposure_ms": 120,
+    "nominal_duration_ms": 5030,
+    "audio": null
+  },
+  "art_direction": {
+    "mode": "drawn_2d_stop_motion",
+    "photorealism": false,
+    "palette": ["charcoal", "blue-gray", "bone paper", "rust copper"],
+    "texture": "controlled paper grain",
+    "identity_reference": "assets/derived-down-trigger/down-trigger-band-illustrated-model-sheet-provisional-v01.png",
+    "pose_reference": "assets/derived-down-trigger/down-trigger-masked-character-pose-sheet-provisional-v01.png",
+    "rigging_spec": "docs/down-trigger-rigging-spec-v01.md",
+    "puppet_atlas": "assets/derived-down-trigger/puppet-atlas-provisional-v01/manifest.json",
+    "canonical_status": "provisional"
+  },
+  "shots": [
+    {
+      "id": "DT-001",
+      "timecode": "00:00.00-00:00.50",
+      "duration_ms": 500,
+      "description": "Logo Down Trigger in a sparse black/paper field",
+      "assets": ["assets/derived-down-trigger/down-trigger-logo-rendered-provisional-v01.png"],
+      "state": "styleframe-ready"
+    },
+    {
+      "id": "DT-002",
+      "timecode": "00:00.50-00:01.38",
+      "duration_ms": 880,
+      "description": "Masked drawn member resists the pull on the planetary slab",
+      "assets": ["assets/derived-down-trigger/down-trigger-masked-character-illustrated-model-provisional-v01-clean.png"],
+      "state": "animatic-ready / canonical pose sheet required"
+    },
+    {
+      "id": "DT-003",
+      "timecode": "00:01.47-00:02.91",
+      "duration_ms": 1440,
+      "description": "Hand on the fixed edge: grip, last contact, visible gap, release",
+      "assets": ["prototypes/down-trigger-clip-preprod-v01/hand-release-illustrated-registered-v04.gif"],
+      "state": "candidate-ready / canonical hand required"
+    },
+    {
+      "id": "DT-004",
+      "timecode": "00:03.00-00:04.43",
+      "duration_ms": 1430,
+      "description": "Core revealed; rotation and fall toward the center",
+      "assets": ["prototypes/down-trigger-clip-preprod-v01/down-trigger-character-core-prototype-v06.gif"],
+      "state": "animatic-ready / articulated poses required"
+    },
+    {
+      "id": "DT-005",
+      "timecode": "00:04.43-00:05.03",
+      "duration_ms": 600,
+      "description": "Logo swallowed by the dark material",
+      "assets": ["assets/derived-down-trigger/down-trigger-logo-rendered-provisional-v01.png"],
+      "state": "styleframe-ready"
+    }
+  ],
+  "gates": [
+    "replace provisional character with canonical drawn model sheets",
+    "validate six-member illustrated model sheet",
+    "supply final audio and mark musical accents",
+    "rebuild hand release from canonical articulated parts",
+    "render final image sequence and export with audio"
+  ],
+  "current_preview": "prototypes/down-trigger-clip-preprod-v01/down-trigger-clip-animatic-v08.gif",
+  "technical_rig_preview": "prototypes/down-trigger-clip-preprod-v01/down-trigger-clip-animatic-v09.gif"
+}

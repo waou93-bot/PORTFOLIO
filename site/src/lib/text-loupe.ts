@@ -32,6 +32,14 @@ export function initTextLoupe(root: HTMLElement) {
     copy.style.background = 'transparent';
     copy.style.boxShadow = 'none';
     copy.style.borderColor = 'transparent';
+    if (original.closest('[data-loupe-target]')) {
+      copy.style.color = 'transparent';
+      copy.style.backgroundImage =
+        'linear-gradient(112deg, #00e0ff 0%, #6d5cff 30%, #ff2f9b 58%, #ff7920 82%, #ffe04c 100%)';
+      copy.style.backgroundClip = 'text';
+      copy.style.setProperty('-webkit-background-clip', 'text');
+      copy.style.setProperty('-webkit-text-fill-color', 'transparent');
+    }
     for (const child of original.childNodes) {
       if (child instanceof HTMLElement) copy.append(copyText(child));
       else if (child.nodeType === Node.TEXT_NODE) copy.append(child.cloneNode());
@@ -44,13 +52,14 @@ export function initTextLoupe(root: HTMLElement) {
     const box = source.getBoundingClientRect();
     const localX = x - box.left;
     const localY = y - box.top;
-    source.style.maskImage = `radial-gradient(circle 70px at ${localX}px ${localY}px, transparent 75%, black 100%)`;
-    lens.style.maskImage = `radial-gradient(circle 70px at ${x}px ${y}px, black 75%, transparent 100%)`;
+    source.style.maskImage = `radial-gradient(circle 72px at ${localX}px ${localY}px, transparent 75%, black 100%)`;
+    lens.style.maskImage = `radial-gradient(circle 96px at ${x}px ${y}px, black 75%, transparent 100%)`;
     Object.assign(replica.style, {
-      position: 'absolute', left: `${box.left}px`, top: `${box.top}px`,
-      width: `${box.width}px`, height: `${box.height}px`, margin: '0',
-      boxSizing: 'border-box', transformOrigin: `${localX}px ${localY}px`,
-      transform: 'scale(1.18)', maskImage: 'none',
+      position: 'absolute', left: `${box.left}px`, top: `${box.top - 12}px`,
+      width: `${box.width}px`, height: 'auto', margin: '0',
+      padding: '12px 0',
+      boxSizing: 'border-box', transformOrigin: `${localX}px ${localY + 12}px`,
+      transform: 'scale(1.12)', maskImage: 'none',
     });
     lens.style.display = 'block';
   };
@@ -63,7 +72,12 @@ export function initTextLoupe(root: HTMLElement) {
       clear(); return;
     }
     const candidate = target.closest<HTMLElement>('p, h1, h2, h3, a, label');
-    if (!candidate?.textContent?.trim() || candidate.closest('[aria-hidden="true"], .sr-only') || candidate.querySelector('img, video')) {
+    if (
+      !candidate?.textContent?.trim() ||
+      !candidate.matches('[data-loupe-target]') ||
+      candidate.closest('[aria-hidden="true"], .sr-only, [data-loupe-exclude]') ||
+      candidate.querySelector('img, video')
+    ) {
       clear(); return;
     }
     if (candidate !== source) {

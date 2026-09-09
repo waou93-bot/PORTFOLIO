@@ -36,6 +36,7 @@ const ogImg = ogImage ?? absUrl('/media/og-cover.svg');
 const accentStyle = accent
   ? `--color-accent:${accent};--color-accent-contrast:${accentContrast ?? 'oklch(0.98 0.01 85)'};`
   : '';
+const isHome = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -71,6 +72,8 @@ const accentStyle = accent
 
     <ClientRouter fallback="swap" />
     <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.addEventListener('pageshow', () => window.scrollTo(0, 0), { once: true });
       import { initReveals } from '../../lib/reveals';
       import { initVideoPreviews } from '../../lib/video';
       initReveals();
@@ -84,7 +87,7 @@ const accentStyle = accent
   <body>
     <div class="page-shell" data-theme={theme} style={accentStyle}>
       <a class="skip-link" href="#main">Aller au contenu</a>
-      <Header />
+      <Header compact={!isHome} />
       <main id="main" class="page-main">
         <slot />
       </main>

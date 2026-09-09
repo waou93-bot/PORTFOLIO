@@ -76,7 +76,7 @@ export function initFooterNicolas() {
     const settle = () => {
       timeline?.kill();
       gsap.set(layers, { clearProps: 'transform' });
-      gsap.set(actor, { x: 0, y: 0, rotation: 0, scale: 1 });
+      gsap.set(actor, { x: 0, y: 0, rotation: 0, scaleX: -1, scaleY: 1 });
       show(7);
       root.dataset.state = 'settled';
       performanceFinished = true;
@@ -92,7 +92,7 @@ export function initFooterNicolas() {
       }
 
       root.dataset.state = 'climbing';
-      gsap.set(actor, { x: 0, y: 3, rotation: 0, scale: 1 });
+      gsap.set(actor, { x: 0, y: 3, rotation: 0, scaleX: -1, scaleY: 1 });
 
       // Each beat is a real plate change. The small stepped translations add
       // weight without turning the stop-motion into a smooth tween.
@@ -110,7 +110,7 @@ export function initFooterNicolas() {
       timeline = gsap.timeline({
         onComplete: () => {
           show(7);
-          gsap.set(actor, { x: 0, y: 0, rotation: 0, scale: 1 });
+          gsap.set(actor, { x: 0, y: 0, rotation: 0, scaleX: -1, scaleY: 1 });
           root.dataset.state = 'settled';
           performanceFinished = true;
         },

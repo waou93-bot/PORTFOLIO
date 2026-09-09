@@ -1,0 +1,88 @@
+{
+  "project": "Down Trigger",
+  "version": "continuity-report-v01",
+  "checks": [
+    {
+      "id": "hand_v04",
+      "asset": {
+        "file": "prototypes\\down-trigger-clip-preprod-v01\\hand-release-illustrated-registered-v04.gif",
+        "frames": 12,
+        "size": [
+          960,
+          540
+        ],
+        "duration_set_ms": [
+          120
+        ],
+        "nominal_duration_ms": 1440
+      },
+      "fixed_right_changes": 0,
+      "fixed_marker_changes": 0,
+      "status": "PASS"
+    },
+    {
+      "id": "animatic_v08",
+      "asset": {
+        "file": "prototypes\\down-trigger-clip-preprod-v01\\down-trigger-clip-animatic-v08.gif",
+        "frames": 37,
+        "size": [
+          960,
+          540
+        ],
+        "duration_set_ms": [
+          90,
+          110,
+          120,
+          500,
+          600
+        ],
+        "nominal_duration_ms": 5030
+      },
+      "macro_frames": 12,
+      "macro_fixed_right_changes": 0,
+      "macro_fixed_marker_changes": 0,
+      "status": "PASS"
+    },
+    {
+      "id": "animatic_v09",
+      "asset": {
+        "file": "prototypes\\down-trigger-clip-preprod-v01\\down-trigger-clip-animatic-v09.gif",
+        "frames": 37,
+        "size": [
+          960,
+          540
+        ],
+        "duration_set_ms": [
+          90,
+          110,
+          120,
+          500,
+          600
+        ],
+        "nominal_duration_ms": 5030
+      },
+      "macro_frames": 12,
+      "macro_fixed_right_changes": 0,
+      "macro_fixed_marker_changes": 0,
+      "status": "PASS"
+    },
+    {
+      "id": "masked_character_alpha",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "status": "PASS"
+    }
+  ],
+  "gates": {
+    "audio_present": false,
+    "canonical_separated_assets_present": false,
+    "production_status": "WAITING_EXTERNAL_INPUTS"
+  },
+  "technical_status": "PASS_PROVISOIRE"
+}

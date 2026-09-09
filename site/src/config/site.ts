@@ -27,7 +27,6 @@ export const site = {
   },
   nav: [
     { label: 'Accueil', href: '/' },
-    { label: 'Projets', href: '/work' },
     { label: 'À propos', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],

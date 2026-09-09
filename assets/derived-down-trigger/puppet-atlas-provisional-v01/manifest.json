@@ -1,0 +1,330 @@
+{
+  "source": "assets\\derived-down-trigger\\down-trigger-masked-character-illustrated-model-provisional-v01-clean.png",
+  "status": "provisional",
+  "parts": {
+    "head_hood": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\head_hood.png",
+      "source_polygon": [
+        [
+          250,
+          20
+        ],
+        [
+          770,
+          20
+        ],
+        [
+          790,
+          390
+        ],
+        [
+          690,
+          480
+        ],
+        [
+          335,
+          480
+        ],
+        [
+          235,
+          370
+        ]
+      ],
+      "size": [
+        525,
+        461
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "torso_vest": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\torso_vest.png",
+      "source_polygon": [
+        [
+          205,
+          270
+        ],
+        [
+          815,
+          270
+        ],
+        [
+          850,
+          800
+        ],
+        [
+          730,
+          900
+        ],
+        [
+          290,
+          900
+        ],
+        [
+          170,
+          780
+        ]
+      ],
+      "size": [
+        588,
+        637
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "arm_left": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\arm_left.png",
+      "source_polygon": [
+        [
+          135,
+          300
+        ],
+        [
+          470,
+          300
+        ],
+        [
+          545,
+          580
+        ],
+        [
+          430,
+          700
+        ],
+        [
+          170,
+          680
+        ],
+        [
+          100,
+          500
+        ]
+      ],
+      "size": [
+        327,
+        406
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "arm_right": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\arm_right.png",
+      "source_polygon": [
+        [
+          490,
+          300
+        ],
+        [
+          855,
+          300
+        ],
+        [
+          900,
+          500
+        ],
+        [
+          790,
+          700
+        ],
+        [
+          535,
+          700
+        ],
+        [
+          430,
+          580
+        ]
+      ],
+      "size": [
+        383,
+        407
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "hands": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\hands.png",
+      "source_polygon": [
+        [
+          330,
+          340
+        ],
+        [
+          690,
+          340
+        ],
+        [
+          730,
+          590
+        ],
+        [
+          610,
+          650
+        ],
+        [
+          350,
+          650
+        ],
+        [
+          275,
+          540
+        ]
+      ],
+      "size": [
+        458,
+        317
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "pelvis": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\pelvis.png",
+      "source_polygon": [
+        [
+          260,
+          730
+        ],
+        [
+          770,
+          730
+        ],
+        [
+          820,
+          990
+        ],
+        [
+          690,
+          1070
+        ],
+        [
+          330,
+          1070
+        ],
+        [
+          220,
+          960
+        ]
+      ],
+      "size": [
+        465,
+        347
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "leg_left": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\leg_left.png",
+      "source_polygon": [
+        [
+          160,
+          900
+        ],
+        [
+          510,
+          900
+        ],
+        [
+          530,
+          1380
+        ],
+        [
+          420,
+          1430
+        ],
+        [
+          165,
+          1390
+        ],
+        [
+          105,
+          1110
+        ]
+      ],
+      "size": [
+        303,
+        531
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "leg_right": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\leg_right.png",
+      "source_polygon": [
+        [
+          480,
+          900
+        ],
+        [
+          850,
+          900
+        ],
+        [
+          910,
+          1110
+        ],
+        [
+          850,
+          1390
+        ],
+        [
+          600,
+          1430
+        ],
+        [
+          470,
+          1380
+        ]
+      ],
+      "size": [
+        348,
+        526
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "boot_left": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\boot_left.png",
+      "source_polygon": [
+        [
+          120,
+          1280
+        ],
+        [
+          470,
+          1280
+        ],
+        [
+          500,
+          1510
+        ],
+        [
+          90,
+          1510
+        ]
+      ],
+      "size": [
+        216,
+        185
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    },
+    "boot_right": {
+      "file": "assets\\derived-down-trigger\\puppet-atlas-provisional-v01\\boot_right.png",
+      "source_polygon": [
+        [
+          550,
+          1280
+        ],
+        [
+          900,
+          1280
+        ],
+        [
+          950,
+          1510
+        ],
+        [
+          520,
+          1510
+        ]
+      ],
+      "size": [
+        190,
+        189
+      ],
+      "overlap": "intentional joint overlap for provisional rigging"
+    }
+  }
+}

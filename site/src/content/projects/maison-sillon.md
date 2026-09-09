@@ -1,6 +1,6 @@
 ---
 slug: maison-sillon
-title: Maison Sillon
+title: Atelier NØR
 kind: concept
 brandUsage: fictional
 publicationStatus: published
@@ -15,15 +15,15 @@ cover:
   src: /media/projects/maison-sillon/cover-v3.webp
   alt: Maison Sillon, volume bas en pierre claire longeant un bassin dans la lumière du soir.
 gallery:
-  - src: /media/projects/maison-sillon/cover-v3.webp
-    alt: Vue extérieure de Maison Sillon, architecture basse en pierre claire et bassin miroir.
-    caption: La maison s’étire au ras du terrain et suit la ligne du paysage normand.
-  - src: /media/projects/maison-sillon/interior-v3.webp
-    alt: Séjour de Maison Sillon ouvert sur une prairie dans une lumière chaude.
-    caption: Architecture, intérieur et jardin sont cadrés comme un seul mouvement.
-  - src: /media/projects/maison-sillon/material-v3.webp
-    alt: Rencontre de la pierre claire, du chêne fumé et d’un rideau de lin naturel.
-    caption: Une palette tactile donne au projet sa continuité visuelle.
+  - src: /media/projects/maison-sillon/site-home.png
+    alt: Capture desktop de l’accueil Atelier NØR, avec la promesse Habiter la lumière et la navigation du studio.
+    caption: Une entrée éditoriale qui installe la direction artistique, la hiérarchie et le ton du site.
+  - src: /media/projects/maison-sillon/site-projects.png
+    alt: Capture desktop de la section projets Atelier NØR, avec sa grille, ses filtres et ses cartes de projets.
+    caption: La grille, les filtres et les cartes rendent visible le système de présentation conçu pour le studio.
+  - src: /media/projects/maison-sillon/site-dossier.png
+    alt: Capture desktop du dossier Maison Sillon dans le site Atelier NØR, avec son récit éditorial et sa preuve visuelle.
+    caption: Le dossier montre comment une étude de cas relie récit, image et travail d’interface.
 mobileGallery: []
 theme:
   name: Sillon

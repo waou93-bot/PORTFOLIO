@@ -1,0 +1,125 @@
+<section class="interlude" data-interlude aria-label="Transition vers l’atelier">
+  <div class="interlude-stage" aria-hidden="true">
+    <img
+      data-interlude-frame
+      src="/media/identity/sequence-expression-v1/frame-01.webp"
+      width="720"
+      height="480"
+      alt=""
+      fetchpriority="high"
+    />
+    <img class="interlude-glitch-layer interlude-glitch-layer--red" data-interlude-glitch="red" src="/media/identity/sequence-expression-v1/frame-01.webp" alt="" />
+    <img class="interlude-glitch-layer interlude-glitch-layer--blue" data-interlude-glitch="blue" src="/media/identity/sequence-expression-v1/frame-01.webp" alt="" />
+  </div>
+</section>
+
+<script>
+  import { initUniverseInterlude } from '../../lib/universe-interlude';
+  initUniverseInterlude();
+  document.addEventListener('astro:page-load', initUniverseInterlude);
+</script>
+
+<style>
+  .interlude {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: #0a0810;
+    color: #f6eee2;
+  }
+
+  .interlude::before,
+  .interlude::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .interlude::before {
+    z-index: -2;
+    background:
+      radial-gradient(circle at 50% 45%, #4a183f66, transparent 32%),
+      radial-gradient(circle at 18% 80%, #126a8c44, transparent 30%),
+      #0a0810;
+  }
+
+  .interlude::after {
+    z-index: 2;
+    background: linear-gradient(180deg, #0a081055, transparent 28%, transparent 72%, #0a0810cc);
+  }
+
+  .interlude-stage {
+    position: relative;
+    width: 100vw;
+    height: 100svh;
+    filter: none;
+  }
+
+  .interlude-stage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    mix-blend-mode: normal;
+  }
+
+  .interlude-glitch-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .interlude[data-interlude-exit] .interlude-glitch-layer {
+    opacity: 0.58;
+  }
+
+  .interlude[data-interlude-exit] .interlude-glitch-layer--red {
+    filter: sepia(1) saturate(8) hue-rotate(300deg);
+    mix-blend-mode: screen;
+    animation: interlude-glitch-red 260ms steps(4, end) both;
+  }
+
+  .interlude[data-interlude-exit] .interlude-glitch-layer--blue {
+    filter: sepia(1) saturate(8) hue-rotate(150deg);
+    mix-blend-mode: screen;
+    animation: interlude-glitch-blue 260ms steps(4, end) both;
+  }
+
+  .interlude[data-interlude-exit] {
+    animation: interlude-glitch 260ms steps(4, end) both;
+    pointer-events: none;
+  }
+
+  @keyframes interlude-glitch {
+    0%, 100% { opacity: 1; transform: none; filter: saturate(1.05) contrast(1.02); }
+    24% { transform: translate(-8px, 2px) skewX(-0.5deg); filter: saturate(1.5) contrast(1.12); }
+    48% { transform: translate(10px, -2px) skewX(0.7deg); filter: saturate(1.65) contrast(1.16); }
+    72% { opacity: 0.48; transform: translate(-4px, 1px); filter: saturate(1.25) contrast(1.06); }
+    88% { opacity: 0; transform: translate(2px, 0); }
+  }
+
+  @keyframes interlude-glitch-red {
+    0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+    28% { clip-path: inset(8% 0 64% 0); transform: translate(-14px, 1px); }
+    54% { clip-path: inset(48% 0 18% 0); transform: translate(10px, -2px); }
+    78% { clip-path: inset(72% 0 4% 0); transform: translate(-7px, 2px); }
+  }
+
+  @keyframes interlude-glitch-blue {
+    0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+    22% { clip-path: inset(36% 0 42% 0); transform: translate(12px, -1px); }
+    48% { clip-path: inset(5% 0 78% 0); transform: translate(-8px, 2px); }
+    74% { clip-path: inset(82% 0 2% 0); transform: translate(6px, -1px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .interlude-stage { transform: none; }
+    .interlude[data-interlude-exit] { animation: none; display: none; }
+  }
+</style>

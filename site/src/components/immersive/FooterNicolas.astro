@@ -28,10 +28,10 @@ import { site } from '../../config/site';
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    min-height: 290px;
+    min-height: 230px;
     gap: 10px;
     margin-top: 16px;
-    padding-bottom: 38px;
+    padding-bottom: 28px;
     background: var(--color-paper);
   }
 
@@ -43,9 +43,14 @@ import { site } from '../../config/site';
     overflow: hidden;
     pointer-events: none;
     z-index: 1;
+    order: 2;
   }
 
-  .footer-nicolas-actor { position: absolute; inset: 0; }
+  .footer-nicolas-actor {
+    position: absolute;
+    inset: 0;
+    transform: scaleX(-1);
+  }
 
   .footer-nicolas-pose {
     position: absolute;
@@ -70,7 +75,8 @@ import { site } from '../../config/site';
     flex-direction: column;
     gap: 10px;
     min-width: 0;
-    padding-bottom: 92px;
+    padding-bottom: 68px;
+    order: 1;
   }
 
   .footer-nicolas-caption {
@@ -121,7 +127,7 @@ import { site } from '../../config/site';
   .footer-nicolas-ledge {
     position: absolute;
     right: 0;
-    bottom: 38px;
+    bottom: 28px;
     left: 0;
     z-index: 3;
     height: 1px;
@@ -136,12 +142,12 @@ import { site } from '../../config/site';
   }
 
   @media (max-width: 600px) {
-    .footer-nicolas { min-height: 235px; gap: 0; padding-bottom: 30px; }
+    .footer-nicolas { min-height: 210px; gap: 0; padding-bottom: 24px; }
     .footer-nicolas-stage { flex-basis: 140px; width: 140px; height: 200px; }
     .footer-nicolas-actor { width: 230px; height: 250px; inset: auto auto 0 -22px; zoom: 0.8; }
-    .footer-nicolas-contact { padding-bottom: 63px; }
+    .footer-nicolas-contact { padding-bottom: 52px; }
     .footer-nicolas-caption { font-size: 0.56rem; letter-spacing: 0.08em; }
     .footer-nicolas-email { font-family: inherit; font-size: clamp(0.8rem, 3.4vw, 1.1rem); }
-    .footer-nicolas-ledge { bottom: 30px; }
+    .footer-nicolas-ledge { bottom: 24px; }
   }
 </style>

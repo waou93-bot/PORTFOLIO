@@ -48,3 +48,12 @@ Statuts recommandes : `a examiner`, `conserve`, `importe`, `exclu`, `a recreer`,
 - Anciens exports avec damier incrusté conservés par copie avant remplacement dans `archives/logos-avant-transparence-20260905-031232`. Source sur papier conservée dans cette archive.
 - `apercu logos transparents.png` : contrôle des superpositions sur fonds clair et sombre ; aperçu opaque, distinct des deux calques.
 - Transparence RGBA vérifiée ; aucune intégration au site effectuée.
+
+## Séquence vidéo du héros — 2026-09-09
+
+- `site/public/media/identity/landing-hero-video.mp4` : vidéo 60716-495935001 déjà active, 1358 × 720, 20,217 s ; conservée octet pour octet et archivée avant intervention.
+- `site/public/media/identity/91744-636709154_medium.mp4` : copie de Downloads, 2560 × 1440, 17,067 s ; deuxième clip.
+- `site/public/media/identity/165208-832102298_medium.mp4` : copie de Downloads, 2560 × 1440, 29 s ; troisième clip.
+- `site/public/media/identity/nicolas-jez-hero-cutout-v2.png` : calque premier plan existant 1024 × 1536, RGBA ; canal alpha présent avec pixels transparents ; fichier inchangé (SHA-256 `CA3A14F8C573E6F1056770A382F5E0DF9026CEE36CC2DA504D0B357D2B6661E4`).
+- Restauration : `archives/landing-hero-before-sequence-20260909/README.md` et copies locales de la vidéo et des composants avant intégration.
+- Les trois sources Downloads sont préservées. Aucun asset existant supprimé, renommé ou redétouré.

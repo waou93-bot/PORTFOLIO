@@ -23,21 +23,12 @@ independentConceptDisclaimer: Concept fictif créé pour le portfolio. Héritage
 results: []
 gallery:
   - src: /media/projects/heritage-2/interface.webp
-    alt: Interface desktop Héritage 2 avec une grande composition typographique sur un escalier de pierre.
-    caption: Une ouverture éditoriale qui installe immédiatement la matière et l’échelle.
-  - src: /media/projects/heritage-2/stair.webp
-    alt: Escalier en pierre éclairé naturellement, visuel du concept Héritage 2.
-    caption: Le geste artisanal est montré par l’ouvrage, sans décor superflu.
-  - src: /media/projects/heritage-2/fireplace.webp
-    alt: Cheminée en pierre claire dans un intérieur en cours de restauration.
-    caption: Des cadrages sobres pour laisser parler les proportions et les finitions.
-  - src: /media/projects/heritage-2/stone-detail.webp
-    alt: Gros plan sur une arête de pierre taillée et sa texture minérale.
-    caption: La matière devient un langage graphique à part entière.
+    alt: Capture desktop de l’interface Héritage 2, avec composition typographique, navigation et preuve visuelle.
+    caption: Une ouverture éditoriale qui montre la hiérarchie, le rythme et le travail d’interface.
 mobileGallery:
   - src: /media/projects/heritage-2/mobile.webp
-    alt: Version mobile de l’ouverture éditoriale Héritage 2.
-    caption: Le rythme typographique et l’accès aux réalisations sont conservés sur mobile.
+    alt: Capture mobile de l’interface Héritage 2, avec ouverture éditoriale responsive.
+    caption: Le système typographique et l’accès aux réalisations restent lisibles sur mobile.
 ---
 
 ## Le projet

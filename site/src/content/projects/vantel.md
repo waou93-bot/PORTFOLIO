@@ -16,18 +16,15 @@ cover:
   src: /media/projects/vantel/cover.webp
   alt: Campagne DayShift de Vantel, silhouettes noires devant une façade minérale.
 gallery:
-  - src: /media/projects/vantel/dayshift.webp
-    alt: Campagne Vantel DayShift dans un décor urbain lumineux.
-    caption: DayShift — la silhouette noire comme uniforme diurne.
-  - src: /media/projects/vantel/nightshift.webp
-    alt: Campagne Vantel NightShift, collection blanche réfléchissante dans une ville nocturne.
-    caption: NightShift — matières claires et détails réfléchissants.
-  - src: /media/projects/vantel/nightshift-group.webp
-    alt: Trois silhouettes Vantel blanches photographiées de nuit sous la pluie.
-    caption: Le contraste jour-nuit structure toute la campagne.
-  - src: /media/projects/vantel/mirror-look.webp
-    alt: Résultat de démonstration The Mirror avec une silhouette Vantel noire.
-    caption: The Mirror — aperçu conceptuel d’essayage virtuel.
+  - src: /media/projects/vantel/site-home.png
+    alt: Capture desktop de l’accueil Vantel, avec la direction artistique DayShift / NightShift et sa navigation.
+    caption: Une entrée immersive qui met en scène le système de contraste et la hiérarchie de l’interface.
+  - src: /media/projects/vantel/site-campaign.png
+    alt: Capture desktop de la section The Campaign du site Vantel, avec sa composition éditoriale jour-nuit.
+    caption: Le dispositif de révélation et la mise en page de campagne deviennent la preuve du travail web.
+  - src: /media/projects/vantel/site-mirror.png
+    alt: Capture desktop de la section The Mirror du site Vantel, avec son interface d’essayage virtuel conceptuelle.
+    caption: Une expérience produit présentée comme une interface, avec son rythme, ses contenus et son appel à l’action.
 mobileGallery: []
 theme:
   name: Contrast

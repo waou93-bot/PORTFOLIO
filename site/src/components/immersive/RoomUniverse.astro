@@ -19,19 +19,19 @@ const projects = [
   },
   {
     slug: 'maison-sillon',
-    name: 'Maison Sillon',
+    name: 'Atelier NØR',
     image: 'maison-sillon/cover-v3.webp',
     detail: 'Concept architectural',
-    x: 59,
-    y: 67,
+    x: 57,
+    y: 64,
   },
   {
     slug: 'vantel',
     name: 'Vantel',
     image: 'vantel/cover.webp',
     detail: 'Concept e-commerce',
-    x: 80,
-    y: 40,
+    x: 84,
+    y: 36,
   },
 ];
 ---
@@ -39,7 +39,7 @@ const projects = [
 <section class="room" data-room aria-label="L’atelier des projets">
   <header class="room-heading">
     <a href="/">Retour au portrait</a><h1>Suivez votre <em>curiosité.</em></h1><p>
-      Quatre objets, quatre projets.
+      Quatre objets, quatre projets. <a class="room-other-projects" href="/autres-projets">Mes autres projets</a>
     </p>
   </header>
   <div class="room-scene">
@@ -61,6 +61,7 @@ const projects = [
         <div
           class:list={['room-point', { 'toward-left': p.x > 50 }]}
           style={`--x:${p.x}%;--y:${p.y}%`}
+          data-project={p.slug}
           data-room-point
         >
           <button
@@ -72,7 +73,7 @@ const projects = [
             <span aria-hidden="true">0{i + 1}</span>
           </button>
           <div class="room-reveal" id={`room-card-${i}`} hidden>
-            <svg viewBox="0 0 250 60" aria-hidden="true">
+            <svg class="room-connector" viewBox="0 0 250 60" aria-hidden="true">
               <path d="M 0 59 L 50 1 H 250" pathLength="1" />
             </svg>
             <a href={`/work/${p.slug}`} class="room-card">
@@ -94,6 +95,9 @@ const projects = [
                 </div>
               </>
             </a>
+            <button class="room-close" type="button" aria-label={`Fermer ${p.name}`}>
+              <span aria-hidden="true">×</span>
+            </button>
           </div>
         </div>
       ))
@@ -160,12 +164,62 @@ const projects = [
     overflow: hidden;
     pointer-events: none;
   }
+  .room-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, #070b12a8, #050608f0),
+      radial-gradient(circle at 62% 34%, #2c607033, transparent 42%),
+      linear-gradient(90deg, #06080dcc, transparent 58%);
+    opacity: 0;
+    transition: opacity 650ms ease;
+  }
   .room-art img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: filter 650ms ease, transform 650ms ease;
+  }
+  .room[data-project-mood='down-trigger'] .room-art::after {
+    opacity: 1;
+  }
+  .room[data-project-mood='down-trigger'] .room-base {
+    filter: grayscale(0.82) contrast(1.18) brightness(0.62) saturate(0.72);
+    transform: scale(1.018);
+  }
+  .room[data-project-mood='heritage-2'] .room-art::after {
+    opacity: 1;
+    background:
+      linear-gradient(180deg, #2b2118a8, #120e0bf0),
+      radial-gradient(circle at 54% 30%, #d4a56a38, transparent 44%),
+      linear-gradient(90deg, #21170dcc, transparent 62%);
+  }
+  .room[data-project-mood='heritage-2'] .room-base {
+    filter: grayscale(0.38) contrast(1.06) brightness(0.78) sepia(0.22) saturate(0.82);
+    transform: scale(1.012);
+  }
+  .room[data-project-mood='maison-sillon'] .room-art::after {
+    opacity: 1;
+    background:
+      linear-gradient(180deg, #fff5e533, #c59b6a52),
+      linear-gradient(90deg, #f0d8b333, transparent 52%, #8c603522);
+  }
+  .room[data-project-mood='maison-sillon'] .room-base {
+    filter: contrast(1.02) brightness(1.06) saturate(0.88) sepia(0.08);
+    transform: scale(1.012);
+  }
+  .room[data-project-mood='vantel'] .room-art::after {
+    opacity: 1;
+    background:
+      linear-gradient(90deg, #0b294c99 0%, #294d6f55 43%, #14161b55 50%, #b56e3b66 58%, #3e1d2399 100%),
+      linear-gradient(180deg, #0c182633, #160f16a8);
+  }
+  .room[data-project-mood='vantel'] .room-base {
+    filter: contrast(1.1) brightness(0.76) saturate(0.72);
+    transform: scale(1.018);
   }
   .room-echo,
   .room-light {
@@ -205,6 +259,9 @@ const projects = [
   }
   .room-point[data-open='true'] {
     z-index: 5;
+  }
+  .room-point[data-promoted='true'] {
+    z-index: 20;
   }
   .room-trigger {
     position: absolute;
@@ -250,15 +307,16 @@ const projects = [
   .room-reveal[hidden] {
     display: none;
   }
-  .room-reveal svg {
+  .room-reveal .room-connector {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 250px;
     height: 60px;
     overflow: visible;
+    pointer-events: none;
   }
-  .room-reveal path {
+  .room-connector path {
     fill: none;
     stroke: #fff8e6;
     stroke-width: 1.5;
@@ -275,6 +333,38 @@ const projects = [
     text-decoration: none;
     box-shadow: 0 8px 28px #21170e33;
     animation: room-card 250ms 80ms both;
+  }
+  .room-point[data-promoted='true'] .room-reveal {
+    position: fixed;
+    z-index: 30;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    width: min(76vw, 760px);
+    padding: 0;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 1.5rem 3rem #160f0c66);
+  }
+  .room-point[data-promoted='true'] .room-connector {
+    display: none;
+  }
+  .room-point[data-promoted='true'] .room-close {
+    display: grid;
+  }
+  .room-point[data-promoted='true'] .room-card {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+  .room-point[data-promoted='true'] .room-card img {
+    height: 100%;
+    min-height: 300px;
+  }
+  .room-point[data-promoted='true'] .room-card > div {
+    align-content: center;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
   }
   .room-card img {
     width: 100%;
@@ -298,12 +388,40 @@ const projects = [
   .room-card:focus-visible {
     outline: 3px solid #604122;
   }
+  .room-close {
+    display: none;
+    pointer-events: auto;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid #fff9;
+    border-radius: 50%;
+    background: #30251dcc;
+    color: #fff;
+    font: inherit;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .room-close:hover,
+  .room-close:focus-visible {
+    background: #59432d;
+  }
+  .room-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
   .toward-left .room-reveal {
     left: auto;
     right: 0;
   }
-  .toward-left svg {
+  .toward-left .room-connector {
     transform: scaleX(-1);
+    transform-origin: 50% 0;
   }
   .toward-left .room-card {
     margin-left: 0;
@@ -465,7 +583,7 @@ const projects = [
       padding: 0;
       width: 88%;
     }
-    .room-reveal svg {
+    .room-reveal .room-connector {
       display: none;
     }
     .room-card,
@@ -479,6 +597,15 @@ const projects = [
     .room-card img {
       height: 100%;
       min-height: 160px;
+    }
+    .room-point[data-promoted='true'] .room-reveal {
+      width: 88vw;
+    }
+    .room-point[data-promoted='true'] .room-card {
+      grid-template-columns: 1fr;
+    }
+    .room-point[data-promoted='true'] .room-card img {
+      min-height: 46vw;
     }
     .room-card > div {
       align-content: center;

@@ -24,15 +24,15 @@ theme:
   dark: true
 results: []
 gallery:
-  - src: /media/projects/down-trigger/studio-blue.webp
-    alt: Portrait collectif de Down Trigger dans une lumière bleue industrielle.
-    caption: Une photographie de groupe traitée comme un signal sombre et instable.
-  - src: /media/projects/down-trigger/behind-scenes.webp
-    alt: Les membres de Down Trigger lors d’un moment en coulisses.
-    caption: Le système visuel laisse aussi une place aux images documentaires.
-  - src: /media/projects/down-trigger/astrayed.webp
-    alt: Pochette sombre et incandescente du single Astrayed de Down Trigger.
-    caption: Astrayed prolonge l’identité du site jusque dans la pochette et la motion.
+  - src: /media/projects/down-trigger/site-home.png
+    alt: Capture de la page d’accueil du site Down Trigger, avec le logo et le portail lumineux.
+    caption: La page d’accueil pose l’identité visuelle et le premier mouvement du site.
+  - src: /media/projects/down-trigger/site-music.png
+    alt: Capture de la page discographie du site Down Trigger.
+    caption: La discographie transforme le contenu éditorial en interface de consultation.
+  - src: /media/projects/down-trigger/site-group.png
+    alt: Capture de la page groupe du site Down Trigger.
+    caption: La page groupe prolonge la direction artistique dans un rythme éditorial plus posé.
 mobileGallery: []
 ---
 
