@@ -22,12 +22,18 @@ theme:
 independentConceptDisclaimer: Concept fictif créé pour le portfolio. Héritage 2 ne représente ni un atelier réel ni une commande construite.
 results: []
 gallery:
-  - src: /media/projects/heritage-2/interface.webp
-    alt: Capture desktop de l’interface Héritage 2, avec composition typographique, navigation et preuve visuelle.
+  - src: /media/projects/heritage-2/opening.png
+    alt: Capture desktop de la page d’accueil Héritage 2, avec hiérarchie éditoriale, navigation et interface claire.
     caption: Une ouverture éditoriale qui montre la hiérarchie, le rythme et le travail d’interface.
+  - src: /media/projects/heritage-2/opening-detail.png
+    alt: Capture desktop d’une page éditoriale Héritage 2, avec contenu, typographie et mise en page responsive.
+    caption: Une page de contenu qui met en évidence la composition et le système typographique.
+  - src: /media/projects/heritage-2/system-flow.png
+    alt: Capture longue du parcours desktop Héritage 2, montrant plusieurs sections et états de l’interface.
+    caption: Un aperçu du système complet, de l’ouverture aux sections de preuve et de contact.
 mobileGallery:
-  - src: /media/projects/heritage-2/mobile.webp
-    alt: Capture mobile de l’interface Héritage 2, avec ouverture éditoriale responsive.
+  - src: /media/projects/heritage-2/mobile-detail.png
+    alt: Capture mobile de l’interface Héritage 2, avec ouverture éditoriale responsive et preuve visuelle.
     caption: Le système typographique et l’accès aux réalisations restent lisibles sur mobile.
 ---
 

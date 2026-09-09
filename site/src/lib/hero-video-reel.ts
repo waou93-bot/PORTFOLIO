@@ -21,6 +21,7 @@ export function initHeroVideoReel(root: HTMLElement) {
   let visible = true;
   let disposed = false;
   let retryAt = 0;
+  let preparedNext = -1;
   let finishSplice: (() => void) | undefined;
   const enabled = () => !disposed && !document.hidden && visible &&
     !motion.matches && root.dataset.state === 'portrait';
@@ -59,14 +60,16 @@ export function initHeroVideoReel(root: HTMLElement) {
   });
 
   const prepareNext = () => {
-    const next = pairs[(active + 1) % pairs.length]!;
-    if (!motion.matches) {
+    const nextIndex = (active + 1) % pairs.length;
+    const next = pairs[nextIndex]!;
+    if (!motion.matches && preparedNext !== nextIndex) {
       next.videos.forEach((video) => {
         if (video.preload !== 'auto') {
           video.preload = 'auto';
           video.load();
         }
       });
+      preparedNext = nextIndex;
     }
   };
 
@@ -127,6 +130,7 @@ export function initHeroVideoReel(root: HTMLElement) {
       pausePair(outgoing);
       resetPair(outgoing);
       active = nextIndex;
+      preparedNext = -1;
       pending = false;
       finishSplice = undefined;
       if (enabled()) prepareNext();
@@ -136,9 +140,12 @@ export function initHeroVideoReel(root: HTMLElement) {
 
   const tick = () => {
     if (!enabled()) return;
-    const current = activePair().videos[0]!;
-    if (current.currentTime >= cutAt(current, activePair()) || current.ended) {
-      pausePair(activePair());
+    const pair = activePair();
+    const current = pair.videos[0]!;
+    const boundary = cutAt(current, pair);
+    if (boundary !== Infinity && current.currentTime >= boundary * 0.45) prepareNext();
+    if (current.currentTime >= boundary || current.ended) {
+      pausePair(pair);
       void splice();
     }
     frame = requestAnimationFrame(tick);
@@ -155,7 +162,6 @@ export function initHeroVideoReel(root: HTMLElement) {
     if (!enabled()) return;
     const current = activePair().videos[0]!;
     if (current.currentTime < cutAt(current, activePair())) playPair(activePair());
-    prepareNext();
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(tick);
   };

@@ -1,4 +1,6 @@
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
+const LOOK_START = 0.12;
+const LOOK_END = 0.88;
 
 // The left side feels compressed in use. Give it a little more travel without
 // changing the right half that already reads well.
@@ -33,6 +35,8 @@ export function initAboutLookVideo(): void {
     const setReady = () => {
       ready = true;
       figure.dataset.ready = 'true';
+      video.autoplay = false;
+      video.loop = false;
       video.pause();
     };
 
@@ -40,7 +44,7 @@ export function initAboutLookVideo(): void {
       raf = 0;
       const elapsed = previousTick ? Math.min(64, now - previousTick) : 16;
       previousTick = now;
-      const follow = 1 - Math.exp(-elapsed / 150);
+      const follow = 1 - Math.exp(-elapsed / 105);
       displayRatio += (targetRatio - displayRatio) * follow;
 
       if (
@@ -50,8 +54,9 @@ export function initAboutLookVideo(): void {
         video.duration > 0 &&
         !video.seeking
       ) {
-        const edge = Math.min(0.04, video.duration / 10);
-        const time = edge + displayRatio * Math.max(0, video.duration - edge * 2);
+        // This is a scrubbed gaze sequence, not a movie: keep the playhead
+        // inside the useful middle range and never advance it continuously.
+        const time = video.duration * (LOOK_START + displayRatio * (LOOK_END - LOOK_START));
         if (Math.abs(video.currentTime - time) >= 0.025) video.currentTime = time;
       }
 
@@ -72,13 +77,19 @@ export function initAboutLookVideo(): void {
       if (video.dataset.loaded === 'true') return;
       video.dataset.loaded = 'true';
       video.preload = 'auto';
+      video.autoplay = false;
+      video.loop = false;
       video.load();
     };
 
     const onWindowPointerMove = (event: PointerEvent) => {
       if (!figure.dataset.ready) load();
+      // Use the whole viewport as the control surface, not only the portrait
+      // frame, so the gaze keeps following when the cursor is elsewhere.
       const pointerRatio = event.clientX / Math.max(1, window.innerWidth);
-      scheduleSeek(1 - mapPointerToTimeline(pointerRatio));
+      // The source sequence is ordered left-to-right: keep the visual mapping
+      // direct so the gaze follows the cursor instead of mirroring it.
+      scheduleSeek(mapPointerToTimeline(pointerRatio));
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -96,7 +107,7 @@ export function initAboutLookVideo(): void {
     video.addEventListener(
       'loadedmetadata',
       () => {
-        video.currentTime = Math.min(0.04, Math.max(0, video.duration / 10));
+        video.currentTime = video.duration * LOOK_START;
       },
       { once: true },
     );

@@ -73,12 +73,29 @@ const isHome = Astro.url.pathname === '/';
     <ClientRouter fallback="swap" />
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.addEventListener('pageshow', () => window.scrollTo(0, 0), { once: true });
+      const resetHomeScroll = () => {
+        if (window.location.pathname !== '/') return;
+        const reset = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        reset();
+        requestAnimationFrame(reset);
+        window.setTimeout(reset, 80);
+      };
+      window.addEventListener('pageshow', resetHomeScroll);
+      document.addEventListener('astro:after-swap', resetHomeScroll);
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const homeLink = target.closest('a[href="/"]');
+        if (!homeLink) return;
+        if (window.location.pathname === '/') event.preventDefault();
+        resetHomeScroll();
+      }, { capture: true });
       import { initReveals } from '../../lib/reveals';
       import { initVideoPreviews } from '../../lib/video';
       initReveals();
       initVideoPreviews();
       document.addEventListener('astro:page-load', () => {
+        resetHomeScroll();
         initReveals();
         initVideoPreviews();
       });

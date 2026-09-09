@@ -45,14 +45,13 @@ export const site = {
 export const profile = {
   firstName: 'Nicolas',
   lastName: 'Jez',
-  role: 'Concepteur d’expériences web — direction artistique & développement front-end',
+  role: 'Concepteur d’expériences web — direction artistique',
   shortBio:
     'Je conçois des expériences web où la direction artistique, le contenu et le développement avancent ensemble. Mon travail relie identité, interfaces, motion et outils numériques pour rendre une idée claire, singulière et utilisable.',
   services: [
     'Direction artistique web',
     'UX / UI design',
     'Landing pages immersives',
-    'Développement front-end',
     'Motion design',
     'Création assistée par IA',
     'Accompagnement à l’intégration de l’IA dans les métiers',

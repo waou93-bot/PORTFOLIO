@@ -91,7 +91,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.png';
             src={clip.src}
             muted
             playsinline
-            preload={index === 0 ? 'auto' : 'metadata'}
+            preload={index === 0 ? 'auto' : 'none'}
             tabindex="-1"
           />
           <video
@@ -101,7 +101,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.png';
             src={clip.src}
             muted
             playsinline
-            preload={index === 0 ? 'auto' : 'metadata'}
+            preload={index === 0 ? 'auto' : 'none'}
             tabindex="-1"
           />
         </div>
@@ -207,7 +207,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.png';
           projects.map((project, index) => (
             <a class:list={['mind-project', `mind-project--${index + 1}`]} href={project.href} aria-label={`Découvrir ${project.title}`} data-project-index={index}>
               <span class="mind-project-face">
-              <img src={project.src} alt="" loading="eager" decoding="async" style={index === 0 ? 'object-position: center 72%' : undefined} />
+              <img src={project.src} alt="" loading="lazy" decoding="async" style={index === 0 ? 'object-position: center 72%' : undefined} />
               <span class="mind-project-shade" aria-hidden="true" />
               <span class="mind-project-copy">
                 <span class="mind-project-index">0{index + 1}</span>
