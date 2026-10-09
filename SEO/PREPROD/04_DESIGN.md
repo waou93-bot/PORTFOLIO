@@ -1,5 +1,7 @@
 # Expérience proposée et critique
 
+**Plan statique ci-dessous rejeté par D-077.** Direction active : landing originale vidéo/portrait miroir et personnage en stop-motion restaurés ; optimiser le chargement des médias en préservant récit, identité, reduced-motion et accès utilisables. Root conserve propriété code/médias. Aucune réutilisation des mesures d'un accueil statique comme preuve de performance de cette direction.
+
 Piste retenue par l'implémenteur : portrait sombre statique, titre éditorial, accès immédiat à la sélection. Piste alternative examinée : conserver l'ouverture vidéo avec chargement différé et fallback statique. Rejet documentaire de la seconde pour le lot initial : elle conserve une complexité sans résoudre le poids transféré prouvé. L'utilisateur a demandé la refonte ; l'approbation visuelle du nouveau rendu reste distincte de ce mandat.
 
 Préserver identité portrait et Newsreader/Manrope. Accueil : role puis CTA « Voir les projets » ; work : liste lisible et médias ; cas : contexte, décisions, preuve live, limites, action ; journal : réponse rapide et sections de lecture ; contact : email explicite. Pas de vidéo préalable obligatoire, faux compteurs, logos de confiance ni flèches décoratives.

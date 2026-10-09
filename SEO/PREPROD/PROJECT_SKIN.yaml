@@ -1,17 +1,19 @@
-version: '2026-10-09-proposition'
+version: '2026-10-09-D077-restauration'
 status: PROVISOIRE
 project: wadek.fr
 provenance:
   identity: README et décisions portrait Inside My Mind
   typography: Newsreader et Manrope existantes, conservation mandat root
   design_rules: Design DNA lu par orchestrateur; skin documentaire proposé
-composition: portrait sombre statique, typographie éditoriale, accès direct aux projets
+composition: landing originale vidéo et portrait miroir, personnage photographique en stop-motion, identité immersive conservée
 tokens:
   background: sombre existant, valeurs finales dans CSS à vérifier
   foreground: contraste lisible mesuré après réalisation
   body_width: largeur de lecture modérée, à vérifier mobile
 images: médias existants autorisés et captures réelles des sites; aucune image inventée comme preuve
-motion: facultative; reduced-motion; aucun média plein écran chargé avant projet
+motion: vidéos originales et stop-motion restaurés selon D075-D077; optimiser poids et chargement sans suppression du récit; reduced-motion et accès HTML utilisables
 fallback: HTML lisible sans JavaScript
 excluded: faux avis, compteurs, logos de partenaires, nouveaux traceurs
-approval: refonte autorisée; rendu final non approuvé par ce document
+approval: D077 correction utilisateur explicite; accueil statique rejeté; rendu restauré et mesures finales à vérifier
+performance: nouvelle recette et mesures comparables requises; aucun gain de la proposition statique attribué à la restauration
+superseded_snapshot: AUDITS/prepublication.md et evidence JSON décrivent le build statique rejeté

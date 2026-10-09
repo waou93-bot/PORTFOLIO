@@ -1,5 +1,7 @@
 # Architecture et acceptation technique
 
+**D-077 invalide le budget « aucun mp4 de fond initial » et le remplacement par portrait statique décrits plus bas.** Optimiser les vidéos et médias de la landing originale en conservant la direction validée. Nouveau poids transféré et nouvelle LCP à mesurer ; la baseline initiale reste comparable si protocole identique, les résultats statiques restent rejetés.
+
 ADR : conserver Astro statique + TypeScript/CSS, Markdown versionné. Alternative réaliste : Astro avec CMS externe pour édition autonome. Avantage seconde : workflow éditeur ; coûts, fournisseur, migration et droits inconnus, aucun besoin nouveau établi. Rejet V1 : complexité/maintenance sans bénéfice nécessaire. Migration Next.js déjà rejetée localement et non requise par SEO. Dépendances déclarées package.json : Astro ^7.1.6, sitemap ^3.7.3 ; versions verrouillées et installées doivent être relevées par root, ce document n'en déduit pas une installation.
 
 Matrice : HTML initial contient texte/liens ; routes publiques 200 ; anciennes routes 301 ; inconnue 404 réelle ; title/description fidèles et spécifiques ; canonical/og:url/sitemap domaine www.wadek.fr ; robots public sans blocage accidentel ; noindex utilitaires/preview/brouillons maintenu. JSON-LD Person/WebSite/cas/article seulement avec faits visibles ; ne pas promettre rich results. Pas de hreflang sans traduction.

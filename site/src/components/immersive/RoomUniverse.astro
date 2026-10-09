@@ -1,45 +1,15 @@
 ---
 import { ROOM_IMAGE } from '../../lib/room-preload';
-const projects = [
-  {
-    slug: 'down-trigger',
-    name: 'Down Trigger',
-    image: 'down-trigger/cover-v2.webp',
-    detail: 'Collaboration · site en ligne',
-    x: 17,
-    y: 55,
-  },
-  {
-    slug: 'heritage-2',
-    name: 'Héritage 2',
-    image: 'heritage-2/cover-v2.webp',
-    detail: 'Concept fictif · étude de cas',
-    x: 45,
-    y: 39,
-  },
-  {
-    slug: 'maison-sillon',
-    name: 'Atelier NØR',
-    image: 'maison-sillon/cover-v3.webp',
-    detail: 'Concept architectural',
-    x: 57,
-    y: 64,
-  },
-  {
-    slug: 'vantel',
-    name: 'Vantel',
-    image: 'vantel/cover.webp',
-    detail: 'Concept e-commerce',
-    x: 84,
-    y: 36,
-  },
-];
+import { getPublishedProjects } from '../../lib/content';
+const published = await getPublishedProjects();
+const positions = [[58,62],[81,35],[64,16],[17,84],[20,49]];
+const projects = published.map((p,i)=>({slug:p.data.slug,name:p.data.title,image:p.data.cover.src.replace('/media/projects/',''),detail:'Site en ligne',x:positions[i]?.[0]??50,y:positions[i]?.[1]??50}));
 ---
 
 <section class="room" data-room aria-label="L’atelier des projets">
   <header class="room-heading">
     <a href="/">Retour au portrait</a><h1>Suivez votre <em>curiosité.</em></h1><p>
-      Quatre objets, quatre projets. <a class="room-other-projects" href="/autres-projets">Mes autres projets</a>
+      Cinq objets, cinq sites en ligne. <a class="room-other-projects" href="/autres-projets">Mes autres projets</a>
     </p>
   </header>
   <div class="room-scene">

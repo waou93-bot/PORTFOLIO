@@ -1,5 +1,7 @@
 # Confrontation documentaire
 
+D-077 : correction utilisateur explicite, accueil statique rejeté, restauration landing vidéo/portrait miroir et bonhomme stop-motion avec optimisation. Les recommandations statiques ci-dessous sont conservées comme historique, invalidées pour design/production active. Les cinq sites et les améliorations éditoriales/SEO restent actifs. Nouvelle recette et nouvelles mesures attendues.
+
 Revue réelle audit_docs séparée de l'implémenteur root, le 9 octobre 2026. Pas de réunion fictive ni arbitrage modèle Astra distinct effectué par cet agent.
 
 Idées : sélectionner cinq sites live correspond au mandat ; objection : live n'établit pas rôle/résultats. Correction demandée : cas descriptifs sans impact fictif. Architecture : liens HTML directs bons ; objection : 301 concept→work utile en navigation mais non équivalent de contenu. Conserver destination sélection, pas nouveau projet arbitraire.

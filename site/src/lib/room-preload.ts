@@ -1,4 +1,4 @@
-export const ROOM_IMAGE = '/media/room/salon-v1.webp';
+export const ROOM_IMAGE = '/media/atelier/atelier-pixel-rgb-1680.webp';
 let prepared: Promise<boolean> | undefined;
 export function prepareRoom() {
   return prepared ??= (async () => {

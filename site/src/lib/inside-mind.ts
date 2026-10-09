@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
 import { navigate } from 'astro:transitions/client';
-import * as THREE from 'three';
 import { initFlipProjects } from './flip-projects';
 import { prepareRoom } from './room-preload';
 import { initTextLoupe } from './text-loupe';
@@ -129,7 +128,7 @@ const selectElements = (root: HTMLElement): MindElements | null => {
   };
 };
 
-const createPortal = (canvas: HTMLCanvasElement) => {
+const createPortal = (canvas: HTMLCanvasElement, THREE: typeof import('three')) => {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: true,
@@ -265,8 +264,8 @@ export const initInsideMindHero = () => {
       }
     })();
 
-    const portal = webglAvailable && !reduceMotion ? createPortal(elements.canvas) : null;
-    portal?.renderOnce();
+    let portal: ReturnType<typeof createPortal> | null = null;
+    let portalRequested = false;
 
     const heroReel = initHeroVideoReel(root);
     const playHeroVideo = heroReel.play;
@@ -536,8 +535,8 @@ export const initInsideMindHero = () => {
       elements.loader.dataset.exit = 'ink';
       gsap.to(elements.loader, {
         autoAlpha: 0,
-        duration: reduceMotion ? 0.01 : 0.72,
-        delay: reduceMotion ? 0 : 0.2,
+        duration: reduceMotion ? 0.01 : 0.24,
+        delay: 0,
         ease: 'power2.inOut',
         onComplete: () => {
           elements.loader.hidden = true;
@@ -589,7 +588,7 @@ export const initInsideMindHero = () => {
       preloadSequence((loaded) => setLoaderProgress(18 + (loaded / initialSequence.length) * 72)),
     ]).then(() => {
       setLoaderProgress(92);
-      const remaining = Math.max(0, 850 - (performance.now() - startedAt));
+      const remaining = Math.max(0, 0 - (performance.now() - startedAt));
       window.setTimeout(finishLoader, remaining);
     });
     window.setTimeout(finishLoader, 6500);
@@ -990,6 +989,14 @@ export const initInsideMindHero = () => {
       ([entry]) => {
         if (!entry) return;
         if (entry.isIntersecting && root.dataset.state === 'revealed') {
+          if (webglAvailable && !reduceMotion && !portalRequested) {
+            portalRequested = true;
+            void import('three').then((THREE) => {
+              if (!elements.canvas.isConnected) return;
+              portal = createPortal(elements.canvas, THREE);
+              if (root.dataset.state === 'revealed' && !document.hidden) portal.start();
+            });
+          }
           portal?.start();
           startCloudLoop();
         }

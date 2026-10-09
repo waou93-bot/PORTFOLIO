@@ -1,72 +1,225 @@
 ---
 import { site } from '../../config/site';
+
+const isHome = Astro.url.pathname === '/';
+const navItems = isHome
+  ? site.nav.filter((item) => item.href !== '/')
+  : site.nav;
+
 interface Props {
   compact?: boolean;
 }
+
+const { compact = false } = Astro.props;
 ---
 
-<header class="site-header container">
-  <a class="identity" href="/" aria-label="Nicolas Jez, accueil">NJ<span>Nicolas Jez</span></a><nav
-    aria-label="Navigation principale"
-  >
-    {
-      site.nav
-        .filter((n) => n.href !== '/')
-        .map((n) => (
+<header class:list={['site-header', { 'is-home': isHome, 'is-compact': compact }]}>
+  <div class="container header-inner">
+    <a class="brand focus-ring" href="/" aria-label={`${site.name} — accueil`}>
+      <img class="brand-logo" src="/media/identity/logo-clair.png" alt="" width="32" height="35" />
+      <span class="brand-copy">
+        <span class="brand-name">{site.name}</span>
+        <span class="brand-tag" aria-hidden="true">{site.tagline}</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Navigation principale">
+      {
+        navItems.map((item) => (
           <a
-            href={n.href}
-            aria-current={Astro.url.pathname.startsWith(n.href) ? 'page' : undefined}
+            class:list={['nav-link focus-ring', { 'is-current': Astro.url.pathname === item.href }]}
+            href={item.href}
+            aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
           >
-            {n.label}
+            {item.label}
           </a>
         ))
-    }
-  </nav>
+      }
+    </nav>
+  </div>
 </header>
-<style>
+
+<style is:global>
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: color-mix(in oklch, var(--color-paper) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: var(--border-1);
+  }
+
+  .site-header.is-home {
+    position: fixed;
+    width: 100%;
+    color: #fff8f2;
+    background: linear-gradient(180deg, rgba(8, 6, 7, 0.7), transparent);
+    border-bottom: 0;
+    backdrop-filter: none;
+  }
+
+  .site-header.is-compact {
+    position: fixed;
+    inset: 0 0 auto;
+    width: 100%;
+    color: #fff8f2;
+    background: transparent;
+    border-bottom: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+  }
+
+  .site-header.is-compact .header-inner {
+    justify-content: flex-start;
+    padding-block: 0.65rem;
+  }
+
+  .site-header.is-compact .brand {
+    pointer-events: auto;
+    padding: 0.2rem;
+    border-radius: 50%;
+    transition: background-color var(--dur-fast), transform var(--dur-fast);
+  }
+
+  .site-header.is-compact .brand:hover {
+    background: rgb(255 255 255 / 0.12);
+    transform: scale(1.04);
+  }
+
+  .site-header.is-compact .brand-copy,
+  .site-header.is-compact .site-nav {
+    display: none;
+  }
+
+  .site-header.is-compact .brand-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: -0.18rem;
+    transform: scale(1.08);
+  }
+
+  .page-shell:not([data-theme='dark']) .site-header.is-compact .brand-logo {
+    filter: invert(1) drop-shadow(0 0 0.7px currentColor);
+  }
+
+  .page-shell[data-theme='dark'] .site-header.is-compact .brand-logo {
+    filter: drop-shadow(0 0 0.7px currentColor);
+  }
+
+  .page-shell[data-theme='dark'] .site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    width: 100%;
+    color: #fff8f2;
+    background: rgb(8 6 7 / 18%);
+    border-bottom: 1px solid rgb(255 248 242 / 14%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .page-shell[data-theme='dark'] .site-header.is-compact {
+    background: transparent;
+    border-bottom: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .page-shell[data-theme='dark'] .brand-tag,
+  .page-shell[data-theme='dark'] .nav-link {
+    color: rgb(255 248 242 / 82%);
+  }
+
+  .page-shell[data-theme='dark'] .nav-link:hover {
+    color: #fff8f2;
+  }
+
+  .header-inner {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    padding-block: 1.5rem;
-    border-bottom: 1px solid var(--color-line);
+    gap: var(--space-4);
+    min-height: var(--header-h);
+    flex-wrap: wrap;
+    padding-block: var(--space-2);
   }
-  .identity {
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    line-height: 1.1;
+  }
+
+  .brand-logo {
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3.2rem;
+    object-fit: contain;
+    /* The source mark has transparent breathing room on its left edge. */
+    margin-left: -0.28rem;
+    transform: scale(1.18);
+    filter: invert(1) drop-shadow(0 0 0.7px currentColor);
+  }
+
+  .site-header.is-home .brand-logo { filter: drop-shadow(0 0 0.7px currentColor); }
+
+  .brand-copy {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .brand-name {
+    font-size: clamp(1.16rem, 2vw, 1.42rem);
+    font-weight: 850;
+    letter-spacing: -0.04em;
+  }
+
+  .brand-tag {
+    font-size: clamp(0.74rem, 1.2vw, 0.9rem);
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-muted);
+  }
+
+  .site-nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    font-weight: 800;
-    font-size: 1.5rem;
+    gap: var(--space-2);
+    flex-wrap: wrap;
   }
-  .identity span {
-    font-size: 0.85rem;
-    font-weight: 500;
+
+  .nav-link {
+    position: relative;
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    border-radius: 0;
+    color: var(--color-ink-soft);
+    transition:
+      color var(--dur-med),
+      background-color var(--dur-med);
   }
-  nav {
-    display: flex;
-    gap: 1.6rem;
-    font-size: 0.85rem;
+
+  .nav-link:hover {
+    color: var(--color-accent);
   }
-  nav a {
-    padding-block: 0.5rem;
+
+  .nav-link.is-current {
+    color: inherit;
   }
-  nav a[aria-current] {
-    text-decoration: underline;
-    text-underline-offset: 0.4rem;
-  }
-  @media (max-width: 38rem) {
-    .site-header {
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-    .identity span {
-      font-size: 0.8rem;
-    }
-    nav {
-      gap: 1.25rem;
-      width: 100%;
-      justify-content: space-between;
-    }
+
+  .nav-link.is-current::after {
+    content: '';
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: 0.35rem;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
   }
 </style>

@@ -34,11 +34,6 @@
       "permanent": true
     },
     {
-      "source": "/univers-v2",
-      "destination": "/work/",
-      "permanent": true
-    },
-    {
       "source": "/univers-montagnes-v2",
       "destination": "/work/",
       "permanent": true

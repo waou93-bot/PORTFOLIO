@@ -2,6 +2,8 @@
 
 Version brief : refonte publique 2026-10-09. Source de vérité conservée : README et docs/00_MASTER_BRIEF.md + registres de décisions/rejets/risques. Ce dossier complète leur périmètre SEO.
 
+Correction D-077 : la proposition d'accueil statique est rejetée. Restaurer landing vidéo/portrait miroir et personnage stop-motion, optimiser leur chargement. Les propositions statiques antérieures de ce dossier sont des snapshots invalidés ; les nouveaux sites et l'éditorial/SEO restent actifs. Aucun résultat final attribué avant nouvelle recette.
+
 Niche : conception web associant direction artistique, UX, contenu et développement. Type : portfolio professionnel et vitrine, français, France. Public prioritaire établi par MASTER : recruteurs ; public secondaire : collaborateurs et porteurs de projets. But : comprendre le rôle de Nicolas, consulter ses réalisations en ligne, prendre contact.
 
 L'utilisateur autorise explicitement refonte, remplacement de projets, révision éditoriale, article, audit, push et publication, puis SEO post-déploiement. Les anciennes interdictions de publication ne s'appliquent plus à ce lot autorisé. Aucun nouveau traceur, compte payant, contact à des tiers ou prix n'est inclus.

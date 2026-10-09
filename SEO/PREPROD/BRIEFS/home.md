@@ -1,5 +1,7 @@
 # Brief home — V1, 2026-10-09
 
+**Correction D-077 prioritaire : partie portrait statique ci-dessous invalidée.** Landing originale vidéo/portrait miroir et personnage stop-motion restaurés ; médias optimisés avec direction artistique inchangée. Accès HTML aux cinq sites et contact demeure utilisable. Nouveau rendu et mesures à vérifier. Le brief historique ne valide pas la proposition statique rejetée.
+
 URL /, FR, root integration, audit_docs revue, PROPOSE.
 
 Intention : Identifier Nicolas et voir ses projets. Public recruteurs/collaborateurs ; contrainte acces direct aux preuves. Reponse au debut : sujet exact de cette intention. Angle : sites consultables et conception, aucun resultat commercial invente ; pas pour un acheteur de garantie SEO.

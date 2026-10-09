@@ -1,45 +1,18 @@
 ---
-const projects = [
-  {
-    title: 'Down Trigger',
-    meta: 'Musique · signal',
-    href: '/work/down-trigger',
-    src: '/media/projects/down-trigger/cover-v2.webp',
-    alt: 'Down Trigger en contre-plongée dans un décor brutaliste.',
-  },
-  {
-    title: 'Héritage 2',
-    meta: 'Patrimoine · matière',
-    href: '/work/heritage-2',
-    src: '/media/projects/heritage-2/cover-v2.webp',
-    alt: 'Escalier en pierre claire baigné de lumière naturelle.',
-  },
-  {
-    title: 'Atelier NØR',
-    meta: 'Architecture · espace',
-    href: '/work/maison-sillon',
-    src: '/media/projects/maison-sillon/cover-v3.webp',
-    alt: 'Maison Sillon, volume bas en pierre claire longeant un bassin dans la lumière du soir.',
-  },
-  {
-    title: 'Vantel',
-    meta: 'Mode · contraste',
-    href: '/work/vantel',
-    src: '/media/projects/vantel/cover.webp',
-    alt: 'Campagne Vantel DayShift devant une façade minérale.',
-  },
-];
+import { getPublishedProjects } from '../../lib/content';
+const published = await getPublishedProjects();
+const projects = published.map(p=>({title:p.data.title,meta:p.data.sector,href:`/work/${p.data.slug}/`,src:p.data.cover.src,alt:p.data.cover.alt}));
 
 const heroReelClips = [
-  { src: '/media/identity/hero-reel-mirror/clip-01.mp4', ratio: 0.18 },
-  { src: '/media/identity/hero-reel-mirror/clip-02.mp4', ratio: 0.18 },
-  { src: '/media/identity/hero-reel-mirror/clip-03.mp4', ratio: 0.18 },
-  { src: '/media/identity/landing-hero-video.mp4', ratio: 0.1, invert: true },
-  { src: '/media/identity/91744-636709154_medium.mp4', ratio: 0.1 },
-  { src: '/media/identity/165208-832102298_medium.mp4', ratio: 0.1 },
+  { src: '/media/identity/hero-reel-optimized/clip-01.mp4', ratio: 1 },
+  { src: '/media/identity/hero-reel-optimized/clip-02.mp4', ratio: 1 },
+  { src: '/media/identity/hero-reel-optimized/clip-03.mp4', ratio: 1 },
+  { src: '/media/identity/hero-reel-optimized/clip-04.mp4', ratio: 1, invert: true },
+  { src: '/media/identity/hero-reel-optimized/clip-05.mp4', ratio: 1 },
+  { src: '/media/identity/hero-reel-optimized/clip-06.mp4', ratio: 1 },
 ];
 
-const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.png';
+const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
 ---
 
 <section class="mind" data-inside-mind data-state="loading" aria-labelledby="mind-title">
@@ -197,7 +170,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.png';
       <div class="mind-world-head">
         <p class="mind-world-kicker">Inside my mind · choisir un territoire</p>
         <h2 class="mind-world-title" data-mind-world-title tabindex="-1">
-          Une idée.<br /><em>Quatre formes.</em>
+          Une idée.<br /><em>Cinq formes.</em>
         </h2>
         <p class="mind-world-intro">Chaque fragment ouvre une étude de cas complète.</p>
       </div>
@@ -316,7 +289,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.png';
     left: 12px;
     width: 106px;
     height: 260px;
-    background-image: url('/media/footer/nicolas-hanging-fall-v8-alpha.png');
+    background-image: url('/media/footer/nicolas-hanging-fall-v8-alpha.webp');
     background-repeat: no-repeat;
     background-size: 900% 100%;
     background-position: 0 0;

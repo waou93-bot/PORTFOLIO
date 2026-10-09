@@ -13,7 +13,7 @@ type Pose = {
   scale: number;
 };
 
-const atlas = '/media/footer/nicolas-footer-rise-v5-alpha.png';
+const atlas = '/media/footer/nicolas-footer-rise-v5-alpha.webp';
 const atlasWidth = 2400;
 const atlasHeight = 736;
 const cellWidth = atlasWidth / 8;

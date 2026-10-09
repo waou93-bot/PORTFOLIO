@@ -1,5 +1,7 @@
 # Revue indépendante ciblée — 9 octobre 2026
 
+**SNAPSHOT HISTORIQUE D'UNE PROPOSITION REJETÉE.** D-077 restaure la landing originale vidéo/portrait miroir et le personnage stop-motion. Les constats ci-dessous appartiennent au dist statique examiné ; ils ne valident pas le build restauré. Les résultats finaux attendent sa recette et ses nouvelles mesures.
+
 Reviewer réel `/root/audit_docs`, distinct du root implémenteur. Environnement : sources modifiées et `site/dist` local, build production fourni par root ; aucune réponse HTTP de production encore examinée dans cette revue. Empreintes de chaque HTML : `prepublication-evidence.json`. Pas de certification stricte SEO STUDIO 2 ni /personna complet.
 
 ## Résultats réellement extraits
@@ -17,6 +19,8 @@ Contrôles transmis par root, sans les présenter comme mes propres exécutions 
 ## Défauts et limites avant publication
 
 P1 — Légende couverture Down Trigger : le gabarit affichait « Capture du site public · 2026-09-04 » pour une image dont l'alt décrit une photographie de membres dans un décor brutaliste. Une photo ne doit pas être qualifiée capture du site. Correction demandée à root : légende conditionnée à la nature du média ou suppression pour ce cas. Recontrôle de la correction requis.
+
+Recontrôle local du dist reconstruit à 14:14:45 fourni par root : la légende « Capture du site public » est absente de la couverture Down Trigger ; aucune propriété dateCreated n'est présente ; URL CreativeWork `https://www.wadek.fr/work/down-trigger/`. Ce défaut précis est **CORRIGÉ LOCALEMENT**. La future restauration invalide la revue globale d'accueil, pas cette preuve ponctuelle sur le cas tant que son fichier ne change pas.
 
 P1 administratif — Mentions légales indiquent toujours que l'adresse/coordonnées opérateur restent à renseigner. Question utilisateur en attente, aucune adresse inventée. Ne pas annoncer conformité juridique ; ce rapport ne remplace pas validation juridique qualifiée. Inconnue distincte des corrections techniques réussies.
 

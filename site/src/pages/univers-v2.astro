@@ -1,3 +1,9 @@
 ---
-return Astro.redirect('/work/',301);
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import RoomUniverse from '../components/immersive/RoomUniverse.astro';
+
 ---
+<BaseLayout title="Mon univers — l’atelier" theme="light" noindex={true}>
+
+  <RoomUniverse />
+</BaseLayout>

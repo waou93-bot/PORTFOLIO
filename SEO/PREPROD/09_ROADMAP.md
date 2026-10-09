@@ -1,5 +1,7 @@
 # Roadmap exécutable
 
+D-077 remplace W02 : restaurer landing originale vidéo/portrait miroir et personnage stop-motion, optimiser médias/chargement en conservant le récit. W07 doit porter sur le nouveau build et nouvelles mesures ; l'acceptance « aucun clip initial » est rejetée. Les autres tickets nouveaux sites/SEO restent actifs. Aucun transfert du score de la version statique à la version restaurée.
+
 | Ticket | Propriétaire | Dépendance | Sortie et acceptance | Taille |
 |---|---|---|---|---|
 | W01 preuve sites/remplacement | editorial_research + root | domaines utilisateur | URLs live vérifiées, attribution prudente, sélection cinq cas | M |
