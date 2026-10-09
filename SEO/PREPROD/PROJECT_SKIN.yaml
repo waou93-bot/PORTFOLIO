@@ -1,4 +1,4 @@
-version: '2026-10-09-D077-restauration'
+version: "2026-10-09-D077-restauration"
 status: PROVISOIRE
 project: wadek.fr
 provenance:
@@ -19,3 +19,4 @@ performance: nouvelle recette et mesures comparables requises; aucun gain de la 
 superseded_snapshot: AUDITS/prepublication.md et evidence JSON décrivent le build statique rejeté
 loader: D078 rétablit les 30 déclinaisons du visage en stop motion; cadrage CSS par image, repère commun au niveau des yeux, zoom léger 1.06; réduction de mouvement respectée
 character_fall: D079 au premier scroll, chute stop-motion directe vers le footer sans rattrapage ni clic intermédiaire; pose finale et mouvement réduit conservés
+room_revision: encarts avec images intégrales sans découpe, cadre sombre en continuité avec la landing, accents cyan du salon pixel RGB, agrandissement au clic seulement; D080 choix sombre + pixel art RGB confirmé par Nicolas

@@ -150,3 +150,7 @@ Demande utilisateur explicite : conserver les nombreuses déclinaisons du visage
 ## D079 — 2026-10-09 — Chute directe vers le footer
 Demande explicite de Nicolas : supprimer le rattrapage du petit personnage. Au premier scroll après chargement, la chute stop-motion traverse directement la landing, sans pose suspendue ni clic intermédiaire, puis le personnage prend sa position finale au footer sans remontée. Assets, miroir et loader conservés. Mouvement réduit : arrivée immédiate. Publication autorisée dans la session.
 
+
+## D080 — 2026-10-09 — Atelier sombre RGB et cadrages des encarts
+Nicolas rejette les cadrages et la DA de Mon univers, puis choisit explicitement « Sombre + pixel art RGB ». Conserver le salon existant et les cinq projets publiés, aligner le cadre de page avec la landing sombre, présenter les captures entières sans découpe dans les aperçus et fenêtres agrandies. Agrandissement au clic uniquement. Aucun changement de la landing ni remplacement des médias. Publication autorisée dans la session.
+
