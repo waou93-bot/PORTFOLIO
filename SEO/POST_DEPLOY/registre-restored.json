@@ -1,0 +1,94 @@
+{
+  "run_id": "wadek-refonte-2026-10-09-D077",
+  "domain": "https://www.wadek.fr",
+  "commit": "a85e3d8",
+  "generated_at": "2026-10-09",
+  "owner": "root",
+  "status": "INTERMEDIAIRE_OPTIMISATION_CPU_EN_COURS_RUN_FINAL_ATTENDU",
+  "authorization": "Publication et SEO post-deploy explicitement demandes par utilisateur, D077 conserve direction immersive",
+  "actions": [
+    {
+      "operator": "GitHub",
+      "action": "push commit restaure",
+      "status": "FAIT_VERIFIE_PAR_ROOT",
+      "evidence": "Retour root : a85e3d8 pousse",
+      "limit": "Agent documentaire ne repousse pas"
+    },
+    {
+      "operator": "Vercel",
+      "action": "deploiement production",
+      "status": "FAIT_VERIFIE_PAR_ROOT",
+      "evidence": "Production restauree observee HTTP et Lighthouse www, commit a85e3d8 annonce root",
+      "next_action": "Verifier alias et commit deploye"
+    },
+    {
+      "operator": "HTTP",
+      "action": "recette www pages robots sitemap medias redirects404",
+      "status": "FAIT_VERIFIE",
+      "evidence": "AUDITS/post-deploy-restored.json 2026-10-09T12:53:51.371Z :12 pages200 robots/sitemap200 atelier5projets404utile404, redirects308",
+      "next_action": "Conserver limites apex et utilitaires"
+    },
+    {
+      "operator": "Lighthouse",
+      "action": "run mobile public restaure",
+      "status": "FAIT_VERIFIE",
+      "evidence": "AUDITS/restored-production-mobile.json 2026-10-09T12:54:14.779Z : performance50 LCP4.545844s TBT2207ms2531992octets",
+      "limit": "Laboratoire, score50vs52 pas amelioration score; poids/LCP reduits~85%; pas terrain"
+    },
+    {
+      "operator": "Apex wadek.fr",
+      "action": "verification redirection www",
+      "status": "NON_VERIFIE",
+      "evidence": "ECONNRESET constate root",
+      "next_action": "Reessayer si nouveau diagnostic, sans conclure panne"
+    },
+    {
+      "operator": "Google Search Console",
+      "action": "propriete sitemap inspection",
+      "status": "BLOQUE_ACCES",
+      "evidence": "Aucun acces confirme dans session",
+      "next_action": "Reutiliser propriete existante quand acces disponible, aucune indexation supposee"
+    },
+    {
+      "operator": "Bing Webmaster Tools",
+      "action": "propriete sitemap",
+      "status": "BLOQUE_ACCES",
+      "evidence": "Aucun acces confirme",
+      "next_action": "Reutiliser propriete, soumission officielle si acces"
+    },
+    {
+      "operator": "GA4",
+      "action": "collecte et lien GSC",
+      "status": "NON_APPLICABLE",
+      "evidence": "Analytics volontairement desactive, aucun nouveau traceur",
+      "limit": "Aucun compte acces ni liaison observe, ne pas installer pour remplir checklist"
+    },
+    {
+      "operator": "IndexNow",
+      "action": "notification",
+      "status": "NON_VERIFIE",
+      "evidence": "Integration/cle non constatees",
+      "next_action": "Inventorier existant avant creation; aucune notification pretendue"
+    },
+    {
+      "operator": "Recherche IA",
+      "action": "observations citations/recommandations",
+      "status": "NON_VERIFIE",
+      "evidence": "Pas panel neutre grand public execute",
+      "limit": "Politique entrainement non modifiee; pas garantie citation"
+    }
+  ],
+  "open_limits": [
+    "Adresse administrative editeur inconnue",
+    "Personna formation stricte partielle",
+    "Pas donnees CrUX/INP terrain",
+    "Aucune reception email exercee",
+    "Snapshots statiques rejetes et conserves comme historique"
+  ],
+  "follow_up": "J+3/J+7/J+30 seulement proposes; aucune automation creee",
+  "final_measurement": {
+    "file": "AUDITS/restored-final-production-mobile.json",
+    "limit": "Les resultats a85e3d8 sont un snapshot intermediaire, pas bilan final",
+    "status": "A_FAIRE"
+  }
+}

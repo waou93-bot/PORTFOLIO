@@ -1,0 +1,442 @@
+{
+  "checkedAt": "2026-10-09T12:53:51.371Z",
+  "origin": "https://www.wadek.fr",
+  "pages": [
+    {
+      "url": "https://www.wadek.fr/",
+      "status": 200,
+      "title": "Inside My Mind — portfolio — Nicolas Jez",
+      "description": "Entrez dans l’univers créatif de Nicolas Jez et découvrez cinq sites en ligne : association, guides, musique et créations web.",
+      "canonical": "https://www.wadek.fr/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Nicolas Jez",
+          "url": "https://www.wadek.fr",
+          "jobTitle": "Concepteur d’expériences web — direction artistique",
+          "knowsLanguage": [
+            "fr"
+          ],
+          "email": "nicolas.jez75@gmail.com"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Nicolas Jez — Conception de sites web",
+          "url": "https://www.wadek.fr",
+          "inLanguage": "fr"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Projets sélectionnés",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://www.wadek.fr/work/association-bee/",
+              "name": "BEE"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://www.wadek.fr/work/accord-raccord/",
+              "name": "Accord Raccord"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://www.wadek.fr/work/mode-rgb/",
+              "name": "Mode RGB"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://www.wadek.fr/work/pas-du-jour/",
+              "name": "Pas du jour"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://www.wadek.fr/work/down-trigger/",
+              "name": "Down Trigger"
+            }
+          ]
+        }
+      ],
+      "sha256": "22486d601b7330dd96fc2ec05826efbac0cc5f6c6e5af130d27e9a6c4198e7ce"
+    },
+    {
+      "url": "https://www.wadek.fr/about/",
+      "status": 200,
+      "title": "À propos : design, contenu et web — Nicolas Jez",
+      "description": "Nicolas Jez relie direction artistique, contenu et développement pour concevoir des sites cohérents. Découvrez son approche et ses projets.",
+      "canonical": "https://www.wadek.fr/about/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Nicolas Jez",
+          "url": "https://www.wadek.fr",
+          "jobTitle": "Concepteur d’expériences web — direction artistique",
+          "knowsLanguage": [
+            "fr"
+          ],
+          "email": "nicolas.jez75@gmail.com"
+        }
+      ],
+      "sha256": "e8b8541c6ea2282001ceda603bc24ab1f12cb029aa19d60c5699039256f8b3be"
+    },
+    {
+      "url": "https://www.wadek.fr/contact/",
+      "status": 200,
+      "title": "Parlons de votre site — Nicolas Jez",
+      "description": "Contactez Nicolas Jez pour préparer un site ou une refonte. Partagez votre adresse actuelle, votre public et les pages dont vous avez besoin.",
+      "canonical": "https://www.wadek.fr/contact/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [],
+      "sha256": "2c59de32e17f3e637015c26d2d648dd4cf5c40656fa194c52f67b6995ad20651"
+    },
+    {
+      "url": "https://www.wadek.fr/journal/",
+      "status": 200,
+      "title": "Journal : préparer et concevoir un site — Nicolas Jez",
+      "description": "Des notes de Nicolas Jez sur les contenus, la navigation et la conception web. Un premier guide pour cadrer une refonte avant de choisir sa mise en page.",
+      "canonical": "https://www.wadek.fr/journal/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [],
+      "sha256": "48cdd7767fd7af018c505c4a26b65b48128da4287f180c21bce93a93dc860c1e"
+    },
+    {
+      "url": "https://www.wadek.fr/journal/refonte-site-web/",
+      "status": 200,
+      "title": "Refonte de site web : par où commencer ? — Nicolas Jez",
+      "description": "Préparez votre refonte de site : objectif, pages utiles, contenus vérifiables et contrôles avant publication. Un guide pour cadrer le projet.",
+      "canonical": "https://www.wadek.fr/journal/refonte-site-web/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Avant de refaire votre site, clarifiez ce qu’il doit permettre",
+          "author": {
+            "@type": "Person",
+            "name": "Nicolas Jez",
+            "url": "https://www.wadek.fr/about/"
+          },
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "mainEntityOfPage": "https://www.wadek.fr/journal/refonte-site-web/"
+        }
+      ],
+      "sha256": "85fc5956713b8b33eaf51adbf4984a178e9ab071142b213945fa9af29f2e8994"
+    },
+    {
+      "url": "https://www.wadek.fr/methode/",
+      "status": 200,
+      "title": "Ma méthode de conception web — Nicolas Jez",
+      "description": "Cadrer l’objectif, organiser le contenu, donner une direction visuelle et contrôler la mise en ligne : la méthode de Nicolas Jez pour préparer un site.",
+      "canonical": "https://www.wadek.fr/methode/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [],
+      "sha256": "927773dd395b57641db9e6e5952d0e946e3b4fefe28b8e8adf56de83f3fc0f36"
+    },
+    {
+      "url": "https://www.wadek.fr/work/",
+      "status": 200,
+      "title": "Projets de sites web — Nicolas Jez",
+      "description": "Explorez les sites BEE, Accord Raccord, Mode RGB, Pas du jour et Down Trigger : cinq projets aux publics et parcours différents.",
+      "canonical": "https://www.wadek.fr/work/",
+      "ogImage": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Projets sélectionnés",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://www.wadek.fr/work/association-bee/",
+              "name": "BEE"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://www.wadek.fr/work/accord-raccord/",
+              "name": "Accord Raccord"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://www.wadek.fr/work/mode-rgb/",
+              "name": "Mode RGB"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://www.wadek.fr/work/pas-du-jour/",
+              "name": "Pas du jour"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://www.wadek.fr/work/down-trigger/",
+              "name": "Down Trigger"
+            }
+          ]
+        }
+      ],
+      "sha256": "29d48fe5983473627be3b7d2fabee4503cef21dbde458da2ff3e27a871943ce3"
+    },
+    {
+      "url": "https://www.wadek.fr/work/accord-raccord/",
+      "status": 200,
+      "title": "Accord Raccord — Nicolas Jez",
+      "description": "Un site éditorial organisé par usages pour explorer des guides et comparatifs d’objets du quotidien.",
+      "canonical": "https://www.wadek.fr/work/accord-raccord/",
+      "ogImage": "https://www.wadek.fr/media/projects/accord-raccord/live.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "name": "Accord Raccord",
+          "url": "https://www.wadek.fr/work/accord-raccord/",
+          "description": "Un site éditorial organisé par usages pour explorer des guides et comparatifs d’objets du quotidien.",
+          "creator": {
+            "@type": "Person",
+            "name": "Nicolas Jez"
+          },
+          "relatedLink": "https://www.accordraccord.fr/"
+        }
+      ],
+      "sha256": "32fd4227601848ab5a004b2ffa3586fa04052ad141eefbab754e0001211fedc9"
+    },
+    {
+      "url": "https://www.wadek.fr/work/association-bee/",
+      "status": 200,
+      "title": "BEE — Nicolas Jez",
+      "description": "Un site associatif qui réunit les actualités, l’agenda et les documents utiles aux parents d’élèves.",
+      "canonical": "https://www.wadek.fr/work/association-bee/",
+      "ogImage": "https://www.wadek.fr/media/projects/association-bee/live.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "name": "BEE",
+          "url": "https://www.wadek.fr/work/association-bee/",
+          "description": "Un site associatif qui réunit les actualités, l’agenda et les documents utiles aux parents d’élèves.",
+          "creator": {
+            "@type": "Person",
+            "name": "Nicolas Jez"
+          },
+          "relatedLink": "https://www.associationbee.fr/"
+        }
+      ],
+      "sha256": "3c41e73db56e8e8f83f1482f3050e9fcb60dff055dfa583b81a5d20c012e5d80"
+    },
+    {
+      "url": "https://www.wadek.fr/work/down-trigger/",
+      "status": 200,
+      "title": "Down Trigger — Nicolas Jez",
+      "description": "Un univers numérique sombre construit comme un signal qui se dérègle, entre site, image et motion.",
+      "canonical": "https://www.wadek.fr/work/down-trigger/",
+      "ogImage": "https://www.wadek.fr/media/projects/down-trigger/cover-v2.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "name": "Down Trigger",
+          "url": "https://www.wadek.fr/work/down-trigger/",
+          "description": "Un univers numérique sombre construit comme un signal qui se dérègle, entre site, image et motion.",
+          "creator": {
+            "@type": "Person",
+            "name": "Nicolas Jez"
+          },
+          "relatedLink": "https://www.downtrigger.fr/"
+        }
+      ],
+      "sha256": "65e310e770d5d91a9682e76589c7939ffa31cda1f62182e9ead975ef6cd7cfad"
+    },
+    {
+      "url": "https://www.wadek.fr/work/mode-rgb/",
+      "status": 200,
+      "title": "Mode RGB — Nicolas Jez",
+      "description": "Des parcours par pièce, des guides et un comparateur pour préparer son éclairage LED et connecté.",
+      "canonical": "https://www.wadek.fr/work/mode-rgb/",
+      "ogImage": "https://www.wadek.fr/media/projects/mode-rgb/live.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "name": "Mode RGB",
+          "url": "https://www.wadek.fr/work/mode-rgb/",
+          "description": "Des parcours par pièce, des guides et un comparateur pour préparer son éclairage LED et connecté.",
+          "creator": {
+            "@type": "Person",
+            "name": "Nicolas Jez"
+          },
+          "relatedLink": "https://modergb.fr/"
+        }
+      ],
+      "sha256": "7284b6258808b42951314ab52172c2d8296ef04d7b224cfe32cde1e7122c4376"
+    },
+    {
+      "url": "https://www.wadek.fr/work/pas-du-jour/",
+      "status": 200,
+      "title": "Pas du jour — Nicolas Jez",
+      "description": "Un site de guides sur les tapis de marche, avec comparaison et vérification de l’espace de rangement.",
+      "canonical": "https://www.wadek.fr/work/pas-du-jour/",
+      "ogImage": "https://www.wadek.fr/media/projects/pas-du-jour/live.webp",
+      "h1": 1,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "name": "Pas du jour",
+          "url": "https://www.wadek.fr/work/pas-du-jour/",
+          "description": "Un site de guides sur les tapis de marche, avec comparaison et vérification de l’espace de rangement.",
+          "creator": {
+            "@type": "Person",
+            "name": "Nicolas Jez"
+          },
+          "relatedLink": "https://pasdujour.fr/"
+        }
+      ],
+      "sha256": "8be048cc4052ebdbdad507c8785a9ca9a00fc7d5b8fbec30156c33f4b842cf40"
+    }
+  ],
+  "redirects": [
+    {
+      "url": "https://www.wadek.fr/autres-projets",
+      "status": 308,
+      "location": "/work/"
+    },
+    {
+      "url": "https://www.wadek.fr/univers-montagnes-v2",
+      "status": 308,
+      "location": "/work/"
+    },
+    {
+      "url": "https://www.wadek.fr/univers-galaxie-v2",
+      "status": 308,
+      "location": "/work/"
+    },
+    {
+      "url": "https://www.wadek.fr/work/heritage-2",
+      "status": 308,
+      "location": "/work/"
+    },
+    {
+      "url": "https://www.wadek.fr/work/maison-sillon",
+      "status": 308,
+      "location": "/work/"
+    },
+    {
+      "url": "https://www.wadek.fr/work/vantel",
+      "status": 308,
+      "location": "/work/"
+    },
+    {
+      "url": "http://www.wadek.fr/",
+      "status": 308,
+      "location": "https://www.wadek.fr/"
+    },
+    {
+      "url": "https://wadek.fr/",
+      "status": 0,
+      "location": null
+    }
+  ],
+  "resources": [
+    {
+      "url": "https://www.wadek.fr/favicon.svg",
+      "status": 200,
+      "type": "image/svg+xml"
+    },
+    {
+      "url": "https://www.wadek.fr/sitemap-index.xml",
+      "status": 200,
+      "type": "application/xml"
+    },
+    {
+      "url": "https://www.wadek.fr/media/identity/nicolas-jez-hero.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "url": "https://www.wadek.fr/media/projects/accord-raccord/live.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "url": "https://www.wadek.fr/media/projects/association-bee/live.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "url": "https://www.wadek.fr/media/projects/down-trigger/cover-v2.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "url": "https://www.wadek.fr/media/projects/mode-rgb/live.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "url": "https://www.wadek.fr/media/projects/pas-du-jour/live.webp",
+      "status": 200,
+      "type": "image/webp"
+    }
+  ],
+  "errors": [],
+  "sitemap": {
+    "status": 200,
+    "urls": [
+      "https://www.wadek.fr/",
+      "https://www.wadek.fr/about/",
+      "https://www.wadek.fr/contact/",
+      "https://www.wadek.fr/journal/",
+      "https://www.wadek.fr/journal/refonte-site-web/",
+      "https://www.wadek.fr/methode/",
+      "https://www.wadek.fr/work/",
+      "https://www.wadek.fr/work/accord-raccord/",
+      "https://www.wadek.fr/work/association-bee/",
+      "https://www.wadek.fr/work/down-trigger/",
+      "https://www.wadek.fr/work/mode-rgb/",
+      "https://www.wadek.fr/work/pas-du-jour/"
+    ]
+  },
+  "robots": {
+    "status": 200,
+    "location": null,
+    "type": "text/plain; charset=utf-8",
+    "robotsHeader": null,
+    "body": "User-agent: *\nAllow: /\nSitemap: https://www.wadek.fr/sitemap-index.xml\n"
+  },
+  "atelier": {
+    "status": 200,
+    "pixelArt": true,
+    "projects": 5
+  },
+  "notFound": {
+    "status": 404,
+    "useful": true,
+    "noindex": true
+  }
+}

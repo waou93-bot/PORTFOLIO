@@ -13,7 +13,7 @@ import FooterNicolas from '../immersive/FooterNicolas.astro';
       <a class="btn btn--primary" href="/contact">{site.ctaLabel}</a>
     </div>
 
-    {Astro.url.pathname === '/' && <div class="footer-universe-slot" data-mind-lower-slot aria-label="Accès à l'univers immersif"></div>}
+    {Astro.url.pathname === '/' && <div class="footer-universe-slot" data-mind-lower-slot role="region" aria-label="Accès à l'univers immersif"></div>}
     {Astro.url.pathname === '/' && <FooterNicolas />}
     <div class="footer-bottom">
       <p class="meta">© {new Date().getFullYear()} {site.name}. Tous droits réservés.</p>

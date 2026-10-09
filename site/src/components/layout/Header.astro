@@ -15,7 +15,7 @@ const { compact = false } = Astro.props;
 
 <header class:list={['site-header', { 'is-home': isHome, 'is-compact': compact }]}>
   <div class="container header-inner">
-    <a class="brand focus-ring" href="/" aria-label={`${site.name} — accueil`}>
+    <a class="brand focus-ring" href="/" aria-label={`${site.name} ${site.tagline} — accueil`}>
       <img class="brand-logo" src="/media/identity/logo-clair.png" alt="" width="32" height="35" />
       <span class="brand-copy">
         <span class="brand-name">{site.name}</span>
