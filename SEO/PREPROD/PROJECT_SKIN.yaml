@@ -18,3 +18,4 @@ approval: D077 correction utilisateur explicite; accueil statique rejeté; rendu
 performance: nouvelle recette et mesures comparables requises; aucun gain de la proposition statique attribué à la restauration
 superseded_snapshot: AUDITS/prepublication.md et evidence JSON décrivent le build statique rejeté
 loader: D078 rétablit les 30 déclinaisons du visage en stop motion; cadrage CSS par image, repère commun au niveau des yeux, zoom léger 1.06; réduction de mouvement respectée
+character_fall: D079 au premier scroll, chute stop-motion directe vers le footer sans rattrapage ni clic intermédiaire; pose finale et mouvement réduit conservés

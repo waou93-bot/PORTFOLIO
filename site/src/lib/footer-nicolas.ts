@@ -44,6 +44,7 @@ export function initFooterNicolas() {
     let visible = false;
     let inViewport = false;
     let unlocked = false;
+    let directLanding = false;
     let timeline: gsap.core.Timeline | undefined;
 
     const layers = poses.map((pose, index) => {
@@ -130,7 +131,7 @@ export function initFooterNicolas() {
 
     const start = () => {
       if (!unlocked || !ready || !visible || disposed || document.hidden || root.dataset.state !== 'waiting') return;
-      if (performanceFinished || staticMode.matches) {
+      if (directLanding || performanceFinished || staticMode.matches) {
         settle();
         return;
       }
@@ -195,9 +196,9 @@ export function initFooterNicolas() {
 
     const onLanding = () => {
       if (disposed) return;
-      // The footer character is a consequence of the hero click, never an
-      // independent animation discovered by scrolling.
+      // The uninterrupted hero fall ends in the final footer pose.
       unlocked = true;
+      directLanding = true;
       start();
     };
 

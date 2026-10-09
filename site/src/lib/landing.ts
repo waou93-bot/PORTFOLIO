@@ -34,12 +34,7 @@ export function initInsideMindHero() {
     const entry = () => {
       if (!finished) return;
       lower();
-      root.dataset.launcherEntry = 'falling';
-      launcher.disabled = true;
-      launcher.dataset.launcherPose = '3';
-      later(() => launcher.dataset.launcherPose = '5',65);
-      later(() => launcher.dataset.launcherPose = '0',430);
-      later(() => { delete root.dataset.launcherEntry; launcher.disabled = false; },reduced.matches?0:1200);
+      launchFooter();
       window.removeEventListener('scroll',entry);
     };
     const finish = () => {
@@ -87,13 +82,16 @@ export function initInsideMindHero() {
       if(matchMedia('(hover: none), (pointer: coarse)').matches && !root.dataset.ctaLowered) { lower(); return; }
       reel.pause(); window.location.assign('/univers-v2/');
     });
-    launcher.addEventListener('click',() => {
+    const launchFooter = () => {
       if (root.dataset.footerLaunch) return;
+      delete root.dataset.launcherEntry;
       launcher.disabled = true;
       root.dataset.footerLaunch = 'falling';
       status.textContent = 'Nicolas tombe vers les coordonnées.';
       const exit = window.innerHeight+120;
-      const frames = [[0,3,1,14,-4],[100,4,3,42,-12],[240,5,6,76,-8],[380,6,3,Math.max(320,exit-420),6],[540,7,3,Math.max(320,exit-420),6],[720,8,-2,Math.max(460,exit-220),14],[1040,8,-5,exit,24]];
+      const start = -launcher.getBoundingClientRect().bottom;
+      // One uninterrupted, stepped descent: no hanging pose or catch beat.
+      const frames = [[0,3,1,start,-4],[140,4,3,start+(exit-start)*0.08,-8],[280,5,6,start+(exit-start)*0.22,-6],[420,6,3,start+(exit-start)*0.42,6],[560,7,1,start+(exit-start)*0.65,12],[700,8,-2,start+(exit-start)*0.84,18],[840,8,-5,exit,24]];
       for(const [ms,pose,x,y,rotation] of frames)later(() => {
         launcher.dataset.launcherPose=String(pose);
         character.style.transform=`translate(${x}px,${y}px) rotate(${rotation}deg)`;
@@ -103,8 +101,9 @@ export function initInsideMindHero() {
         character.style.opacity='0';
         window.dispatchEvent(new CustomEvent('nicolas:fall-to-footer'));
         document.querySelector('.site-footer')?.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'end'});
-      },reduced.matches?0:1380);
-    });
+      },reduced.matches?0:960);
+    };
+    launcher.addEventListener('click',launchFooter);
     document.addEventListener('astro:before-swap',() => {
       disposed=true; timers.forEach(clearTimeout); window.removeEventListener('scroll',entry); reel.dispose(); disposeLoupe();
     },{once:true});

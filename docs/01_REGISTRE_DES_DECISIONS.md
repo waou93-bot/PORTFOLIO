@@ -146,3 +146,7 @@ Autorité : correction explicite de Nicolas transmise dans la session à Organis
 ## D-078 — 2026-10-09 — Chargement visage en stop motion
 Demande utilisateur explicite : conserver les nombreuses déclinaisons du visage pendant le chargement et recadrer pour stabiliser leur emplacement. Restaurer les trente images existantes, appliquer un cadrage CSS individuel avec repère commun des yeux et zoom léger, compresser les dérivés sans modifier les originaux. Conserver Passer et la réduction de mouvement. Autorisation de publication héritée du lot en cours. Les mesures de performance antérieures sont des snapshots avant cette correction.
 
+
+## D079 — 2026-10-09 — Chute directe vers le footer
+Demande explicite de Nicolas : supprimer le rattrapage du petit personnage. Au premier scroll après chargement, la chute stop-motion traverse directement la landing, sans pose suspendue ni clic intermédiaire, puis le personnage prend sa position finale au footer sans remontée. Assets, miroir et loader conservés. Mouvement réduit : arrivée immédiate. Publication autorisée dans la session.
+
