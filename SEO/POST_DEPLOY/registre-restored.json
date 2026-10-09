@@ -1,39 +1,39 @@
 {
   "run_id": "wadek-refonte-2026-10-09-D077",
   "domain": "https://www.wadek.fr",
-  "commit": "a85e3d8",
+  "commit": "44949bf",
   "generated_at": "2026-10-09",
   "owner": "root",
-  "status": "INTERMEDIAIRE_OPTIMISATION_CPU_EN_COURS_RUN_FINAL_ATTENDU",
+  "status": "LOT_PUBLIE_CONTROLES_PUBLICS_FINAL_EXECUTES_LIMITES_TRACEES",
   "authorization": "Publication et SEO post-deploy explicitement demandes par utilisateur, D077 conserve direction immersive",
   "actions": [
     {
       "operator": "GitHub",
       "action": "push commit restaure",
       "status": "FAIT_VERIFIE_PAR_ROOT",
-      "evidence": "Retour root : a85e3d8 pousse",
+      "evidence": "Commit44949bf pousse root",
       "limit": "Agent documentaire ne repousse pas"
     },
     {
       "operator": "Vercel",
       "action": "deploiement production",
       "status": "FAIT_VERIFIE_PAR_ROOT",
-      "evidence": "Production restauree observee HTTP et Lighthouse www, commit a85e3d8 annonce root",
+      "evidence": "Root confirme READY dpl_7X1L2MW9BBosbS9iCMruHXMQ16LB aliaswwwsansaliasError44949bf",
       "next_action": "Verifier alias et commit deploye"
     },
     {
       "operator": "HTTP",
       "action": "recette www pages robots sitemap medias redirects404",
       "status": "FAIT_VERIFIE",
-      "evidence": "AUDITS/post-deploy-restored.json 2026-10-09T12:53:51.371Z :12 pages200 robots/sitemap200 atelier5projets404utile404, redirects308",
-      "next_action": "Conserver limites apex et utilitaires"
+      "evidence": "AUDITS/post-deploy-optimized.json13:21:12.857UTC12pages20012sitemaprobots200404utileatelier5legacy308",
+      "next_action": "ApexNV, GSC/Bingacces manquants; snapshots conserves"
     },
     {
       "operator": "Lighthouse",
       "action": "run mobile public restaure",
       "status": "FAIT_VERIFIE",
-      "evidence": "AUDITS/restored-production-mobile.json 2026-10-09T12:54:14.779Z : performance50 LCP4.545844s TBT2207ms2531992octets",
-      "limit": "Laboratoire, score50vs52 pas amelioration score; poids/LCP reduits~85%; pas terrain"
+      "evidence": "AUDITS/restored-optimized-production-mobile.json13:22:28.387UTC84/100/100/100 LCP3.664229 TBT2611744837octets",
+      "limit": "Laboratoire, aucune garantie classement conversion ou terrain; mediasP2logo"
     },
     {
       "operator": "Apex wadek.fr",
@@ -87,8 +87,8 @@
   ],
   "follow_up": "J+3/J+7/J+30 seulement proposes; aucune automation creee",
   "final_measurement": {
-    "file": "AUDITS/restored-final-production-mobile.json",
-    "limit": "Les resultats a85e3d8 sont un snapshot intermediaire, pas bilan final",
-    "status": "A_FAIRE"
+    "file": "AUDITS/restored-optimized-production-mobile.json",
+    "limit": "Labo84/100/100/100 LCP3.664229s TBT261ms1744837octets; terrain inconnu; cleanupEPERM seul exit1",
+    "status": "FAIT_VERIFIE"
   }
 }
