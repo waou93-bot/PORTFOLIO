@@ -15,9 +15,21 @@ import { site } from '../../config/site';
 </div>
 
 <script>
-  import { initFooterNicolas } from '../../lib/footer-nicolas';
-  initFooterNicolas();
-  document.addEventListener('astro:page-load', initFooterNicolas);
+  let initialized = false;
+  let loading: Promise<void> | undefined;
+  const boot = () => loading ??= import('../../lib/footer-nicolas').then(({ initFooterNicolas }) => {
+    initFooterNicolas();
+    initialized = true;
+  });
+  window.addEventListener('nicolas:fall-to-footer', async () => {
+    if (initialized) return;
+    await boot();
+    window.dispatchEvent(new CustomEvent('nicolas:fall-to-footer'));
+  });
+  window.addEventListener('scroll', boot, { once: true, passive: true });
+  window.addEventListener('pointerdown', boot, { once: true, passive: true });
+  window.addEventListener('keydown', boot, { once: true });
+  if (window.scrollY > 0) void boot();
 </script>
 
 <style is:global>

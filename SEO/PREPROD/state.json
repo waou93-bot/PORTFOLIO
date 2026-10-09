@@ -455,7 +455,7 @@
   "publication": {
     "authorization": "EXPLICITE_USER",
     "owner": "root",
-    "result": "NON_VERIFIE_ICI"
+    "result": "RESTORED_PUBLIC_HTTP_AND_LH_VERIFIED"
   },
   "artifacts": [
     {
@@ -599,7 +599,17 @@
     ],
     "id": "D077",
     "landing": "Restaurer video portrait miroir et stop-motion, optimiser seulement",
-    "status": "WAIT_RESTORED_BUILD_MEASUREMENTS",
+    "status": "RESTORED_BUILD_BROWSER_PUBLIC_MEASURE_OBSERVED",
     "authority": "Utilisateur explicite"
+  },
+  "restored_validation": {
+    "build": "19 pages",
+    "browser": "Root CUA desktop1265/mobile390 mirror video universe5 markers ModeRGB card footerstopmotion",
+    "report": "../AUDITS/final-restored.md",
+    "unit_tests": 29,
+    "strict": "PROVISOIRE",
+    "public_performance": "50 LCP4.545844s TBT2207ms2531992bytes 2026-10-09T12:54:14.779Z",
+    "astrocheck": "88 files 0 errors warnings",
+    "register": "../POST_DEPLOY/registre-restored.json"
   }
 }

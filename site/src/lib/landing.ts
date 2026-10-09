@@ -1,4 +1,3 @@
-import { navigate } from 'astro:transitions/client';
 import { initHeroVideoReel } from './hero-video-reel';
 import { initTextLoupe } from './text-loupe';
 import { prepareRoom } from './room-preload';
@@ -60,7 +59,7 @@ export function initInsideMindHero() {
     enter.addEventListener('pointerenter',() => { void prepareRoom(); if(matchMedia('(hover: hover)').matches) lower(); });
     enter.addEventListener('click',() => {
       if(matchMedia('(hover: none), (pointer: coarse)').matches && !root.dataset.ctaLowered) { lower(); return; }
-      reel.pause(); void navigate('/univers-v2/');
+      reel.pause(); window.location.assign('/univers-v2/');
     });
     launcher.addEventListener('click',() => {
       if (root.dataset.footerLaunch) return;

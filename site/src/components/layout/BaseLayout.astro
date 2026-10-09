@@ -4,7 +4,6 @@ import '../../styles/editorial.css';
 import { site } from '../../config/site';
 import { absUrl, pageTitle } from '../../lib/seo';
 
-import { ClientRouter } from 'astro:transitions';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 
@@ -43,7 +42,7 @@ const accentStyle = accent
 <!doctype html>
 <html lang={site.lang}>
   <head>
-    <ClientRouter /><meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle(title)}</title>
     <meta name="description" content={metaDescription} />

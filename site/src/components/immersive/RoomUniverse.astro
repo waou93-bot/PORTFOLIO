@@ -17,13 +17,15 @@ const projects = published.map((p,i)=>({slug:p.data.slug,name:p.data.title,image
       <img
         class="room-base"
         src={ROOM_IMAGE}
+        srcset="/media/atelier/atelier-pixel-rgb-840.webp 840w, /media/atelier/atelier-pixel-rgb-1680.webp 1680w"
+        sizes="100vw"
         width="1672"
         height="941"
         alt=""
         loading="eager"
         fetchpriority="high"
       />
-      <img class="room-echo" src={ROOM_IMAGE} width="1672" height="941" alt="" />
+      <img class="room-echo" src={ROOM_IMAGE} srcset="/media/atelier/atelier-pixel-rgb-840.webp 840w, /media/atelier/atelier-pixel-rgb-1680.webp 1680w" sizes="100vw" width="1672" height="941" alt="" />
       <div class="room-light"></div>
     </div>
     {
