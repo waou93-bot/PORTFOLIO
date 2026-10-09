@@ -1,5 +1,7 @@
 # Recette de la landing restaurée — 9 octobre 2026
 
+Actualisation D-078 : l'écran de chargement avec 30 déclinaisons du visage est rétabli après ce rapport. Les mesures 84/100 ci-dessous restent le snapshot du code 44949bf avant cette restauration du loader. Voir `loader-stop-motion.md` pour la nouvelle recette ; ne pas attribuer ces scores au nouveau code sans nouvelle mesure.
+
 **VERSION FINALE DU LOT : `44949bf`.** Production Vercel READY `dpl_7X1L2MW9BBosbS9iCMruHXMQ16LB`, alias www sans aliasError confirmé par root. Navigation native, animation footer chargée au premier scroll/interactions avec replay, portraits srcset384/768/1024 et salon840/1680. Vidéo miroir, portraits, bouton fuyant et personnage stop-motion conservés. Les mesures ci-dessous viennent uniquement de `restored-optimized-production-mobile.json` ; les versions statique, a85e3d8 et5d8451d restent historiques/intermédiaires.
 
 Version cible : commit poussé `44949bf`, décision D-077. Landing originale vidéo/portrait miroir et personnage stop-motion conservés ; cinq sites en ligne et compléments éditoriaux/SEO maintenus. Le score100 de l'accueil statique est un snapshot rejeté et **n'est pas le score de cette version**.

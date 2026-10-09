@@ -1,6 +1,7 @@
 import { initHeroVideoReel } from './hero-video-reel';
 import { initTextLoupe } from './text-loupe';
 import { prepareRoom } from './room-preload';
+import { loaderFaces, showLoaderFace } from './loader-faces';
 
 /** The original landing, without preparing the unused legacy 3D sequence. */
 export function initInsideMindHero() {
@@ -52,9 +53,34 @@ export function initInsideMindHero() {
       reel.play();
     };
     root.querySelector('[data-mind-loader-skip]')!.addEventListener('click',finish);
-    if (portrait.complete) void portrait.decode().catch(() => undefined).then(finish);
-    else { portrait.addEventListener('load',finish,{once:true}); portrait.addEventListener('error',finish,{once:true}); }
-    later(finish,3500);
+    const portraitReady = portrait.complete
+      ? portrait.decode().catch(() => undefined)
+      : new Promise<void>(resolve => { portrait.addEventListener('load',()=>resolve(),{once:true}); portrait.addEventListener('error',()=>resolve(),{once:true}); });
+    const faceImage = root.querySelector<HTMLImageElement>('[data-loader-face]')!;
+    const value = root.querySelector<HTMLElement>('[data-mind-loader-value]')!;
+    const bar = root.querySelector<HTMLElement>('[data-mind-loader-bar]')!;
+    let decoded = 0;
+    const faces = reduced.matches ? loaderFaces.slice(0,1) : loaderFaces;
+    const ready = faces.map(face => {
+      const image = new Image(); image.src = face.src;
+      return image.decode().then(() => true, () => false).then(ok => {
+        decoded++;
+        if (!finished) { value.textContent=String(Math.round(decoded/faces.length*95)); bar.style.transform=`scaleX(${decoded/faces.length})`; }
+        return ok;
+      });
+    });
+    const playFaces = async () => {
+      for(let index=0;index<faces.length;index++) {
+        const ok=await ready[index];
+        if (disposed || finished) return;
+        if(ok && !reduced.matches) showLoaderFace(faceImage,index);
+        if(!reduced.matches) await new Promise<void>(resolve => later(resolve,80));
+      }
+      await portraitReady;
+      finish();
+    };
+    void playFaces();
+    later(finish,6500);
     window.addEventListener('scroll',entry,{passive:true});
     enter.addEventListener('pointerenter',() => { void prepareRoom(); if(matchMedia('(hover: hover)').matches) lower(); });
     enter.addEventListener('click',() => {

@@ -17,9 +17,8 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
 
 <section class="mind" data-inside-mind data-state="loading" aria-labelledby="mind-title">
   <div class="mind-loader" data-mind-loader role="status" aria-live="polite">
-    <div class="mind-loader-logo" aria-label="Nicolas Jez">
-      <img src="/media/identity/logo-clair.png" alt="Nicolas Jez" width="1199" height="1312" />
-      <span aria-hidden="true"></span>
+    <div class="mind-loader-faces">
+      <img data-loader-face src="/media/identity/loader-faces/frame-01.webp" alt="Nicolas Jez, portrait décliné en stop motion." width="640" height="360" fetchpriority="high" />
     </div>
     <span class="mind-loader-bridge" aria-hidden="true"></span>
     <p class="mind-loader-mark">PORTFOLIO · 2026</p>
@@ -398,6 +397,20 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
 
   .mind-loader[hidden] {
     display: none;
+  }
+
+  .mind-loader-faces {
+    width: min(38rem, 90vw);
+    aspect-ratio: 1672 / 941;
+    overflow: hidden;
+    background: #070707;
+    contain: layout paint;
+  }
+  .mind-loader-faces img {
+    width: 100%; height: 100%; display: block;
+    object-fit: fill;
+    transform: translate(-0.9%, 1%) scale(1.06);
+    transform-origin: 50.9% 35%;
   }
 
   .mind-loader-logo {
