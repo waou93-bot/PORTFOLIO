@@ -24,3 +24,5 @@ room_revision: encarts avec images intégrales sans découpe, cadre sombre en co
 landing_motion_revision: esquive locale douce limitée à 44px horizontal et 24px vertical, bouton visible et accessible ; chute stop motion de 3.4s depuis sa position visible jusqu’au footer, sans rattrapage ; aperçu local demandé le 9 octobre
 
 fluidity_revision: trajectoires continues en requestAnimationFrame, poses stop motion conservées, suivi doux du défilement interruptible, esquive amortie et bornée, raccord vidéo 480ms et navigation en fondu natif, encarts en fondu court ; direction sombre miroir et salon RGB conservée
+
+mobile_character_anchor: petite traverse matérielle reliée au bord droit du héros, derrière les deux mains du personnage ; mêmes coordonnées responsive que le personnage, appui conservé quand il tombe ; aucune nouvelle image ni modification de la trajectoire

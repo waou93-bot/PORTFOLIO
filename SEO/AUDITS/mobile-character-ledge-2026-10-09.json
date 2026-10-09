@@ -1,0 +1,132 @@
+[
+  {
+    "height": 812,
+    "launcher": {
+      "bottom": 628.4783935546875,
+      "height": 184.0799560546875,
+      "left": 168,
+      "right": 297.47998046875,
+      "top": 444.3984375,
+      "width": 129.47998046875,
+      "x": 168,
+      "y": 444.3984375
+    },
+    "ledge": {
+      "bottom": 452.3984375,
+      "height": 5,
+      "left": 193,
+      "right": 360,
+      "top": 447.3984375,
+      "width": 167,
+      "x": 193,
+      "y": 447.3984375
+    },
+    "overflow": false,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "height": 812,
+    "launcher": {
+      "bottom": 628.4783935546875,
+      "height": 184.0799560546875,
+      "left": 168,
+      "right": 297.47998046875,
+      "top": 444.3984375,
+      "width": 129.47998046875,
+      "x": 168,
+      "y": 444.3984375
+    },
+    "ledge": {
+      "bottom": 452.3984375,
+      "height": 5,
+      "left": 193,
+      "right": 360,
+      "top": 447.3984375,
+      "width": 167,
+      "x": 193,
+      "y": 447.3984375
+    },
+    "overflow": false,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "height": 740,
+    "launcher": {
+      "bottom": 592.4783935546875,
+      "height": 184.0799560546875,
+      "left": 113,
+      "right": 242.47999572753903,
+      "top": 408.3984375,
+      "width": 129.47999572753906,
+      "x": 113,
+      "y": 408.3984375
+    },
+    "ledge": {
+      "bottom": 416.3984375,
+      "height": 5,
+      "left": 138,
+      "right": 305,
+      "top": 411.3984375,
+      "width": 167,
+      "x": 138,
+      "y": 411.3984375
+    },
+    "overflow": false,
+    "scrollY": 0,
+    "width": 320
+  },
+  {
+    "height": 1024,
+    "launcher": {
+      "bottom": 809.59375,
+      "height": 264,
+      "left": 438.8984375,
+      "right": 642.8984375,
+      "top": 545.59375,
+      "width": 204,
+      "x": 438.8984375,
+      "y": 545.59375
+    },
+    "ledge": {
+      "bottom": 555.59375,
+      "height": 5,
+      "left": 474.8984375,
+      "right": 753,
+      "top": 550.59375,
+      "width": 278.1015625,
+      "x": 474.8984375,
+      "y": 550.59375
+    },
+    "overflow": false,
+    "scrollY": 0,
+    "width": 768
+  },
+  {
+    "flightContainsLedge": false,
+    "height": 812,
+    "ledgeCount": 1,
+    "ledgeDocumentY": 447.3984375,
+    "state": "falling",
+    "test": "fall launched",
+    "width": 375
+  },
+  {
+    "flightCount": 0,
+    "footerPose": "8",
+    "footerState": "settled",
+    "height": 812,
+    "ledgeDocumentY": 447.3984375,
+    "state": "done",
+    "test": "fall completed",
+    "width": 375
+  },
+  {
+    "display": "none",
+    "height": 800,
+    "overflow": false,
+    "test": "desktop support hidden",
+    "width": 1280
+  }
+]
