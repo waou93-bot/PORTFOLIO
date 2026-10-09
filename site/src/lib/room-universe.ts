@@ -12,6 +12,7 @@ export function initRoom() {
       disposed = false,
       opened: HTMLElement | null = null;
     let promotion: Animation | null = null;
+    const reveals = new Map<HTMLElement, Animation>();
     let ignoreNextFocus = false;
     let schedule = 0,
       finish = 0,
@@ -45,13 +46,13 @@ export function initRoom() {
               delete root.dataset.anomaly;
               queue();
             },
-            last === 'light' ? 1800 : last === 'reflection' ? 800 : 600,
+            last === 'light' ? 1800 : 1100,
           );
         },
         firstEffect ? 2200 : 9000 + Math.random() * 8000,
       );
     };
-    const close = (restoreFocus = false) => {
+    const close = (restoreFocus = false, immediate = false) => {
       clearTimeout(closeTimer);
       const trigger = restoreFocus
         ? opened?.querySelector<HTMLButtonElement>('.room-trigger')
@@ -60,9 +61,20 @@ export function initRoom() {
       promotion = null;
       points.forEach((point) => {
         point.dataset.open = 'false';
-        delete point.dataset.promoted;
         point.querySelector('button')!.setAttribute('aria-expanded', 'false');
-        point.querySelector<HTMLElement>('.room-reveal')!.hidden = true;
+        const reveal = point.querySelector<HTMLElement>('.room-reveal')!;
+        reveals.get(point)?.cancel();
+        const hide = () => {
+          reveal.hidden = true;
+          delete point.dataset.promoted;
+          reveals.delete(point);
+        };
+        if (reveal.hidden || reduced.matches || immediate) hide();
+        else {
+          const fade = reveal.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: 'ease-out' });
+          reveals.set(point, fade);
+          void fade.finished.then(() => { if (reveals.get(point) === fade) hide(); }).catch(() => {});
+        }
       });
       opened = null;
       setProjectMood(null);
@@ -78,8 +90,8 @@ export function initRoom() {
       point.dataset.promoted = 'true';
       if (reduced.matches) return;
       reveal.animate([{ opacity: 0 }, { opacity: 1 }], {
-        duration: 160,
-        easing: 'ease-out',
+        duration: 320,
+        easing: 'cubic-bezier(.22, 1, .36, 1)',
         fill: 'both',
       });
       promotion = reveal.getAnimations()[0] ?? null;
@@ -99,13 +111,19 @@ export function initRoom() {
       if (opened?.dataset.promoted === 'true') return;
       clearTimeout(closeTimer);
       if (opened === point) return;
-      close();
+      close(false, true);
       opened = point;
       clearEffect();
       setProjectMood(point);
       point.dataset.open = 'true';
       point.querySelector('button')!.setAttribute('aria-expanded', 'true');
       point.querySelector<HTMLElement>('.room-reveal')!.hidden = false;
+      if (!reduced.matches) {
+        const reveal = point.querySelector<HTMLElement>('.room-reveal')!;
+        const fade = reveal.animate([{ opacity: 0, translate: '0 6px' }, { opacity: 1, translate: '0 0' }], { duration: 260, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+        reveals.set(point, fade);
+        void fade.finished.then(() => { if (reveals.get(point) === fade) reveals.delete(point); }).catch(() => {});
+      }
     };
     points.forEach((point) => {
       point.addEventListener(
@@ -227,6 +245,7 @@ export function initRoom() {
       'astro:before-swap',
       () => {
         disposed = true;
+        promotion?.cancel(); reveals.forEach(animation => animation.cancel());
         clearEffect();
         clearTimeout(closeTimer);
         observer.disconnect();

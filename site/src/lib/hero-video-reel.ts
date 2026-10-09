@@ -23,6 +23,7 @@ export function initHeroVideoReel(root: HTMLElement) {
   let retryAt = 0;
   let preparedNext = -1;
   let finishSplice: (() => void) | undefined;
+  let crossfade: Animation | undefined;
   const enabled = () => !disposed && !document.hidden && visible &&
     !motion.matches && root.dataset.state === 'portrait';
   const cutAt = (video: HTMLVideoElement, pair: HeroPair) => {
@@ -120,13 +121,17 @@ export function initHeroVideoReel(root: HTMLElement) {
       return;
     }
     incoming.root.dataset.incoming = '';
-    reel.dataset.glitch = '';
+    crossfade = incoming.root.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 480, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both',
+    });
     root.dataset.heroClip = String(nextIndex + 1);
     finishSplice = () => {
       delete outgoing.root.dataset.active;
       incoming.root.dataset.active = '';
       delete incoming.root.dataset.incoming;
       delete reel.dataset.glitch;
+      crossfade?.cancel();
+      crossfade = undefined;
       pausePair(outgoing);
       resetPair(outgoing);
       active = nextIndex;
@@ -135,7 +140,7 @@ export function initHeroVideoReel(root: HTMLElement) {
       finishSplice = undefined;
       if (enabled()) prepareNext();
     };
-    timer = window.setTimeout(() => finishSplice?.(), 220);
+    timer = window.setTimeout(() => finishSplice?.(), 500);
   };
 
   const tick = () => {
@@ -144,8 +149,7 @@ export function initHeroVideoReel(root: HTMLElement) {
     const current = pair.videos[0]!;
     const boundary = cutAt(current, pair);
     if (boundary !== Infinity && current.currentTime >= boundary * 0.45) prepareNext();
-    if (current.currentTime >= boundary || current.ended) {
-      pausePair(pair);
+    if (current.currentTime >= boundary - 0.4 || current.ended) {
       void splice();
     }
     frame = requestAnimationFrame(tick);

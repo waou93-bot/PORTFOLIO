@@ -20,3 +20,7 @@ superseded_snapshot: AUDITS/prepublication.md et evidence JSON décrivent le bui
 loader: D078 rétablit les 30 déclinaisons du visage en stop motion; cadrage CSS par image, repère commun au niveau des yeux, zoom léger 1.06; réduction de mouvement respectée
 character_fall: D079 au premier scroll, chute stop-motion directe vers le footer sans rattrapage ni clic intermédiaire; pose finale et mouvement réduit conservés
 room_revision: encarts avec images intégrales sans découpe, cadre sombre en continuité avec la landing, accents cyan du salon pixel RGB, agrandissement au clic seulement; D080 choix sombre + pixel art RGB confirmé par Nicolas
+
+landing_motion_revision: esquive locale douce limitée à 44px horizontal et 24px vertical, bouton visible et accessible ; chute stop motion de 3.4s depuis sa position visible jusqu’au footer, sans rattrapage ; aperçu local demandé le 9 octobre
+
+fluidity_revision: trajectoires continues en requestAnimationFrame, poses stop motion conservées, suivi doux du défilement interruptible, esquive amortie et bornée, raccord vidéo 480ms et navigation en fondu natif, encarts en fondu court ; direction sombre miroir et salon RGB conservée

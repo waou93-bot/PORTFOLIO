@@ -1,3 +1,13 @@
+/* Native document transitions keep navigation continuous without delaying clicks. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: page-out 180ms ease-out both; }
+::view-transition-new(root) { animation: page-in 260ms ease-out both; }
+@keyframes page-out { to { opacity: 0; } }
+@keyframes page-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
 @font-face {
   font-family: 'Manrope Variable';
   src: url('/fonts/manrope-latin-variable.woff2') format('woff2');

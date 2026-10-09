@@ -1571,7 +1571,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
 
     .mind-footer-launcher {
       top: calc(50% + 2.4rem);
-      left: 58%;
+      left: min(58%, calc(100% - 12rem));
       width: 166px;
       height: 236px;
       transform: scale(0.78);
@@ -1749,7 +1749,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
 
   @media (max-width: 56rem) {
     .mind-footer-launcher {
-      left: calc(50% + 3.9rem);
+      left: min(calc(50% + 3.9rem), calc(100% - 12rem));
     }
 
     .mind .mind-portrait[data-composite-portrait] {

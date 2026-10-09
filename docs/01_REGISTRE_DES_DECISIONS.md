@@ -154,3 +154,9 @@ Demande explicite de Nicolas : supprimer le rattrapage du petit personnage. Au p
 ## D080 — 2026-10-09 — Atelier sombre RGB et cadrages des encarts
 Nicolas rejette les cadrages et la DA de Mon univers, puis choisit explicitement « Sombre + pixel art RGB ». Conserver le salon existant et les cinq projets publiés, aligner le cadre de page avec la landing sombre, présenter les captures entières sans découpe dans les aperçus et fenêtres agrandies. Agrandissement au clic uniquement. Aucun changement de la landing ni remplacement des médias. Publication autorisée dans la session.
 
+
+## D081 — 9 octobre 2026 — Motion landing en local
+Demande Nicolas : bouton Voir mon univers qui s’écarte doucement sans disparaître, chute du personnage ralentie pour être lisible. Le bouton reste dans la landing et ne migre plus au footer. Chute 3.4s avec pose finale existante conservée ; accès tactile direct et réduction de mouvement préservés. Aperçu local demandé, aucune nouvelle publication de ce lot.
+## D082 — 9 octobre 2026 — Fluidité globale
+Nicolas demande une expérience plus fluide et premium. Déplacements continus distincts des changements de poses stop motion ; descente 3.4s coordonnée au scroll, sans disparition/saut final, interruption du scroll automatique à la molette ou au toucher. Esquive amortie sans mesure de layout par pointermove. Raccords vidéo croisés 480ms, sortie loader 300ms, navigation native en fondu, encarts 260/320ms puis fermeture 150ms et effets RGB atténués. Vérifié en local : typage 90 fichiers sans erreur ni warning, compilation 19 pages, recette landing/footer et ouverture/fermeture encarts desktop/mobile 390px. Aucun push/publication pour ce lot.
+
