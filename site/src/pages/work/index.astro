@@ -1,3 +1,29 @@
 ---
-return Astro.redirect('/');
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import ProjectSelection from '../../components/ProjectSelection.astro';
+import { getPublishedProjects } from '../../lib/content';
+import { itemListLd } from '../../lib/seo';
+const projects = await getPublishedProjects();
 ---
+
+<BaseLayout
+  title="Projets de sites web"
+  description="Explorez les sites BEE, Accord Raccord, Mode RGB, Pas du jour et Down Trigger : cinq projets aux publics et parcours différents."
+  jsonLd={[itemListLd(projects)]}
+  ><section class="container section">
+    <p class="eyebrow">Sélection</p><h1 class="display">Projets de sites web</h1><p class="lead">
+      Cinq sites à visiter. Des informations associatives aux guides éditoriaux, chaque parcours
+      répond à une question concrète.
+    </p><h2 class="sr-only">Sites en ligne</h2><ProjectSelection />
+  </section></BaseLayout
+><style>
+  h1 {
+    font-size: var(--text-4xl);
+    margin-block: 1.5rem;
+  }
+  .lead {
+    max-width: 52ch;
+    color: var(--color-ink-soft);
+    margin-bottom: 3rem;
+  }
+</style>

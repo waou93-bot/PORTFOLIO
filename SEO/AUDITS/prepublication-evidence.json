@@ -1,0 +1,180 @@
+{
+  "jsonld_errors": [],
+  "public_count": 12,
+  "duplicate_titles": [],
+  "date": "2026-10-09",
+  "environment": "local dist build production fourni root",
+  "duplicate_descriptions": [],
+  "jsonld_parsed": 11,
+  "canonical_not_sitemap": [],
+  "html": [
+    {
+      "canonical": "https://www.wadek.fr/404/",
+      "path": "/404.html",
+      "title": "Page introuvable — Nicolas Jez",
+      "description": "Cette page n'existe pas.",
+      "robots": "noindex,nofollow",
+      "sha256": "98BD76F767FA4CBCDBD10822FCB334C846A16689292A3B92FB812604BD30D5D1"
+    },
+    {
+      "canonical": "https://www.wadek.fr/",
+      "path": "/index.html",
+      "title": "Nicolas Jez — Conception de sites web",
+      "description": "Nicolas Jez conçoit des sites web en reliant direction visuelle, navigation et contenu. Découvrez ses projets en ligne et sa méthode de refonte.",
+      "robots": "",
+      "sha256": "F0B02F6A35D0A47357D84A8461C0597F194E8D07DD22CFECB660B2CE9A9885DB"
+    },
+    {
+      "canonical": "https://www.wadek.fr/about/",
+      "path": "/about/index.html",
+      "title": "À propos : design, contenu et web — Nicolas Jez",
+      "description": "Nicolas Jez relie direction artistique, contenu et développement pour concevoir des sites cohérents. Découvrez son approche et ses projets.",
+      "robots": "",
+      "sha256": "7C240B270BF85A2A0CECA99B187FB18452C88179537F87ED96DFB296B076C81C"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/",
+      "path": "/autres-projets/index.html",
+      "title": "Redirecting to: /work/",
+      "description": "",
+      "robots": "noindex",
+      "sha256": "D21772E3211740D657443FF8B69B5C7288BE1B88EDF8B690C18C9DE44D4838B7"
+    },
+    {
+      "canonical": "https://www.wadek.fr/confidentialite/",
+      "path": "/confidentialite/index.html",
+      "title": "Confidentialité — Nicolas Jez",
+      "description": "Politique de confidentialité du site de Nicolas Jez.",
+      "robots": "noindex,nofollow",
+      "sha256": "A14DA7E8B4976BCAAFD299D1805D4861EA0E45FDE010CAD5FE93E08F69DF194E"
+    },
+    {
+      "canonical": "https://www.wadek.fr/contact/",
+      "path": "/contact/index.html",
+      "title": "Parlons de votre site — Nicolas Jez",
+      "description": "Contactez Nicolas Jez pour préparer un site ou une refonte. Partagez votre adresse actuelle, votre public et les pages dont vous avez besoin.",
+      "robots": "",
+      "sha256": "DEB871557031DCFCC52B91F9AE972092024CBA16EA710E82B3D894CDF5F3A57E"
+    },
+    {
+      "canonical": "https://www.wadek.fr/journal/",
+      "path": "/journal/index.html",
+      "title": "Journal : préparer et concevoir un site — Nicolas Jez",
+      "description": "Des notes de Nicolas Jez sur les contenus, la navigation et la conception web. Un premier guide pour cadrer une refonte avant de choisir sa mise en page.",
+      "robots": "",
+      "sha256": "C069CFDD7FD5B798806C92E608F7ACE8718CA3D53DCEE92212EAC1FBF6C341C5"
+    },
+    {
+      "canonical": "https://www.wadek.fr/journal/refonte-site-web/",
+      "path": "/journal/refonte-site-web/index.html",
+      "title": "Refonte de site web : par où commencer ? — Nicolas Jez",
+      "description": "Préparez votre refonte de site : objectif, pages utiles, contenus vérifiables et contrôles avant publication. Un guide pour cadrer le projet.",
+      "robots": "",
+      "sha256": "7B05666A8C96EC19262A5E7D811C7DAC2A3326AD672A3CC1B308C12934DC3718"
+    },
+    {
+      "canonical": "https://www.wadek.fr/mentions-legales/",
+      "path": "/mentions-legales/index.html",
+      "title": "Mentions légales — Nicolas Jez",
+      "description": "Mentions légales du site de Nicolas Jez.",
+      "robots": "noindex,nofollow",
+      "sha256": "8717705033048B9F4229A38474DE2364B51803FC25EC9A0CA695DC9F970F0CA5"
+    },
+    {
+      "canonical": "https://www.wadek.fr/methode/",
+      "path": "/methode/index.html",
+      "title": "Ma méthode de conception web — Nicolas Jez",
+      "description": "Cadrer l’objectif, organiser le contenu, donner une direction visuelle et contrôler la mise en ligne : la méthode de Nicolas Jez pour préparer un site.",
+      "robots": "",
+      "sha256": "787790AA9DC44A2FA48CCD8784025AE6A2DC52EB05A66A8382984109B5BBF981"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/",
+      "path": "/univers-galaxie-v2/index.html",
+      "title": "Redirecting to: /work/",
+      "description": "",
+      "robots": "noindex",
+      "sha256": "BF039DDFFC4DC7CF0259943915596526260C8A844447873220C8DDB9A5D88568"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/",
+      "path": "/univers-montagnes-v2/index.html",
+      "title": "Redirecting to: /work/",
+      "description": "",
+      "robots": "noindex",
+      "sha256": "F0DF91A8DE6F7DF539C1F3F804A41B50F6C5101FC5A7318DBADA0FF6E6471145"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/",
+      "path": "/univers-v2/index.html",
+      "title": "Redirecting to: /work/",
+      "description": "",
+      "robots": "noindex",
+      "sha256": "D9FC4C25104D794796C4AB03A1752CD2E86AF3C1E34653B6A0065400F6F907F5"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/",
+      "path": "/work/index.html",
+      "title": "Projets de sites web — Nicolas Jez",
+      "description": "Explorez les sites BEE, Accord Raccord, Mode RGB, Pas du jour et Down Trigger : cinq projets aux publics et parcours différents.",
+      "robots": "",
+      "sha256": "601580DBB3F642D29FB9A16EA51B955DED2FF0815EF0E7868B47CF9BBC108E12"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/accord-raccord/",
+      "path": "/work/accord-raccord/index.html",
+      "title": "Accord Raccord — Nicolas Jez",
+      "description": "Un site éditorial organisé par usages pour explorer des guides et comparatifs d’objets du quotidien.",
+      "robots": "",
+      "sha256": "5FDA5871B8E2EC1C38E75C6A9B4606BF5CA35E33D4A025194816FE90B9C596B6"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/association-bee/",
+      "path": "/work/association-bee/index.html",
+      "title": "BEE — Nicolas Jez",
+      "description": "Un site associatif qui réunit les actualités, l’agenda et les documents utiles aux parents d’élèves.",
+      "robots": "",
+      "sha256": "509EE17D4467CBEB4CCA4AC18D22849E932DF7879E2A420A6CD392690ACA4491"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/down-trigger/",
+      "path": "/work/down-trigger/index.html",
+      "title": "Down Trigger — Nicolas Jez",
+      "description": "Un univers numérique sombre construit comme un signal qui se dérègle, entre site, image et motion.",
+      "robots": "",
+      "sha256": "9E4AFCE8E344341E4EAE712A4DA81D82F5BD599CC7336E7A70B496493135FFD5"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/mode-rgb/",
+      "path": "/work/mode-rgb/index.html",
+      "title": "Mode RGB — Nicolas Jez",
+      "description": "Des parcours par pièce, des guides et un comparateur pour préparer son éclairage LED et connecté.",
+      "robots": "",
+      "sha256": "4E1CFBC0DF203AD8A05499CC330E6FE67A4F4044417EA1BCE0A269DDEA85C6A3"
+    },
+    {
+      "canonical": "https://www.wadek.fr/work/pas-du-jour/",
+      "path": "/work/pas-du-jour/index.html",
+      "title": "Pas du jour — Nicolas Jez",
+      "description": "Un site de guides sur les tapis de marche, avec comparaison et vérification de l’espace de rangement.",
+      "robots": "",
+      "sha256": "5880F18B5B313F5A439A9CFD5DF909524C6696CDBC614F1FD819CFD156C25155"
+    }
+  ],
+  "sitemap": [
+    "https://www.wadek.fr/",
+    "https://www.wadek.fr/about/",
+    "https://www.wadek.fr/contact/",
+    "https://www.wadek.fr/journal/",
+    "https://www.wadek.fr/journal/refonte-site-web/",
+    "https://www.wadek.fr/methode/",
+    "https://www.wadek.fr/work/",
+    "https://www.wadek.fr/work/accord-raccord/",
+    "https://www.wadek.fr/work/association-bee/",
+    "https://www.wadek.fr/work/down-trigger/",
+    "https://www.wadek.fr/work/mode-rgb/",
+    "https://www.wadek.fr/work/pas-du-jour/"
+  ],
+  "reviewer": "/root/audit_docs",
+  "sitemap_not_public": []
+}

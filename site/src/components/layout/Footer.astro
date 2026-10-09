@@ -1,122 +1,57 @@
 ---
 import { site } from '../../config/site';
-import FooterNicolas from '../immersive/FooterNicolas.astro';
-
 ---
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-cta">
-      <h2 class="footer-title display">
-        Un projet à discuter<span class="display-italic"> ?</span>
-      </h2>
-      <a class="btn btn--primary" href="/contact">{site.ctaLabel}</a>
-    </div>
-
-    {Astro.url.pathname === '/' && <div class="footer-universe-slot" data-mind-lower-slot aria-label="Accès à l'univers immersif"></div>}
-    {Astro.url.pathname === '/' && <FooterNicolas />}
-    <div class="footer-bottom">
-      <p class="meta">© {new Date().getFullYear()} {site.name}. Tous droits réservés.</p>
-      <nav class="footer-legal" aria-label="Liens légaux">
-        <a class="footer-link footer-link--sm" href="/about">À propos</a>
-        <a class="footer-link footer-link--sm" href="/contact">Contact</a>
-        <a class="footer-link footer-link--sm" href="/mentions-legales">Mentions légales</a>
-        <a class="footer-link footer-link--sm" href="/confidentialite">Confidentialité</a>
-      </nav>
-    </div>
+<footer class="container">
+  <div class="footer-main">
+    <p class="display">Une idée de site ?<br /><a href="/contact">Parlons-en.</a></p><a
+      href={`mailto:${site.email}`}>{site.email}</a>
+  </div><div class="footer-bottom">
+    <span>© {new Date().getFullYear()} Nicolas Jez</span><nav aria-label="Informations">
+      <a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a
+      ><a href="/methode">Méthode</a>
+    </nav>
   </div>
 </footer>
-
-<style is:global>
-  .site-footer {
-    border-top: var(--border-1);
-    padding-block: var(--space-7) var(--space-5);
-    margin-top: var(--space-7);
+<style>
+  footer {
+    padding-block: 4rem 2rem;
+    border-top: 1px solid var(--color-line);
   }
-
-  .footer-cta {
+  .footer-main {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: var(--space-5);
-    padding-block: var(--space-4) var(--space-5);
-    border-bottom: var(--border-1);
+    align-items: end;
+    gap: 2rem;
+    padding-bottom: 3rem;
   }
-
-  .footer-title {
-    font-size: var(--text-2xl);
-    color: var(--color-ink);
+  .footer-main p {
+    font-size: clamp(2rem, 5vw, 4rem);
   }
-
-  .footer-universe-slot {
-    min-height: 5rem;
-    display: grid;
-    place-items: center;
-    padding-block: var(--space-4);
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
-
-  .footer-universe-slot .mind-actions.is-lowered {
-    position: relative !important;
-    inset: auto !important;
-    left: auto !important;
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    translate: none !important;
-    opacity: 1 !important;
-    width: max-content;
-    margin-inline: auto;
-    pointer-events: auto;
-  }
-
-  .footer-link {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    font-weight: 600;
-    color: var(--color-ink-soft);
-    border-bottom: 1px solid transparent;
-    transition:
-      color var(--dur-med),
-      border-color var(--dur-med);
-  }
-
-  .footer-link:hover {
-    color: var(--color-accent);
-  }
-
-  .footer-link--sm {
-    min-height: 32px;
-    font-size: var(--text-sm);
-    font-weight: 500;
-  }
-
   .footer-bottom {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    gap: var(--space-4);
-    padding-top: var(--space-4);
-    border-top: var(--border-1);
+    gap: 1rem;
+    color: var(--color-muted);
+    font-size: 0.8rem;
   }
-
-  .footer-legal {
+  nav {
     display: flex;
-    gap: var(--space-5);
+    flex-wrap: wrap;
+    gap: 1.3rem;
   }
-
-  @media (max-width: 600px) {
-    .footer-cta {
-      align-items: flex-start;
+  @media (max-width: 40rem) {
+    .footer-main,
+    .footer-bottom {
+      align-items: start;
+      flex-direction: column;
     }
-
-    .footer-title {
-      font-size: var(--text-xl);
-    }
-
-    .footer-legal {
-      flex-wrap: wrap;
-      gap: var(--space-3);
+    .footer-main > a {
+      font-size: 0.9rem;
     }
   }
 </style>

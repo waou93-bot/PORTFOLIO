@@ -48,7 +48,7 @@ export function itemListLd(projects: CollectionEntry<'projects'>[]) {
     itemListElement: projects.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      url: absUrl(`/work/${p.data.slug}`),
+      url: absUrl(`/work/${p.data.slug}/`),
       name: p.data.title,
     })),
   };
@@ -63,10 +63,9 @@ export function creativeWorkLd(project: CollectionEntry<'projects'>) {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
     name: project.data.title,
-    url: absUrl(`/work/${project.data.slug}`),
+    url: absUrl(`/work/${project.data.slug}/`),
     description: project.data.summary,
     creator: { '@type': 'Person', name: site.name },
-    ...(project.data.capturedAt ? { dateCreated: project.data.capturedAt } : {}),
     ...(project.data.liveUrl ? { relatedLink: project.data.liveUrl } : {}),
   };
 }

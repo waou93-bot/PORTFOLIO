@@ -29,3 +29,7 @@ Une incertitude devient une decision seulement lorsqu'elle est resolue par une p
 La séquence assemble trois plans différents, pas un travelling géométriquement continu. Les raccords à 56 % des durées (11,32 s, 9,56 s, 16,24 s de temps source), à vitesse 0,8, utilisent un recouvrement de 100 ms et un glitch de 180 ms. Un changement de décor reste perceptible et intentionnel.
 
 Le lecteur attend une image décodée du prochain clip avant de le révéler. Si le chargement tarde ou échoue, il conserve la dernière image du clip sortant et réessaie ; une tenue prolongée peut alors être perceptible. Les trois fichiers représentent environ 46,5 Mio, dont deux clips 1440p : réseau mobile lent et Safari/iOS physique restent à contrôler avant publication. Le premier clip est limité à sa résolution source 1358 × 720. La préférence de mouvement réduit désactive lecture et glitch, et conserve une image fixe.
+
+## Refonte du 9 octobre 2026
+
+Coordonnées administratives exactes de l’éditeur : adresse/statut non fournis, question posée dans la session. Hébergeur Vercel confirmé et coordonnées publiques vérifiées sur https://vercel.com/legal/privacy-notice. Aucun trafic, résultat commercial ou Core Web Vitals terrain revendiqué. GSC/Bing : accès non établi ; sitemap HTTP et indexabilité contrôlables sans affirmer une indexation. Les anciens médias restent conservés et accessibles sans liens ; les pages concept sont retirées et redirigées. Formation personna du dossier SEO Studio partielle, dossier provisoire ; aucun certificat strict de handoff.

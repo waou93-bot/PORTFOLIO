@@ -5,13 +5,13 @@
 export const site = {
   name: 'Nicolas Jez',
   studioName: 'NJ Studio',
-  tagline: 'Selected Works',
-  title: 'Nicolas Jez — Selected Works',
-  positioning: 'Je conçois des expériences web qui ne ressemblent pas à des templates.',
+  tagline: 'Design · Contenu · Web',
+  title: 'Nicolas Jez — Conception de sites web',
+  positioning: 'Des sites clairs, du premier écran au contenu.',
   subPositioning:
-    'Direction artistique, UX/UI, landing pages immersives, développement front-end et motion design.',
+    'Direction visuelle, parcours de navigation, rédaction et développement web.',
   description:
-    'Portfolio de Nicolas Jez — direction artistique, UX/UI, landing pages immersives et développement front-end. Des expériences web qui ne ressemblent pas à des templates.',
+    'Nicolas Jez conçoit des sites web en reliant direction visuelle, navigation et contenu. Découvrez ses projets en ligne et sa méthode de refonte.',
   ctaLabel: 'Proposer une collaboration',
   url: import.meta.env.SITE_URL ?? 'https://www.wadek.fr',
   locale: 'fr_FR',
@@ -27,6 +27,8 @@ export const site = {
   },
   nav: [
     { label: 'Accueil', href: '/' },
+    { label: 'Projets', href: '/work' },
+    { label: 'Journal', href: '/journal' },
     { label: 'À propos', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],
@@ -34,11 +36,11 @@ export const site = {
   features: {
     smoothScroll: false,
     advancedRouteTransitions: false,
-    webgl: true,
+    webgl: false,
     autoVideo: false,
     lab: false,
     analytics: false,
-    showDrafts: import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS === 'true',
+    showDrafts: false,
   },
 } as const;
 

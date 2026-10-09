@@ -3,14 +3,14 @@ slug: maison-sillon
 title: Atelier NØR
 kind: concept
 brandUsage: fictional
-publicationStatus: published
+publicationStatus: archived
 rightsStatus: not-required
 year: '2026'
 sector: Architecture · Design
 summary: Un site éditorial premium pour un studio d’architecture fictif, construit autour d’une maison pensée depuis son paysage.
 role: [Direction artistique, Conception éditoriale, UX/UI, Prototypage front-end]
 services: [Identité digitale, Web design, Direction d’image, Motion design]
-featured: true
+featured: false
 cover:
   src: /media/projects/maison-sillon/cover-v3.webp
   alt: Maison Sillon, volume bas en pierre claire longeant un bassin dans la lumière du soir.

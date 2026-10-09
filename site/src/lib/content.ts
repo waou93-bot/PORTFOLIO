@@ -2,6 +2,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { site } from '../config/site';
 
 const PUBLISHED = 'published';
+const projectOrder = ['association-bee', 'accord-raccord', 'mode-rgb', 'pas-du-jour', 'down-trigger'];
 
 /**
  * Projets visibles publiquement : statut published.
@@ -11,10 +12,10 @@ const PUBLISHED = 'published';
 export async function getPublishedProjects() {
   const all = (await getCollection('projects')) as CollectionEntry<'projects'>[];
   return all
-    .filter((p: CollectionEntry<'projects'>) => p.data.publicationStatus === PUBLISHED)
+    .filter((p: CollectionEntry<'projects'>) => p.data.publicationStatus === PUBLISHED && ['confirmed', 'not-required'].includes(p.data.rightsStatus))
     .sort(
       (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
-        Number(b.data.year) - Number(a.data.year),
+        projectOrder.indexOf(a.data.slug) - projectOrder.indexOf(b.data.slug),
     );
 }
 
@@ -30,7 +31,7 @@ export async function getFeaturedProjects() {
 export async function getVisibleProjects() {
   const all = (await getCollection('projects')) as CollectionEntry<'projects'>[];
   const sorted = [...all].sort((a, b) => Number(b.data.year) - Number(a.data.year));
-  if (site.features.showDrafts) return sorted;
+  if (site.features.showDrafts) return sorted.filter(p => p.data.publicationStatus === 'draft' || p.data.publicationStatus === PUBLISHED);
   return sorted.filter((p) => p.data.publicationStatus === PUBLISHED);
 }
 

@@ -3,14 +3,14 @@ slug: heritage-2
 title: Héritage 2
 kind: concept
 brandUsage: fictional
-publicationStatus: published
+publicationStatus: archived
 rightsStatus: not-required
 year: '2026'
 sector: Patrimoine · Artisanat
 summary: Une expérience éditoriale et minérale pour rendre visible le geste, la matière et la précision d'un atelier de pierre.
 role: [Direction artistique, UX/UI, Développement front-end]
 services: [Identité web, Architecture de contenu, Responsive, Contrôle qualité]
-featured: true
+featured: false
 cover:
   src: /media/projects/heritage-2/cover-v2.webp
   alt: Escalier en pierre claire éclairé naturellement, image manifeste du projet Héritage 2.

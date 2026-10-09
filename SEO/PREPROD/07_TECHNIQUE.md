@@ -1,0 +1,9 @@
+# Architecture et acceptation technique
+
+ADR : conserver Astro statique + TypeScript/CSS, Markdown versionné. Alternative réaliste : Astro avec CMS externe pour édition autonome. Avantage seconde : workflow éditeur ; coûts, fournisseur, migration et droits inconnus, aucun besoin nouveau établi. Rejet V1 : complexité/maintenance sans bénéfice nécessaire. Migration Next.js déjà rejetée localement et non requise par SEO. Dépendances déclarées package.json : Astro ^7.1.6, sitemap ^3.7.3 ; versions verrouillées et installées doivent être relevées par root, ce document n'en déduit pas une installation.
+
+Matrice : HTML initial contient texte/liens ; routes publiques 200 ; anciennes routes 301 ; inconnue 404 réelle ; title/description fidèles et spécifiques ; canonical/og:url/sitemap domaine www.wadek.fr ; robots public sans blocage accidentel ; noindex utilitaires/preview/brouillons maintenu. JSON-LD Person/WebSite/cas/article seulement avec faits visibles ; ne pas promettre rich results. Pas de hreflang sans traduction.
+
+Budget interne proposé : accueil transféré <1,5 Mo ; aucun mp4 de fond chargé initialement ; portrait <200 Ko selon qualité ; dimensions réservées ; polices locales réutilisées. Ces objectifs projet ne sont pas des obligations Google. Baseline labo : 16,698 Mo, LCP29,887s. Refaire run comparable mobile ; terrain LCP≤2,5s, INP≤200ms, CLS≤0,1 au p75 restent non observés.
+
+Commandes existantes : pnpm check, pnpm build, pnpm validate, pnpm validate:links, pnpm test ; exécutions et résultats au rapport root. Inspecter toutes HTML sorties puis HTTP production. Recette clavier/mobile, absence débordement, lien email, 404/redirections, images et cookies requise. Ne pas envoyer formulaire réel. Sécurité : pas de secret dans contenu, pas de documents privés en public ; rollback Git + redéploiement version précédente géré root.

@@ -44,9 +44,9 @@ describe('JSON-LD', () => {
     expect(ld).toMatchObject({
       '@type': 'CreativeWork',
       name: 'Down Trigger',
-      dateCreated: '2026-05-01',
       relatedLink: 'https://downtrigger.fr/',
     });
-    expect(ld.url).toBe(`${site.url}/work/down-trigger`);
+    expect(ld.url).toBe(`${site.url}/work/down-trigger/`);
+    expect(ld).not.toHaveProperty('dateCreated');
   });
 });

@@ -3,14 +3,14 @@ slug: vantel
 title: Vantel
 kind: concept
 brandUsage: fictional
-publicationStatus: published
+publicationStatus: archived
 rightsStatus: not-required
 year: '2026'
 sector: Mode · E-commerce expérientiel
 summary: Une collection de mode numérique construite sur le passage du jour à la nuit, jusqu’à un essayage virtuel conceptuel.
 role: [Concept e-commerce, Direction artistique, UX/UI, Prototype front-end]
 services: [Campagne interactive, Catalogue produit, Parcours d’achat, Expérience virtuelle]
-featured: true
+featured: false
 liveUrl: https://vantel-premium.waou93.chatgpt.site
 cover:
   src: /media/projects/vantel/cover.webp

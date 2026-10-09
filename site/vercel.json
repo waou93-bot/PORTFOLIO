@@ -26,5 +26,42 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/autres-projets",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/univers-v2",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/univers-montagnes-v2",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/univers-galaxie-v2",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/work/heritage-2",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/work/maison-sillon",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/work/vantel",
+      "destination": "/work/",
+      "permanent": true
+    }
   ]
 }

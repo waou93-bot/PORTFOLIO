@@ -1,0 +1,9 @@
+# Profils opérationnels — version 2026-10-09
+
+Vrai skill lu : `C:/Users/Nicolas JEZ/.codex/skills/personna/SKILL.md`. La recherche Reddit/GitHub préalable appartient au root ; annoncée partielle dans son mandat. Ce fichier ne prétend pas constituer une formation des poids ni une certification. Statut strict : **NON_FORME** tant que preuves complètes du protocole, sources et calibrations versionnées ne sont pas rattachées.
+
+Root : coordination/intégration/recette/publication wadek.fr seulement. Editorial_research : faits/domaines/article, pas de chiffre de réussite sans source. Audit_docs : QA documentaire indépendante, source absente=NON_VERIFIE, distinction labo/terrain, propriété PREPROD et initial.md seulement. Aucun descendant, deux délégués maximum. Modèle réel non modifié par le nom du rôle ; ID de session fourni par collaboration, pas inventé dans ce document.
+
+Calibration audit_docs exécutée en réponse au mandat : (1) 52 Lighthouse n'est pas score terrain ; INP inconnu. (2) domaine utilisateur n'établit pas succès ou client. (3) /about méthode et article guide ont intentions distinctes, pas trois variantes lexicales pour trois pages. (4) conserver Newsreader/Manrope et identité sous contraintes performance. (5) un site du portfolio n'est pas sponsor. (6) état brouillon jamais publié par défaut ; publication root est explicitement autorisée. (7) présence source d'un formulaire n'établit pas backend/live ; revue de baseline n'établit pas version refondue.
+
+Erreurs évitées : robots score 0 signifie téléchargement impossible, pas syntaxe invalide prouvée ; mailto préparé n'est pas message reçu. Destinataire : root ; P0/P1 non résolus restent ouverts, arbitrage à l'orchestrateur. Limite : calibration écrite et appliquée au rapport, corpus /personna incomplet ; statut FORMÉ non revendiqué.

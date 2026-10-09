@@ -1,0 +1,52 @@
+[
+  {
+    "hash": "A6749CB7458C2BC5AB47670F7BE61B31491ADA0AB0B834FD93EBF02DE516F4DF",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\ai-seo\\SKILL.md",
+    "frontmatter": "name: ai-seo\r\ndescription: \"Construire, auditer et mesurer le canal d'acquisition par ChatGPT Search et les autres moteurs ou agents IA sur un site existant ou en cours. Déclencher pour SEO IA, GEO, AEO, LLMO, recommandations IA, citations, visibilité ChatGPT/Claude/Perplexity/Gemini/Copilot, accès des robots ou site lisible par les agents. Ne pas déclencher pour un chatbot interne, une simple retouche visuelle ou un audit SEO classique sans enjeu IA.\"\r\nmetadata:\r\n  version: \"3.1.0\"\r\n  reviewed_at: \"2026-10-05\""
+  },
+  {
+    "hash": "26567272251DDB9C5F2776CB24F7007FF6C7DF80DD83A7066ACD515383821280",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\business-checklist\\SKILL.md",
+    "frontmatter": "name: business-checklist\r\ndescription: >-\r\n  Benchmark web et Reddit, checklist de viabilité, tests de demande et business\r\n  plan sourcé en dix parties. Utiliser pour un nouveau projet à monétiser, un\r\n  audit économique d'un projet existant, un changement de cible/prix/modèle ou\r\n  une décision de financement. Fonctionne seul ou avec Organisation ; échange\r\n  avec SEO si pertinent. Ne pas déclencher pour un bug, une retouche ou un loisir\r\n  non commercial sans décision économique."
+  },
+  {
+    "hash": "76939D5A48E64EF872C591B9DDE8CA0FCD591EEA2E0304A2195265CDEDD49A16",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\competitors\\SKILL.md",
+    "frontmatter": "name: competitors\r\ndescription: \"When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' 'competitive landing pages,' 'how do we compare to X,' 'battle card,' or 'competitor teardown.' Use this for any content that positions your product against competitors. Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For sales-specific competitor docs, see sales-enablement.\"\r\nmetadata:\r\n  version: 2.0.1"
+  },
+  {
+    "hash": "1958F961D023253B94E432EB8D15A130B10988F8336EDADD27622BED2FE0CD5E",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\redaction-editoriale-web\\SKILL.md",
+    "frontmatter": "name: redaction-editoriale-web\r\ndescription: \"Rédiger, réécrire ou améliorer en français un guide d'achat, un comparatif A vs B, un meilleur X, un tutoriel ou how-to, un article de blog ou magazine, une actualité, un explicatif ou une fiche produit éditoriale. Utiliser aussi lorsqu'un sujet ou mot-clé est donné pour être traité en article, même sans mention de SEO. Intégrer une rédaction précise, des sources et des titres orientés recherche.\""
+  },
+  {
+    "hash": "F45591CBE4BED6E00E6FD4DE5C7CE7DA9B741207D216B411F66C75CE1C24AA16",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\seo\\SKILL.md",
+    "frontmatter": "name: seo\r\ndescription: >-\r\n  Réaliser un benchmark de recherche web/Reddit, évaluer le potentiel SEO,\r\n  auditer un site et construire un plan de croissance organique mesurable,\r\n  jusqu'à la conversion des pages prioritaires. Inclure AEO/GEO, réponses IA,\r\n  sprints page-par-page et parcours visibilité → action lorsque pertinent.\r\n  Utiliser pour une stratégie SEO, un lancement web, une refonte/migration,\r\n  une baisse de trafic ou une mise à jour SEO ciblée. Fonctionner avec\r\n  Organisation et Business ou seul. Ne pas déclencher une étude complète\r\n  pour une simple retouche, une application privée sans enjeu web, ou une\r\n  demande exclusivement publicitaire, sociale ou ASO."
+  },
+  {
+    "hash": "8C991FC4DE95ED9A33AC4F6D4F9EE556D184165E279F99B2F1C58FEFC73AB95F",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\seo-audit\\SKILL.md",
+    "frontmatter": "name: seo-audit\r\ndescription: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" \"SEO health check,\" \"my traffic dropped,\" \"lost rankings,\" \"not showing up in Google,\" \"site isn't ranking,\" \"Google update hit me,\" \"page speed,\" \"core web vitals,\" \"crawl errors,\" or \"indexing issues.\" Use this even if the user just says something vague like \"my SEO is bad\" or \"help with SEO\" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.\r\nmetadata:\r\n  version: 2.0.0"
+  },
+  {
+    "hash": "564D0AB059B227BD4C522AE67022654C1BF4149A6813E23F3DAB09889E67E570",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\seo-content-engine\\SKILL.md",
+    "frontmatter": "name: seo-content-engine\r\ndescription: Orchestrer une automatisation SEO à grande échelle pour un ou plusieurs sites, avec audit, opportunités, calendrier, production documentée, publication CMS autorisée et optimisation mesurée. Utiliser pour des lots de contenus, un portefeuille de sites ou un programme SEO récurrent."
+  },
+  {
+    "hash": "CE1592178EC6B2294779E7B5343BA88EBD8B4468BA97CE165067F205CAFD262D",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\seo-post-deploy\\SKILL.md",
+    "frontmatter": "name: seo-post-deploy\r\ndescription: Prendre en charge après déploiement la découverte et l'indexation du site courant, sa liaison GA4–Search Console autorisée, et l'optimisation de visibilité fondée sur données réelles Google, Bing et IA. Conserver les preuves et reprendre les actions inachevées sans promettre classement ni élargir les autorisations."
+  },
+  {
+    "hash": "EB4D19CB0AECDC28418520613730B1056560E2A76F9239154623A6B1BFD8672A",
+    "path": "C:\\Users\\Nicolas JEZ\\.agents\\skills\\seo-studio-2\\SKILL.md",
+    "frontmatter": "name: seo-studio-2\ndescription: >-\n  SEO STUDIO 2 : transformer une niche et un type de site en préproduction complète,\n  sourcée et contrôlée : positionnement, Design DNA, architecture, maillage, contenus,\n  guides, comparatifs, encarts partenaires, technique, roadmap et transfert production.\n  Coordonner Brain, Organisation, No Slop, tous les skills SEO découverts et /personna.\n  Astra arbitre les désaccords. Ne pas déclencher ce parcours complet pour une retouche,\n  un simple article ou une question SEO isolée. Aucun déploiement implicite.\nmetadata:\n  version: \"2.0.0\"\n  reviewed_at: \"2026-10-08\""
+  },
+  {
+    "hash": "12842123D3DA42C981FA7C980407E65D2D3A0255A5456D4E6CD256F5B618D3D3",
+    "path": "C:\\Users\\Nicolas JEZ\\.codex\\skills\\site-checklist\\SKILL.md",
+    "frontmatter": "name: site-checklist\r\ndescription: \"Vérifier les 20 essentiels d’un site avant publication ou lors d’une recette : SEO technique, CTA, responsive, formulaires, pages légales, consentement, analytics et images. Utiliser pour une checklist de lancement ou un contrôle de complétude d’un site ; une retouche ciblée ne déclenche que les contrôles concernés.\""
+  }
+]

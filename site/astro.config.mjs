@@ -8,10 +8,10 @@ export default defineConfig({
   output: 'static',
   build: {
     format: 'directory',
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   compressHTML: true,
-  integrations: [sitemap()],
+  integrations: [sitemap({filter: page => !/\/(univers[^/]*|autres-projets|mentions-legales|confidentialite|404)(\/|$)/.test(new URL(page).pathname)})],
   image: {
     // Default Astro sharp service. Generates AVIF/WebP variants with srcset/sizes.
     service: { entrypoint: 'astro/assets', config: { formats: ['avif', 'webp'] } },

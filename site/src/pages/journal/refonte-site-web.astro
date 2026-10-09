@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { absUrl } from '../../lib/seo';
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Avant de refaire votre site, clarifiez ce qu’il doit permettre',
+  author: { '@type': 'Person', name: 'Nicolas Jez', url: absUrl('/about/') },
+  datePublished: '2026-10-09',
+  dateModified: '2026-10-09',
+  mainEntityOfPage: absUrl('/journal/refonte-site-web/'),
+};
+---
+
+<BaseLayout
+  title="Refonte de site web : par où commencer ?"
+  description="Préparez votre refonte de site : objectif, pages utiles, contenus vérifiables et contrôles avant publication. Un guide pour cadrer le projet."
+  jsonLd={[article]}
+  ><article class="container-narrow section prose">
+    <p class="eyebrow">Journal · Refonte web</p><h1 class="display">
+      Avant de refaire votre site, clarifiez ce qu’il doit permettre
+    </h1><p class="meta">
+      Par <a href="/about/">Nicolas Jez</a> · <time datetime="2026-10-09">9 octobre 2026</time>
+    </p><p>
+      Une refonte commence par une question simple : que doit pouvoir faire quelqu'un qui arrive sur
+      votre site ? Trouver une information, comprendre une offre, comparer des options ou vous
+      contacter : choisissez l'action qui compte, puis organisez les pages autour d'elle.
+    </p>
+    <p>
+      Voici une méthode de cadrage à utiliser avant de choisir une nouvelle mise en page. Elle sert
+      à préparer le travail ; elle ne constitue pas une mesure des résultats d'une refonte.
+    </p>
+    <h2>Commencez par l'action attendue</h2>
+    <p>
+      Écrivez une phrase : « Le site doit permettre à [public] de [action]. » Pour une association,
+      cela peut être retrouver les prochains rendez-vous ou savoir comment adhérer. Pour un
+      indépendant, comprendre la prestation et préparer une prise de contact.
+    </p>
+    <p>
+      Ajoutez ensuite ce que la personne doit savoir avant d'agir. Une page contact seule ne répond
+      pas à la question de l'offre. Un bouton d'adhésion n'explique pas à qui l'association
+      s'adresse. Utilisez ces questions pour déterminer le contenu du premier écran.
+    </p>
+    <h2>Faites l'inventaire des pages et de leurs preuves</h2>
+    <p>
+      Listez les pages actuelles avec leur rôle, leur dernier contrôle et les documents qui
+      soutiennent leur contenu. Pour chaque réalisation, conservez un lien consultable et une
+      description du travail effectivement réalisé. Si un résultat n'a pas été mesuré, racontez le
+      choix de conception plutôt qu'un gain supposé.
+    </p>
+    <p>
+      Classez les contenus : garder, actualiser, regrouper ou retirer. Une page utile n'a pas besoin
+      de changer d'adresse pour accompagner une nouvelle identité visuelle. Notez les anciennes
+      adresses avant toute modification : elles permettront de contrôler les liens et de préparer
+      les redirections nécessaires.
+    </p>
+    <h2>Reliez chaque contenu à une prochaine étape</h2>
+    <p>
+      Imaginez le parcours de quelqu'un qui découvre le sujet. Que veut-il comprendre d'abord ?
+      Quelle information manque pour passer à la suite ? Quels mots emploierait-il pour chercher
+      cette réponse ?
+    </p>
+    <p>
+      Construisez une navigation avec des intitulés explicites. Préférez une ancre qui décrit la
+      destination à un « cliquez ici ». Le guide de Google recommande notamment un contenu organisé,
+      des titres fidèles et des liens utiles pour faciliter sa compréhension. <a
+        href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=fr"
+        >Source : guide SEO Google</a
+      >, consulté le 9 octobre 2026.
+    </p>
+    <p>
+      Les exemples permettent de vérifier ce principe sans prétendre à un résultat commercial. <a
+        href="https://associationbee.fr/">BEE</a
+      > regroupe des informations associatives. <a href="https://modergb.fr/">Mode RGB</a> propose une
+      entrée par pièce et par besoin. <a href="https://pasdujour.fr/">Pas du jour</a> place la question
+      de l'espace disponible dans le parcours de choix. Le bon point de départ dépend de la question du
+      visiteur.
+    </p>
+    <h2>Écrivez avant de remplir les maquettes</h2>
+    <p>
+      Préparez pour chaque page une réponse courte, les informations qui l'expliquent et une action
+      suivante. Le titre annonce le contenu réel. Les intertitres aident à le parcourir. Une image
+      montre un projet ou explique un point précis ; sa légende indique ce que l'on voit.
+    </p>
+    <p>
+      Séparez les faits vérifiés des objectifs. « Le site propose un comparateur » décrit une
+      fonction observable. « Le site augmente les ventes » exige des données qui permettent de
+      soutenir cette conclusion. Cette distinction rend le contenu plus précis et plus simple à
+      maintenir.
+    </p>
+    <h2>Préparez les contrôles avant la mise en ligne</h2>
+    <p>
+      Établissez une liste courte : pages accessibles, liens corrects, formulaire utilisable,
+      navigation mobile, lecture au clavier et images lisibles. Vérifiez également les anciennes
+      adresses et les métadonnées de chaque page. Les métadonnées sont les informations de titre et
+      de description utilisées notamment par le navigateur et les moteurs de recherche.
+    </p>
+    <p>
+      Notez les conditions de tout contrôle de performance : page, appareil simulé, date et outil.
+      Un test technique décrit une exécution précise. Pour juger une prise de contact ou un autre
+      objectif, il faudra les données correspondant à cet objectif, recueillies dans les conditions
+      autorisées.
+    </p>
+    <h2>Gardez un document de cadrage simple</h2>
+    <p>
+      Le document peut tenir sur une page : public, action attendue, pages à conserver, contenus à
+      écrire, preuves disponibles et points à contrôler. Il donne un support concret aux échanges
+      avec la personne qui conçoit ou développe le site.
+    </p>
+    <p>
+      Vous préparez un site ou une refonte ? Apportez votre adresse actuelle, les pages importantes
+      et les questions de vos visiteurs. Ce sont de bons éléments pour commencer à cadrer le projet
+      ensemble.
+    </p><p>
+      <a href="/work/">Explorer mes projets web</a> · <a href="/methode/">Ma façon de travailler</a> ·
+      <a href="/contact/">Parler de votre site</a>
+    </p>
+  </article></BaseLayout
+>

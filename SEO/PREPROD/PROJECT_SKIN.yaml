@@ -1,0 +1,17 @@
+version: '2026-10-09-proposition'
+status: PROVISOIRE
+project: wadek.fr
+provenance:
+  identity: README et décisions portrait Inside My Mind
+  typography: Newsreader et Manrope existantes, conservation mandat root
+  design_rules: Design DNA lu par orchestrateur; skin documentaire proposé
+composition: portrait sombre statique, typographie éditoriale, accès direct aux projets
+tokens:
+  background: sombre existant, valeurs finales dans CSS à vérifier
+  foreground: contraste lisible mesuré après réalisation
+  body_width: largeur de lecture modérée, à vérifier mobile
+images: médias existants autorisés et captures réelles des sites; aucune image inventée comme preuve
+motion: facultative; reduced-motion; aucun média plein écran chargé avant projet
+fallback: HTML lisible sans JavaScript
+excluded: faux avis, compteurs, logos de partenaires, nouveaux traceurs
+approval: refonte autorisée; rendu final non approuvé par ce document

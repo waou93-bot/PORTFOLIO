@@ -1,0 +1,108 @@
+---
+import { getPublishedProjects } from '../lib/content';
+const projects = await getPublishedProjects();
+---
+
+<div class="project-selection">
+  {
+    projects.map((p, i) => (
+      <article class="project-row">
+        <>
+          <a
+            class="project-image"
+            href={`/work/${p.data.slug}/`}
+            aria-label={`Découvrir ${p.data.title}`}
+          >
+            <img
+              src={`/media/projects/${p.data.slug}/preview-960.webp`}
+              srcset={`/media/projects/${p.data.slug}/preview-480.webp 480w, /media/projects/${p.data.slug}/preview-960.webp 960w`}
+              sizes="(max-width: 48rem) 90vw, 55vw"
+              alt={p.data.cover.alt}
+              width="1200"
+              height="750"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <div class="project-copy">
+            <>
+              <p class="eyebrow">
+                {String(i + 1).padStart(2, '0')} · {p.data.sector}
+              </p>
+              <h3 class="display">
+                <a href={`/work/${p.data.slug}/`}>{p.data.title}</a>
+              </h3>
+              <p>{p.data.summary}</p>
+              <div class="project-links">
+                <>
+                  <a href={`/work/${p.data.slug}/`}>Découvrir le projet</a>
+                  <a href={p.data.liveUrl} target="_blank" rel="noopener noreferrer">
+                    Visiter le site<span class="sr-only"> (nouvel onglet)</span>
+                  </a>
+                </>
+              </div>
+            </>
+          </div>
+        </>
+      </article>
+    ))
+  }
+</div>
+<style>
+  .project-row {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    padding-block: 3rem;
+    border-top: 1px solid var(--color-line);
+    align-items: center;
+  }
+  .project-image {
+    background: #242322;
+    overflow: hidden;
+    display: block;
+  }
+  .project-image img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s;
+  }
+  .project-image:hover img {
+    transform: scale(1.025);
+  }
+  .project-copy {
+    display: grid;
+    gap: 1.4rem;
+  }
+  .project-copy h3 {
+    font-size: clamp(2rem, 3vw, 3.4rem);
+  }
+  .project-copy > p:not(.eyebrow) {
+    color: var(--color-ink-soft);
+    max-width: 38ch;
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-size: 0.85rem;
+  }
+  .project-links a {
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+  }
+  @media (max-width: 48rem) {
+    .project-row {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding-block: 2rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-image img {
+      transition: none;
+    }
+  }
+</style>

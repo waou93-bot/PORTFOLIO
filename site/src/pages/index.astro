@@ -1,29 +1,190 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
-import InsideMindHero from '../components/immersive/InsideMindHero.astro';
-import { getVisibleProjects } from '../lib/content';
-import { websiteLd, personLd, itemListLd } from '../lib/seo';
-import type { CollectionEntry } from 'astro:content';
-
-const all = await getVisibleProjects();
-const projectOrder = ['down-trigger', 'heritage-2', 'maison-sillon', 'vantel'];
-const projects = all
-  .filter(
-    (project: CollectionEntry<'projects'>) =>
-      project.data.featured && projectOrder.includes(project.data.slug),
-  )
-  .sort(
-    (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
-      projectOrder.indexOf(a.data.slug) - projectOrder.indexOf(b.data.slug),
-  );
+import ProjectSelection from '../components/ProjectSelection.astro';
+import { personLd, websiteLd, itemListLd } from '../lib/seo';
+import { getPublishedProjects } from '../lib/content';
+const projects = await getPublishedProjects();
 ---
 
-<BaseLayout
-  title="Inside My Mind — portfolio"
-  description="Entrez dans l’univers créatif de Nicolas Jez et découvrez quatre projets de direction artistique, design et développement web."
-  theme="dark"
-  accent="oklch(0.7 0.17 45)"
-  jsonLd={[personLd(), websiteLd(), ...(projects.length ? [itemListLd(projects)] : [])]}
->
-  <InsideMindHero />
+<BaseLayout jsonLd={[personLd(), websiteLd(), itemListLd(projects)]}>
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow">Nicolas Jez · Conception web</p><h1 class="display">
+        Des sites clairs,<br />du premier écran<br /><em>au contenu.</em>
+      </h1><p class="intro">
+        Je relie direction visuelle, parcours de navigation et rédaction pour donner à chaque projet
+        une présence web cohérente.
+      </p><div class="hero-actions">
+        <a class="btn btn--primary" href="#projets">Voir les projets</a><a
+          class="text-link"
+          href="/contact">Parlons de votre site</a>
+      </div>
+    </div><figure class="portrait">
+      <img
+        src="/media/identity/portrait-576.webp"
+        srcset="/media/identity/portrait-384.webp 384w, /media/identity/portrait-576.webp 576w"
+        sizes="(max-width: 48rem) 90vw, 40vw"
+        alt="Portrait de Nicolas Jez"
+        width="576"
+        height="720"
+        fetchpriority="high"
+      /><figcaption>Design, contenu et développement.<br />Une même intention.</figcaption>
+    </figure>
+  </section>
+  <section id="projets" class="container section projects">
+    <div class="section-intro">
+      <p class="eyebrow">Sélection · Sites en ligne</p><h2 class="display">
+        Des idées devenues<br /><em>des sites à explorer.</em>
+      </h2><p>
+        Une association, des univers éditoriaux et un groupe de musique. Chaque projet part d’un
+        public et d’une question différente.
+      </p>
+    </div><ProjectSelection />
+  </section>
+  <section class="container section approach">
+    <p class="eyebrow">La façon de travailler</p><h2 class="display">
+      D’abord comprendre.<br />Puis donner forme.
+    </h2><div>
+      <p>
+        À qui s’adresse le site ? Quelle information doit-on trouver ? Quelle action doit-il
+        permettre ? Ces questions guident les contenus, la navigation et les choix visuels.
+      </p><a class="text-link" href="/methode">Découvrir ma méthode</a>
+    </div>
+  </section>
+  <section class="container section journal-preview">
+    <p class="eyebrow">Notes de conception</p><h2 class="display">
+      <a href="/journal/refonte-site-web/"
+        >Avant de refaire votre site,<br /><em>clarifiez ce qu’il doit permettre.</em></a>
+    </h2><p>
+      Une méthode de cadrage pour préparer les pages, les contenus et les contrôles avant la mise en
+      ligne.
+    </p><a class="text-link" href="/journal/refonte-site-web/">Lire l’article</a>
+  </section>
 </BaseLayout>
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding-block: 4rem 5rem;
+    min-height: 78vh;
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 5.5vw, 5.8rem);
+    margin-block: 2rem;
+    line-height: 1.04;
+  }
+  .hero em,
+  .section-intro em,
+  .journal-preview em {
+    color: #d6b59b;
+  }
+  .intro {
+    color: var(--color-ink-soft);
+    max-width: 42ch;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+    margin-top: 2rem;
+  }
+  .text-link {
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+    font-size: 0.9rem;
+  }
+  .portrait {
+    margin: 0;
+    position: relative;
+  }
+  .portrait img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    object-position: 85% center;
+    background: #242322;
+  }
+  .portrait figcaption {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 1rem;
+  }
+  .projects {
+    scroll-margin-top: 2rem;
+  }
+  .section-intro {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    column-gap: 5rem;
+    margin-bottom: 3rem;
+  }
+  .section-intro .eyebrow {
+    grid-column: 1/-1;
+    margin-bottom: 1.5rem;
+  }
+  .section-intro h2,
+  .approach h2,
+  .journal-preview h2 {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+  }
+  .section-intro > p:last-child {
+    align-self: end;
+    color: var(--color-ink-soft);
+    max-width: 36ch;
+  }
+  .approach {
+    border-top: 1px solid var(--color-line);
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2rem 5rem;
+  }
+  .approach > .eyebrow {
+    grid-column: 1/-1;
+  }
+  .approach > div {
+    display: grid;
+    gap: 2rem;
+    align-content: start;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+  }
+  .journal-preview {
+    border-top: 1px solid var(--color-line);
+    display: grid;
+    gap: 2rem;
+  }
+  .journal-preview > p:not(.eyebrow) {
+    max-width: 55ch;
+    color: var(--color-ink-soft);
+  }
+  @media (max-width: 48rem) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding-block: 3rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
+    }
+    .portrait {
+      max-width: 24rem;
+    }
+    .section-intro,
+    .approach {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .section {
+      padding-block: 3.5rem;
+    }
+  }
+</style>

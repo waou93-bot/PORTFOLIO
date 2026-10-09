@@ -1,0 +1,7 @@
+# Expérience proposée et critique
+
+Piste retenue par l'implémenteur : portrait sombre statique, titre éditorial, accès immédiat à la sélection. Piste alternative examinée : conserver l'ouverture vidéo avec chargement différé et fallback statique. Rejet documentaire de la seconde pour le lot initial : elle conserve une complexité sans résoudre le poids transféré prouvé. L'utilisateur a demandé la refonte ; l'approbation visuelle du nouveau rendu reste distincte de ce mandat.
+
+Préserver identité portrait et Newsreader/Manrope. Accueil : role puis CTA « Voir les projets » ; work : liste lisible et médias ; cas : contexte, décisions, preuve live, limites, action ; journal : réponse rapide et sections de lecture ; contact : email explicite. Pas de vidéo préalable obligatoire, faux compteurs, logos de confiance ni flèches décoratives.
+
+320/375/768/1280 px : ordre de lecture stable, liens au toucher et au clavier, focus visible, aucune carte exigeant hover. Sans JS, tous liens et textes restent utilisables. Images informatives alt précis ; décoratives alt vide. Portrait critique eager, dimensions réservées, autres médias lazy. Mouvement limité et reduced-motion respecté. États utiles : lien focus/hover, image indisponible avec contenu texte conservé, liste vide non publiée. Un mailto préparé n'est pas une confirmation d'envoi. Aucun CTA fixe nécessaire si navigation/contact accessibles ; ce choix doit être vérifié sur le rendu.

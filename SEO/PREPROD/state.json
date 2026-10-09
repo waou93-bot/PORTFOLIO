@@ -1,0 +1,587 @@
+{
+  "contract_version": "2.0.0",
+  "run_id": "wadek-refonte-2026-10-09",
+  "entrypoint": "organisation deja actif root",
+  "brief_version": "2026-10-09",
+  "status": "PROVISOIRE",
+  "execution_mode": "DELEGATED",
+  "strict_handoff": false,
+  "requirements": [
+    {
+      "id": "R01",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "00_CADRAGE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Cadrer la niche, le type de site, le public et les permissions"
+    },
+    {
+      "id": "R02",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "01_RECHERCHE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Rechercher la niche et tracer les limites des références"
+    },
+    {
+      "id": "R03",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "state.json"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Lire les vrais skills transversaux et tous les skills SEO découverts"
+    },
+    {
+      "id": "R04",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "state.json"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Former via le vrai /personna tous les rôles intervenants"
+    },
+    {
+      "id": "R05",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "state.json"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Hiérarchiser les rôles et borner leur exécution"
+    },
+    {
+      "id": "R06",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "10_DECISIONS.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Confronter idées, architecture, roadmap et production pilote"
+    },
+    {
+      "id": "R07",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "10_DECISIONS.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Faire arbitrer les désaccords non résolus par Astra"
+    },
+    {
+      "id": "R08",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "02_POSITIONNEMENT.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Définir positionnement, exclusions, viabilité et test du canal"
+    },
+    {
+      "id": "R09",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "03_ARCHITECTURE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Cartographier intentions, pages, parcours et indexation"
+    },
+    {
+      "id": "R10",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "state.json"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Produire le graphe de maillage entrant et sortant"
+    },
+    {
+      "id": "R11",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "PROJECT_SKIN.yaml"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Créer un Project Skin avec provenance Design DNA"
+    },
+    {
+      "id": "R12",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "04_DESIGN.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Spécifier gabarits, composants, mobile et états"
+    },
+    {
+      "id": "R13",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "05_CONTENU.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Rédiger tous les briefs V1 et la carte éditoriale"
+    },
+    {
+      "id": "R14",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "PILOTES"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Écrire les contenus pilotes applicables"
+    },
+    {
+      "id": "R15",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "06_PARTENAIRES.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Proposer les partenaires, formats et encarts adaptés"
+    },
+    {
+      "id": "R16",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "06_PARTENAIRES.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Spécifier transparence, destinations et indépendance commerciales"
+    },
+    {
+      "id": "R17",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "11_QA.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Vérifier sources, limites et absence de fausse expérience"
+    },
+    {
+      "id": "R18",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "07_TECHNIQUE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Comparer deux stacks et motiver la recommandation"
+    },
+    {
+      "id": "R19",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "03_ARCHITECTURE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Spécifier CMS, données, offres, droits et édition"
+    },
+    {
+      "id": "R20",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "07_TECHNIQUE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Spécifier SEO technique, performance et tests"
+    },
+    {
+      "id": "R21",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "08_MESURE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Évaluer et spécifier le canal recherche IA pertinent"
+    },
+    {
+      "id": "R22",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "08_MESURE.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Définir événements, attribution, consentement et accès"
+    },
+    {
+      "id": "R23",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "09_ROADMAP.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Prévoir maintenance et périmètre post-déploiement"
+    },
+    {
+      "id": "R24",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "09_ROADMAP.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Produire roadmap, dépendances, capacité et tickets"
+    },
+    {
+      "id": "R25",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "11_QA.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Appliquer gates et contrôles sans fausse complétude"
+    },
+    {
+      "id": "R26",
+      "status": "PROVISOIRE",
+      "owner": "root/audit_docs",
+      "artifacts": [
+        "12_HANDOFF.md"
+      ],
+      "evidence": "11_QA.md",
+      "limit": "Specifications utiles, formation et recette finale incompletes; pas validation stricte",
+      "text": "Geler et transmettre les artefacts, règles et permissions"
+    }
+  ],
+  "skills": [
+    {
+      "id": "seo",
+      "status": "LU",
+      "role": "Cadrage/audit/contenu documentaire",
+      "sha256": "F45591CBE4BED6E00E6FD4DE5C7CE7DA9B741207D216B411F66C75CE1C24AA16",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/seo/SKILL.md"
+    },
+    {
+      "id": "seo-audit",
+      "status": "LU",
+      "role": "Cadrage/audit/contenu documentaire",
+      "sha256": "8C991FC4DE95ED9A33AC4F6D4F9EE556D184165E279F99B2F1C58FEFC73AB95F",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/seo-audit/SKILL.md"
+    },
+    {
+      "id": "seo-content-engine",
+      "status": "LU",
+      "role": "Cadrage/audit/contenu documentaire",
+      "sha256": "564D0AB059B227BD4C522AE67022654C1BF4149A6813E23F3DAB09889E67E570",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/seo-content-engine/SKILL.md"
+    },
+    {
+      "id": "seo-post-deploy",
+      "status": "LU",
+      "role": "Prepare, execution root apres publication",
+      "sha256": "CE1592178EC6B2294779E7B5343BA88EBD8B4468BA97CE165067F205CAFD262D",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/seo-post-deploy/SKILL.md"
+    },
+    {
+      "id": "ai-seo",
+      "status": "LU",
+      "role": "Canal secondaire, pas changement bots entrainement",
+      "sha256": "A6749CB7458C2BC5AB47670F7BE61B31491ADA0AB0B834FD93EBF02DE516F4DF",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/ai-seo/SKILL.md"
+    },
+    {
+      "id": "seo-studio-2",
+      "status": "LU",
+      "role": "Cadrage/audit/contenu documentaire",
+      "sha256": "EB4D19CB0AECDC28418520613730B1056560E2A76F9239154623A6B1BFD8672A",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/seo-studio-2/SKILL.md"
+    },
+    {
+      "id": "analytics",
+      "status": "LU",
+      "role": "Aucun nouvel instrument",
+      "sha256": "77D4247546F24F51619AB229E41DB45130CF34A9CC79710532573CAE54022F34",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/analytics/SKILL.md"
+    },
+    {
+      "id": "business-checklist",
+      "status": "LU",
+      "role": "EXCLU: portfolio sans changement prix/modele/financement; aucun business plan fictif"
+    },
+    {
+      "id": "competitors",
+      "status": "LU",
+      "role": "EXCLU: aucun produit concurrent a comparer ou page alternative demandee"
+    },
+    {
+      "id": "redaction-editoriale-web",
+      "path": "C:/Users/Nicolas JEZ/.agents/skills/redaction-editoriale-web/SKILL.md",
+      "status": "LU",
+      "role": "Execution editorial_research, article methode"
+    },
+    {
+      "id": "site-checklist",
+      "path": "C:/Users/Nicolas JEZ/.codex/skills/site-checklist/SKILL.md",
+      "status": "LU",
+      "role": "20 controles baseline"
+    }
+  ],
+  "roles": [
+    {
+      "id": "root",
+      "formation": "NON_FORME_STRICT",
+      "scope": "coordination integration publication"
+    },
+    {
+      "id": "editorial_research",
+      "formation": "NON_FORME_STRICT",
+      "scope": "faits et texte"
+    },
+    {
+      "id": "audit_docs",
+      "formation": "NON_FORME_STRICT",
+      "session": "/root/audit_docs",
+      "scope": "QA documentaire"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+      "date": "2026-10-09",
+      "status": "LU"
+    },
+    {
+      "id": "S02",
+      "url": "https://web.dev/articles/vitals",
+      "date": "2026-10-09",
+      "status": "LU"
+    },
+    {
+      "id": "S03",
+      "path": "../../../baseline-mobile.json",
+      "date": "2026-10-09T11:50:27.35Z",
+      "status": "OBSERVE"
+    },
+    {
+      "id": "S4",
+      "url": "https://associationbee.fr/",
+      "date": "2026-10-09",
+      "status": "RETOUR_DELEGUE_EDITORIAL"
+    },
+    {
+      "id": "S5",
+      "url": "https://accordraccord.fr/",
+      "date": "2026-10-09",
+      "status": "RETOUR_DELEGUE_EDITORIAL"
+    },
+    {
+      "id": "S6",
+      "url": "https://modergb.fr/",
+      "date": "2026-10-09",
+      "status": "RETOUR_DELEGUE_EDITORIAL"
+    },
+    {
+      "id": "S7",
+      "url": "https://pasdujour.fr/",
+      "date": "2026-10-09",
+      "status": "RETOUR_DELEGUE_EDITORIAL"
+    }
+  ],
+  "gates": {
+    "G0": "PARTIEL",
+    "G1": "PARTIEL",
+    "G2": "PROPOSE",
+    "G3": "PROPOSE",
+    "G4": "PROPOSE",
+    "G5": "NON_VALIDE",
+    "G6": "A_VERIFIER_APRES_PUBLICATION"
+  },
+  "exclusions": [
+    "seo-studio ancienne variante INTROUVABLE",
+    "commerce affiliation annuaire sans objet",
+    "multilingue non demande",
+    "aucun nouveau traceur",
+    "aucun faux avis essai partenaire"
+  ],
+  "limits": [
+    "Recherche personna root partielle",
+    "Benchmark recent incomplet",
+    "Recette finale root non rattachee",
+    "Aucune certification juridique",
+    "Structure non validee par script strict"
+  ],
+  "publication": {
+    "authorization": "EXPLICITE_USER",
+    "owner": "root",
+    "result": "NON_VERIFIE_ICI"
+  },
+  "artifacts": [
+    {
+      "path": "00_CADRAGE.md",
+      "sha256": "8FCCCB2FAE4EA05D280B8A08E8FB4F5511E2B6A03A21EB23AE63B0A129D19A92"
+    },
+    {
+      "path": "01_RECHERCHE.md",
+      "sha256": "18909B073E16F5E30A8BE69A263DE55FDEB80B1434BF3C1E5D9BD103785F8A8D"
+    },
+    {
+      "path": "02_POSITIONNEMENT.md",
+      "sha256": "70BB2B92623E0E3AF05EE3738A89E521FCDA264CB61B2F673535E53F5CE84775"
+    },
+    {
+      "path": "03_ARCHITECTURE.md",
+      "sha256": "18790B8482D0E1F071D122D2ED703CED325A609F6ACF9F1C816A4F4B9F1DD338"
+    },
+    {
+      "path": "04_DESIGN.md",
+      "sha256": "71D6E1352818EFB28539ACE34F90A15674BABAB8B125B121651CDF3A7E01B640"
+    },
+    {
+      "path": "05_CONTENU.md",
+      "sha256": "FBF6CC3A9A6A47178F8591C1BF527BB7DEB43686D52BEF34959DB7F0A17585F4"
+    },
+    {
+      "path": "06_PARTENAIRES.md",
+      "sha256": "4D7D176D6CCC76D0D261A55333D843DE119FDA781876278F89994A99B2BF6B24"
+    },
+    {
+      "path": "07_TECHNIQUE.md",
+      "sha256": "790DCFFD25891140A4AA1C72E41A8A03E28DAAF9E27D4385D026D4198658C045"
+    },
+    {
+      "path": "08_MESURE.md",
+      "sha256": "08084C9B3947916CBDCAE48BCA35549D00A4216761C67BF0091EEF625A75B55E"
+    },
+    {
+      "path": "09_ROADMAP.md",
+      "sha256": "A24083E81569F1C448CA39ABD5114656DE144A41DF8C9FD560D261876A6AD373"
+    },
+    {
+      "path": "10_DECISIONS.md",
+      "sha256": "33A7C8A8E822E0FEF9F96ED0369A17E7035BF8296CB3AD351AAF568E08CF7279"
+    },
+    {
+      "path": "11_QA.md",
+      "sha256": "999DAEF972C595DBF8EE1A550551BF8F42916057F8573908F6A27B2A2E909AF9"
+    },
+    {
+      "path": "12_HANDOFF.md",
+      "sha256": "A34597C83027A46D28C5B1DD1777C0AB291385F8415AED62B62138681DE78EC9"
+    },
+    {
+      "path": "PROJECT_SKIN.yaml",
+      "sha256": "0085FD611EFD6E56ADD5E32D90B4938DB3762CFADB5B14EB89C457F15A7E197C"
+    },
+    {
+      "path": "skills-discovery.json",
+      "sha256": "93A4EE1273B2D41A519FADBA3DA2853773C1D46887C8D3F7F0F61EFE70519509"
+    },
+    {
+      "path": "BRIEFS/about.md",
+      "sha256": "913A382DEB057C4683BF5E43B170E8F07EB2CF7DE26C2E063E78E2678B422420"
+    },
+    {
+      "path": "BRIEFS/accord-raccord.md",
+      "sha256": "4ED4F8F284DDE43438DF6D8993D74A26FF5C1850680ADCC074063C06B4A55E5F"
+    },
+    {
+      "path": "BRIEFS/article.md",
+      "sha256": "96228061FBCAC31079823007D53D3F4CFD2A29862C32D857F22365694DCDFE36"
+    },
+    {
+      "path": "BRIEFS/association-bee.md",
+      "sha256": "87DD9F115966563D9FE9D82519136B59BF2DB3DB02B836E94A852069C0C9764D"
+    },
+    {
+      "path": "BRIEFS/contact.md",
+      "sha256": "CA9F7597D7ED42631F52C265850B148F00F91AF0B849BDCAA0CB58ABA056C835"
+    },
+    {
+      "path": "BRIEFS/down-trigger.md",
+      "sha256": "42C42DA33844F528763EFEC9DFB8DE0CD8E9973BD825878F793A5A97CBC27B77"
+    },
+    {
+      "path": "BRIEFS/home.md",
+      "sha256": "ECF6DA887B484CC49124EC4A3BE29673B86A07726EDF674DDD308342E170BBB0"
+    },
+    {
+      "path": "BRIEFS/journal.md",
+      "sha256": "27D47A6CFF3B7C207C21F8980864EF268F6E552C8BC271917B0A0E59D45BDA76"
+    },
+    {
+      "path": "BRIEFS/mode-rgb.md",
+      "sha256": "DA891D20CDCA7F56A654798D2D2505A932B0389F739B92C81D0B46848ACB22F7"
+    },
+    {
+      "path": "BRIEFS/pas-du-jour.md",
+      "sha256": "68F28C5F9F308C4BA4A08DD90AE79AF1774AFFEDC1B4DB134D78099DD4AF81E7"
+    },
+    {
+      "path": "BRIEFS/work.md",
+      "sha256": "4AA97B634E30CF2B093DFDC164F8B8ACF5CE0DBDB27C88B368BD47E5DD01EE6D"
+    },
+    {
+      "path": "PILOTES/cas-bee.md",
+      "sha256": "319DAAF9068EB30CC8E806F78DD0B1B38DDEA682363B49C107101F14D6AEDC1B"
+    },
+    {
+      "path": "PILOTES/methode.md",
+      "sha256": "75146AB4C7FB7456F9210E5AF72A9B655BBC654B3F4C66F7F6FD54F93D0F17C9"
+    },
+    {
+      "path": "PILOTES/offre.md",
+      "sha256": "679A2566B92EDA52CD537E31E6FE5C44068E6A863958BDA7BA211F478B66817B"
+    }
+  ],
+  "targeted_review": {
+    "public_pages": 12,
+    "jsonld_parse_count": 11,
+    "report": "../AUDITS/prepublication.md",
+    "environment": "local dist",
+    "evidence": "../AUDITS/prepublication-evidence.json",
+    "status": "P1_CAPTION_TO_CORRECT_AND_ADMIN_UNKNOWN",
+    "reviewer": "/root/audit_docs"
+  }
+}
