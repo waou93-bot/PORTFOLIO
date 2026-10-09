@@ -90,5 +90,41 @@
     "file": "AUDITS/restored-optimized-production-mobile.json",
     "limit": "Labo84/100/100/100 LCP3.664229s TBT261ms1744837octets; terrain inconnu; cleanupEPERM seul exit1",
     "status": "FAIT_VERIFIE"
+  },
+  "latest_run": {
+    "date": "2026-10-09",
+    "domain": "https://www.wadek.fr/",
+    "public_commit": "e64de9c0668d41072376b7e8c5ae92ebc48b7f46",
+    "deployment": "dpl_HtvsrvuqBQ61Mt2WcWiW5d7PXzUG",
+    "publication": "READY production alias www.wadek.fr sans erreur",
+    "audit": "controle-public-2026-10-09.json : 12 pages 200, errors vide",
+    "google": {
+      "property": "https://www.wadek.fr/",
+      "verification": "FAIT_VERIFIE fichier HTML officiel",
+      "sitemap": "https://www.wadek.fr/sitemap-index.xml",
+      "status": "FAIT_VERIFIE traitement index réussi 09/10/2026",
+      "discovered_pages": 0,
+      "home": "Non indexée lors inspection ; demande indexation confirmée",
+      "article": "Non indexée lors inspection ; demande indexation confirmée et file prioritaire",
+      "reports": "Traitement données en cours"
+    },
+    "bing": {
+      "property": "https://www.wadek.fr/",
+      "verification": "FAIT_VERIFIE XML officiel",
+      "sitemap": "SOUMIS_EN_ATTENTE Processing",
+      "urls": "FAIT_VERIFIE 12 URL soumises, quota restant 88",
+      "indexation": "NON_VERIFIE"
+    },
+    "analytics": "NON_APPLICABLE collecte volontairement désactivée",
+    "indexnow": "NON_APPLICABLE soumission directe Bing utilisée, aucune nouvelle intégration",
+    "immersive": "univers-v2 HTTP200 noindex,nofollow confirmé",
+    "apex": "NON_VERIFIE erreur réseau du contrôle public",
+    "proofs": [
+      "google-sitemap-2026-10-09.png",
+      "google-indexation-2026-10-09.png",
+      "bing-urls-2026-10-09.png",
+      "google-article-2026-10-09.png"
+    ],
+    "follow_up": "Contrôles proposés 12/10, 16/10 et 08/11 ; aucune automation"
   }
 }
