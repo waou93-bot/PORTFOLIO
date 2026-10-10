@@ -1,0 +1,19 @@
+{
+  "mobile": {
+    "height": 812,
+    "ledgeDisplay": "block",
+    "overflow": false,
+    "portraits": 2,
+    "ready": "true",
+    "source": "/media/identity/hero-mirror-loop-v1.mp4",
+    "state": "portrait",
+    "videoCount": 1,
+    "width": 375
+  },
+  "fall": {
+    "flightCount": 0,
+    "footerPose": "8",
+    "footerState": "settled",
+    "state": "done"
+  }
+}

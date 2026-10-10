@@ -166,3 +166,12 @@ Demande explicite de Nicolas : sur mobile, le personnage suspendu ne tient aucun
 ## D084 — 9 octobre 2026 — Publication de l’appui mobile
 Nicolas demande explicitement « go push et publie » après l’aperçu local D083. Autorisation de pousser cette correction, son skin et ses preuves de recette sur main et de publier sur www.wadek.fr. Les contrôles Astro et les recettes responsive déjà réussis portent sur ce même code ; aucun changement de contenu ni de médias ajouté. La réussite effective du déploiement et le contrôle public sont consignés après exécution dans le bilan de publication.
 
+## D085 — 10 octobre 2026 — Montage vidéo miroir unique
+Après le diagnostic des exports 960 px/24 fps ralentis à 0.8, Nicolas propose de partir des vidéos originales, d’intégrer le miroir et d’enregistrer une seule vidéo, puis autorise le travail par « go ». Créer le montage des six plans existants avec miroir bilatéral et fondus intégrés, puis remplacer les lecteurs de la landing par un seul lecteur natif à vitesse 1. Préserver les portraits superposés, loader visage et personnage stop motion, l’appui mobile et la chute. Sources et anciens exports conservés. Recette locale avant présentation ; aucune nouvelle DA ni contenu ajouté. Rendu confié à Motion, job c12504b8-5cd6-4315-8ddd-d94310182353 ; résultat non présumé avant réception et vérification.
+
+## D086 — 10 octobre 2026 — Aucun budget externe
+Nicolas précise « pas de sous à mettre là dedans ». Aucun achat ni recharge effectué. Le job Motion s’est mis en attente faute de crédits, aucun export reçu ; le connecteur ne propose pas de commande d’annulation et son interface demande une connexion, aucune relance effectuée. Le montage D085 est poursuivi hors ligne avec FFmpeg déjà installé : sources originales, miroir et fondus cuits dans un MP4 1920 × 1080 à 30 fps lu à vitesse 1. Ce choix supprime le ralentissement browser à 19.2 images/s sans inventer une cadence source supérieure. Portraits et stop motion conservés. Pas de nouveau service ni abonnement.
+
+
+## D087 — 11 octobre 2026 — Poursuite de la correction de fluidité en local
+Nicolas signale que la version avec un lecteur reste saccadée. Correction locale : cadence 60 fps avec interpolation explicite, variantes 720p et 540p, préchargement pendant le loader, deux portraits alpha précomposés portant les accents RGB, miroir conservé. Aucun budget, aucun push/publication. Vérifications techniques et diagnostic comparatif dans `SEO/AUDITS/landing-fluidity-v2-2026-10-10.md` ; validation du confort sur l'écran de Nicolas encore attendue.

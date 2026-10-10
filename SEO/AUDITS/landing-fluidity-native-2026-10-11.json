@@ -1,0 +1,25 @@
+{
+  "before": {
+    "source": "http://127.0.0.1:4330/media/identity/hero-mirror-loop-v1.mp4",
+    "elapsedMs": 6017,
+    "frames": 172,
+    "dropped": 100,
+    "resets": 0,
+    "startVideoTime": 0,
+    "endVideoTime": 5.536784,
+    "displayMedianMs": 66.60000000000036,
+    "displayP95Ms": 67
+  },
+  "after": {
+    "source": "http://127.0.0.1:4330/media/identity/hero-mirror-smooth-mobile-v2.mp4",
+    "elapsedMs": 6001,
+    "frames": 361,
+    "dropped": 5,
+    "resets": 0,
+    "startVideoTime": 0.002424,
+    "endVideoTime": 6.000339,
+    "displayMedianMs": 16.699999999999818,
+    "displayP95Ms": 16.800000000000182
+  },
+  "note": "Un seul onglet de lecture, navigateur intégré, observation locale de six secondes ; pas un benchmark de tous les appareils."
+}

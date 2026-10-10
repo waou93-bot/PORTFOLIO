@@ -57,3 +57,18 @@ Statuts recommandes : `a examiner`, `conserve`, `importe`, `exclu`, `a recreer`,
 - `site/public/media/identity/nicolas-jez-hero-cutout-v2.png` : calque premier plan existant 1024 × 1536, RGBA ; canal alpha présent avec pixels transparents ; fichier inchangé (SHA-256 `CA3A14F8C573E6F1056770A382F5E0DF9026CEE36CC2DA504D0B357D2B6661E4`).
 - Restauration : `archives/landing-hero-before-sequence-20260909/README.md` et copies locales de la vidéo et des composants avant intégration.
 - Les trois sources Downloads sont préservées. Aucun asset existant supprimé, renommé ou redétouré.
+
+## Montage unique de la landing — 10 octobre 2026
+
+- `site/public/media/identity/hero-mirror-loop-v1.mp4` : dérivé local FFmpeg, six sources existantes, miroir bilatéral et fondus intégrés ; H.264 yuv420p, 1920 × 1080, 30 fps, 18.966667 s, 12714237 octets, sans audio, faststart.
+- `site/public/media/identity/hero-mirror-loop-v1-poster.webp` : première image du dérivé, 1280 × 720, utilisée comme affiche du même lecteur.
+- Sources et SHA-256 : `SEO/AUDITS/single-video-sources-2026-10-10.json`. Anciennes vidéos et exports conservés. Montage reproductible : `scripts/build-single-hero-video.py` ; intermédiaires et sauvegardes dans `.local-backups/single-video-20261010/`.
+- Aucun média neuf acheté ou généré ; aucun abonnement ou recharge effectué. Le job Motion initial est resté en attente de crédits sans export reçu ; livraison produite hors ligne.
+
+## Fluidité vidéo v2 — 10 octobre 2026
+- `hero-mirror-smooth-v2.mp4` : montage dérivé du master conservé, interpolation de mouvement hors ligne, H.264 yuv420p 1280 × 720, 60 fps, 18.916667 s, 7 888 027 octets. SHA256 D2A1CD811B11363A1FE04166EF74DD39DDC937E6F6ECA755C42D61D8E0606CEF.
+- `hero-mirror-smooth-mobile-v2.mp4` : variante 960 × 540, 60 fps, 3 840 363 octets. SHA256 5B65C667C1ADACBA5F8B24B0AD86D09D054E2D6F8A2CCC6F938512B04E5DC959.
+- Génération : `scripts/build-smooth-hero-video.py`, FFmpeg installé, sans coût ni envoi externe. Originaux et v1 préservés. Recette locale, pas de publication.
+
+## Portraits précomposés — 11 octobre 2026
+`nicolas-jez-static-cyan-{384,768,1024}.webp` et `nicolas-jez-static-red-{384,768,1024}.webp` : dérivés alpha du portrait existant, traitement et accents RGB intégrés hors ligne par `scripts/bake-hero-portraits.cjs`. Deux images affichées au lieu de quatre calques filtrés, originaux conservés. Sauvegarde composant antérieur dans `.local-backups/fluidity-20261010/`.

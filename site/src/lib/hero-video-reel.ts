@@ -1,198 +1,62 @@
-type HeroPair = {
-  root: HTMLElement;
-  videos: HTMLVideoElement[];
-};
-
-/** Keep the outgoing frame until the next mirrored pair has decoded a frame. */
+/** The mirror and scene transitions are already encoded in the video asset. */
 export function initHeroVideoReel(root: HTMLElement) {
-  const reel = root.querySelector<HTMLElement>('[data-hero-reel]');
-  const pairs: HeroPair[] = [...root.querySelectorAll<HTMLElement>('[data-hero-pair]')]
-    .map((pairRoot) => ({
-      root: pairRoot,
-      videos: [...pairRoot.querySelectorAll<HTMLVideoElement>('[data-mind-hero-video]')],
-    }))
-    .filter((pair) => pair.videos.length === 2);
+  const video = root.querySelector<HTMLVideoElement>('[data-hero-single-video]');
+  if (!video) return { play() {}, pause() {}, dispose() {} };
+
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let active = 0;
-  let frame = 0;
-  let epoch = 0;
-  let timer = 0;
-  let pending = false;
+  const abort = new AbortController();
   let visible = true;
   let disposed = false;
-  let retryAt = 0;
-  let preparedNext = -1;
-  let finishSplice: (() => void) | undefined;
-  let crossfade: Animation | undefined;
-  const enabled = () => !disposed && !document.hidden && visible &&
+  let playAttempt = 0;
+  const enabled = () => !disposed && visible && !document.hidden &&
     !motion.matches && root.dataset.state === 'portrait';
-  const cutAt = (video: HTMLVideoElement, pair: HeroPair) => {
-    const ratio = Number(pair.root.dataset.cutRatio);
-    const visibleRatio = Number.isFinite(ratio) ? ratio : 0.18;
-    return Number.isFinite(video.duration)
-      ? Math.max(0.1, Math.min(video.duration * visibleRatio, video.duration - 0.5))
-      : Infinity;
-  };
-  const activePair = () => pairs[active]!;
-  const pausePair = (pair: HeroPair) => pair.videos.forEach((video) => video.pause());
-  const playPair = (pair: HeroPair) =>
-    pair.videos.forEach((video) => void video.play().catch(() => undefined));
-  const resetPair = (pair: HeroPair) =>
-    pair.videos.forEach((video) => {
-      video.pause();
-      video.currentTime = 0;
-    });
-
-  for (const video of pairs.flatMap((pair) => pair.videos)) {
-    video.muted = video.defaultMuted = true;
-    video.loop = false;
-    video.defaultPlaybackRate = video.playbackRate = 0.8;
-  }
-  const firstPair = pairs[0];
-  const first = firstPair?.videos[0];
-  if (!reel || !firstPair || !first) return { play() {}, pause() {}, dispose() {} };
-  firstPair.root.dataset.active = '';
-  // Browsers can defer an autoplay video after a hard refresh when it is only
-  // declared with `preload="auto"`. Start the first mirrored pair explicitly
-  // so the reel never gets stuck on the portrait fallback after reloading.
-  firstPair.videos.forEach((video) => {
-    video.preload = 'auto';
-    video.load();
-  });
-
-  const prepareNext = () => {
-    const nextIndex = (active + 1) % pairs.length;
-    const next = pairs[nextIndex]!;
-    if (!motion.matches && preparedNext !== nextIndex) {
-      next.videos.forEach((video) => {
-        if (video.preload !== 'auto') {
-          video.preload = 'auto';
-          video.load();
-        }
-      });
-      preparedNext = nextIndex;
-    }
-  };
-
-  const decodedFrame = (video: HTMLVideoElement) => new Promise<boolean>((resolve) => {
-    let callback = 0;
-    let settled = false;
-    let poll = 0;
-    const done = (ready: boolean) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timeout);
-      cancelAnimationFrame(poll);
-      if (callback && typeof video.cancelVideoFrameCallback === 'function')
-        video.cancelVideoFrameCallback(callback);
-      resolve(ready);
-    };
-    const timeout = window.setTimeout(() => done(false), 4000);
-    if (typeof video.requestVideoFrameCallback === 'function') {
-      callback = video.requestVideoFrameCallback(() => done(true));
-    } else {
-      const check = () => {
-        if (video.readyState >= 2 && !video.paused && video.currentTime > 0) done(true);
-        else poll = requestAnimationFrame(check);
-      };
-      poll = requestAnimationFrame(check);
-    }
-    void video.play().catch(() => done(false));
-  });
-
-  const splice = async () => {
-    if (pending || !enabled() || performance.now() < retryAt) return;
-    pending = true;
-    const run = ++epoch;
-    const outgoing = activePair();
-    const nextIndex = (active + 1) % pairs.length;
-    const incoming = pairs[nextIndex]!;
-    prepareNext();
-    resetPair(incoming);
-    const ready = (await Promise.all(incoming.videos.map(decodedFrame))).every(Boolean);
-    if (run !== epoch || !enabled()) {
-      pending = false;
-      return;
-    }
-    if (!ready) {
-      pausePair(incoming);
-      pending = false;
-      retryAt = performance.now() + 2000;
-      return;
-    }
-    incoming.root.dataset.incoming = '';
-    crossfade = incoming.root.animate([{ opacity: 0 }, { opacity: 1 }], {
-      duration: 480, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both',
-    });
-    root.dataset.heroClip = String(nextIndex + 1);
-    finishSplice = () => {
-      delete outgoing.root.dataset.active;
-      incoming.root.dataset.active = '';
-      delete incoming.root.dataset.incoming;
-      delete reel.dataset.glitch;
-      crossfade?.cancel();
-      crossfade = undefined;
-      pausePair(outgoing);
-      resetPair(outgoing);
-      active = nextIndex;
-      preparedNext = -1;
-      pending = false;
-      finishSplice = undefined;
-      if (enabled()) prepareNext();
-    };
-    timer = window.setTimeout(() => finishSplice?.(), 500);
-  };
-
-  const tick = () => {
-    if (!enabled()) return;
-    const pair = activePair();
-    const current = pair.videos[0]!;
-    const boundary = cutAt(current, pair);
-    if (boundary !== Infinity && current.currentTime >= boundary * 0.45) prepareNext();
-    if (current.currentTime >= boundary - 0.4 || current.ended) {
-      void splice();
-    }
-    frame = requestAnimationFrame(tick);
+  const ready = () => {
+    if (!disposed && video.readyState >= 2) root.dataset.heroVideoReady = 'true';
   };
   const pause = () => {
-    ++epoch;
-    cancelAnimationFrame(frame);
-    clearTimeout(timer);
-    finishSplice?.();
-    pending = false;
-    pairs.forEach(pausePair);
+    ++playAttempt;
+    video.pause();
   };
   const play = () => {
     if (!enabled()) return;
-    const current = activePair().videos[0]!;
-    if (current.currentTime < cutAt(current, activePair())) playPair(activePair());
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(tick);
-  };
-  const ready = () => {
-    root.dataset.heroVideoReady = 'true';
-    root.dataset.heroClip ??= '1';
+    const attempt = ++playAttempt;
+    void video.play().then(() => {
+      if (attempt === playAttempt && !enabled()) video.pause();
+    }).catch(() => {
+      // Keep the poster/portrait when autoplay is unavailable.
+    });
   };
   const sync = () => enabled() ? play() : pause();
-  first.addEventListener('loadeddata', ready);
-  if (first.readyState >= 2) ready();
+  video.muted = video.defaultMuted = true;
+  video.loop = true;
+  video.defaultPlaybackRate = video.playbackRate = 1;
+  video.addEventListener('loadeddata', ready, { signal: abort.signal });
+  video.addEventListener('playing', ready, { signal: abort.signal });
+  video.addEventListener('error', () => {
+    delete root.dataset.heroVideoReady;
+    pause();
+  }, { signal: abort.signal });
+  if (video.readyState >= 2) ready();
+
   const observer = new IntersectionObserver(([entry]) => {
     if (!entry) return;
     visible = entry.isIntersecting;
     sync();
   }, { threshold: 0.05 });
   observer.observe(root);
-  document.addEventListener('visibilitychange', sync);
-  motion.addEventListener('change', sync);
+  document.addEventListener('visibilitychange', sync, { signal: abort.signal });
+  motion.addEventListener('change', sync, { signal: abort.signal });
+
   return {
     play, pause,
     dispose() {
       disposed = true;
       pause();
       observer.disconnect();
-      document.removeEventListener('visibilitychange', sync);
-      motion.removeEventListener('change', sync);
-      first.removeEventListener('loadeddata', ready);
+      abort.abort();
+      video.removeAttribute('src');
+      video.querySelectorAll('source').forEach(source => source.removeAttribute('src'));
+      video.load();
     },
   };
 }

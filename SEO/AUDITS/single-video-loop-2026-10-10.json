@@ -1,0 +1,29 @@
+{
+  "atoms": [
+    {
+      "type": "ftyp",
+      "offset": 0,
+      "bytes": 32
+    },
+    {
+      "type": "moov",
+      "offset": 32,
+      "bytes": 7632
+    },
+    {
+      "type": "free",
+      "offset": 7664,
+      "bytes": 8
+    },
+    {
+      "type": "mdat",
+      "offset": 7672,
+      "bytes": 12706565
+    }
+  ],
+  "sampleFrames": 4,
+  "loopBoundaryMeanDifference": 0.4139583333333333,
+  "openingAdjacentMeanDifference": 5.897106481481481,
+  "closingAdjacentMeanDifference": 28.577986111111112,
+  "bytes": 12714237
+}

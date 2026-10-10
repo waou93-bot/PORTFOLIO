@@ -1,0 +1,116 @@
+[
+  {
+    "path": "site/public/media/identity/hero-reel-mirror/clip-01.mp4",
+    "sha256": "A287A79FC96271CE435A570B84E0890F505AA35354A8FF2AC6B6F0D7E060C99B",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1426,
+          "height": 1080,
+          "r_frame_rate": "60000/1001"
+        }
+      ],
+      "format": {
+        "duration": "7.757750",
+        "size": "8820638"
+      }
+    }
+  },
+  {
+    "path": "site/public/media/identity/hero-reel-mirror/clip-02.mp4",
+    "sha256": "6DEB3BA3F2A0127676563BCEAB31733256EFDF4F2DF0E9B483DFFD318AD48534",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 2560,
+          "height": 1440,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "16.666667",
+        "size": "46102273"
+      }
+    }
+  },
+  {
+    "path": "site/public/media/identity/hero-reel-mirror/clip-03.mp4",
+    "sha256": "E217F93CAC5D169DDAC6F51B0AC08783C229A726405ADB6843DE17F6549C307C",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "18.266667",
+        "size": "5234739"
+      }
+    }
+  },
+  {
+    "path": "site/public/media/identity/landing-hero-video.mp4",
+    "sha256": "189EB8F9823B257EE47A668002BB0441F671BC4086C319F4CB10B24E7DD1A35B",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1358,
+          "height": 720,
+          "r_frame_rate": "60/1"
+        }
+      ],
+      "format": {
+        "duration": "20.216667",
+        "size": "7175495"
+      }
+    }
+  },
+  {
+    "path": "site/public/media/identity/91744-636709154_medium.mp4",
+    "sha256": "06A30C4EB06BD4A831C22547A631C93063006FDD3F0E00040FD250DEE66590A5",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 2560,
+          "height": 1440,
+          "r_frame_rate": "30000/1001"
+        }
+      ],
+      "format": {
+        "duration": "17.066667",
+        "size": "26263817"
+      }
+    }
+  },
+  {
+    "path": "site/public/media/identity/165208-832102298_medium.mp4",
+    "sha256": "75789BB4250802E15A70C099FA58ECDFAFEB7A287849BF17EABE6ECFA5DC1034",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 2560,
+          "height": 1440,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "29.000000",
+        "size": "15372397"
+      }
+    }
+  }
+]

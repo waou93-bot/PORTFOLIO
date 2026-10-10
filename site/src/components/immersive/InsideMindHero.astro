@@ -3,16 +3,7 @@ import { getPublishedProjects } from '../../lib/content';
 const published = await getPublishedProjects();
 const projects = published.map(p=>({title:p.data.title,meta:p.data.sector,href:`/work/${p.data.slug}/`,src:p.data.cover.src,alt:p.data.cover.alt}));
 
-const heroReelClips = [
-  { src: '/media/identity/hero-reel-optimized/clip-01.mp4', ratio: 1 },
-  { src: '/media/identity/hero-reel-optimized/clip-02.mp4', ratio: 1 },
-  { src: '/media/identity/hero-reel-optimized/clip-03.mp4', ratio: 1 },
-  { src: '/media/identity/hero-reel-optimized/clip-04.mp4', ratio: 1, invert: true },
-  { src: '/media/identity/hero-reel-optimized/clip-05.mp4', ratio: 1 },
-  { src: '/media/identity/hero-reel-optimized/clip-06.mp4', ratio: 1 },
-];
-
-const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
+const portraitSrc = '/media/identity/nicolas-jez-static-cyan-1024.webp';
 ---
 
 <section class="mind" data-inside-mind data-state="loading" aria-labelledby="mind-title">
@@ -49,41 +40,25 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
       <span class="mind-footer-launcher-sign" aria-hidden="true">DON'T CLICK</span>
     </button>
     <div class="mind-hero-reel" data-hero-reel aria-hidden="true">
-      {heroReelClips.map((clip, index) => (
-        <div
-          class="mind-hero-pair"
-          data-hero-pair
-          data-clip-index={index}
-          data-cut-ratio={clip.ratio}
-          data-invert={clip.invert ? 'true' : undefined}
-        >
-          <video
-            class="mind-hero-video mind-hero-video--source"
-            data-mind-hero-video
-            data-mirror-side="source"
-            src={clip.src}
-            muted
-            playsinline
-            preload={index === 0 ? 'auto' : 'none'}
-            tabindex="-1"
-          />
-          <video
-            class="mind-hero-video mind-hero-video--mirror"
-            data-mind-hero-video
-            data-mirror-side="mirror"
-            src={clip.src}
-            muted
-            playsinline
-            preload={index === 0 ? 'auto' : 'none'}
-            tabindex="-1"
-          />
-        </div>
-      ))}
+      <video
+        class="mind-hero-video"
+        data-mind-hero-video
+        data-hero-single-video
+        poster="/media/identity/hero-mirror-loop-v1-poster.webp"
+        muted
+        playsinline
+        loop
+        preload="auto"
+        tabindex="-1"
+      >
+        <source media="(max-width: 896px)" src="/media/identity/hero-mirror-smooth-mobile-v2.mp4" type="video/mp4" />
+        <source src="/media/identity/hero-mirror-smooth-v2.mp4" type="video/mp4" />
+      </video>
     </div>
     <img
       class="mind-portrait"
       src={portraitSrc}
-      srcset="/media/identity/nicolas-jez-mirror-384.webp 384w, /media/identity/nicolas-jez-mirror-768.webp 768w, /media/identity/nicolas-jez-hero-bomber-v1-alpha.webp 1024w"
+      srcset="/media/identity/nicolas-jez-static-cyan-384.webp 384w, /media/identity/nicolas-jez-static-cyan-768.webp 768w, /media/identity/nicolas-jez-static-cyan-1024.webp 1024w"
       sizes="(max-width: 56rem) 42vw, 32vw"
       alt="Nicolas Jez en bomber noir et lunettes de soleil."
       width="1024"
@@ -94,64 +69,15 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
     />
     <img
       class="mind-portrait-echo"
-      src={portraitSrc}
-      srcset="/media/identity/nicolas-jez-mirror-384.webp 384w, /media/identity/nicolas-jez-mirror-768.webp 768w, /media/identity/nicolas-jez-hero-bomber-v1-alpha.webp 1024w"
+      src="/media/identity/nicolas-jez-static-red-1024.webp"
+      srcset="/media/identity/nicolas-jez-static-red-384.webp 384w, /media/identity/nicolas-jez-static-red-768.webp 768w, /media/identity/nicolas-jez-static-red-1024.webp 1024w"
       sizes="(max-width: 56rem) 42vw, 32vw"
-      alt=""
-      width="1672"
-      height="941"
-      aria-hidden="true"
-    />
-    <img
-      class="mind-portrait-chroma mind-portrait-chroma--cyan"
-      src={portraitSrc}
-      srcset="/media/identity/nicolas-jez-mirror-384.webp 384w, /media/identity/nicolas-jez-mirror-768.webp 768w, /media/identity/nicolas-jez-hero-bomber-v1-alpha.webp 1024w"
-      sizes="(max-width: 56rem) 42vw, 32vw"
-      alt=""
-      width="1024"
-      height="1536"
-      aria-hidden="true"
-    />
-    <img
-      class="mind-portrait-chroma mind-portrait-chroma--red"
-      src={portraitSrc}
-      srcset="/media/identity/nicolas-jez-mirror-384.webp 384w, /media/identity/nicolas-jez-mirror-768.webp 768w, /media/identity/nicolas-jez-hero-bomber-v1-alpha.webp 1024w"
-      sizes="(max-width: 56rem) 42vw, 32vw"
-      alt=""
-      width="1024"
-      height="1536"
-      aria-hidden="true"
+      alt="" width="1024" height="1536" aria-hidden="true"
     />
 
     <img class="mind-portrait-half" data-portrait-half alt="" aria-hidden="true" width="1672" height="941" />
     <img class="mind-portrait-half" data-portrait-half alt="" aria-hidden="true" width="1672" height="941" />
     <canvas class="mind-canvas" data-mind-canvas aria-hidden="true"></canvas>
-    <video
-      class="mind-flight"
-      data-mind-flight
-      src="/media/transition/drone-journey-source-v1.mp4"
-      muted
-      loop
-      playsinline
-      preload="none"
-      aria-hidden="true"></video>
-    <video
-      class="mind-clouds"
-      data-mind-clouds
-      src="/media/transition/drone-journey-source-v1.mp4"
-      muted
-      loop
-      playsinline
-      preload="none"
-      aria-hidden="true"></video>
-    <video
-      class="mind-clouds"
-      data-mind-clouds-alt
-      src="/media/transition/drone-journey-source-v1.mp4"
-      muted
-      playsinline
-      preload="none"
-      aria-hidden="true"></video>
     <div class="mind-vignette" aria-hidden="true"></div>
 
     <div class="mind-copy" data-mind-copy>
@@ -558,107 +484,32 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
     overflow: hidden;
     background: #090b12;
     pointer-events: none;
+    isolation: isolate;
     transition: opacity 300ms ease;
   }
 
   .mind[data-state='playing'] .mind-hero-reel,
   .mind[data-state='revealed'] .mind-hero-reel { opacity: 0; }
 
-  .mind-hero-reel[data-glitch] {
-    animation: hero-reel-splice 220ms steps(3, end) both;
-  }
-
-  .mind-hero-reel::after {
-    content: '';
-    position: absolute;
-    z-index: 2;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(90deg, rgba(73, 220, 255, 0.12), transparent 22%, transparent 76%, rgba(255, 92, 116, 0.1)),
-      repeating-linear-gradient(0deg, transparent 0 13px, rgba(237, 243, 255, 0.08) 13px 14px, transparent 14px 27px);
-    mix-blend-mode: screen;
-  }
-
-  .mind-hero-reel[data-glitch]::after {
-    animation: hero-reel-glitch-overlay 220ms steps(3, end) both;
-  }
-
-  @keyframes hero-reel-splice {
-    0%, 100% { transform: none; filter: none; }
-    20% { transform: translateX(2px) scale(1.006); filter: saturate(0.72) contrast(1.1); }
-    48% { transform: translateX(-3px) scale(1.008); filter: saturate(1.24) contrast(1.06); }
-    72% { transform: translateX(1px) scale(1.003); filter: saturate(1.08); }
-  }
-
-  @keyframes hero-reel-glitch-overlay {
-    0%, 100% { opacity: 0; transform: none; }
-    18% { opacity: 0.38; transform: translateX(-2px); }
-    44% { opacity: 0.16; transform: translateX(3px) skewX(-0.3deg); }
-    68% { opacity: 0.3; transform: translateX(-1px); }
-  }
-
+  /* Reflection and transitions are baked into the single native video. */
   .mind-hero-video {
     z-index: 0;
     object-fit: cover;
     object-position: center;
     opacity: 1;
     background: #090b12;
-    filter: saturate(1.02) contrast(1.02);
     pointer-events: none;
+    filter: none;
+    transform: none;
     transition: none;
   }
-
-  .mind-hero-pair {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    opacity: 1;
-  }
-
-  .mind[data-hero-video-ready='true'] .mind-hero-pair[data-active],
-  .mind[data-hero-video-ready='true'] .mind-hero-pair[data-incoming] {
-    opacity: 1;
-  }
-
-  .mind-hero-pair:not([data-active]):not([data-incoming]) {
-    opacity: 0;
-  }
-
-  .mind-hero-pair[data-incoming] {
-    z-index: 1;
-    transition: opacity 100ms linear;
-  }
-
-  .mind-hero-video--source {
-    clip-path: inset(0 50% 0 0);
-  }
-
-  .mind-hero-video--mirror {
-    /* Select the same left source half, then reflect it across the center. */
-    clip-path: inset(0 50% 0 0);
-    transform: scaleX(-1);
-  }
-
-  /* The Earth clip reads better reversed before its bilateral reflection. */
-  .mind-hero-pair[data-invert='true'] .mind-hero-video--source {
-    clip-path: inset(0 0 0 50%);
-    transform: scaleX(-1);
-  }
-
-  .mind-hero-pair[data-invert='true'] .mind-hero-video--mirror {
-    clip-path: inset(0 0 0 50%);
-    transform: none;
-  }
-
   .mind-portrait {
     object-fit: cover;
     object-position: center;
     transform: translate3d(var(--gaze-x, 0px), var(--gaze-y, 0px), 0);
     transform-origin: var(--lens-x) var(--lens-y);
     transition: filter 70ms ease-out, opacity 520ms ease;
-    will-change: transform, opacity, filter;
+    will-change: transform;
   }
 
   .mind[data-hero-video-ready='true'][data-state='portrait'] .mind-portrait-echo {
@@ -1040,18 +891,18 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
       radial-gradient(ellipse 7rem 0.42rem at 85% 63%, rgba(217, 251, 255, 0.24), transparent 72%),
       radial-gradient(ellipse 3.5rem 0.32rem at 73% 10%, rgba(63, 233, 255, 0.26), transparent 74%),
       radial-gradient(ellipse 4.5rem 0.36rem at 29% 84%, rgba(63, 233, 255, 0.2), transparent 74%);
-    filter: blur(5px);
+    filter: none;
     opacity: 0.52;
-    animation: mind-energy-gather 4.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation: none;
   }
 
   .mind-actions::after {
     z-index: -1;
     inset: -1.2rem;
     background: radial-gradient(circle at 50% 50%, rgba(63, 233, 255, 0.22), rgba(0, 81, 255, 0.08) 36%, transparent 72%);
-    filter: blur(10px);
+    filter: none;
     opacity: 0.46;
-    animation: mind-energy-ring 4.8s ease-in-out infinite;
+    animation: none;
   }
 
 
@@ -1668,24 +1519,18 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
     }
   }
 
-  /* The existing transparent portrait is a separate, unaltered foreground layer. */
+  /* Alpha portraits carry their grading and RGB edging in static assets. */
   .mind .mind-portrait[data-composite-portrait] {
     z-index: 2;
+    will-change: transform;
     inset: auto auto 0 0;
     width: 32%;
     height: 94%;
     object-fit: contain;
     object-position: left bottom;
     transform: none;
-    /* A restrained grade and alpha-aware edge lift keep the cutout grounded
-       without redrawing or altering the transparent source asset. */
-    filter:
-      saturate(0.88)
-      contrast(1.14)
-      brightness(0.95)
-      drop-shadow(0 0 2px rgba(3, 5, 8, 0.98))
-      drop-shadow(0 8px 12px rgba(2, 3, 6, 0.7))
-      drop-shadow(0 24px 30px rgba(2, 3, 6, 0.48));
+    /* No filter pass needs to be composited over every video frame. */
+    filter: none;
     pointer-events: none;
   }
 
@@ -1731,6 +1576,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
      fallback image: both sides share the same alpha cutout and grading. */
   .mind .mind-portrait-echo {
     display: block;
+    will-change: transform;
     z-index: 2;
     inset: auto 0 0 auto;
     width: 32%;
@@ -1739,13 +1585,7 @@ const portraitSrc = '/media/identity/nicolas-jez-hero-bomber-v1-alpha.webp';
     object-position: right bottom;
     transform: scaleX(-1);
     opacity: 1;
-    filter:
-      saturate(0.88)
-      contrast(1.14)
-      brightness(0.95)
-      drop-shadow(0 0 2px rgba(3, 5, 8, 0.98))
-      drop-shadow(0 8px 12px rgba(2, 3, 6, 0.7))
-      drop-shadow(0 24px 30px rgba(2, 3, 6, 0.48));
+    filter: none;
     pointer-events: none;
   }
 

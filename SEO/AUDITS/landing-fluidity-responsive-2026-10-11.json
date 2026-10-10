@@ -1,0 +1,24 @@
+{
+  "desktop": {
+    "source": "http://127.0.0.1:4330/media/identity/hero-mirror-smooth-v2.mp4",
+    "elapsedMs": 6001,
+    "frames": 363,
+    "dropped": 6,
+    "resets": 0,
+    "startVideoTime": 0.016302,
+    "endVideoTime": 6.015633,
+    "displayMedianMs": 16.699999999999818,
+    "displayP95Ms": 16.899999999999636
+  },
+  "mobile": {
+    "source": "http://127.0.0.1:4330/media/identity/hero-mirror-smooth-mobile-v2.mp4",
+    "elapsedMs": 6001,
+    "frames": 361,
+    "dropped": 4,
+    "resets": 0,
+    "startVideoTime": 0.007315,
+    "endVideoTime": 6.006582,
+    "displayMedianMs": 16.699999999999818,
+    "displayP95Ms": 16.900000000000546
+  }
+}
